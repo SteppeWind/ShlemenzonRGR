@@ -1,0 +1,162 @@
+﻿<Page
+    x:Class="NewsForum.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NewsForum"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+
+        <SolidColorBrush x:Key="MenuColorStyle"
+                         Color="#FF80D1DE"/>
+
+        <Style x:Key="MenuIconStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="23"/>
+            <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+        </Style>
+
+        <Style x:Key="MenuTitleStyle"
+               TargetType="TextBlock"
+               BasedOn="{StaticResource HeaderTextBlockStyle}">
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="Margin" Value="20 0 0 0"/>
+        </Style>
+    </Page.Resources>
+    
+    <Grid Background="{StaticResource MenuColorStyle}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <RelativePanel>
+            <Button Name="HamburgerButton"
+                    FontFamily="Segoe MDL2 Assets"
+                    FontSize="25"
+                    Background="{x:Null}"
+                    RelativePanel.AlignLeftWithPanel="True"
+                    Content=""
+                    Click="HamburgerButton_Click"/>
+            <SearchBox Width="250"
+                       Margin="2"
+                       RelativePanel.AlignRightWithPanel="True"/>
+        </RelativePanel>
+
+        <SplitView Name="MenuSplitView"
+                   Grid.Row="1"
+                   DisplayMode="CompactOverlay"
+                   CompactPaneLength="45"
+                   OpenPaneLength="220"
+                   PaneBackground="{StaticResource MenuColorStyle}">
+            <SplitView.Pane>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <ListView Name="FirstMenuListView"
+                                  Grid.Row="0"
+                                  SelectionMode="None"
+                                  ItemClick="ListView_ItemClick"
+                                  IsItemClickEnabled="True">
+                            <ListViewItem >
+                                <StackPanel Tag="Home" Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource MenuIconStyle}"
+                                       Text=""/>
+                                    <TextBlock Style="{StaticResource MenuTitleStyle}"
+                                       Text="Главная"/>
+                                </StackPanel>
+                            </ListViewItem>
+
+                            <ListViewItem>
+                                <StackPanel Tag="ExpandSearch"
+                                    Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource MenuIconStyle}"
+                                       Text=""/>
+                                    <TextBlock Style="{StaticResource MenuTitleStyle}"
+                                       Text="Расширенный поиск"/>
+                                </StackPanel>
+                            </ListViewItem>
+
+                            <ListViewItem Name="Share">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource MenuIconStyle}"
+                                       Text=""/>
+                                    <TextBlock Style="{StaticResource MenuTitleStyle}"
+                                       Text="Фильмы"/>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource MenuIconStyle}"
+                                       Text=""/>
+                                    <TextBlock Style="{StaticResource MenuTitleStyle}"
+                                       Text="Игры"/>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource MenuIconStyle}"
+                                       Text=""/>
+                                    <TextBlock Style="{StaticResource MenuTitleStyle}"
+                                       Text="Музыка"/>
+                                </StackPanel>
+                            </ListViewItem>
+                        </ListView>
+
+                        <ListView Grid.Row="2"
+                                  IsItemClickEnabled="True"
+                                  SelectionMode="None"
+                                  ItemClick="ListView_ItemClick">
+                            <ListViewItem>
+                                <StackPanel Tag="Publication"
+                                            Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource MenuIconStyle}"
+                                       Text=""/>
+                                    <TextBlock Style="{StaticResource MenuTitleStyle}"
+                                       Text="Публикации"/>
+                                </StackPanel>
+                                <ListViewItem.ContextFlyout>
+                                    <Flyout>
+                                        <StackPanel>
+                                            <Button/>
+                                            <Button/>
+                                            <Button/>
+                                        </StackPanel>
+                                    </Flyout>
+                                </ListViewItem.ContextFlyout>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <StackPanel Orientation="Horizontal"
+                                    Tag="Profile">
+                                    <TextBlock Style="{StaticResource MenuIconStyle}"
+                                       Text=""/>
+                                    <TextBlock Style="{StaticResource MenuTitleStyle}"
+                                       Text="Профиль"/>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <StackPanel Orientation="Horizontal"
+                                    Tag="About">
+                                    <TextBlock Style="{StaticResource MenuIconStyle}"
+                                       Text=""/>
+                                    <TextBlock Style="{StaticResource MenuTitleStyle}"
+                                       Text="О нас"/>
+                                </StackPanel>
+                            </ListViewItem>
+                        </ListView>
+                    </Grid>
+                </ScrollViewer>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <Frame Name="MyFrame"/>
+            </SplitView.Content>
+        </SplitView>
+    </Grid>
+</Page>

@@ -1,0 +1,83 @@
+﻿<Page x:ConnectionId='1'
+    x:Class="NewsForum.Pages.ExpandSearchPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NewsForum.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Converters="using:NewsForum.View.Converters"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Converters:ExpandSearchCollapseGenresConverter x:Key="CollapseGenresConverter"/>
+        <Converters:HeightColumnGridConverter x:Key="HeightColumnGridConverter"/>
+    </Page.Resources>
+    
+    <Page.Transitions>
+        <TransitionCollection>
+            <PopupThemeTransition/>
+        </TransitionCollection>
+    </Page.Transitions>
+
+    <Grid>
+        
+        <ListView SelectionMode="None">
+
+            <ComboBox>
+                <ComboBox.Header>
+                    <TextBlock Text="Выберите тип публикации"
+                           FontSize="20"
+                           Style="{StaticResource SubheaderTextBlockStyle}"/>
+                </ComboBox.Header>
+            </ComboBox>
+
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Выберите жанр"
+                               FontSize="20"
+                               Style="{StaticResource SubheaderTextBlockStyle}"/>
+                    <ToggleButton x:ConnectionId='4' Name="Swipe"
+                              FontSize="20"
+                              Margin="10 0 0 0"
+                              Style="{StaticResource TextBlockButtonStyle}"
+                              FontFamily="Segoe MDL2 Assets"
+                              Content="{Binding ElementName=GenresPopup, Path=IsOpen, Converter={StaticResource CollapseGenresConverter}}"/>
+                </StackPanel>
+
+                <Popup x:ConnectionId='2' Name="GenresPopup"
+                   Grid.Row="1"
+                       Margin="{Binding ElementName=Swipe, Path=IsChecked, Converter={StaticResource HeightColumnGridConverter}}"
+                   IsOpen="{Binding ElementName=Swipe, Path=IsChecked}">
+                    <ListView x:ConnectionId='3'                             
+                          Grid.Row="1"
+                              SelectionMode="Multiple"/>
+                    <Popup.ChildTransitions>
+                        <TransitionCollection>
+                            <PopupThemeTransition/>
+                        </TransitionCollection>
+                    </Popup.ChildTransitions>
+                </Popup>
+            </StackPanel>
+
+
+            <StackPanel>
+                <TextBlock Text="Год выхода"
+                       FontSize="20"
+                       Style="{StaticResource SubheaderTextBlockStyle}"/>
+
+                <DatePicker Grid.Row="1"
+                        Header="C"/>
+                <DatePicker Grid.Row="2"
+                        Header="По"/>
+            </StackPanel>
+
+            <Button Margin="0,10,0,0">
+                <TextBlock Text="Найти"
+                           FontSize="20"
+                           Style="{StaticResource SubheaderTextBlockStyle}" />
+            </Button>
+        </ListView>
+
+    </Grid>
+</Page>
+
