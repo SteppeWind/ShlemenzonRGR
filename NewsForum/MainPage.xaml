@@ -122,15 +122,6 @@
                                     <TextBlock Style="{StaticResource MenuTitleStyle}"
                                        Text="Публикации"/>
                                 </StackPanel>
-                                <ListViewItem.ContextFlyout>
-                                    <Flyout>
-                                        <StackPanel>
-                                            <Button/>
-                                            <Button/>
-                                            <Button/>
-                                        </StackPanel>
-                                    </Flyout>
-                                </ListViewItem.ContextFlyout>
                             </ListViewItem>
                             <ListViewItem>
                                 <StackPanel Orientation="Horizontal"

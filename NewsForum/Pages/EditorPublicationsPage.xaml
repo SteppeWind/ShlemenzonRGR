@@ -8,7 +8,7 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <x:String x:Key="TitlePage">Публикации</x:String>
+        <x:String x:Key="TitlePage">Создать публикацию</x:String>
 
         <Style x:Key="MenuEditPublicationStyle"
                TargetType="TextBlock"
@@ -37,90 +37,83 @@
                    Style="{StaticResource SubheaderTextBlockStyle}"/>
 
 
-        <Pivot Grid.Row="1">
-            <PivotItem Header="Ваши публикации">
-            </PivotItem>
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
 
-            <PivotItem Header="Редактор">
-                
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="auto"/>
-                        </Grid.RowDefinitions>
+                <GridView Grid.Row="0">
 
-                        <GridView Grid.Row="0">
+                    <GridViewItem>
+                        <ComboBox FontSize="20" SelectedIndex="1">
+                            <ComboBoxItem Content="10"/>
+                            <ComboBoxItem Content="10"/>
+                            <ComboBoxItem Content="10"/>
+                            <ComboBoxItem Content="10"/>
+                            <ComboBoxItem Content="10"/>
+                        </ComboBox>
+                    </GridViewItem>
 
-                            <GridViewItem>
-                                <ComboBox FontSize="20" SelectedIndex="1">
-                                    <ComboBoxItem Content="10"/>
-                                    <ComboBoxItem Content="10"/>
-                                    <ComboBoxItem Content="10"/>
-                                    <ComboBoxItem Content="10"/>
-                                    <ComboBoxItem Content="10"/>
-                                </ComboBox>
-                            </GridViewItem>
-
-                            <GridViewItem>
-                                <TextBlock Style="{StaticResource MenuEditPublicationStyle}"
+                    <GridViewItem>
+                        <TextBlock Style="{StaticResource MenuEditPublicationStyle}"
                                            Text=""/>
-                            </GridViewItem>
-                            <GridViewItem>
-                                <TextBlock Style="{StaticResource MenuEditPublicationStyle}"
+                    </GridViewItem>
+                    <GridViewItem>
+                        <TextBlock Style="{StaticResource MenuEditPublicationStyle}"
                                            Text=""/>
-                            </GridViewItem>
-                            <GridViewItem>
-                                <TextBlock Style="{StaticResource MenuEditPublicationStyle}"
+                    </GridViewItem>
+                    <GridViewItem>
+                        <TextBlock Style="{StaticResource MenuEditPublicationStyle}"
                                            Text=""/>
-                            </GridViewItem>
-                            <GridViewItem>
-                                <TextBlock Style="{StaticResource MenuEditPublicationStyle}"
+                    </GridViewItem>
+                    <GridViewItem>
+                        <TextBlock Style="{StaticResource MenuEditPublicationStyle}"
                                            Text=""/>
-                            </GridViewItem>
+                    </GridViewItem>
 
-                            <GridViewItem>
-                                <TextBlock Style="{StaticResource MenuEditPublicationStyle}"
+                    <GridViewItem>
+                        <TextBlock Style="{StaticResource MenuEditPublicationStyle}"
                                            Text=""/>
-                            </GridViewItem>
-                            <GridViewItem>
-                                <TextBlock Style="{StaticResource MenuEditPublicationStyle}"
+                    </GridViewItem>
+                    <GridViewItem>
+                        <TextBlock Style="{StaticResource MenuEditPublicationStyle}"
                                            Text=""/>
-                            </GridViewItem>
-                            <GridViewItem>
-                                <TextBlock Style="{StaticResource MenuEditPublicationStyle}"
+                    </GridViewItem>
+                    <GridViewItem>
+                        <TextBlock Style="{StaticResource MenuEditPublicationStyle}"
                                            Text=""
                                            Margin="-7 -7 0 0"
                                            ToolTipService.ToolTip="Добавить гиперссылку"/>
-                            </GridViewItem>
-                        </GridView>
+                    </GridViewItem>
+                </GridView>
 
-                        <TextBox Grid.Row="1"
+                <TextBox Grid.Row="1"
                                  PlaceholderText="Описание">
-                            <TextBox.ContextFlyout>
-                                <Flyout Placement="Right">
-                                    <StackPanel>
-                                        <MenuFlyoutItem Text="Жирный"/>
-                                        <MenuFlyoutItem Text="Курсив"/>
-                                        <MenuFlyoutItem Text="Подчеркнутый"/>
-                                        <MenuFlyoutSeparator/>
-                                        <MenuFlyoutItem Text="Добавить гиперссылку"/>
-                                    </StackPanel>
-                                </Flyout>
-                            </TextBox.ContextFlyout>
-                        </TextBox>
+                    <TextBox.ContextFlyout>
+                        <Flyout Placement="Right">
+                            <StackPanel>
+                                <MenuFlyoutItem Text="Жирный"/>
+                                <MenuFlyoutItem Text="Курсив"/>
+                                <MenuFlyoutItem Text="Подчеркнутый"/>
+                                <MenuFlyoutSeparator/>
+                                <MenuFlyoutItem Text="Добавить гиперссылку"/>
+                            </StackPanel>
+                        </Flyout>
+                    </TextBox.ContextFlyout>
+                </TextBox>
 
-                        <StackPanel Grid.Row="2"
+                <StackPanel Grid.Row="2"
                                     Margin="0,5"
                                     Orientation="Horizontal">
-                            <Button Content="Опубликовать"
+                    <Button Content="Опубликовать"
                                     Margin="0,0,10,0"/>
-                            <Button Content="Предварительный просмотр"/>
-                        </StackPanel>
-                    </Grid>
-                </ScrollViewer>
-            </PivotItem>
-        </Pivot>
+                    <Button Content="Предварительный просмотр"/>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>
