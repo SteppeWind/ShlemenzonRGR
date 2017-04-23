@@ -6,23 +6,47 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Converters="using:NewsForum.View.Converters"
-    mc:Ignorable="d">
+    xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:I="using:Microsoft.Xaml.Interactivity"
+    xmlns:ei="using:Microsoft.Xaml.Interactions.Media"
+    mc:Ignorable="d"
+    Transitions="{StaticResource BaseAnimation}">
 
     <Page.Resources>
         <Converters:ExpandSearchCollapseGenresConverter x:Key="CollapseGenresConverter"/>
         <Converters:HeightColumnGridConverter x:Key="HeightColumnGridConverter"/>
+
+        <Storyboard x:ConnectionId='2' x:Name="ExpandGenresListStoryboard">
+            <DoubleAnimation Duration="0:0:0.3"
+                             To="-90"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)"
+                             Storyboard.TargetName="Swipe"
+                             d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:0.3"
+                             To="3"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+                             Storyboard.TargetName="Swipe"
+                             d:IsOptimized="True"/>
+        </Storyboard>
+        <Storyboard x:ConnectionId='3' x:Name="CollapseGenresListStoryboard">
+            <DoubleAnimation Duration="0:0:0.3"
+                             From="-90"
+                             To="0"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)"
+                             Storyboard.TargetName="Swipe"
+                             d:IsOptimized="True"/>
+        </Storyboard>
+
     </Page.Resources>
-    
-    <Page.Transitions>
-        <TransitionCollection>
-            <PopupThemeTransition/>
-        </TransitionCollection>
-    </Page.Transitions>
 
     <Grid>
-        
-        <ListView SelectionMode="None">
 
+        <ListView SelectionMode="None">
+            <ListView.ItemContainerTransitions>
+                <TransitionCollection>
+                    <AddDeleteThemeTransition/>
+                </TransitionCollection>
+            </ListView.ItemContainerTransitions>
             <ComboBox>
                 <ComboBox.Header>
                     <TextBlock Text="Выберите тип публикации"
@@ -36,20 +60,42 @@
                     <TextBlock Text="Выберите жанр"
                                FontSize="20"
                                Style="{StaticResource SubheaderTextBlockStyle}"/>
-                    <ToggleButton x:ConnectionId='4' Name="Swipe"
+                    <ToggleButton x:ConnectionId='6' Name="Swipe"
                               FontSize="20"
-                              Margin="10 0 0 0"
+                              Margin="5 0 0 0"
                               Style="{StaticResource TextBlockButtonStyle}"
                               FontFamily="Segoe MDL2 Assets"
-                              Content="{Binding ElementName=GenresPopup, Path=IsOpen, Converter={StaticResource CollapseGenresConverter}}"/>
+                              Content=""
+                              RenderTransformOrigin="0.5,0.5">
+                        <I:Interaction.Behaviors>
+                            <Core:DataTriggerBehavior Binding="{Binding ElementName=Swipe, Path=IsChecked}"
+                                                      Value="True">
+                                <Core:DataTriggerBehavior.Actions>
+                                    <ei:ControlStoryboardAction ControlStoryboardOption="Play"
+                                                                Storyboard="{StaticResource ExpandGenresListStoryboard}"/>
+                                </Core:DataTriggerBehavior.Actions>
+                            </Core:DataTriggerBehavior>
+                            <Core:DataTriggerBehavior Binding="{Binding ElementName=Swipe, Path=IsChecked}"
+                                                      Value="False">
+                                <Core:DataTriggerBehavior.Actions>
+                                    <ei:ControlStoryboardAction ControlStoryboardOption="Play"
+                                                                Storyboard="{StaticResource CollapseGenresListStoryboard}"/>
+                                </Core:DataTriggerBehavior.Actions>
+                            </Core:DataTriggerBehavior>
+                        </I:Interaction.Behaviors>
+                        <ToggleButton.RenderTransform>
+                            <CompositeTransform/>
+                        </ToggleButton.RenderTransform>
+                    </ToggleButton>
+                    
                 </StackPanel>
 
-                <Popup x:ConnectionId='2' Name="GenresPopup"
-                   Grid.Row="1"
+                <Popup x:ConnectionId='4' Name="GenresPopup"
+                       Grid.Row="1"
                        Margin="{Binding ElementName=Swipe, Path=IsChecked, Converter={StaticResource HeightColumnGridConverter}}"
-                   IsOpen="{Binding ElementName=Swipe, Path=IsChecked}">
-                    <ListView x:ConnectionId='3'                             
-                          Grid.Row="1"
+                       IsOpen="{Binding ElementName=Swipe, Path=IsChecked}">
+                    <ListView x:ConnectionId='5'                             
+                              Grid.Row="1"
                               SelectionMode="Multiple"/>
                     <Popup.ChildTransitions>
                         <TransitionCollection>

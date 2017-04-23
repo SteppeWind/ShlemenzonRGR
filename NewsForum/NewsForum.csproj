@@ -90,6 +90,8 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="Modern-UI-Icons---Social.ttf" />
+    <None Include="Design\projectGuides.guides" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
@@ -99,8 +101,24 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\ImageContainer.cs" />
     <Compile Include="Pages\EditorPublicationsPage.xaml.cs">
       <DependentUpon>EditorPublicationsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EditorPublication\FirstStepPage.xaml.cs">
+      <DependentUpon>FirstStepPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EditorPublication\NavigationPage.xaml.cs">
+      <DependentUpon>NavigationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EditorPublication\SecondStepPage.xaml.cs">
+      <DependentUpon>SecondStepPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EditorPublication\ThirdStepFilmEditorPage.xaml.cs">
+      <DependentUpon>ThirdStepFilmEditorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EditorPublication\ThirdStepNewsEditorPage.xaml.cs">
+      <DependentUpon>ThirdStepNewsEditorPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ExpandSearchPage.xaml.cs">
       <DependentUpon>ExpandSearchPage.xaml</DependentUpon>
@@ -112,8 +130,31 @@
       <DependentUpon>RegistrationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\PhotoElementsBaseViewModel.cs" />
+    <Compile Include="View\BaseViewModel.cs" />
+    <Compile Include="View\Commands\DeleteImageFromFotoElementsCommand.cs" />
     <Compile Include="View\Converters\ExpandSearchCollapseGenresConverter.cs" />
     <Compile Include="View\Converters\HeightColumnGridConverter.cs" />
+    <Compile Include="View\Converters\HideControlsConverter.cs" />
+    <Compile Include="View\MyUserControls\AddCoverPublicationUserControl.xaml.cs">
+      <DependentUpon>AddCoverPublicationUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MyUserControls\ContainerForUserControl.xaml.cs">
+      <DependentUpon>ContainerForUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MyUserControls\EditDescriptionBoxUserControl.xaml.cs">
+      <DependentUpon>EditDescriptionBoxUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MyUserControls\IMyUserControl.cs" />
+    <Compile Include="View\MyUserControls\LinkVideoViewUserControl.xaml.cs">
+      <DependentUpon>LinkVideoViewUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MyUserControls\PanelEditDecriptionPublicationUserControl.xaml.cs">
+      <DependentUpon>PanelEditDecriptionPublicationUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MyUserControls\SeparatorUserControl.xaml.cs">
+      <DependentUpon>SeparatorUserControl.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -122,6 +163,8 @@
     <None Include="NewsForum_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\add_cover_publication.png" />
+    <Content Include="Images\youtube_link.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -144,6 +187,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\EditorPublication\FirstStepPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\EditorPublication\NavigationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\EditorPublication\SecondStepPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\EditorPublication\ThirdStepFilmEditorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\EditorPublication\ThirdStepNewsEditorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ExpandSearchPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -156,10 +219,40 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\MyResourceDictionary\BaseStylesResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="View\MyUserControls\AddCoverPublicationUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MyUserControls\ContainerForUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MyUserControls\EditDescriptionBoxUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MyUserControls\LinkVideoViewUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MyUserControls\PanelEditDecriptionPublicationUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MyUserControls\SeparatorUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\" />
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

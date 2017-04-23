@@ -5,30 +5,39 @@
     xmlns:local="using:NewsForum.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Transitions="{StaticResource BaseAnimation}">
 
-    <Page.Transitions>
-        <TransitionCollection>
-            <PopupThemeTransition/>
-        </TransitionCollection>
-    </Page.Transitions>
-    
     <Page.Resources>
         <x:String x:Key="WelcomString">Добро пожаловать</x:String>
     </Page.Resources>
 
     <Grid HorizontalAlignment="Left">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <!--<TextBlock Style="{StaticResource BaseMiddleMenuIconTextBlockStyle}"
+                   Grid.Row="1"
+                   FontSize="100"
+                   Text=""/>-->
+
+
         <TextBlock Text="{StaticResource WelcomString}"
+                   Grid.Row="0"
+                   Grid.ColumnSpan="2"
                    Margin="5 0 0 0"
                    Style="{StaticResource SubheaderTextBlockStyle}"/>
 
         <Grid Grid.Row="1"
+              Grid.Column="1"
               Margin="5">
             
             <Grid.RowDefinitions>
@@ -39,21 +48,21 @@
 
             <TextBox Grid.Row="0"
                      PlaceholderText="Логин"
-                     FontSize="20"
+                     Style="{StaticResource BaseTextBoxStyle}"
                      Margin="0,5"/>
-            
+
             <PasswordBox Grid.Row="1"
                          PlaceholderText="Пароль"
-                         FontSize="20"
+                         Style="{StaticResource BasePasswordBoxStyle}"
                          Margin="0,5"/>
 
-            <StackPanel Grid.Row="2"
+            <StackPanel Name="mystack" Grid.Row="2"
                         Orientation="Horizontal"
                         HorizontalAlignment="Center">
                 <Button Content="Вход"
-                        FontSize="20"/>
+                        Style="{StaticResource BaseMenuButtonStyle}"/>
                 <Button Content="Регистрация"
-                        FontSize="20"
+                        Style="{StaticResource BaseMenuButtonStyle}"
                         Margin="5"/>
             </StackPanel>
         </Grid>

@@ -5,26 +5,21 @@
     xmlns:local="using:NewsForum"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Transitions="{StaticResource BaseAnimation}">
 
     <Page.Resources>
 
-        <SolidColorBrush x:Key="MenuColorStyle"
-                         Color="#FF80D1DE"/>
-
-        <Style x:Key="MenuIconStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="23"/>
-            <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
-        </Style>
 
         <Style x:Key="MenuTitleStyle"
                TargetType="TextBlock"
-               BasedOn="{StaticResource HeaderTextBlockStyle}">
+               BasedOn="{StaticResource BaseMenuTextBlockStyle}">
             <Setter Property="FontSize" Value="17"/>
             <Setter Property="Margin" Value="20 0 0 0"/>
         </Style>
+
     </Page.Resources>
-    
+
     <Grid Background="{StaticResource MenuColorStyle}">
 
         <Grid.RowDefinitions>
@@ -32,13 +27,44 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1300" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="MenuSplitView.DisplayMode"
+                                Value="CompactOverlay" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="MenuSplitView.DisplayMode"
+                                Value="CompactOverlay" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="MenuSplitView.DisplayMode"
+                                Value="Overlay" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
         <RelativePanel>
             <Button Name="HamburgerButton"
-                    FontFamily="Segoe MDL2 Assets"
-                    FontSize="25"
-                    Background="{x:Null}"
+                    Style="{StaticResource BaseMenuIconButtonStyle}"
                     RelativePanel.AlignLeftWithPanel="True"
                     Content=""
+                    Background="#d6d7d8"
                     Click="HamburgerButton_Click"/>
             <SearchBox Width="250"
                        Margin="2"
@@ -50,7 +76,7 @@
                    DisplayMode="CompactOverlay"
                    CompactPaneLength="45"
                    OpenPaneLength="220"
-                   PaneBackground="{StaticResource MenuColorStyle}">
+                   PaneBackground="#d6d7d8">
             <SplitView.Pane>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Grid>
@@ -65,9 +91,9 @@
                                   SelectionMode="None"
                                   ItemClick="ListView_ItemClick"
                                   IsItemClickEnabled="True">
-                            <ListViewItem >
+                            <ListViewItem>
                                 <StackPanel Tag="Home" Orientation="Horizontal">
-                                    <TextBlock Style="{StaticResource MenuIconStyle}"
+                                    <TextBlock Style="{StaticResource BaseSmallMenuIconTextBlockStyle}"
                                        Text=""/>
                                     <TextBlock Style="{StaticResource MenuTitleStyle}"
                                        Text="Главная"/>
@@ -77,14 +103,14 @@
                             <ListViewItem>
                                 <StackPanel Tag="ExpandSearch"
                                     Orientation="Horizontal">
-                                    <TextBlock Style="{StaticResource MenuIconStyle}"
+                                    <TextBlock Style="{StaticResource BaseSmallMenuIconTextBlockStyle}"
                                        Text=""/>
                                     <TextBlock Style="{StaticResource MenuTitleStyle}"
                                        Text="Расширенный поиск"/>
                                 </StackPanel>
                             </ListViewItem>
 
-                            <ListViewItem Name="Share">
+                            <!--<ListViewItem Name="Share">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Style="{StaticResource MenuIconStyle}"
                                        Text=""/>
@@ -107,7 +133,7 @@
                                     <TextBlock Style="{StaticResource MenuTitleStyle}"
                                        Text="Музыка"/>
                                 </StackPanel>
-                            </ListViewItem>
+                            </ListViewItem>-->
                         </ListView>
 
                         <ListView Grid.Row="2"
@@ -117,8 +143,8 @@
                             <ListViewItem>
                                 <StackPanel Tag="Publication"
                                             Orientation="Horizontal">
-                                    <TextBlock Style="{StaticResource MenuIconStyle}"
-                                       Text=""/>
+                                    <TextBlock Style="{StaticResource BaseSmallMenuIconTextBlockStyle}"
+                                       Text=""/>
                                     <TextBlock Style="{StaticResource MenuTitleStyle}"
                                        Text="Публикации"/>
                                 </StackPanel>
@@ -126,7 +152,7 @@
                             <ListViewItem>
                                 <StackPanel Orientation="Horizontal"
                                     Tag="Profile">
-                                    <TextBlock Style="{StaticResource MenuIconStyle}"
+                                    <TextBlock Style="{StaticResource BaseSmallMenuIconTextBlockStyle}"
                                        Text=""/>
                                     <TextBlock Style="{StaticResource MenuTitleStyle}"
                                        Text="Профиль"/>
@@ -135,7 +161,7 @@
                             <ListViewItem>
                                 <StackPanel Orientation="Horizontal"
                                     Tag="About">
-                                    <TextBlock Style="{StaticResource MenuIconStyle}"
+                                    <TextBlock Style="{StaticResource BaseSmallMenuIconTextBlockStyle}"
                                        Text=""/>
                                     <TextBlock Style="{StaticResource MenuTitleStyle}"
                                        Text="О нас"/>

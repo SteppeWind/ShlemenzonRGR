@@ -1,0 +1,214 @@
+﻿<Page
+    x:Class="NewsForum.Pages.EditorPublication.ThirdStepDistributionEditorPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NewsForum.Pages.EditorPublication"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:model="using:NewsForum.Model"
+    xmlns:viewModel="using:NewsForum.ViewModel"
+    xmlns:controls="using:NewsForum.View.MyUserControls"
+    xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:I="using:Microsoft.Xaml.Interactivity"
+    x:Name="MainPage">
+
+    <Page.Resources>
+        <viewModel:PhotoElementsBaseViewModel x:Key="PhotoElementViewModel"/>
+        <ItemsPanelTemplate x:Key="DesktopPanelTemplate">
+            <ItemsStackPanel Orientation="Horizontal"/>
+        </ItemsPanelTemplate>
+
+        <ItemsPanelTemplate x:Key="MobilePanelTemplate">
+            <ItemsWrapGrid/>
+        </ItemsPanelTemplate>
+
+        <DataTemplate x:Key="ImageViewTemplate"
+                      x:DataType="model:ImageContainer">
+            <Grid Name="grid"
+                  DataContext="{x:Bind Mode=OneWay}">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Button Style="{StaticResource TextBlockButtonStyle}"
+                        FontFamily="Segoe MDL2 Assets"
+                        FontSize="20"
+                        HorizontalAlignment="Right"
+                        Content=""
+                        CommandParameter="{Binding DataContext, ElementName=grid}"
+                        Command="{Binding DeleteElementCommand, Source={StaticResource PhotoElementViewModel}}"/>
+
+                <Image x:Name="image"
+                       Grid.Row="1"
+                       Height="250"
+                       Width="250"
+                       Stretch="UniformToFill"
+                       Source="{x:Bind BitMapImg}"/>
+            </Grid>
+        </DataTemplate>
+
+    </Page.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="MobileState">
+                    <VisualState.Setters>
+                        <Setter Target="menuFlyoutSeparator.(UIElement.Visibility)" Value="Collapsed"/>
+                        <Setter Target="SecondInfoPublicGrid.(Grid.Row)" Value="1"/>
+                        <Setter Target="SecondInfoPublicGrid.(Grid.Column)" Value="0"/>
+                        <Setter Target="SecondInfoPublicGrid.(Grid.ColumnSpan)" Value="3"/>
+                        <Setter Target="FirstInfoPublicGrid.(Grid.ColumnSpan)" Value="3"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="DesktopState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="800"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Name="FilmDescriptionGrid"
+                  Grid.Row="0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid Name="FirstInfoPublicGrid"
+                      Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBox Grid.Row="0"
+                             Margin="0 15 0 0"
+                             PlaceholderText="Год выпуска"
+                             Style="{StaticResource BaseTextBoxStyle}"/>
+
+                    <TextBox Grid.Row="1"
+                             Margin="0 15 0 0"
+                             PlaceholderText="Страна"
+                             Style="{StaticResource BaseTextBoxStyle}"/>
+
+                    <TextBox Grid.Row="2"
+                             Margin="0 15 0 0"
+                             PlaceholderText="Продолжительность"
+                             Style="{StaticResource BaseTextBoxStyle}"/>
+                </Grid>
+
+                <MenuFlyoutSeparator x:Name="menuFlyoutSeparator"  Grid.Column="1"/>
+
+                <Grid Name="SecondInfoPublicGrid"
+                      Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBox Grid.Row="0"
+                             Margin="0 15 0 0"
+                             PlaceholderText="Перевод"
+                             Style="{StaticResource BaseTextBoxStyle}"/>
+
+                    <TextBox Grid.Row="1"
+                             Margin="0 15 0 0"
+                             PlaceholderText="Режисер"
+                             Style="{StaticResource BaseTextBoxStyle}"/>
+
+                    <TextBox Grid.Row="2"
+                             Margin="0 15 0 0"
+                             PlaceholderText="В ролях"
+                             Style="{StaticResource BaseTextBoxStyle}"/>
+                </Grid>
+
+            </Grid>
+
+            <Grid Grid.Row="1"
+                  Margin="0 15 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <controls:PanelEditDecriptionPublicationUserControl x:Name="EditPanelPublication"
+                                                                    Grid.Row="0"/>
+
+                <TextBlock Grid.Row="1"
+                           Text="Описание"
+                           Style="{StaticResource BaseMenuTextBlockStyle}"/>
+                <controls:EditDescriptionBoxUserControl x:Name="EditDescriptionBox"
+                                                        Grid.Row="2"/>
+
+    </Grid>
+            
+            <Grid x:Name="ElementsGrid" 
+                  Grid.Row="2"
+                  HorizontalAlignment="Center"
+                  Margin="0 15 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <StackPanel HorizontalAlignment="Center">
+                    <TextBlock Text="Перетащите сюда фото-материалы"
+                               Style="{StaticResource BaseMenuTextBlockStyle}"/>
+                    <TextBlock Text="или"
+                               HorizontalAlignment="Center"
+                               Style="{StaticResource BaseMenuTextBlockStyle}"/>
+                    <HyperlinkButton Name="OpenFilesButton"
+                                     Content="Выберите файлы для загрузки"
+                                     HorizontalAlignment="Center"
+                                     FontSize="20"
+                                     Tapped="OpenFilesButton_Tapped"/>
+                </StackPanel>
+
+                <ProgressRing Name="LoadPhotosProgress"
+                              Grid.Row="1"/>
+
+                <GridView x:Name="PhotoElementsGridView"
+                          Grid.Row="1"
+                          ItemTemplate="{StaticResource ImageViewTemplate}"
+                          SelectionMode="None"
+                          ScrollViewer.HorizontalScrollMode="Enabled" 
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          ScrollViewer.VerticalScrollMode="Disabled"
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                          ItemsSource="{Binding ListElements, Source={StaticResource PhotoElementViewModel}}"
+                          ItemsPanel="{Binding Source={StaticResource DesktopPanelTemplate}}">
+                </GridView>
+            </Grid>
+
+            <controls:LinkVideoViewUserControl x:Name="LinkVideoControl"
+                                               Margin="0 15 0 0"
+                                               Grid.Row="3"/>
+
+        </Grid>
+    </ScrollViewer>
+</Page>

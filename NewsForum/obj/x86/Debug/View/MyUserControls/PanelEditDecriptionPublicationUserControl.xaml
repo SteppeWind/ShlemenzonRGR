@@ -1,0 +1,139 @@
+﻿<UserControl
+    x:Class="NewsForum.View.MyUserControls.PanelEditDecriptionPublicationUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <GridView x:ConnectionId='1' x:Name="PanelEditDecriptionGridView"
+              Background="{x:Null}"
+              SelectionMode="None"
+              IsItemClickEnabled="True"
+                                                               >
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:ConnectionId='2' x:Name="VisualStateGroup">
+                <VisualState x:ConnectionId='3' x:Name="SmallDesktop">
+                    <VisualState.Setters>
+                        <Setter Target="ItalickTextBlock.(TextBlock.Style)" Value="{StaticResource BaseSmallMenuIconTextBlockStyle}"/>
+                        <Setter Target="BoldTextBlock.(TextBlock.Style)" Value="{StaticResource BaseSmallMenuIconTextBlockStyle}"/>
+                        <Setter Target="UnderlineTextBlock.(TextBlock.Style)" Value="{StaticResource BaseSmallMenuIconTextBlockStyle}"/>
+                        <Setter Target="AddLinkTextBlock.(TextBlock.Style)" Value="{StaticResource BaseSmallMenuIconTextBlockStyle}"/>
+                        <Setter Target="LeftAlignTextBlock.(TextBlock.Style)" Value="{StaticResource BaseSmallMenuIconTextBlockStyle}"/>
+                        <Setter Target="CenterAlignTextBlock.(TextBlock.Style)" Value="{StaticResource BaseSmallMenuIconTextBlockStyle}"/>
+                        <Setter Target="RightAlignTextBlock.(TextBlock.Style)" Value="{StaticResource BaseSmallMenuIconTextBlockStyle}"/>
+                        <Setter Target="FontSizeComboBox.(ComboBox.FontSize)" Value="20"/>
+                    </VisualState.Setters>
+
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="640"/>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:ConnectionId='4' x:Name="MiddleDesktop">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1000"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <ComboBox x:ConnectionId='5' Name="FontSizeComboBox"
+                  Tag="FontSize"
+                                                                      
+                  SelectedIndex="5"
+                  FontSize="25">
+            <x:Double>10</x:Double>
+            <x:Double>11</x:Double>
+            <x:Double>12</x:Double>
+            <x:Double>13</x:Double>
+            <x:Double>14</x:Double>
+            <x:Double>15</x:Double>
+            <x:Double>16</x:Double>
+            <x:Double>17</x:Double>
+            <x:Double>18</x:Double>
+            <x:Double>19</x:Double>
+            <x:Double>20</x:Double>
+            <x:Double>21</x:Double>
+            <x:Double>22</x:Double>
+            <x:Double>23</x:Double>
+            <x:Double>24</x:Double>
+        </ComboBox>
+
+        <GridViewItem>
+            <TextBlock x:ConnectionId='15' Name="ItalickTextBlock"
+                       Tag="Italic"
+                       Style="{StaticResource BaseMiddleMenuIconTextBlockStyle}"
+                       Text=""/>
+        </GridViewItem>
+        <GridViewItem>
+            <TextBlock x:ConnectionId='14' Name="BoldTextBlock"
+                       Tag="Bold"
+                       Style="{StaticResource BaseMiddleMenuIconTextBlockStyle}"
+                       Text=""/>
+        </GridViewItem>
+        <GridViewItem>
+            <TextBlock x:ConnectionId='13' Name="UnderlineTextBlock"
+                       Tag="Underline"
+                       Style="{StaticResource BaseMiddleMenuIconTextBlockStyle}"
+                       Text=""/>
+        </GridViewItem>
+        <GridViewItem x:ConnectionId='6' Name="AddLinkToTextButton"
+                                                         >
+            <TextBlock x:ConnectionId='10' Name="AddLinkTextBlock"
+                       Style="{StaticResource BaseMiddleMenuIconTextBlockStyle}"
+                       Text=""
+                       ToolTipService.ToolTip="Добавить ссылку"/>
+            <FlyoutBase.AttachedFlyout>
+                <Flyout x:ConnectionId='11' x:Name="LinkPanelFlyout"
+                        Placement="Bottom"
+                        FlyoutPresenterStyle="{StaticResource PivotTitleContentControlStyle}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox x:ConnectionId='12' Name="LinkTextBox"
+                                 Style="{StaticResource BaseTextBoxStyle}"
+                                 PlaceholderText="Укажите здесь ссылку"/>
+
+                        <StackPanel Grid.Column="1"
+                                    Orientation="Horizontal">
+                            <Button Style="{StaticResource BaseMenuIconButtonStyle}"
+                                    Content=""/>
+                            <Button Style="{StaticResource BaseMenuIconButtonStyle}"
+                                    Content=""/>
+                        </StackPanel>
+                    </Grid>
+                </Flyout>
+            </FlyoutBase.AttachedFlyout>
+        </GridViewItem>
+        <GridViewItem>
+            <TextBlock x:ConnectionId='9' Name="LeftAlignTextBlock"
+                       Tag="LeftAlign"
+                       Style="{StaticResource BaseMiddleMenuIconTextBlockStyle}"
+                       Text=""
+                       ToolTipService.ToolTip="По левому краю"/>
+        </GridViewItem>
+        <GridViewItem>
+            <TextBlock x:ConnectionId='8' Name="CenterAlignTextBlock"
+                       Tag="CenterAlign"
+                       Style="{StaticResource BaseMiddleMenuIconTextBlockStyle}"
+                       Text=""
+                       ToolTipService.ToolTip="По центру"/>
+        </GridViewItem>
+        <GridViewItem>
+            <TextBlock x:ConnectionId='7' Name="RightAlignTextBlock"
+                       Tag="RightAlign"
+                       Style="{StaticResource BaseMiddleMenuIconTextBlockStyle}"
+                       Text=""
+                       ToolTipService.ToolTip="По правому краю"/>
+        </GridViewItem>
+        <!--<GridViewItem>
+            <Image Source="/Images/youtube_link.png"/>
+        </GridViewItem>-->
+    </GridView>
+</UserControl>
+

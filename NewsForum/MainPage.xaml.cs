@@ -1,4 +1,5 @@
 ﻿using NewsForum.Pages;
+using NewsForum.Pages.EditorPublication;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -48,7 +49,7 @@ namespace NewsForum
                     case "Home":
                         break;
                     case "Publication":
-                        //MyFrame.Navigate(typeof(EditorPublicationsPage));
+                        MyFrame.Navigate(typeof(NavigationPage));
                         break;
                     default:
                         break;
