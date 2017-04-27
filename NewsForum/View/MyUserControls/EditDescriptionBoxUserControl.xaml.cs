@@ -22,13 +22,17 @@ namespace NewsForum.View.MyUserControls
     public sealed partial class EditDescriptionBoxUserControl : UserControl
     {
         public ITextDocument Document { get; private set; }
-        public String PlaceholderText { get; set; }
+
+        public String PlaceholderText
+        {
+            get => (string)GetValue(TextBox.PlaceholderTextProperty);
+            set => SetValue(TextBox.PlaceholderTextProperty, MainRichEditBox.PlaceholderText = value);
+        }
 
         public EditDescriptionBoxUserControl()
         { 
             this.InitializeComponent();
             Document = MainRichEditBox.Document;
-            PlaceholderText = MainRichEditBox.PlaceholderText;
         }  
     }
 }

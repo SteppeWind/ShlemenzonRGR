@@ -101,7 +101,11 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\FileExplorer.cs" />
+    <Compile Include="Model\IFileSettings.cs" />
     <Compile Include="Model\ImageContainer.cs" />
+    <Compile Include="Model\SongDuration.cs" />
+    <Compile Include="Model\SoundFileContainer.cs" />
     <Compile Include="Pages\EditorPublicationsPage.xaml.cs">
       <DependentUpon>EditorPublicationsPage.xaml</DependentUpon>
     </Compile>
@@ -117,6 +121,9 @@
     <Compile Include="Pages\EditorPublication\ThirdStepFilmEditorPage.xaml.cs">
       <DependentUpon>ThirdStepFilmEditorPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\EditorPublication\ThirdStepMusicEditorPage.xaml.cs">
+      <DependentUpon>ThirdStepMusicEditorPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\EditorPublication\ThirdStepNewsEditorPage.xaml.cs">
       <DependentUpon>ThirdStepNewsEditorPage.xaml</DependentUpon>
     </Compile>
@@ -130,22 +137,32 @@
       <DependentUpon>RegistrationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\PhotoElementsBaseViewModel.cs" />
-    <Compile Include="View\BaseViewModel.cs" />
-    <Compile Include="View\Commands\DeleteImageFromFotoElementsCommand.cs" />
+    <Compile Include="ViewModel\BaseCollectionViewModel.cs" />
+    <Compile Include="ViewModel\Commands\AddDeleteCommand.cs" />
+    <Compile Include="ViewModel\Commands\BaseCommand.cs" />
+    <Compile Include="ViewModel\Commands\PlaySoundCommand.cs" />
+    <Compile Include="ViewModel\MediaPlayerViewModel.cs" />
+    <Compile Include="View\Converters\EnabledConverter.cs" />
     <Compile Include="View\Converters\ExpandSearchCollapseGenresConverter.cs" />
     <Compile Include="View\Converters\HeightColumnGridConverter.cs" />
     <Compile Include="View\Converters\HideControlsConverter.cs" />
+    <Compile Include="View\Converters\MethodNamePlayerConverter.cs" />
     <Compile Include="View\MyUserControls\AddCoverPublicationUserControl.xaml.cs">
       <DependentUpon>AddCoverPublicationUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MyUserControls\AddPhotosToPublicationUserControl.xaml.cs">
+      <DependentUpon>AddPhotosToPublicationUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MyUserControls\ContainerForUserControl.xaml.cs">
       <DependentUpon>ContainerForUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MyUserControls\ContentMediaPlayerUserControl.xaml.cs">
+      <DependentUpon>ContentMediaPlayerUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MyUserControls\EditDescriptionBoxUserControl.xaml.cs">
       <DependentUpon>EditDescriptionBoxUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MyUserControls\IMyUserControl.cs" />
+    <Compile Include="View\MyUserControls\IContentUserControl.cs" />
     <Compile Include="View\MyUserControls\LinkVideoViewUserControl.xaml.cs">
       <DependentUpon>LinkVideoViewUserControl.xaml</DependentUpon>
     </Compile>
@@ -154,6 +171,9 @@
     </Compile>
     <Compile Include="View\MyUserControls\SeparatorUserControl.xaml.cs">
       <DependentUpon>SeparatorUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MyUserControls\WaitingLoadingUserControl.xaml.cs">
+      <DependentUpon>WaitingLoadingUserControl.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -203,6 +223,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\EditorPublication\ThirdStepMusicEditorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\EditorPublication\ThirdStepNewsEditorPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -219,6 +243,12 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Properties\DesignTimeResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
+    </Page>
     <Page Include="View\MyResourceDictionary\BaseStylesResourceDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -228,7 +258,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\MyUserControls\AddPhotosToPublicationUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MyUserControls\ContainerForUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MyUserControls\ContentMediaPlayerUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -245,6 +283,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MyUserControls\SeparatorUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MyUserControls\WaitingLoadingUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -26,7 +26,7 @@ namespace NewsForum.Pages.EditorPublication
         public NavigationPage()
         {
             this.InitializeComponent();
-            NavigationEditFrame.SourcePageType = typeof(ThirdStepDistributionEditorPage);            
+            NavigationEditFrame.SourcePageType = typeof(ThirdStepMusicEditorPage);            
         }
 
         private void ForwardPageButton_Tapped(object sender, TappedRoutedEventArgs e)

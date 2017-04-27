@@ -91,15 +91,5 @@ namespace NewsForum.View.MyUserControls
             var storageFile = await fop.PickSingleFileAsync();
             SetSourceCoverImageAsync(storageFile);
         }
-
-        private void MainRichEditBox_PointerEntered(object sender, PointerRoutedEventArgs e)
-        {
-
-        }
-
-        private void MainRichEditBox_PointerExited(object sender, PointerRoutedEventArgs e)
-        {
-
-        }
     }
 }

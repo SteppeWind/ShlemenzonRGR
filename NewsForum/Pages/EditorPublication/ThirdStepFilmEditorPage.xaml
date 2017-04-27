@@ -14,7 +14,6 @@
     x:Name="MainPage">
 
     <Page.Resources>
-        <viewModel:PhotoElementsBaseViewModel x:Key="PhotoElementViewModel"/>
         <ItemsPanelTemplate x:Key="DesktopPanelTemplate">
             <ItemsStackPanel Orientation="Horizontal"/>
         </ItemsPanelTemplate>
@@ -22,33 +21,6 @@
         <ItemsPanelTemplate x:Key="MobilePanelTemplate">
             <ItemsWrapGrid/>
         </ItemsPanelTemplate>
-
-        <DataTemplate x:Key="ImageViewTemplate"
-                      x:DataType="model:ImageContainer">
-            <Grid Name="grid"
-                  DataContext="{x:Bind Mode=OneWay}">
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-
-                <Button Style="{StaticResource TextBlockButtonStyle}"
-                        FontFamily="Segoe MDL2 Assets"
-                        FontSize="20"
-                        HorizontalAlignment="Right"
-                        Content=""
-                        CommandParameter="{Binding DataContext, ElementName=grid}"
-                        Command="{Binding DeleteElementCommand, Source={StaticResource PhotoElementViewModel}}"/>
-
-                <Image x:Name="image"
-                       Grid.Row="1"
-                       Height="250"
-                       Width="250"
-                       Stretch="UniformToFill"
-                       Source="{x:Bind BitMapImg}"/>
-            </Grid>
-        </DataTemplate>
 
     </Page.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -74,7 +46,9 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <Grid Margin="5">
+        <Grid Margin="5"
+              ChildrenTransitions="{StaticResource BaseChildrenAnimation}">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -82,6 +56,7 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
+            <!--#region В этом куске текстовые поля характерстик фильма-->
             <Grid Name="FilmDescriptionGrid"
                   Grid.Row="0">
 
@@ -147,11 +122,12 @@
                 </Grid>
 
             </Grid>
+            <!--#endregion-->
 
+            <!--#region Здесь описание фильма-->
             <Grid Grid.Row="1"
                   Margin="0 15 0 0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
@@ -159,51 +135,17 @@
                 <controls:PanelEditDecriptionPublicationUserControl x:Name="EditPanelPublication"
                                                                     Grid.Row="0"/>
 
-                <TextBlock Grid.Row="1"
-                           Text="Описание"
-                           Style="{StaticResource BaseMenuTextBlockStyle}"/>
                 <controls:EditDescriptionBoxUserControl x:Name="EditDescriptionBox"
-                                                        Grid.Row="2"/>
+                                                        Grid.Row="1"
+                                                        PlaceholderText="Описание"/>
 
-    </Grid>
-            
-            <Grid x:Name="ElementsGrid" 
-                  Grid.Row="2"
-                  HorizontalAlignment="Center"
-                  Margin="0 15 0 0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-
-                <StackPanel HorizontalAlignment="Center">
-                    <TextBlock Text="Перетащите сюда фото-материалы"
-                               Style="{StaticResource BaseMenuTextBlockStyle}"/>
-                    <TextBlock Text="или"
-                               HorizontalAlignment="Center"
-                               Style="{StaticResource BaseMenuTextBlockStyle}"/>
-                    <HyperlinkButton Name="OpenFilesButton"
-                                     Content="Выберите файлы для загрузки"
-                                     HorizontalAlignment="Center"
-                                     FontSize="20"
-                                     Tapped="OpenFilesButton_Tapped"/>
-                </StackPanel>
-
-                <ProgressRing Name="LoadPhotosProgress"
-                              Grid.Row="1"/>
-
-                <GridView x:Name="PhotoElementsGridView"
-                          Grid.Row="1"
-                          ItemTemplate="{StaticResource ImageViewTemplate}"
-                          SelectionMode="None"
-                          ScrollViewer.HorizontalScrollMode="Enabled" 
-                          ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                          ScrollViewer.VerticalScrollMode="Disabled"
-                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                          ItemsSource="{Binding ListElements, Source={StaticResource PhotoElementViewModel}}"
-                          ItemsPanel="{Binding Source={StaticResource DesktopPanelTemplate}}">
-                </GridView>
             </Grid>
+            <!--#endregion-->
+
+            <!--#region А вот тут добавление фото материалов публикации-->
+            <controls:AddPhotosToPublicationUserControl Margin="0 15 0 0"
+                                                        Grid.Row="2"/>
+            <!--#endregion-->
 
             <controls:LinkVideoViewUserControl x:Name="LinkVideoControl"
                                                Margin="0 15 0 0"

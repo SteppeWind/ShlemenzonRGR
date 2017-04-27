@@ -1,0 +1,122 @@
+﻿<Page
+    x:Class="NewsForum.Pages.EditorPublication.ThirdStepMusicEditorPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NewsForum.Pages.EditorPublication"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:NewsForum.View.MyUserControls"
+    mc:Ignorable="d">
+
+    <Grid Margin="{StaticResource BaseMainGridThickness}"
+          Background="{StaticResource MenuColorStyle}"
+          ChildrenTransitions="{StaticResource BaseChildrenAnimation}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="MobileState">
+                    <VisualState.Setters>
+                        <Setter Target="menuFlyoutSeparator.(UIElement.Visibility)" Value="Collapsed"/>
+                        <Setter Target="FirstColumnDataMusicGrid.(Grid.ColumnSpan)" Value="3"/>
+                        <Setter Target="SecondColumnDataMusicGrid.(Grid.Row)" Value="1"/>
+                        <Setter Target="SecondColumnDataMusicGrid.(Grid.Column)" Value="0"/>
+                        <Setter Target="SecondColumnDataMusicGrid.(Grid.ColumnSpan)" Value="3"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="DesktopState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="700"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Name="FirstColumnDataMusicGrid"
+                  Grid.Column="0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBox Grid.Row="0"
+                         Style="{StaticResource BaseTextBoxStyle}"
+                         PlaceholderText="Год выпуска"
+                         Margin="0 15 0 0"/>
+
+                <TextBox Grid.Row="1"
+                         Style="{StaticResource BaseTextBoxStyle}"
+                         PlaceholderText="Исполнитель"
+                         Margin="0 15 0 0"/>
+
+                <TextBox Grid.Row="2"
+                         Style="{StaticResource BaseTextBoxStyle}"
+                         PlaceholderText="Страна исполнителя"
+                         Margin="0 15 0 0"/>
+
+            </Grid>
+
+            <MenuFlyoutSeparator x:Name="menuFlyoutSeparator" Grid.Column="1"/>
+
+            <Grid Name="SecondColumnDataMusicGrid"
+                  Grid.Column="2">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBox Grid.Row="0"
+                         Style="{StaticResource BaseTextBoxStyle}"
+                         PlaceholderText="Альбом"
+                         Margin="0 15 0 0"/>
+
+                <TextBox Grid.Row="1"
+                         Style="{StaticResource BaseTextBoxStyle}"
+                         PlaceholderText="Жанр"
+                         Margin="0 15 0 0"/>
+
+                <TextBox Grid.Row="2"
+                         Style="{StaticResource BaseTextBoxStyle}"
+                         PlaceholderText="Форматы"
+                         Margin="0 15 0 0"
+                         ToolTipService.ToolTip="Если их несколько, перечислите через запятую"/>
+
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <controls:ContentMediaPlayerUserControl x:Name="MediaPlayerControl"
+                                                    IsEditMusicCollection="False"/>
+        </Grid>
+
+        <Button Content="жми сука"
+                Tapped="Button_Tapped"
+                Grid.Row="2">
+
+        </Button>
+    </Grid>
+</Page>

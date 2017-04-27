@@ -7,11 +7,16 @@
         <ReorderThemeTransition/>
     </TransitionCollection>
 
+    <TransitionCollection x:Key="BaseChildrenAnimation">
+        <AddDeleteThemeTransition/>
+    </TransitionCollection>
+    
     <Color x:Key="MenuColor">#bdcee2</Color>
     
     <SolidColorBrush x:Key="MenuColorStyle"
                      Color="{StaticResource MenuColor}"/>
 
+    <Thickness x:Key="BaseMainGridThickness">5</Thickness>
 
     <x:String x:Key="TitleBaseFont">Microsoft YaHei Light</x:String>
     

@@ -9,7 +9,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace NewsForum.Model
 {
-    class ImageContainer : INotifyPropertyChanged
+    class ImageContainer : INotifyPropertyChanged, IFileSettings
     {
         private string fullPath;
         public String FullPath

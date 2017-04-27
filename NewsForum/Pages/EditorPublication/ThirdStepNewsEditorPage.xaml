@@ -9,7 +9,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    
     Transitions="{StaticResource BaseAnimation}"
     SizeChanged="Page_SizeChanged">
 
@@ -19,7 +18,8 @@
 
     </Page.Resources>
 
-    <Grid Background="{StaticResource MenuColorStyle}">
+    <Grid ChildrenTransitions="{StaticResource BaseChildrenAnimation}"
+          Background="{StaticResource MenuColorStyle}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="VisualStateGroup">
                 <VisualState x:Name="Mobile">

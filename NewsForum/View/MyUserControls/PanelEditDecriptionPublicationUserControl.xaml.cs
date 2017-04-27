@@ -22,7 +22,12 @@ namespace NewsForum.View.MyUserControls
     {
         public event ItemClickEventHandler ItemClick;
         public List<EditDescriptionBoxUserControl> EditDescriptionBoxsList { get; private set; }
-        public object Header { get; set; }
+
+        public object Header
+        {
+            get => GetValue(ListViewBase.HeaderProperty);
+            set => SetValue(ListViewBase.HeaderProperty, PanelEditDecriptionGridView.Header = value);
+        }
 
         private EditDescriptionBoxUserControl CurrentFocusedControl;
 
@@ -31,7 +36,6 @@ namespace NewsForum.View.MyUserControls
         {
             this.InitializeComponent();
             EditDescriptionBoxsList = new List<EditDescriptionBoxUserControl>();
-            Header = PanelEditDecriptionGridView.Header;
         }
 
         private void PanelEditDecriptionGridView_ItemClick(object sender, ItemClickEventArgs e)
