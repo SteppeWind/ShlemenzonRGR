@@ -28,13 +28,13 @@
     <AppXManifest Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-04-26T17:27:56.629</Modified>
+      <Modified>2017-04-27T15:35:18.848</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\bin\x86\Debug\NewsForum.exe">
       <PackagePath>entrypoint\NewsForum.exe</PackagePath>
-      <Modified>2017-04-26T17:26:56.136</Modified>
+      <Modified>2017-04-27T15:35:17.516</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vladi\.nuget\packages\Microsoft.CSharp\4.0.1\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -552,7 +552,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\bin\x86\Debug\NewsForum.xr.xml">
       <PackagePath>NewsForum.xr.xml</PackagePath>
-      <Modified>2017-04-26T17:26:55.642</Modified>
+      <Modified>2017-04-27T15:22:34.075</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -561,11 +561,11 @@
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-04-26T17:27:55.134</Modified>
+      <Modified>2017-04-27T15:35:18.346</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\bin\x86\Debug\Core\NewsForum.exe">
       <PackagePath>NewsForum.exe</PackagePath>
-      <Modified>2017-04-26T17:27:56.622</Modified>
+      <Modified>2017-04-27T15:35:18.837</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

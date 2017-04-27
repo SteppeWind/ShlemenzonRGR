@@ -20,4 +20,5 @@ View\MyUserControls\EditDescriptionBoxUserControl.xbf
 View\MyUserControls\LinkVideoViewUserControl.xbf
 View\MyUserControls\PanelEditDecriptionPublicationUserControl.xbf
 View\MyUserControls\SeparatorUserControl.xbf
+View\MyUserControls\SetOrDropFilesUserControl.xbf
 View\MyUserControls\WaitingLoadingUserControl.xbf

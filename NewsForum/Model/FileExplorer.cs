@@ -10,6 +10,12 @@ namespace NewsForum.Model
 {
     class FileExplorer
     {
+        public static readonly string[] FiltersImage = { "jpg", "png", "jpeg" };
+        public static readonly string[] FiltersMusic = { "wav", "mp3" };
+        public static readonly string[] ContentImageTypes = { "image/png", "image/jpeg" };
+        public static readonly string[] ContentMusicTypes = { "audio/mpeg" };
+
+
         private FileOpenPicker OpenPicker;
 
         public event Action LoadStrat;

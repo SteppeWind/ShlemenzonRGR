@@ -8,9 +8,9 @@
     xmlns:controls="using:NewsForum.View.MyUserControls"
     mc:Ignorable="d">
 
-    <Grid Margin="{StaticResource BaseMainGridThickness}"
-          Background="{StaticResource MenuColorStyle}"
-          ChildrenTransitions="{StaticResource BaseChildrenAnimation}">
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                  VerticalScrollBarVisibility="Auto"
+                  VerticalScrollMode="Auto">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="VisualStateGroup">
                 <VisualState x:Name="MobileState">
@@ -33,90 +33,112 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
+        <Grid Margin="{StaticResource BaseMainGridThickness}"
+              Background="{StaticResource MenuColorStyle}"
+              ChildrenTransitions="{StaticResource BaseChildrenAnimation}">
 
-        <Grid Grid.Row="0">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-
-            <Grid Name="FirstColumnDataMusicGrid"
-                  Grid.Column="0">
+            <Grid Grid.Row="0">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBox Grid.Row="0"
-                         Style="{StaticResource BaseTextBoxStyle}"
-                         PlaceholderText="Год выпуска"
-                         Margin="0 15 0 0"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
-                <TextBox Grid.Row="1"
-                         Style="{StaticResource BaseTextBoxStyle}"
-                         PlaceholderText="Исполнитель"
-                         Margin="0 15 0 0"/>
+                <Grid Name="FirstColumnDataMusicGrid"
+                      Grid.Column="0">
 
-                <TextBox Grid.Row="2"
-                         Style="{StaticResource BaseTextBoxStyle}"
-                         PlaceholderText="Страна исполнителя"
-                         Margin="0 15 0 0"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
 
+                    <TextBox Grid.Row="0"
+                             Style="{StaticResource BaseTextBoxStyle}"
+                             PlaceholderText="Год выпуска"
+                             Margin="0 15 0 0"/>
+
+                    <TextBox Grid.Row="1"
+                             Style="{StaticResource BaseTextBoxStyle}"
+                             PlaceholderText="Исполнитель"
+                             Margin="0 15 0 0"/>
+
+                    <TextBox Grid.Row="2"
+                             Style="{StaticResource BaseTextBoxStyle}"
+                             PlaceholderText="Страна исполнителя"
+                             Margin="0 15 0 0"/>
+
+                </Grid>
+
+                <MenuFlyoutSeparator x:Name="menuFlyoutSeparator" Grid.Column="1"/>
+
+                <Grid Name="SecondColumnDataMusicGrid"
+                      Grid.Column="2">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBox Grid.Row="0"
+                             Style="{StaticResource BaseTextBoxStyle}"
+                             PlaceholderText="Альбом"
+                             Margin="0 15 0 0"/>
+
+                    <TextBox Grid.Row="1"
+                             Style="{StaticResource BaseTextBoxStyle}"
+                             PlaceholderText="Жанр"
+                             Margin="0 15 0 0"/>
+
+                    <TextBox Grid.Row="2"
+                             Style="{StaticResource BaseTextBoxStyle}"
+                             PlaceholderText="Форматы"
+                             Margin="0 15 0 0"
+                             ToolTipService.ToolTip="Если их несколько, перечислите через запятую"/>
+
+                </Grid>
             </Grid>
 
-            <MenuFlyoutSeparator x:Name="menuFlyoutSeparator" Grid.Column="1"/>
-
-            <Grid Name="SecondColumnDataMusicGrid"
-                  Grid.Column="2">
+            <Grid Grid.Row="1"
+                  Margin="0 15 0 0">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBox Grid.Row="0"
-                         Style="{StaticResource BaseTextBoxStyle}"
-                         PlaceholderText="Альбом"
-                         Margin="0 15 0 0"/>
+                <controls:PanelEditDecriptionPublicationUserControl x:Name="DecriptionPublicationControl"/>
 
-                <TextBox Grid.Row="1"
-                         Style="{StaticResource BaseTextBoxStyle}"
-                         PlaceholderText="Жанр"
-                         Margin="0 15 0 0"/>
-
-                <TextBox Grid.Row="2"
-                         Style="{StaticResource BaseTextBoxStyle}"
-                         PlaceholderText="Форматы"
-                         Margin="0 15 0 0"
-                         ToolTipService.ToolTip="Если их несколько, перечислите через запятую"/>
-
+                <controls:EditDescriptionBoxUserControl x:Name="EditDescriptionBox"
+                                                        Grid.Row="1"/>
+                
             </Grid>
-        </Grid>
+            
+            <controls:SetOrDropFilesUserControl x:Name="SelectFileControl"
+                                                Grid.Row="2"
+                                                FileType="Music"
+                                                Margin="0 15 0 0"
+                                                LoadFilesEvent="SelectFileControl_LoadFilesEvent"/>
 
-        <Grid Grid.Row="1">
             <controls:ContentMediaPlayerUserControl x:Name="MediaPlayerControl"
-                                                    IsEditMusicCollection="False"/>
+                                                IsEditMusicCollection="False"
+                                                Grid.Row="3"
+                                                Margin="0 15 0 0"/>
         </Grid>
-
-        <Button Content="жми сука"
-                Tapped="Button_Tapped"
-                Grid.Row="2">
-
-        </Button>
-    </Grid>
+    </ScrollViewer>
 </Page>

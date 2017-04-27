@@ -52,48 +52,13 @@ namespace NewsForum.View.MyUserControls
             return result;
         }
 
-        private async void OpenFilesButton_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            FileExplorer fileDialog = new FileExplorer(PickerLocationId.PicturesLibrary);
-            fileDialog.SetFilterType("jpeg", "jpg", "png");
-            fileDialog.LoadEnded += fileDialog_LoadEnded;
-            await fileDialog.PickMultipleFilesAsync();
-        }
-
-        private async void fileDialog_LoadEnded(IEnumerable<StorageFile> obj)
+        private async void SetFilesControl_LoadFilesEvent(IEnumerable<StorageFile> obj)
         {
             LoadPhotosProgress.IsActive = true;
-            (Resources["CollectionViewModel"] as BaseCollectionViewModel).AddRange(await getImages(obj));
-            LoadPhotosProgress.IsActive = false; 
-        }
-        
-        private void MainGrid_DragStarting(UIElement sender, DragStartingEventArgs args)
-        {
-            args.AllowedOperations = DataPackageOperation.Link;
-        }
+            if (obj != null)
+                (Resources["CollectionViewModel"] as BaseCollectionViewModel).AddRange(await getImages(obj));
 
-        private void MainGrid_DragOver(object sender, DragEventArgs e)
-        {
-            e.AcceptedOperation = DataPackageOperation.Copy;
-            e.DragUIOverride.Caption = "Перетаскивай блять быстрее";
-            e.DragUIOverride.IsCaptionVisible = true;
-            e.DragUIOverride.IsContentVisible = true;
-            e.DragUIOverride.IsGlyphVisible = true;
-        }
-
-        private async void MainGrid_Drop(object sender, DragEventArgs e)
-        {
-            if (e.DataView.Contains(StandardDataFormats.StorageItems))
-            {
-                var storageItems = await e.DataView.GetStorageItemsAsync();
-                if (storageItems.Any())
-                {
-                    fileDialog_LoadEnded(from item in storageItems
-                                          let contentType = (item as StorageFile).ContentType
-                                          where contentType == "image/png" || contentType == "image/jpeg"
-                                          select item as StorageFile);
-                }
-            }
+            LoadPhotosProgress.IsActive = false;
         }
     }
 }

@@ -11,7 +11,8 @@
     xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:I="using:Microsoft.Xaml.Interactivity"
     d:DesignHeight="300"
-    d:DesignWidth="400">
+    d:DesignWidth="400"
+    xmlns:controls="using:NewsForum.View.MyUserControls">
 
     <UserControl.Resources>
         <ItemsPanelTemplate x:Key="DesktopPanelTemplate">
@@ -49,64 +50,17 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <Grid Name="MainGrid"
-          AllowDrop="True"
-          DragStarting="MainGrid_DragStarting"
-          DragOver="MainGrid_DragOver"
-          Drop="MainGrid_Drop">
-        <I:Interaction.Behaviors>
-            <Core:EventTriggerBehavior EventName="DragEnter"
-                                       SourceObject="{x:Bind MainGrid}">
-                <Core:ChangePropertyAction TargetObject="{x:Bind MainGrid}"
-                                           PropertyName="Opacity"
-                                           Value="0,6"/>
-                <Core:ChangePropertyAction TargetObject="{x:Bind MainGrid}"
-                                           PropertyName="Background"
-                                           Value="LightGray"/>
-
-            </Core:EventTriggerBehavior>
-
-            <Core:EventTriggerBehavior EventName="DragLeave"
-                                       SourceObject="{x:Bind MainGrid}">
-                <Core:ChangePropertyAction TargetObject="{x:Bind MainGrid}"
-                                           PropertyName="Opacity"
-                                           Value="1"/>
-                <Core:ChangePropertyAction TargetObject="{x:Bind MainGrid}"
-                                           PropertyName="Background"
-                                           Value="{x:Null}"/>
-
-            </Core:EventTriggerBehavior>
-
-            <Core:EventTriggerBehavior EventName="Drop"
-                                       SourceObject="{x:Bind MainGrid}">
-                <Core:ChangePropertyAction TargetObject="{x:Bind MainGrid}"
-                                           PropertyName="Opacity"
-                                           Value="1"/>
-                <Core:ChangePropertyAction TargetObject="{x:Bind MainGrid}"
-                                           PropertyName="Background"
-                                           Value="{x:Null}"/>
-
-            </Core:EventTriggerBehavior>
-            
-        </I:Interaction.Behaviors>
+    <Grid>
+      
         
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <StackPanel HorizontalAlignment="Center">
-            <TextBlock Text="Перетащите сюда фото-материалы"
-                        Style="{StaticResource BaseMenuTextBlockStyle}"/>
-            <TextBlock Text="или"
-                       HorizontalAlignment="Center"
-                       Style="{StaticResource BaseMenuTextBlockStyle}"/>
-            <HyperlinkButton Name="OpenFilesButton"
-                             Content="Выберите файлы для загрузки"
-                             HorizontalAlignment="Center"
-                             FontSize="20"
-                             Tapped="OpenFilesButton_Tapped"/>
-        </StackPanel>
+        <controls:SetOrDropFilesUserControl x:Name="SetFilesControl"
+                                            FileType="Image"
+                                            LoadFilesEvent="SetFilesControl_LoadFilesEvent"/>
 
         <ProgressRing Name="LoadPhotosProgress"
                       Grid.Row="1"/>

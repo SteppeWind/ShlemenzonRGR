@@ -53,16 +53,16 @@ namespace NewsForum.ViewModel
 
         public override void RemoveElement(IFileSettings element)
         {
-            var index = BaseFileCollection.IndexOf(element) + 1;
-            base.RemoveElement(element);
+            var index = BaseFileCollection.IndexOf(element);
             if (BaseFileCollection.Count == 0) //проверям на пустоту списка
             {
                 //список пуст, следовательно значение Source у Media убираем
             }
-            if (index < BaseFileCollection.Count)
+            if (index < BaseFileCollection.Count && index == BaseFileCollection.IndexOf(CurrentSong))
             {
-                PlaySound((SoundFileContainer)BaseFileCollection[index]);
+                PlaySound((SoundFileContainer)BaseFileCollection[index + 1]);
             }
+            base.RemoveElement(element);
         }
 
         public void PauseSound()

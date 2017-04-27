@@ -172,6 +172,9 @@
     <Compile Include="View\MyUserControls\SeparatorUserControl.xaml.cs">
       <DependentUpon>SeparatorUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MyUserControls\SetOrDropFilesUserControl.xaml.cs">
+      <DependentUpon>SetOrDropFilesUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MyUserControls\WaitingLoadingUserControl.xaml.cs">
       <DependentUpon>WaitingLoadingUserControl.xaml</DependentUpon>
     </Compile>
@@ -283,6 +286,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MyUserControls\SeparatorUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MyUserControls\SetOrDropFilesUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

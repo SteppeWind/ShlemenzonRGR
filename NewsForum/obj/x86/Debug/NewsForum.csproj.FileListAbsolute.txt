@@ -318,3 +318,8 @@ F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\N
 F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\bin\x86\Debug\Properties\DesignTimeResources.xbf
 F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\obj\x86\Debug\Properties\DesignTimeResources.xaml
 F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\obj\x86\Debug\Properties\DesignTimeResources.xbf
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\obj\x86\Debug\View\MyUserControls\SetOrDropFilesUserControl.g.i.cs
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\obj\x86\Debug\View\MyUserControls\SetOrDropFilesUserControl.g.cs
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\obj\x86\Debug\View\MyUserControls\SetOrDropFilesUserControl.xaml
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\obj\x86\Debug\View\MyUserControls\SetOrDropFilesUserControl.xbf
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\bin\x86\Debug\View\MyUserControls\SetOrDropFilesUserControl.xbf

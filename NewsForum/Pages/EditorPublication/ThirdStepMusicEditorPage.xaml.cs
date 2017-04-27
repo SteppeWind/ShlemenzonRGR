@@ -28,22 +28,13 @@ namespace NewsForum.Pages.EditorPublication
         public ThirdStepMusicEditorPage()
         {
             this.InitializeComponent();
+            DecriptionPublicationControl.AddEditDescriptionBox(EditDescriptionBox);
         }
 
-        private async void Button_Tapped(object sender, TappedRoutedEventArgs e)
+        private async void SelectFileControl_LoadFilesEvent(IEnumerable<Windows.Storage.StorageFile> obj)
         {
-            FileOpenPicker fop = new FileOpenPicker()
-            {
-                CommitButtonText = "Открыть",
-                ViewMode = PickerViewMode.Thumbnail,
-                SuggestedStartLocation = PickerLocationId.PicturesLibrary,
-            };
-            fop.FileTypeFilter.Add(".mp3");
-            fop.FileTypeFilter.Add(".wav");
-
-            var storageFIles = await fop.PickMultipleFilesAsync();
             ObservableCollection<SoundFileContainer> collection = new ObservableCollection<SoundFileContainer>();
-            foreach (var item in storageFIles)
+            foreach (var item in obj)
             {
                 collection.Add(new SoundFileContainer()
                 {
