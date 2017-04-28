@@ -46,7 +46,7 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <Grid Margin="5"
+        <Grid Margin="{StaticResource BaseMainGridThickness}"
               ChildrenTransitions="{StaticResource BaseChildrenAnimation}">
 
             <Grid.RowDefinitions>

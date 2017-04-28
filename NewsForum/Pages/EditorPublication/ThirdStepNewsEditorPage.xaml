@@ -19,7 +19,7 @@
     </Page.Resources>
 
     <Grid ChildrenTransitions="{StaticResource BaseChildrenAnimation}"
-          Background="{StaticResource MenuColorStyle}">
+          Margin="{StaticResource BaseMainGridThickness}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="VisualStateGroup">
                 <VisualState x:Name="Mobile">

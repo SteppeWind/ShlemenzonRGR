@@ -23,20 +23,72 @@ namespace NewsForum.Pages.EditorPublication
     /// </summary>
     public sealed partial class NavigationPage : Page
     {
+        public int CurrentStep = 1;
+
         public NavigationPage()
         {
-            this.InitializeComponent();
-            NavigationEditFrame.SourcePageType = typeof(ThirdStepMusicEditorPage);            
+            this.InitializeComponent();            
+            NavigationEditFrame.SourcePageType = typeof(SecondStepPage);
+            NavigationEditFrame.Navigated += Frame_Navigated;
+        }
+
+        private void Frame_Navigated(object sender, NavigationEventArgs e)
+        {
         }
 
         private void ForwardPageButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            FirstToSecondStepStoryBoard.Begin();
+            ++CurrentStep;
+            SetEnNavigationButtons();
+            switch (CurrentStep)
+            {
+                case 1:
+                    break;
+
+                case 2:
+                    FirstToSecondStepStoryBoard.Begin();
+                    NavigationEditFrame.Navigate(typeof(ThirdStepNewsEditorPage));
+                    break;
+
+                case 3:
+                    SecondToThirdStepStoryBoard.Begin();
+                    ForwardPageButton.IsEnabled = false;
+                    NavigationEditFrame.Navigate(typeof(LastStepPage));
+                    break;
+           
+                default:
+                    break;
+            }
         }
 
         private void BackPageButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            SecondToFirstStepStoryBoard.Begin();
+            --CurrentStep;
+            NavigationEditFrame.GoBack();
+            SetEnNavigationButtons();
+            switch (CurrentStep)
+            {
+                case 1:
+                    SecondToFirstStepStoryBoard.Begin();
+                    BackPageButton.IsEnabled = false;
+                    break;
+
+                case 2:
+                    ThirdToSecondStepStoryBoard.Begin();
+                    break;
+
+                case 3:
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private void SetEnNavigationButtons()
+        {
+            ForwardPageButton.IsEnabled = true;
+            BackPageButton.IsEnabled = true;
         }
     }
 }

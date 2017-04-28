@@ -1,12 +1,13 @@
 App.xbf
 MainPage.xbf
 Pages\EditorPublication\FirstStepPage.xbf
+Pages\EditorPublication\LastStepPage.xbf
 Pages\EditorPublication\NavigationPage.xbf
 Pages\EditorPublication\SecondStepPage.xbf
 Pages\EditorPublication\ThirdStepFilmEditorPage.xbf
+Pages\EditorPublication\ThirdStepGamePage.xbf
 Pages\EditorPublication\ThirdStepMusicEditorPage.xbf
 Pages\EditorPublication\ThirdStepNewsEditorPage.xbf
-Pages\EditorPublicationsPage.xbf
 Pages\ExpandSearchPage.xbf
 Pages\LoginOrRegistrationPage.xbf
 Pages\RegistrationPage.xbf

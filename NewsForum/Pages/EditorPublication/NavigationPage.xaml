@@ -6,6 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:I="using:Microsoft.Xaml.Interactivity"
+    xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     Transitions="{StaticResource BaseAnimation}">
 
     <Page.Resources>
@@ -21,7 +23,7 @@
         <SolidColorBrush x:Key="CurrentPageBrush"
                          Color="{StaticResource CurrentPageColor}"/>
 
-
+        <!--#region (2 ШАГ) Анимация из 1ого во 2ой эллипс -->
         <Storyboard x:Name="FirstToSecondStepStoryBoard">
             <ColorAnimation Storyboard.TargetName="FirstStepEllipse"
                             Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
@@ -36,7 +38,26 @@
                             Duration="0:0:0.5"/>
 
         </Storyboard>
+        <!--#endregion-->
 
+        <!--#region (3 ШАГ) Анимация из 2ого в 3й эллипс -->
+        <Storyboard x:Name="SecondToThirdStepStoryBoard">
+            <ColorAnimation Storyboard.TargetName="SecondStepEllipse"
+                            Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                            From="{StaticResource CurrentPageColor}"
+                            To="{StaticResource MenuColor}"
+                            Duration="0:0:0.5"/>
+
+            <ColorAnimation Storyboard.TargetName="ThirdStepEllipse"
+                            Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                            From="{StaticResource MenuColor}"
+                            To="{StaticResource CurrentPageColor}"
+                            Duration="0:0:0.5"/>
+
+        </Storyboard>
+        <!--#endregion-->
+
+        <!--#region (Возврат к 1ому шагу) Анимация из 2ого в 1ый эллипс-->
         <Storyboard x:Name="SecondToFirstStepStoryBoard">
             <ColorAnimation Storyboard.TargetName="SecondStepEllipse"
                             Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
@@ -50,6 +71,23 @@
                             To="{StaticResource CurrentPageColor}"
                             Duration="0:0:0.5"/>
         </Storyboard>
+        <!--#endregion-->
+
+        <!--#region (Возврат ко 2ому шагу) Анимация из 3ого в 2ой эллипс-->
+        <Storyboard x:Name="ThirdToSecondStepStoryBoard">
+            <ColorAnimation Storyboard.TargetName="ThirdStepEllipse"
+                            Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                            From="{StaticResource CurrentPageColor}"
+                            To="{StaticResource MenuColor}"
+                            Duration="0:0:0.5"/>
+
+            <ColorAnimation Storyboard.TargetName="SecondStepEllipse"
+                            Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                            From="{StaticResource MenuColor}"
+                            To="{StaticResource CurrentPageColor}"
+                            Duration="0:0:0.5"/>
+        </Storyboard>
+        <!--#endregion-->
 
     </Page.Resources>
 
@@ -122,6 +160,7 @@
                     HorizontalAlignment="Right"
                     Style="{StaticResource BaseMiddleMenuIconButtonStyle}"
                     Content=""
+                    IsEnabled="False"
                     Tapped="BackPageButton_Tapped">
             </Button>
 

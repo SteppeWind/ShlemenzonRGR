@@ -40,9 +40,9 @@
       <RootProperty Name="FontSize" />
       <RootProperty Name="Style" />
       <RootProperty Name="Text" />
-      <RootProperty Name="Margin" />
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Margin" />
       <RootProperty Name="Name" />
       <RootProperty Name="Tag" />
       <RootProperty Name="FontFamily" />
@@ -179,10 +179,10 @@
       <RootProperty Name="Style" />
       <RootProperty Name="Content" />
       <RootProperty Name="Background" />
-      <RootProperty Name="Margin" />
       <RootProperty Name="HorizontalAlignment" />
-      <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="IsEnabled" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="FontFamily" />
       <RootProperty Name="FontSize" />
       <RootProperty Name="Command" />
@@ -196,63 +196,6 @@
     </RootType>
     <RootType FullName="NewsForum.MainPage" />
     <RootType FullName="System.String" />
-    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.ThemeResourceExtension" />
-    <RootType FullName="Windows.UI.Xaml.Controls.GridView">
-      <RootProperty Name="Items" />
-      <RootProperty Name="HorizontalAlignment" />
-      <RootProperty Name="IsItemClickEnabled" />
-      <RootProperty Name="SelectionMode" />
-      <RootProperty Name="ItemsSource" />
-      <RootProperty Name="ItemTemplate" />
-      <RootProperty Name="ItemsPanel" />
-      <RootProperty Name="Background" />
-      <RootEvent Name="ItemClick" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.RichEditBox">
-      <RootProperty Name="PlaceholderText" />
-      <RootProperty Name="ContextFlyout" />
-      <RootProperty Name="SelectionHighlightColor" />
-      <RootProperty Name="TextWrapping" />
-      <RootProperty Name="Name" />
-      <RootProperty Name="Style" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.Flyout">
-      <RootProperty Name="Placement" />
-      <RootProperty Name="Content" />
-      <RootProperty Name="FlyoutPresenterStyle" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.MenuFlyoutItem">
-      <RootProperty Name="Text" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.MenuFlyoutSeparator">
-      <RootProperty Name="RenderTransformOrigin" />
-      <RootProperty Name="RenderTransform" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.GridViewItem">
-      <RootProperty Name="Content" />
-      <RootProperty Name="Name" />
-      <RootEvent Name="Tapped" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.ToolTipService">
-      <RootMethod Name="GetToolTip" />
-      <RootMethod Name="SetToolTip" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.ComboBox">
-      <RootProperty Name="FontSize" />
-      <RootProperty Name="SelectedIndex" />
-      <RootProperty Name="Items" />
-      <RootProperty Name="Name" />
-      <RootProperty Name="ElementSoundMode" />
-      <RootProperty Name="PlaceholderText" />
-      <RootProperty Name="Header" />
-      <RootProperty Name="Tag" />
-      <RootEvent Name="SelectionChanged" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.ComboBoxItem">
-      <RootProperty Name="Content" />
-      <RootProperty Name="FontSize" />
-    </RootType>
-    <RootType FullName="NewsForum.Pages.EditorPublicationsPage" />
     <RootType FullName="Windows.UI.Xaml.Controls.FlipView">
       <RootProperty Name="Margin" />
       <RootProperty Name="SelectedIndex" />
@@ -264,6 +207,8 @@
       <RootProperty Name="Content" />
     </RootType>
     <RootType FullName="NewsForum.Pages.EditorPublication.FirstStepPage" />
+    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.ThemeResourceExtension" />
+    <RootType FullName="NewsForum.Pages.EditorPublication.LastStepPage" />
     <RootType FullName="System.Double" />
     <RootType FullName="Windows.UI.Color" />
     <RootType FullName="Windows.UI.Xaml.Media.SolidColorBrush">
@@ -302,7 +247,22 @@
       <RootProperty Name="Margin" />
       <RootProperty Name="VerticalAlignment" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ComboBox">
+      <RootProperty Name="Name" />
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="ElementSoundMode" />
+      <RootProperty Name="PlaceholderText" />
+      <RootProperty Name="Items" />
+      <RootProperty Name="Header" />
+      <RootProperty Name="Tag" />
+      <RootProperty Name="SelectedIndex" />
+      <RootEvent Name="SelectionChanged" />
+    </RootType>
     <RootType FullName="NewsForum.View.MyUserControls.AddCoverPublicationUserControl" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ComboBoxItem">
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="Content" />
+    </RootType>
     <RootType FullName="NewsForum.Pages.EditorPublication.SecondStepPage" />
     <RootType FullName="Windows.UI.Xaml.Controls.ItemsPanelTemplate">
       <RootProperty Name="Template" />
@@ -323,7 +283,16 @@
     <RootType FullName="NewsForum.View.MyUserControls.EditDescriptionBoxUserControl">
       <RootProperty Name="PlaceholderText" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.MenuFlyoutSeparator">
+      <RootProperty Name="RenderTransformOrigin" />
+      <RootProperty Name="RenderTransform" />
+    </RootType>
     <RootType FullName="NewsForum.Pages.EditorPublication.ThirdStepDistributionEditorPage" />
+    <RootType FullName="Windows.UI.Xaml.Controls.CheckBox">
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Content" />
+    </RootType>
+    <RootType FullName="NewsForum.Pages.EditorPublication.ThirdStepGamePage" />
     <RootType FullName="NewsForum.View.MyUserControls.SetOrDropFilesUserControl">
       <RootProperty Name="FileType" />
       <RootProperty Name="Margin" />
@@ -333,7 +302,27 @@
       <RootProperty Name="IsEditMusicCollection" />
       <RootProperty Name="Margin" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ToolTipService">
+      <RootMethod Name="GetToolTip" />
+      <RootMethod Name="SetToolTip" />
+    </RootType>
     <RootType FullName="NewsForum.Pages.EditorPublication.ThirdStepMusicEditorPage" />
+    <RootType FullName="Windows.UI.Xaml.Controls.GridView">
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="IsItemClickEnabled" />
+      <RootProperty Name="SelectionMode" />
+      <RootProperty Name="Items" />
+      <RootProperty Name="ItemsSource" />
+      <RootProperty Name="ItemTemplate" />
+      <RootProperty Name="ItemsPanel" />
+      <RootProperty Name="Background" />
+      <RootEvent Name="ItemClick" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.GridViewItem">
+      <RootProperty Name="Content" />
+      <RootProperty Name="Name" />
+      <RootEvent Name="Tapped" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Media.Animation.TransitionCollection" />
     <RootType FullName="Windows.UI.Xaml.Media.Animation.AddDeleteThemeTransition" />
     <RootType FullName="NewsForum.Pages.EditorPublication.ThirdStepNewsEditorPage" />
@@ -405,6 +394,12 @@
       <RootProperty Name="Background" />
       <RootProperty Name="Padding" />
       <RootProperty Name="Template" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.RichEditBox">
+      <RootProperty Name="SelectionHighlightColor" />
+      <RootProperty Name="TextWrapping" />
+      <RootProperty Name="Name" />
+      <RootProperty Name="Style" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ControlTemplate">
       <RootProperty Name="TargetType" />
@@ -521,6 +516,11 @@
     <RootType FullName="Microsoft.Xaml.Interactions.Core.InvokeCommandAction">
       <RootProperty Name="Command" />
       <RootProperty Name="CommandParameter" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Flyout">
+      <RootProperty Name="Content" />
+      <RootProperty Name="Placement" />
+      <RootProperty Name="FlyoutPresenterStyle" />
     </RootType>
     <RootType FullName="Microsoft.Xaml.Interactions.Core.CallMethodAction">
       <RootProperty Name="TargetObject" />

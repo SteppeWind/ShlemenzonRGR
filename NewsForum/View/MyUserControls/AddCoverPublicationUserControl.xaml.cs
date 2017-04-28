@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NewsForum.Model;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -26,10 +27,13 @@ namespace NewsForum.View.MyUserControls
     {
         public StorageFile ImageFile { get; private set; }
         public event Action<StorageFile> CompleteDropEvent;
+        private FileExplorer FileDialog;
 
         public AddCoverPublicationUserControl()
         {
             this.InitializeComponent();
+            FileDialog = new FileExplorer(PickerLocationId.PicturesLibrary);
+            FileDialog.SetFilterType(FileExplorer.FiltersImage);
         }
 
         private void CoverPublicationImage_OnDragStarting(UIElement sender, DragStartingEventArgs args)
@@ -56,7 +60,7 @@ namespace NewsForum.View.MyUserControls
             {
                 var bitMapImage = new BitmapImage();
                 var contentType = storageFile.ContentType;
-                if (contentType == "image/png" || contentType == "image/jpeg")
+                if (FileExplorer.ContentImageTypes.Contains(contentType))
                 {
                     await bitMapImage.SetSourceAsync(await storageFile.OpenReadAsync());
                     CoverPublicationImage.Source = bitMapImage;
@@ -79,16 +83,7 @@ namespace NewsForum.View.MyUserControls
 
         private async void OpenPickerButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            FileOpenPicker fop = new FileOpenPicker()
-            {
-                CommitButtonText = "Открыть",
-                ViewMode = PickerViewMode.Thumbnail,
-                SuggestedStartLocation = PickerLocationId.PicturesLibrary,
-            };
-            fop.FileTypeFilter.Add(".jpeg");
-            fop.FileTypeFilter.Add(".jpg");
-            fop.FileTypeFilter.Add(".png");
-            var storageFile = await fop.PickSingleFileAsync();
+            var storageFile = await FileDialog.PickSingleFileAsync();
             SetSourceCoverImageAsync(storageFile);
         }
     }

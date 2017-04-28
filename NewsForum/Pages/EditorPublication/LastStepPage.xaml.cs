@@ -20,9 +20,9 @@ namespace NewsForum.Pages.EditorPublication
     /// <summary>
     /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
     /// </summary>
-    public sealed partial class FirstStepPage : Page
+    public sealed partial class LastStepPage : Page
     {
-        public FirstStepPage()
+        public LastStepPage()
         {
             this.InitializeComponent();
         }

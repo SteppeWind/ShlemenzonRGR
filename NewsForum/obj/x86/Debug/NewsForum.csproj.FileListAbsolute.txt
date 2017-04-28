@@ -227,11 +227,6 @@ F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\N
 F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\obj\x86\Debug\Pages\RegistrationPage.g.cs
 F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\obj\x86\Debug\Pages\RegistrationPage.xaml
 F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\obj\x86\Debug\Pages\RegistrationPage.xbf
-F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\bin\x86\Debug\Pages\EditorPublicationsPage.xbf
-F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\obj\x86\Debug\Pages\EditorPublicationsPage.g.i.cs
-F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\obj\x86\Debug\Pages\EditorPublicationsPage.g.cs
-F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\obj\x86\Debug\Pages\EditorPublicationsPage.xaml
-F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\obj\x86\Debug\Pages\EditorPublicationsPage.xbf
 F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\obj\x86\Debug\Pages\EditorPublication\FirstStepPage.g.i.cs
 F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\obj\x86\Debug\Pages\EditorPublication\FirstStepPage.g.cs
 F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\obj\x86\Debug\Pages\EditorPublication\FirstStepPage.xaml
@@ -648,3 +643,13 @@ C:\Users\vladi\Desktop\Новая папка\ShlemenzonRGR\NewsForum\obj\x86\Deb
 C:\Users\vladi\Desktop\Новая папка\ShlemenzonRGR\NewsForum\obj\x86\Debug\Microsoft.Xaml.Interactions.pri.xml
 C:\Users\vladi\Desktop\Новая папка\ShlemenzonRGR\NewsForum\obj\x86\Debug\Microsoft.Xaml.Interactivity.pri.xml
 C:\Users\vladi\Desktop\Новая папка\ShlemenzonRGR\NewsForum\obj\x86\Debug\ProjectArchitectures.txt
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\bin\x86\Debug\Pages\EditorPublication\LastStepPage.xbf
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\bin\x86\Debug\Pages\EditorPublication\ThirdStepGamePage.xbf
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\obj\x86\Debug\Pages\EditorPublication\LastStepPage.g.i.cs
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\obj\x86\Debug\Pages\EditorPublication\LastStepPage.g.cs
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\obj\x86\Debug\Pages\EditorPublication\ThirdStepGamePage.g.i.cs
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\obj\x86\Debug\Pages\EditorPublication\ThirdStepGamePage.g.cs
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\obj\x86\Debug\Pages\EditorPublication\LastStepPage.xaml
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\obj\x86\Debug\Pages\EditorPublication\ThirdStepGamePage.xaml
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\obj\x86\Debug\Pages\EditorPublication\LastStepPage.xbf
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\obj\x86\Debug\Pages\EditorPublication\ThirdStepGamePage.xbf

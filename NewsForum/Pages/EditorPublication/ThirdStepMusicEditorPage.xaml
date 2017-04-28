@@ -8,7 +8,8 @@
     xmlns:controls="using:NewsForum.View.MyUserControls"
     mc:Ignorable="d">
 
-    <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+    <ScrollViewer Margin="{StaticResource BaseMainGridThickness}"
+                  HorizontalScrollBarVisibility="Disabled"
                   VerticalScrollBarVisibility="Auto"
                   VerticalScrollMode="Auto">
         <VisualStateManager.VisualStateGroups>
@@ -33,8 +34,7 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <Grid Margin="{StaticResource BaseMainGridThickness}"
-              Background="{StaticResource MenuColorStyle}"
+        <Grid Background="{StaticResource MenuColorStyle}"
               ChildrenTransitions="{StaticResource BaseChildrenAnimation}">
 
 
