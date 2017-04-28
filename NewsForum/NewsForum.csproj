@@ -106,9 +106,6 @@
     <Compile Include="Model\ImageContainer.cs" />
     <Compile Include="Model\SongDuration.cs" />
     <Compile Include="Model\SoundFileContainer.cs" />
-    <Compile Include="Pages\EditorPublicationsPage.xaml.cs">
-      <DependentUpon>EditorPublicationsPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\EditorPublication\FirstStepPage.xaml.cs">
       <DependentUpon>FirstStepPage.xaml</DependentUpon>
     </Compile>
@@ -120,6 +117,9 @@
     </Compile>
     <Compile Include="Pages\EditorPublication\ThirdStepFilmEditorPage.xaml.cs">
       <DependentUpon>ThirdStepFilmEditorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EditorPublication\ThirdStepGamePage.xaml.cs">
+      <DependentUpon>ThirdStepGamePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\EditorPublication\ThirdStepMusicEditorPage.xaml.cs">
       <DependentUpon>ThirdStepMusicEditorPage.xaml</DependentUpon>
@@ -142,6 +142,7 @@
     <Compile Include="ViewModel\Commands\BaseCommand.cs" />
     <Compile Include="ViewModel\Commands\PlaySoundCommand.cs" />
     <Compile Include="ViewModel\MediaPlayerViewModel.cs" />
+    <Compile Include="View\Converters\DoubleToTimeSpanConverter.cs" />
     <Compile Include="View\Converters\EnabledConverter.cs" />
     <Compile Include="View\Converters\ExpandSearchCollapseGenresConverter.cs" />
     <Compile Include="View\Converters\HeightColumnGridConverter.cs" />
@@ -206,10 +207,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\EditorPublicationsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\EditorPublication\FirstStepPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -223,6 +220,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\EditorPublication\ThirdStepFilmEditorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\EditorPublication\ThirdStepGamePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -492,6 +492,7 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Media.PlaneProjection" />
     <RootType FullName="NewsForum.View.MyUserControls.ContainerForUserControl" />
+    <RootType FullName="NewsForum.View.Converters.DoubleToTimeSpanConverter" />
     <RootType FullName="NewsForum.View.Converters.MethodNamePlayerConverter" />
     <RootType FullName="NewsForum.View.Converters.EnabledConverter" />
     <RootType FullName="NewsForum.ViewModel.MediaPlayerViewModel">

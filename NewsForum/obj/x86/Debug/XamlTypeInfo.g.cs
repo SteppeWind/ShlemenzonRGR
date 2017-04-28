@@ -132,7 +132,7 @@ namespace NewsForum.NewsForum_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[68];
+            _typeNameTable = new string[69];
             _typeNameTable[0] = "NewsForum.MainPage";
             _typeNameTable[1] = "Windows.UI.Xaml.Controls.Page";
             _typeNameTable[2] = "Windows.UI.Xaml.Controls.UserControl";
@@ -189,20 +189,21 @@ namespace NewsForum.NewsForum_XamlTypeInfo
             _typeNameTable[53] = "System.Collections.ObjectModel.Collection`1<NewsForum.Model.IFileSettings>";
             _typeNameTable[54] = "NewsForum.Model.IFileSettings";
             _typeNameTable[55] = "NewsForum.View.MyUserControls.ContainerForUserControl";
-            _typeNameTable[56] = "NewsForum.View.Converters.MethodNamePlayerConverter";
-            _typeNameTable[57] = "NewsForum.View.Converters.EnabledConverter";
-            _typeNameTable[58] = "NewsForum.ViewModel.MediaPlayerViewModel";
-            _typeNameTable[59] = "Windows.UI.Xaml.Controls.MediaElement";
-            _typeNameTable[60] = "NewsForum.Model.SoundFileContainer";
-            _typeNameTable[61] = "NewsForum.ViewModel.Commands.PlaySoundCommand";
-            _typeNameTable[62] = "Microsoft.Xaml.Interactions.Core.InvokeCommandAction";
-            _typeNameTable[63] = "System.Windows.Input.ICommand";
-            _typeNameTable[64] = "Windows.UI.Xaml.Data.IValueConverter";
-            _typeNameTable[65] = "Microsoft.Xaml.Interactions.Core.CallMethodAction";
-            _typeNameTable[66] = "NewsForum.View.MyUserControls.SeparatorUserControl";
-            _typeNameTable[67] = "NewsForum.View.MyUserControls.WaitingLoadingUserControl";
+            _typeNameTable[56] = "NewsForum.View.Converters.DoubleToTimeSpanConverter";
+            _typeNameTable[57] = "NewsForum.View.Converters.MethodNamePlayerConverter";
+            _typeNameTable[58] = "NewsForum.View.Converters.EnabledConverter";
+            _typeNameTable[59] = "NewsForum.ViewModel.MediaPlayerViewModel";
+            _typeNameTable[60] = "Windows.UI.Xaml.Controls.MediaElement";
+            _typeNameTable[61] = "NewsForum.Model.SoundFileContainer";
+            _typeNameTable[62] = "NewsForum.ViewModel.Commands.PlaySoundCommand";
+            _typeNameTable[63] = "Microsoft.Xaml.Interactions.Core.InvokeCommandAction";
+            _typeNameTable[64] = "System.Windows.Input.ICommand";
+            _typeNameTable[65] = "Windows.UI.Xaml.Data.IValueConverter";
+            _typeNameTable[66] = "Microsoft.Xaml.Interactions.Core.CallMethodAction";
+            _typeNameTable[67] = "NewsForum.View.MyUserControls.SeparatorUserControl";
+            _typeNameTable[68] = "NewsForum.View.MyUserControls.WaitingLoadingUserControl";
 
-            _typeTable = new global::System.Type[68];
+            _typeTable = new global::System.Type[69];
             _typeTable[0] = typeof(global::NewsForum.MainPage);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Page);
             _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
@@ -259,18 +260,19 @@ namespace NewsForum.NewsForum_XamlTypeInfo
             _typeTable[53] = typeof(global::System.Collections.ObjectModel.Collection<global::NewsForum.Model.IFileSettings>);
             _typeTable[54] = typeof(global::NewsForum.Model.IFileSettings);
             _typeTable[55] = typeof(global::NewsForum.View.MyUserControls.ContainerForUserControl);
-            _typeTable[56] = typeof(global::NewsForum.View.Converters.MethodNamePlayerConverter);
-            _typeTable[57] = typeof(global::NewsForum.View.Converters.EnabledConverter);
-            _typeTable[58] = typeof(global::NewsForum.ViewModel.MediaPlayerViewModel);
-            _typeTable[59] = typeof(global::Windows.UI.Xaml.Controls.MediaElement);
-            _typeTable[60] = typeof(global::NewsForum.Model.SoundFileContainer);
-            _typeTable[61] = typeof(global::NewsForum.ViewModel.Commands.PlaySoundCommand);
-            _typeTable[62] = typeof(global::Microsoft.Xaml.Interactions.Core.InvokeCommandAction);
-            _typeTable[63] = typeof(global::System.Windows.Input.ICommand);
-            _typeTable[64] = typeof(global::Windows.UI.Xaml.Data.IValueConverter);
-            _typeTable[65] = typeof(global::Microsoft.Xaml.Interactions.Core.CallMethodAction);
-            _typeTable[66] = typeof(global::NewsForum.View.MyUserControls.SeparatorUserControl);
-            _typeTable[67] = typeof(global::NewsForum.View.MyUserControls.WaitingLoadingUserControl);
+            _typeTable[56] = typeof(global::NewsForum.View.Converters.DoubleToTimeSpanConverter);
+            _typeTable[57] = typeof(global::NewsForum.View.Converters.MethodNamePlayerConverter);
+            _typeTable[58] = typeof(global::NewsForum.View.Converters.EnabledConverter);
+            _typeTable[59] = typeof(global::NewsForum.ViewModel.MediaPlayerViewModel);
+            _typeTable[60] = typeof(global::Windows.UI.Xaml.Controls.MediaElement);
+            _typeTable[61] = typeof(global::NewsForum.Model.SoundFileContainer);
+            _typeTable[62] = typeof(global::NewsForum.ViewModel.Commands.PlaySoundCommand);
+            _typeTable[63] = typeof(global::Microsoft.Xaml.Interactions.Core.InvokeCommandAction);
+            _typeTable[64] = typeof(global::System.Windows.Input.ICommand);
+            _typeTable[65] = typeof(global::Windows.UI.Xaml.Data.IValueConverter);
+            _typeTable[66] = typeof(global::Microsoft.Xaml.Interactions.Core.CallMethodAction);
+            _typeTable[67] = typeof(global::NewsForum.View.MyUserControls.SeparatorUserControl);
+            _typeTable[68] = typeof(global::NewsForum.View.MyUserControls.WaitingLoadingUserControl);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -338,14 +340,15 @@ namespace NewsForum.NewsForum_XamlTypeInfo
         private object Activate_52_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::NewsForum.Model.IFileSettings>(); }
         private object Activate_53_Collection() { return new global::System.Collections.ObjectModel.Collection<global::NewsForum.Model.IFileSettings>(); }
         private object Activate_55_ContainerForUserControl() { return new global::NewsForum.View.MyUserControls.ContainerForUserControl(); }
-        private object Activate_56_MethodNamePlayerConverter() { return new global::NewsForum.View.Converters.MethodNamePlayerConverter(); }
-        private object Activate_57_EnabledConverter() { return new global::NewsForum.View.Converters.EnabledConverter(); }
-        private object Activate_58_MediaPlayerViewModel() { return new global::NewsForum.ViewModel.MediaPlayerViewModel(); }
-        private object Activate_60_SoundFileContainer() { return new global::NewsForum.Model.SoundFileContainer(); }
-        private object Activate_62_InvokeCommandAction() { return new global::Microsoft.Xaml.Interactions.Core.InvokeCommandAction(); }
-        private object Activate_65_CallMethodAction() { return new global::Microsoft.Xaml.Interactions.Core.CallMethodAction(); }
-        private object Activate_66_SeparatorUserControl() { return new global::NewsForum.View.MyUserControls.SeparatorUserControl(); }
-        private object Activate_67_WaitingLoadingUserControl() { return new global::NewsForum.View.MyUserControls.WaitingLoadingUserControl(); }
+        private object Activate_56_DoubleToTimeSpanConverter() { return new global::NewsForum.View.Converters.DoubleToTimeSpanConverter(); }
+        private object Activate_57_MethodNamePlayerConverter() { return new global::NewsForum.View.Converters.MethodNamePlayerConverter(); }
+        private object Activate_58_EnabledConverter() { return new global::NewsForum.View.Converters.EnabledConverter(); }
+        private object Activate_59_MediaPlayerViewModel() { return new global::NewsForum.ViewModel.MediaPlayerViewModel(); }
+        private object Activate_61_SoundFileContainer() { return new global::NewsForum.Model.SoundFileContainer(); }
+        private object Activate_63_InvokeCommandAction() { return new global::Microsoft.Xaml.Interactions.Core.InvokeCommandAction(); }
+        private object Activate_66_CallMethodAction() { return new global::Microsoft.Xaml.Interactions.Core.CallMethodAction(); }
+        private object Activate_67_SeparatorUserControl() { return new global::NewsForum.View.MyUserControls.SeparatorUserControl(); }
+        private object Activate_68_WaitingLoadingUserControl() { return new global::NewsForum.View.MyUserControls.WaitingLoadingUserControl(); }
         private void VectorAdd_18_List(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::NewsForum.View.MyUserControls.EditDescriptionBoxUserControl>)instance;
@@ -775,23 +778,30 @@ namespace NewsForum.NewsForum_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 56:   //  NewsForum.View.Converters.MethodNamePlayerConverter
+            case 56:   //  NewsForum.View.Converters.DoubleToTimeSpanConverter
                 userType = new global::NewsForum.NewsForum_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_56_MethodNamePlayerConverter;
+                userType.Activator = Activate_56_DoubleToTimeSpanConverter;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 57:   //  NewsForum.View.Converters.EnabledConverter
+            case 57:   //  NewsForum.View.Converters.MethodNamePlayerConverter
                 userType = new global::NewsForum.NewsForum_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_57_EnabledConverter;
+                userType.Activator = Activate_57_MethodNamePlayerConverter;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 58:   //  NewsForum.ViewModel.MediaPlayerViewModel
+            case 58:   //  NewsForum.View.Converters.EnabledConverter
+                userType = new global::NewsForum.NewsForum_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_58_EnabledConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 59:   //  NewsForum.ViewModel.MediaPlayerViewModel
                 userType = new global::NewsForum.NewsForum_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("NewsForum.ViewModel.BaseCollectionViewModel"));
-                userType.Activator = Activate_58_MediaPlayerViewModel;
+                userType.Activator = Activate_59_MediaPlayerViewModel;
                 userType.AddMemberName("MediaPlayer");
                 userType.AddMemberName("CurrentSong");
                 userType.AddMemberName("PlaySoundCommand");
@@ -799,27 +809,27 @@ namespace NewsForum.NewsForum_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 59:   //  Windows.UI.Xaml.Controls.MediaElement
+            case 60:   //  Windows.UI.Xaml.Controls.MediaElement
                 xamlType = new global::NewsForum.NewsForum_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 60:   //  NewsForum.Model.SoundFileContainer
+            case 61:   //  NewsForum.Model.SoundFileContainer
                 userType = new global::NewsForum.NewsForum_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 61:   //  NewsForum.ViewModel.Commands.PlaySoundCommand
+            case 62:   //  NewsForum.ViewModel.Commands.PlaySoundCommand
                 userType = new global::NewsForum.NewsForum_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("NewsForum.ViewModel.Commands.BaseCommand"));
                 userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 62:   //  Microsoft.Xaml.Interactions.Core.InvokeCommandAction
+            case 63:   //  Microsoft.Xaml.Interactions.Core.InvokeCommandAction
                 userType = new global::NewsForum.NewsForum_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.DependencyObject"));
-                userType.Activator = Activate_62_InvokeCommandAction;
+                userType.Activator = Activate_63_InvokeCommandAction;
                 userType.AddMemberName("Command");
                 userType.AddMemberName("CommandParameter");
                 userType.AddMemberName("InputConverter");
@@ -828,34 +838,34 @@ namespace NewsForum.NewsForum_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 63:   //  System.Windows.Input.ICommand
+            case 64:   //  System.Windows.Input.ICommand
                 userType = new global::NewsForum.NewsForum_XamlTypeInfo.XamlUserType(this, typeName, type, null);
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 64:   //  Windows.UI.Xaml.Data.IValueConverter
+            case 65:   //  Windows.UI.Xaml.Data.IValueConverter
                 xamlType = new global::NewsForum.NewsForum_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 65:   //  Microsoft.Xaml.Interactions.Core.CallMethodAction
+            case 66:   //  Microsoft.Xaml.Interactions.Core.CallMethodAction
                 userType = new global::NewsForum.NewsForum_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.DependencyObject"));
-                userType.Activator = Activate_65_CallMethodAction;
+                userType.Activator = Activate_66_CallMethodAction;
                 userType.AddMemberName("TargetObject");
                 userType.AddMemberName("MethodName");
                 xamlType = userType;
                 break;
 
-            case 66:   //  NewsForum.View.MyUserControls.SeparatorUserControl
+            case 67:   //  NewsForum.View.MyUserControls.SeparatorUserControl
                 userType = new global::NewsForum.NewsForum_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.UserControl"));
-                userType.Activator = Activate_66_SeparatorUserControl;
+                userType.Activator = Activate_67_SeparatorUserControl;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 67:   //  NewsForum.View.MyUserControls.WaitingLoadingUserControl
+            case 68:   //  NewsForum.View.MyUserControls.WaitingLoadingUserControl
                 userType = new global::NewsForum.NewsForum_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.UserControl"));
-                userType.Activator = Activate_67_WaitingLoadingUserControl;
+                userType.Activator = Activate_68_WaitingLoadingUserControl;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;

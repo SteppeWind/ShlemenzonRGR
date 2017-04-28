@@ -17,6 +17,7 @@
 
     <UserControl.Resources>
 
+        <converters:DoubleToTimeSpanConverter x:Key="DoubleToTimeSpanConverter"/>
         <converters:HideControlsConverter x:Key="HideControlsConverter"/>
         <converters:MethodNamePlayerConverter x:Key="MethodNamePlayerConverter"/>
         <converters:EnabledConverter x:Key="EnabledConverter"/>
@@ -145,7 +146,7 @@
                 <Flyout>
                     <Slider Minimum="0"
                             Maximum="100"
-                            Value="{x:Bind CurrentMedia.Volume}"/>
+                            Value="{x:Bind CurrentMedia.Volume, Mode=TwoWay}"/>
                 </Flyout>
             </AppBarButton.Flyout>
         </AppBarButton>
