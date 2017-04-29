@@ -18,8 +18,8 @@
 
     </Page.Resources>
 
-    <Grid Background="{StaticResource MenuColorStyle}"
-          Margin="5">
+    <Grid ChildrenTransitions="{StaticResource BaseChildrenAnimation}"
+          Margin="{StaticResource BaseMainGridThickness}">
 
 
         <Grid.RowDefinitions>

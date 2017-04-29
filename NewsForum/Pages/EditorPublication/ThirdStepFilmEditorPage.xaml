@@ -107,7 +107,7 @@
 
                     <TextBox Grid.Row="0"
                              Margin="0 15 0 0"
-                             PlaceholderText="Перевод"
+                             PlaceholderText="Жанр"
                              Style="{StaticResource BaseTextBoxStyle}"/>
 
                     <TextBox Grid.Row="1"
@@ -115,10 +115,44 @@
                              PlaceholderText="Режисер"
                              Style="{StaticResource BaseTextBoxStyle}"/>
 
-                    <TextBox Grid.Row="2"
-                             Margin="0 15 0 0"
-                             PlaceholderText="В ролях"
-                             Style="{StaticResource BaseTextBoxStyle}"/>
+                    <Grid Grid.Row="2"
+                          Margin="0 15 0 0">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="В ролях"
+                                   Style="{StaticResource TitleTextBlockStyle}"/>
+
+                        <Button Name="AddActorButton"
+                                Style="{StaticResource BaseMiddleMenuIconButtonStyle}"
+                                Grid.Column="0"
+                                Content=""
+                                Grid.Row="1"
+                                Tapped="AddActorButton_Tapped"/>
+                        <ListView Grid.Column="1"
+                                  Grid.Row="1"
+                                  SelectionMode="Multiple"
+                                  ScrollViewer.HorizontalScrollMode="Enabled" 
+                                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                  ScrollViewer.VerticalScrollMode="Disabled"
+                                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                  ItemsPanel="{StaticResource DesktopPanelTemplate}"/>
+                        <Button Name="DeleteActorsButton"
+                                Style="{StaticResource BaseMiddleMenuIconButtonStyle}"
+                                Grid.Column="2"
+                                Grid.Row="1"
+                                Content=""
+                                Tapped="DeleteActorsButton_Tapped"/>
+                    </Grid>
                 </Grid>
 
             </Grid>

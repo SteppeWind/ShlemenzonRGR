@@ -35,6 +35,15 @@ namespace NewsForum.Pages.EditorPublication
             this.InitializeComponent();
             EditPanelPublication.AddEditDescriptionBox(EditDescriptionBox);
         }
-        
+
+        private void AddActorButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteActorsButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -63,10 +63,10 @@
       <RootProperty Name="Background" />
       <RootProperty Name="RowDefinitions" />
       <RootProperty Name="Children" />
+      <RootProperty Name="ChildrenTransitions" />
       <RootProperty Name="ColumnDefinitions" />
       <RootProperty Name="Margin" />
       <RootProperty Name="AllowDrop" />
-      <RootProperty Name="ChildrenTransitions" />
       <RootProperty Name="Name" />
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="DataContext" />
@@ -195,19 +195,6 @@
       <RootProperty Name="Margin" />
     </RootType>
     <RootType FullName="NewsForum.MainPage" />
-    <RootType FullName="System.String" />
-    <RootType FullName="Windows.UI.Xaml.Controls.FlipView">
-      <RootProperty Name="Margin" />
-      <RootProperty Name="SelectedIndex" />
-      <RootProperty Name="Background" />
-      <RootProperty Name="Items" />
-    </RootType>
-    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.NullExtension" />
-    <RootType FullName="Windows.UI.Xaml.Controls.FlipViewItem">
-      <RootProperty Name="Content" />
-    </RootType>
-    <RootType FullName="NewsForum.Pages.EditorPublication.FirstStepPage" />
-    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.ThemeResourceExtension" />
     <RootType FullName="NewsForum.Pages.EditorPublication.LastStepPage" />
     <RootType FullName="System.Double" />
     <RootType FullName="Windows.UI.Color" />
@@ -240,6 +227,7 @@
     </RootType>
     <RootType FullName="NewsForum.Pages.EditorPublication.NavigationPage" />
     <RootType FullName="NewsForum.View.Converters.HideControlsConverter" />
+    <RootType FullName="System.String" />
     <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
       <RootProperty Name="Name" />
       <RootProperty Name="PlaceholderText" />
@@ -385,6 +373,7 @@
       <RootProperty Name="Margin" />
     </RootType>
     <RootType FullName="NewsForum.Pages.LoginOrRegistrationPage" />
+    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.ThemeResourceExtension" />
     <RootType FullName="NewsForum.Pages.RegistrationPage" />
     <RootType FullName="Windows.UI.Xaml.Thickness" />
     <RootType FullName="Windows.UI.Xaml.Controls.Control">
@@ -440,6 +429,7 @@
       <RootProperty Name="IsHitTestVisible" />
     </RootType>
     <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.TemplateBindingExtension" />
+    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.NullExtension" />
     <RootType FullName="Windows.UI.Xaml.Media.Animation.ReorderThemeTransition" />
     <RootType FullName="Windows.UI.Xaml.Controls.UserControl">
       <RootProperty Name="Resources" />

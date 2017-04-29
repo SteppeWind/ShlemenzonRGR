@@ -46,10 +46,12 @@ namespace NewsForum.View.MyUserControls
                     case TypeFile.Image:
                         currentFilters = FileExplorer.FiltersImage;
                         currentContentTypes = FileExplorer.ContentImageTypes;
+                        TypeMessageTextBlock.Text = "Перетащите сюда фото-материалы";
                         break;
                     case TypeFile.Music:
                         currentFilters = FileExplorer.FiltersMusic;
                         currentContentTypes = FileExplorer.ContentMusicTypes;
+                        TypeMessageTextBlock.Text = "Перетащите сюда аудио файлы";
                         break;
                 }
                 SetValue(TypeFileProperty, value);

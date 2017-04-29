@@ -47,7 +47,7 @@ namespace NewsForum.Pages.EditorPublication
 
                 case 2:
                     FirstToSecondStepStoryBoard.Begin();
-                    NavigationEditFrame.Navigate(typeof(ThirdStepNewsEditorPage));
+                    NavigationEditFrame.Navigate(typeof(ThirdStepMusicEditorPage));
                     break;
 
                 case 3:

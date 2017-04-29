@@ -43,6 +43,7 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
@@ -128,16 +129,19 @@
                                                         Grid.Row="1"/>
                 
             </Grid>
-            
+
+
+            <controls:AddPhotosToPublicationUserControl Grid.Row="2"/>
+
             <controls:SetOrDropFilesUserControl x:Name="SelectFileControl"
-                                                Grid.Row="2"
+                                                Grid.Row="3"
                                                 FileType="Music"
                                                 Margin="0 15 0 0"
                                                 LoadFilesEvent="SelectFileControl_LoadFilesEvent"/>
 
             <controls:ContentMediaPlayerUserControl x:Name="MediaPlayerControl"
                                                 IsEditMusicCollection="False"
-                                                Grid.Row="3"
+                                                Grid.Row="4"
                                                 Margin="0 15 0 0"/>
         </Grid>
     </ScrollViewer>

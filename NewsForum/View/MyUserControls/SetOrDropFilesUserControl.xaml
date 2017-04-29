@@ -58,8 +58,9 @@
         </Grid.RowDefinitions>
 
         <StackPanel HorizontalAlignment="Center">
-            <TextBlock Text="Перетащите сюда фото-материалы"
-                        Style="{StaticResource BaseMenuTextBlockStyle}"/>
+            <TextBlock Name="TypeMessageTextBlock"
+                       Text="Перетащите сюда фото-материалы"
+                       Style="{StaticResource BaseMenuTextBlockStyle}"/>
             <TextBlock Text="или"
                        HorizontalAlignment="Center"
                        Style="{StaticResource BaseMenuTextBlockStyle}"/>
