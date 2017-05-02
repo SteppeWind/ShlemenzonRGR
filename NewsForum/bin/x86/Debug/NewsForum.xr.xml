@@ -135,10 +135,10 @@
       <RootProperty Name="ZoomMode" />
       <RootMethod Name="GetHorizontalScrollMode" />
       <RootMethod Name="SetHorizontalScrollMode" />
-      <RootMethod Name="GetVerticalScrollMode" />
-      <RootMethod Name="SetVerticalScrollMode" />
       <RootMethod Name="GetHorizontalScrollBarVisibility" />
       <RootMethod Name="SetHorizontalScrollBarVisibility" />
+      <RootMethod Name="GetVerticalScrollMode" />
+      <RootMethod Name="SetVerticalScrollMode" />
       <RootMethod Name="GetVerticalScrollBarVisibility" />
       <RootMethod Name="SetVerticalScrollBarVisibility" />
       <RootMethod Name="GetIsDeferredScrollingEnabled" />
@@ -149,10 +149,12 @@
       <RootProperty Name="SelectionMode" />
       <RootProperty Name="IsItemClickEnabled" />
       <RootProperty Name="Items" />
+      <RootProperty Name="Padding" />
+      <RootProperty Name="ItemTemplate" />
+      <RootProperty Name="ItemsPanel" />
       <RootProperty Name="ItemContainerTransitions" />
       <RootProperty Name="ItemsSource" />
       <RootProperty Name="SelectedItem" />
-      <RootProperty Name="ItemTemplate" />
       <RootEvent Name="ItemClick" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ListViewItem">
@@ -246,7 +248,9 @@
       <RootProperty Name="SelectedIndex" />
       <RootEvent Name="SelectionChanged" />
     </RootType>
-    <RootType FullName="NewsForum.View.MyUserControls.AddCoverPublicationUserControl" />
+    <RootType FullName="NewsForum.View.MyUserControls.AddCoverPublicationUserControl">
+      <RootEvent Name="CompleteDropEvent" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ComboBoxItem">
       <RootProperty Name="FontSize" />
       <RootProperty Name="Content" />
@@ -255,6 +259,10 @@
     <RootType FullName="Windows.UI.Xaml.Controls.ItemsPanelTemplate">
       <RootProperty Name="Template" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.DataTemplate">
+      <RootProperty Name="Template" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.AutoSuggestBox" />
     <RootType FullName="Windows.UI.Xaml.Controls.ItemsWrapGrid" />
     <RootType FullName="Windows.UI.Xaml.Controls.ItemsStackPanel">
       <RootProperty Name="Orientation" />
@@ -462,9 +470,6 @@
       <RootProperty Name="Value" />
     </RootType>
     <RootType FullName="NewsForum.ViewModel.BaseCollectionViewModel" />
-    <RootType FullName="Windows.UI.Xaml.DataTemplate">
-      <RootProperty Name="Template" />
-    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ProgressRing">
       <RootProperty Name="Name" />
     </RootType>

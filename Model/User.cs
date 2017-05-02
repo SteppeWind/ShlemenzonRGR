@@ -1,6 +1,7 @@
 ﻿using Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -12,13 +13,13 @@ namespace NewsForum.Model
     public class User : INotifyPropertyChanged
     {
 
-        private int id = 0;
+        private int id = -1;
         public int ID
         {
-            get { return id = 0; }
+            get { return id; }
             set
             {
-                if (id == 0)
+                if (id == -1)
                     id = value;
             }
         }
@@ -79,6 +80,27 @@ namespace NewsForum.Model
             }
         }
 
+        private ObservableCollection<Publication> listPublications;
+        public ObservableCollection<Publication> ListPublications
+        {
+            get { return listPublications; }
+            set
+            {
+                listPublications = listPublications ?? value;
+            }
+        }
+
+        private ICollection<Rating> listMarks;
+        /// <summary>
+        /// Общий список оценок публикации
+        /// </summary>
+        public ICollection<Rating> ListMarks
+        {
+            get { return listMarks; }
+            set { listMarks = listMarks ?? value; }
+        }
+
+        public ICollection<Comment> CommentsCollection { get; private set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

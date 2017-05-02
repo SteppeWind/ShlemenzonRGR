@@ -1,1 +1,2 @@
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\Model\Model.csproj;x86
 F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\NewsForum.csproj;x86

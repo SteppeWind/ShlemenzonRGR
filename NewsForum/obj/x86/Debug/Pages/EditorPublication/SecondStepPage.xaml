@@ -141,12 +141,9 @@
                     </ComboBoxItem>
                 </ComboBox>
 
-                <Grid x:ConnectionId='6' Grid.Row="2"
+                <Grid Grid.Row="2"
                       Grid.ColumnSpan="2"
-                      AllowDrop="True"
-                                                                         
-                                                         
-                                                                 >
+                      AllowDrop="True">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"/>
@@ -167,9 +164,10 @@
                                VerticalAlignment="Bottom"
                                Style="{StaticResource SubheaderTextBlockStyle}"/>
 
-                    <UserControls:AddCoverPublicationUserControl Grid.Column="0"
+                    <UserControls:AddCoverPublicationUserControl x:ConnectionId='6' Grid.Column="0"
                                                                  Grid.ColumnSpan="3"
                                                                  Grid.Row="1"
+                                                                                                                                     
                                                                  Grid.RowSpan="2"/>
                 </Grid>
             </Grid>

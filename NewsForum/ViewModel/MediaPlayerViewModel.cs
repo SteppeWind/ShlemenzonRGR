@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Controls;
 using NewsForum.ViewModel.Commands;
 using Windows.UI.Xaml;
 using Windows.Storage.Streams;
+using System.IO;
 
 namespace NewsForum.ViewModel
 {
@@ -54,9 +55,10 @@ namespace NewsForum.ViewModel
         public override void RemoveElement(IFileSettings element)
         {
             var index = BaseFileCollection.IndexOf(element);
-            if (BaseFileCollection.Count == 0) //проверям на пустоту списка
+            if (BaseFileCollection.Count <= 1) //проверям на пустоту списка
             {
                 //список пуст, следовательно значение Source у Media убираем
+                //MediaPlayer.SetSource((IRandomAccessStream)Stream.Null, "");
             }
             if (index < BaseFileCollection.Count && index == BaseFileCollection.IndexOf(CurrentSong))
             {

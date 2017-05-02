@@ -22,6 +22,10 @@
             <ItemsWrapGrid/>
         </ItemsPanelTemplate>
 
+        <DataTemplate x:Key="CDActorTemplate">
+            <AutoSuggestBox/>
+        </DataTemplate>
+        
     </Page.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <VisualStateManager.VisualStateGroups>
@@ -138,13 +142,16 @@
                                 Content=""
                                 Grid.Row="1"
                                 Tapped="AddActorButton_Tapped"/>
-                        <ListView Grid.Column="1"
+                        <ListView Name="ActorsListView"
+                                  Padding="10"
+                                  Grid.Column="1"
                                   Grid.Row="1"
                                   SelectionMode="Multiple"
                                   ScrollViewer.HorizontalScrollMode="Enabled" 
                                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                   ScrollViewer.VerticalScrollMode="Disabled"
                                   ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                  ItemTemplate="{StaticResource CDActorTemplate}"
                                   ItemsPanel="{StaticResource DesktopPanelTemplate}"/>
                         <Button Name="DeleteActorsButton"
                                 Style="{StaticResource BaseMiddleMenuIconButtonStyle}"

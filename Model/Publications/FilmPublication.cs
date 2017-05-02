@@ -46,13 +46,13 @@ namespace Model.Publications
             }
         }
 
-        private string translation;
-        public string Ttranslation
+        private string genre;
+        public string Genre
         {
-            get { return translation; }
+            get { return genre; }
             set
             {
-                translation = value;
+                genre = value;
                 ChangeProperty();
             }
         }
@@ -84,6 +84,5 @@ namespace Model.Publications
                 ChangeProperty();
             }
         }
-
     }
 }

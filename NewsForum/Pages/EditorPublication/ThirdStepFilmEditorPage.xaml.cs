@@ -38,7 +38,6 @@ namespace NewsForum.Pages.EditorPublication
 
         private void AddActorButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
-
         }
 
         private void DeleteActorsButton_Tapped(object sender, TappedRoutedEventArgs e)

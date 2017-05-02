@@ -47,7 +47,7 @@ namespace NewsForum.View.MyUserControls
             {
                 (ContentUserControl as LinkVideoViewUserControl).RefreshWebView();
             }
-            DeleteStartingEvent.Invoke(this, null);
+            DeleteStartingEvent?.Invoke(this, null);
         }
     }
 }

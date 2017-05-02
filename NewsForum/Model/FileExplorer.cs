@@ -49,7 +49,7 @@ namespace NewsForum.Model
 
         public async Task<StorageFile> PickSingleFileAsync()
         {
-            LoadStrat.Invoke();
+            LoadStrat?.Invoke();
             var result = await OpenPicker.PickSingleFileAsync();
             LoadEnded?.Invoke(new List<StorageFile>() { result });
             return result;

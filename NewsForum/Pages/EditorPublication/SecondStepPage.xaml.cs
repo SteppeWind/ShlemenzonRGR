@@ -30,63 +30,10 @@ namespace NewsForum.Pages.EditorPublication
         {
             this.InitializeComponent();
         }
-        
-        private async void CoverPublicationImage_OnDrop(object sender, DragEventArgs e)
+       
+        private void AddCoverPublicationUserControl_CompleteDropEvent(StorageFile obj)
         {
-            if (e.DataView.Contains(StandardDataFormats.StorageItems))
-            {
-                var storageItems = await e.DataView.GetStorageItemsAsync();
-                if (storageItems.Any())
-                {
-                    var storageFile = storageItems[0] as StorageFile;
-                    setSourceCoverImage(storageFile);
-                }
-            }
-        }
 
-        private void CoverPublicationImage_OnDragOver(object sender, DragEventArgs e)
-        {
-            e.AcceptedOperation = DataPackageOperation.Copy;
-            e.DragUIOverride.Caption = "Перенесите уже картинку";
-            e.DragUIOverride.IsCaptionVisible = true;
-            e.DragUIOverride.IsContentVisible = true;
-            e.DragUIOverride.IsGlyphVisible = true;
-        }
-
-        private void CoverPublicationImage_OnDragStarting(UIElement sender, DragStartingEventArgs args)
-        {
-            args.AllowedOperations = DataPackageOperation.Link;
-        }
-
-        private async void OpenPickerButton_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            FileOpenPicker fop = new FileOpenPicker()
-            {
-                CommitButtonText = "Открыть",
-                ViewMode = PickerViewMode.Thumbnail,
-                SuggestedStartLocation = PickerLocationId.PicturesLibrary,
-            };
-            fop.FileTypeFilter.Add(".jpeg");
-            fop.FileTypeFilter.Add(".jpg");
-            fop.FileTypeFilter.Add(".png");
-            var storageFile = await fop.PickSingleFileAsync();
-            setSourceCoverImage(storageFile);            
-        }
-
-        private async void setSourceCoverImage(StorageFile storageFile)
-        {
-            if (storageFile != null)
-            {
-                var bitMapImage = new BitmapImage();
-                var contentType = storageFile.ContentType;
-                if (contentType == "image/png" || contentType == "image/jpeg")
-                {
-                    await bitMapImage.SetSourceAsync(await storageFile.OpenReadAsync());
-                    //CoverPublicationImage.Source = bitMapImage;
-                    //DeleteImageButton.IsEnabled = true;
-                    //CoverPublicationImage.Opacity = 1.0;
-                }
-            }
         }
     }
 }
