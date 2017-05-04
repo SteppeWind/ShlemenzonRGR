@@ -10,33 +10,11 @@ using System.Threading.Tasks;
 
 namespace ModelDataBase.DBPublicationTypes.DBNewsTypes
 {
-    public class DBNewsElementFile : NewsElementFile, IStoreFileDB, IPublicationDB
+    public class DBNewsElementFile : DBNewsElement, IStoreFileDB
     {
-        public virtual string FullPath { get ; set ; }
-
-        private int id = -1;
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int NewsElementFileId
-        {
-            get { return id; }
-            set
-            {
-                if (id == -1)
-                    id = value;
-            }
-        }
-
-
-        private int publicationId = -1;
-        public int PublicatoinId
-        {
-            get => publicationId;
-            set
-            {
-                if (publicationId == -1)
-                    publicationId = value;
-            }
-        }
-        public virtual DBPublication Publication { get; set; }
+        /// <summary>
+        /// Здесь может быть путь к файлу, либо ссылка на видео
+        /// </summary>
+        public virtual string FullPath { get ; set ; }     
     }
 }

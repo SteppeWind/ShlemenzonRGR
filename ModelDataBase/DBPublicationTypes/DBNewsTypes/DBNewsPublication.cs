@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace ModelDataBase.DBPublicationTypes.DBNewsTypes
 {
-    class DBNewsPublication : DBPublication, INewsPublication<DBNewsElementFile>
+    class DBNewsPublication : DBPublication, INewsPublication<DBNewsElement>
     {
-        public virtual ICollection<DBNewsElementFile> ListElements { get; set; }
+        public ICollection<DBNewsElement> ListElements { get; set; }
     }
 }

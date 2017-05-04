@@ -8,6 +8,6 @@ namespace Model.PublicationTypes.NewsPublications
 {
     public interface INewsPublication<T> where T : class
     {
-        public ICollection<T> ListElements { get; set; }
+        ICollection<T> ListElements { get; set; }
     }
 }

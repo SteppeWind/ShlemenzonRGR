@@ -43,10 +43,8 @@
     <Compile Include="PublicationTypes\IGamePublication.cs" />
     <Compile Include="PublicationTypes\IInfoFile.cs" />
     <Compile Include="PublicationTypes\IMusicPublication.cs" />
-    <Compile Include="PublicationTypes\InfoFile.cs" />
     <Compile Include="PublicationTypes\INoNewsModelPublication.cs" />
     <Compile Include="PublicationTypes\NewsPublications\NewsElement.cs" />
-    <Compile Include="PublicationTypes\NewsPublications\NewsElementFile.cs" />
     <Compile Include="PublicationTypes\NewsPublications\INewsPublication.cs" />
     <Compile Include="PublicationTypes\NewsPublications\TypeElementOfNews.cs" />
     <Compile Include="PublicationTypes\Publication.cs" />
