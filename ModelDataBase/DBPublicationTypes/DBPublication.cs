@@ -26,6 +26,7 @@ namespace ModelDataBase.DBPublicationTypes
         }
 
         private int userId = -1;
+        [ForeignKey("User")]
         public int UserId
         {
             get => userId;

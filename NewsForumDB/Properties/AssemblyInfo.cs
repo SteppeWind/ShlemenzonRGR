@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("ModelDataBase")]
+[assembly: AssemblyTitle("NewsForumDB")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ModelDataBase")]
+[assembly: AssemblyProduct("NewsForumDB")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("9eea9521-e0e5-4ae5-9b7f-27b8877b1912")]
+[assembly: Guid("5ef1b583-ddc1-4c3c-9e36-5997adf233ec")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //

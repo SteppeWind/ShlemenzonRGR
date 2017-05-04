@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9EEA9521-E0E5-4AE5-9B7F-27B8877B1912}</ProjectGuid>
+    <ProjectGuid>{5EF1B583-DDC1-4C3C-9E36-5997ADF233EC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ModelDataBase</RootNamespace>
-    <AssemblyName>ModelDataBase</AssemblyName>
+    <RootNamespace>NewsForumDB</RootNamespace>
+    <AssemblyName>NewsForumDB</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -47,38 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DBInterfaces\IActorDB.cs" />
-    <Compile Include="DBInterfaces\ICommentDB.cs" />
-    <Compile Include="DBInterfaces\IDescriptionDB.cs" />
-    <Compile Include="DBInterfaces\IListFiles.cs" />
-    <Compile Include="DBInterfaces\IPosterDB.cs" />
-    <Compile Include="DBInterfaces\IPublicationDB.cs" />
-    <Compile Include="DBInterfaces\IStoreFileDB.cs" />
-    <Compile Include="DBInterfaces\IUserDB.cs" />
-    <Compile Include="DBPublicationTypes\DBActor.cs" />
-    <Compile Include="DBPublicationTypes\DBComment.cs" />
-    <Compile Include="DBPublicationTypes\DBFilmPublication.cs" />
-    <Compile Include="DBPublicationTypes\DBGamePubliaction.cs" />
-    <Compile Include="DBPublicationTypes\DBInfoFile.cs" />
-    <Compile Include="DBPublicationTypes\DBMusicPublication.cs" />
-    <Compile Include="DBPublicationTypes\DBNewsTypes\DBNewsElement.cs" />
-    <Compile Include="DBPublicationTypes\DBNewsTypes\DBNewsElementFile.cs" />
-    <Compile Include="DBPublicationTypes\DBNewsTypes\DBNewsPublication.cs" />
-    <Compile Include="DBPublicationTypes\DBPublication.cs" />
-    <Compile Include="DBPublicationTypes\DBRating.cs" />
-    <Compile Include="DBUserTypes\DBUser.cs" />
+    <Compile Include="NewsForumContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{4de056d3-93b0-4fd8-8df8-fa3992a3ca77}</Project>
-      <Name>Model</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ModelDataBase\ModelDataBase.csproj">
+      <Project>{9eea9521-e0e5-4ae5-9b7f-27b8877b1912}</Project>
+      <Name>ModelDataBase</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

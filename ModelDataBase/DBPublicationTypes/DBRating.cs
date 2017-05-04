@@ -6,12 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ModelDataBase.DBUserTypes;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace ModelDataBase.DBPublicationTypes
 {
     public class DBRating : Rating, IUserDB, IPublicationDB
     {
         private int userId = -1;
+        [Key]
+        [ForeignKey("User")]
         public int UserId
         {
             get => userId;
@@ -23,6 +27,7 @@ namespace ModelDataBase.DBPublicationTypes
         }
 
         private int publicationId = -1;
+        [ForeignKey("Publication")]
         public int PublicatoinId
         {
             get => publicationId;

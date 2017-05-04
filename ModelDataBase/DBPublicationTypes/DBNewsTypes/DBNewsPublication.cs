@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ModelDataBase.DBPublicationTypes.DBNewsTypes
 {
-    class DBNewsPublication : DBPublication, INewsPublication<DBNewsElement>
+    public class DBNewsPublication : DBPublication, INewsPublication<DBNewsElement>
     {
         public ICollection<DBNewsElement> ListElements { get; set; }
     }

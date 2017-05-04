@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ModelDataBase.DBPublicationTypes
 {
-    class DBGamePubliaction : DBPublication, IGamePublication, IListFiles
+    public class DBGamePubliaction : DBPublication, IGamePublication, IListFiles
     {
         public virtual string CompanyDeveloper { get ; set ; }
 

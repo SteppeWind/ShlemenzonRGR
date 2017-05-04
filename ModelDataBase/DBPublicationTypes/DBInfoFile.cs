@@ -31,6 +31,7 @@ namespace ModelDataBase.DBPublicationTypes
 
 
         private int publicationId = -1;
+        [ForeignKey("Publication")]
         public int PublicatoinId
         {
             get => publicationId;

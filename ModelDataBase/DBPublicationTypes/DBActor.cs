@@ -23,9 +23,7 @@ namespace ModelDataBase.DBPublicationTypes
                     actorId = value;
             }
         }
-
-        public virtual string Name { get; set; }
-
+        
         public virtual ICollection<DBFilmPublication> ListFilms { get; set; }
     }
 }

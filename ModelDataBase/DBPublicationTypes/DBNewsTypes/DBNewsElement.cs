@@ -12,7 +12,7 @@ namespace ModelDataBase.DBPublicationTypes.DBNewsTypes
 {
     public class DBNewsElement : NewsElement, IPublicationDB
     {
-       private int id = -1;
+        private int id = -1;
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int NewsElementFileId
         {
@@ -26,6 +26,7 @@ namespace ModelDataBase.DBPublicationTypes.DBNewsTypes
 
 
         private int publicationId = -1;
+        [ForeignKey("Publication")]
         public int PublicatoinId
         {
             get => publicationId;
