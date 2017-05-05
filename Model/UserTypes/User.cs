@@ -10,7 +10,7 @@ namespace Model.UserTypes
     {
         #region Свойства
         
-        public virtual string Name { get; set; }
+        public string Name { get; set; }
 
         public virtual string Surname { get; set; }
 

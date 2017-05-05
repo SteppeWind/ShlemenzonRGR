@@ -12,7 +12,8 @@ namespace NewsForumDB
 {
     public class NewsForumContext : DbContext
     {
-        public NewsForumContext() : base("NewsForumDB") { }
+        public NewsForumContext(string connectionString) : base(connectionString) { }
+        
 
         public DbSet<DBUser> Users { get; set; }
         public DbSet<DBPublication> Publications { get; set; }

@@ -690,6 +690,3 @@ F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\N
 F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\obj\x86\Debug\Microsoft.Extensions.Logging.Abstractions\en-us\Microsoft.Extensions.Logging.Abstractions.Resource.resw
 F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\obj\x86\Debug\Microsoft.Extensions.Options\en-us\Microsoft.Extensions.Options.Resources.resw
 F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\obj\x86\Debug\Microsoft.Extensions.Primitives\en-us\Microsoft.Extensions.Primitives.Resources.resw
-F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\bin\x86\Debug\Model.dll
-F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\bin\x86\Debug\Model.pdb
-F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\NewsForum\bin\x86\Debug\Model.pri

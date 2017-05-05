@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("ServerApp")]
+[assembly: AssemblyTitle("ConsoleApp1")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ServerApp")]
+[assembly: AssemblyProduct("ConsoleApp1")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("108aa477-e72f-404b-a0f6-aca9d17ba2c9")]
+[assembly: Guid("bcacf9d6-9aa9-4c8f-8d0d-a3fb0175617b")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //
