@@ -8,7 +8,7 @@ namespace Model.PublicationTypes
 {
     public interface INoNewsModelPublication
     {
-        DateTime ReleaseYear { get; set; }
+        DateTime? ReleaseYear { get; set; }
         string Genre { get; set; }
 
         //ICollection<InfoFile> ListFiles { get; set; }

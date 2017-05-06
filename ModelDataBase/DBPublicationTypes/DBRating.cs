@@ -13,8 +13,22 @@ namespace ModelDataBase.DBPublicationTypes
 {
     public class DBRating : Rating, IUserDB, IPublicationDB
     {
+
+        private int id = -1;
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id
+        {
+            get { return id; }
+            set
+            {
+                if (id == -1)
+                    id = value;
+            }
+        }
+
+
+
         private int userId = -1;
-        [Key]
         [ForeignKey("User")]
         public int UserId
         {

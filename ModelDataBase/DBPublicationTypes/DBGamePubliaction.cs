@@ -2,12 +2,14 @@
 using ModelDataBase.DBInterfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ModelDataBase.DBPublicationTypes
 {
+    [Table("DBGamePubliactions")]
     public class DBGamePubliaction : DBPublication, IGamePublication, IListFiles
     {
         public virtual string CompanyDeveloper { get ; set ; }
@@ -18,7 +20,7 @@ namespace ModelDataBase.DBPublicationTypes
 
         public virtual bool MultiPlayer { get; set; }
 
-        public virtual DateTime ReleaseYear { get; set; }
+        public virtual DateTime? ReleaseYear { get; set; }
 
         public virtual string Genre { get; set; }
 

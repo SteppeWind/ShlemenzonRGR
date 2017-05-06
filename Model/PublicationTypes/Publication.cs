@@ -24,11 +24,9 @@ namespace Model.PublicationTypes
         public virtual DateTime CreateDate { get; set; }
 
         /// <summary>
-        /// Общий список оценок публикации
+        /// Указывает на то, удалена ли публикация
         /// </summary>
-        //public virtual ICollection<Rating> ListMarks { get; set; }
-
-        //public virtual ICollection<Comment> CommentsCollection { get; set; }
+        public virtual bool IsDeleted { get; set; } = false;
 
         #endregion
     }
