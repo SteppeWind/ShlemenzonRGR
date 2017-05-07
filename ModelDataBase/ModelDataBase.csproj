@@ -59,6 +59,7 @@
     <Compile Include="DBPublicationTypes\DBComment.cs" />
     <Compile Include="DBPublicationTypes\DBFilmPublication.cs" />
     <Compile Include="DBPublicationTypes\DBGamePubliaction.cs" />
+    <Compile Include="DBPublicationTypes\DBGenre.cs" />
     <Compile Include="DBPublicationTypes\DBInfoFile.cs" />
     <Compile Include="DBPublicationTypes\DBMusicPublication.cs" />
     <Compile Include="DBPublicationTypes\DBNewsTypes\DBNewsElement.cs" />

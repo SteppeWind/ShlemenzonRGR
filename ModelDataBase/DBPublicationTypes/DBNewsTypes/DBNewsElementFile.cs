@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace ModelDataBase.DBPublicationTypes.DBNewsTypes
 {
+    [Table("DBNewsElementFiles")]
     public class DBNewsElementFile : DBNewsElement, IStoreFileDB
     {
         /// <summary>

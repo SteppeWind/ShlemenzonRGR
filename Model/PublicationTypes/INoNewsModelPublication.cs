@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Model.PublicationTypes
 {
-    public interface INoNewsModelPublication
+    public interface INoNewsModelPublication<T> where T : IGenre
     {
         DateTime? ReleaseYear { get; set; }
-        string Genre { get; set; }
-
+        ICollection<T> ListGenres { get; set; }
         //ICollection<InfoFile> ListFiles { get; set; }
     }
 }

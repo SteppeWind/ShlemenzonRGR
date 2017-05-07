@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace ModelDataBase.DBPublicationTypes
 {
     [Table("DBGamePubliactions")]
-    public class DBGamePubliaction : DBPublication, IGamePublication, IListFiles
+    public class DBGamePubliaction : DBPublication, IGamePublication<DBGenre>, IListFiles
     {
         public virtual string CompanyDeveloper { get ; set ; }
 
@@ -22,11 +22,10 @@ namespace ModelDataBase.DBPublicationTypes
 
         public virtual DateTime? ReleaseYear { get; set; }
 
-        public virtual string Genre { get; set; }
-
         /// <summary>
         /// Список фотографий к публикации
         /// </summary>
         public virtual ICollection<DBInfoFile> ListFiles { get; set; }
+
     }
 }

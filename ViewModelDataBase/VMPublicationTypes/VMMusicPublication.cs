@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 
 namespace ViewModelDataBase.VMPublicationTypes
 {
-    public class VMMusicPublication : VMPublication, IMusicPublication<ISongFile>, IListBitmapImages
+    public class VMMusicPublication : VMPublication, IMusicPublication<ISongFile, IGenre>, IListBitmapImages
     {
         public string Formats { get; set; }
 
@@ -21,9 +21,9 @@ namespace ViewModelDataBase.VMPublicationTypes
 
         public ICollection<ISongFile> ListSongs { get; set; }
 
-        public DateTime ReleaseYear { get; set; }
+        public DateTime? ReleaseYear { get; set; }
 
-        public string Genre { get; set; }
+        public virtual ICollection<IGenre> ListGenres { get; set; }
 
         public ObservableCollection<IBitmapImage> ListImages { get; set; }
     }

@@ -9,7 +9,7 @@ using ViewModelDataBase.VMInterfaces;
 
 namespace ViewModelDataBase.VMPublicationTypes
 {
-    public class VMFilmPublication : VMPublication, IListBitmapImages, IFilmPublication<VMActor>
+    public class VMFilmPublication : VMPublication, IListBitmapImages, IFilmPublication<VMActor, IGenre>
     {
         public ObservableCollection<IBitmapImage> ListImages { get; set; }
 
@@ -21,8 +21,8 @@ namespace ViewModelDataBase.VMPublicationTypes
 
         public ICollection<VMActor> ListActors { get; set; }
 
-        public DateTime ReleaseYear { get; set; }
+        public DateTime? ReleaseYear { get; set; }
 
-        public string Genre { get; set; }
+        public virtual ICollection<IGenre> ListGenres { get; set; }
     }
 }

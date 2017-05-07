@@ -5,10 +5,10 @@
     <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4DE056D3-93B0-4FD8-8DF8-FA3992A3CA77}</ProjectGuid>
+    <ProjectGuid>{C89F53F6-5954-43F3-8006-C5F3EA0137D8}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Model</RootNamespace>
-    <AssemblyName>Model</AssemblyName>
+    <RootNamespace>RequestServer</RootNamespace>
+    <AssemblyName>RequestServer</AssemblyName>
     <DefaultLanguage>ru-RU</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -34,25 +34,19 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <ProjectReference Include="..\ViewModelDataBase\ViewModelDataBase.csproj">
+      <Project>{6aa4e45e-7ac9-4bc8-a38f-8bd4526815e6}</Project>
+      <Name>ViewModelDataBase</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PublicationTypes\Actor.cs" />
-    <Compile Include="PublicationTypes\Comment.cs" />
-    <Compile Include="PublicationTypes\IFilmPublication.cs" />
-    <Compile Include="PublicationTypes\IGamePublication.cs" />
-    <Compile Include="PublicationTypes\IGenre.cs" />
-    <Compile Include="PublicationTypes\IInfoFile.cs" />
-    <Compile Include="PublicationTypes\IMusicPublication.cs" />
-    <Compile Include="PublicationTypes\INoNewsModelPublication.cs" />
-    <Compile Include="PublicationTypes\NewsPublications\NewsElement.cs" />
-    <Compile Include="PublicationTypes\NewsPublications\INewsPublication.cs" />
-    <Compile Include="PublicationTypes\NewsPublications\TypeElementOfNews.cs" />
-    <Compile Include="PublicationTypes\Publication.cs" />
-    <Compile Include="PublicationTypes\PublicationType.cs" />
-    <Compile Include="PublicationTypes\Rating.cs" />
-    <Compile Include="UserTypes\User.cs" />
-    <Compile Include="UserTypes\UserAccessLevel.cs" />
+    <Compile Include="PublicationsRequest\CreatePublicationRequest.cs" />
+    <Compile Include="PublicationsRequest\DeletePublicationRequest.cs" />
+    <Compile Include="PublicationsRequest\UpdatePublicationRequest.cs" />
+    <Compile Include="Request\MainRequest.cs" />
+    <Compile Include="Request\TypeDataRequest.cs" />
+    <Compile Include="Request\TypeRequest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

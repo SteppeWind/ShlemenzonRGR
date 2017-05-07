@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model.PublicationTypes
 {
-    public interface IMusicPublication<T> : INoNewsModelPublication where T : class
+    public interface IMusicPublication<T, TGenre> : INoNewsModelPublication<TGenre> where T : class where TGenre : IGenre
     { 
         /// <summary>
         /// Форматы песни или альбома, (wav, mp3 и т.д.)

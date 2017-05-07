@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using ModelDataBase.DBUserTypes;
 
 namespace ServerApp
 {
@@ -13,6 +14,18 @@ namespace ServerApp
         static void Main(string[] args)
         {
             NewsForumContext nfc = new NewsForumContext();
+
+            //var user = nfc.Users.Where(u => u.UserId == 1).FirstOrDefault();
+            //DBUser newUser = new DBUser()
+            //{
+            //    AccessLevel = Model.UserTypes.UserAccessLevel.User,
+            //    Surname = "Пупкин",
+            //    City = "Новосибирск",
+            //    Name = "Василий",
+            //    PhoneNumber = "1144"
+            //};
+
+
 
             //nfc.Users.Add(new ModelDataBase.DBUserTypes.DBUser()
             //{
@@ -35,8 +48,8 @@ namespace ServerApp
             //    CreateDate = DateTime.Now
             //});
 
-
             nfc.SaveChanges();
+            
         }
     }
 }

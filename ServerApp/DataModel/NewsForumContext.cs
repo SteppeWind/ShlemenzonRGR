@@ -10,10 +10,14 @@
 
     public class NewsForumContext : DbContext
     {
+        private static NewsForumContext newsForumContext = new NewsForumContext();
+
+        public static NewsForumContext GetNewsForumContext => newsForumContext;
 
         public DbSet<DBUser> Users { get; set; }
         public DbSet<DBPublication> Publications { get; set; }
         public DbSet<DBActor> Actors { get; set; }
+        public DbSet<DBGenre> Genres { get; set; }
         public DbSet<DBMusicPublication> MusicPublications { get; set; }
         public DbSet<DBGamePubliaction> GamePublications { get; set; }
         public DbSet<DBFilmPublication> FilmPublications { get; set; }

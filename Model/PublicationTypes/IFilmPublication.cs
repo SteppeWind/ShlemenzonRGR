@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model.PublicationTypes
 {
-    public interface IFilmPublication<T> : INoNewsModelPublication where T: class 
+    public interface IFilmPublication<T, TGenre> : INoNewsModelPublication<TGenre> where T: class where TGenre : IGenre 
     {
         string Country { get; set; }
 

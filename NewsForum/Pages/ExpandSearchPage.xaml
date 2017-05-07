@@ -114,7 +114,8 @@
                 <DatePicker Grid.Row="1"
                         Header="C"/>
                 <DatePicker Grid.Row="2"
-                        Header="По"/>
+                        Header="По"
+                            />
             </StackPanel>
 
             <Button Margin="0,10,0,0">

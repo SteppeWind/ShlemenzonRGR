@@ -46,5 +46,7 @@ namespace ModelDataBase.DBPublicationTypes
 
         public virtual ICollection<DBComment> ListComments { get; set; }
 
+        public virtual ICollection<DBGenre> ListGenres { get; set; }
+
     }
 }

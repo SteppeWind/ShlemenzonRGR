@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model.PublicationTypes
 {
-    public interface IGamePublication : INoNewsModelPublication
+    public interface IGamePublication<TGenre> : INoNewsModelPublication<TGenre> where TGenre : IGenre
     {
         
         /// <summary>

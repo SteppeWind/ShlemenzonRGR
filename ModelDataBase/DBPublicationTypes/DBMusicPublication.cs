@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace ModelDataBase.DBPublicationTypes
 {
     [Table("DBMusicPublications")]
-    public class DBMusicPublication : DBPublication, IMusicPublication<DBInfoFile>
+    public class DBMusicPublication : DBPublication, IMusicPublication<DBInfoFile, DBGenre>
     {
         public virtual string Formats { get; set; }
 
@@ -23,6 +23,5 @@ namespace ModelDataBase.DBPublicationTypes
 
         public virtual DateTime? ReleaseYear { get; set; }
 
-        public virtual string Genre { get; set; }
     }
 }

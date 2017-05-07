@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 
 namespace ViewModelDataBase.VMPublicationTypes
 {
-    class VMGamePublication : VMPublication, IGamePublication, IListBitmapImages
+    public class VMGamePublication : VMPublication, IGamePublication<IGenre>, IListBitmapImages
     {
         public string CompanyDeveloper { get; set; }
 
@@ -19,9 +19,9 @@ namespace ViewModelDataBase.VMPublicationTypes
 
         public bool MultiPlayer { get; set; }
 
-        public DateTime ReleaseYear { get; set; }
+        public DateTime? ReleaseYear { get; set; }
 
-        public string Genre { get; set; }
+        public virtual ICollection<IGenre> ListGenres { get; set; }
 
         public ObservableCollection<IBitmapImage> ListImages { get; set; }
     }

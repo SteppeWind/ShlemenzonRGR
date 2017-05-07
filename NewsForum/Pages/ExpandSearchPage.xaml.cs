@@ -27,7 +27,6 @@ namespace NewsForum.Pages
         public ExpandSearchPage()
         {
             this.InitializeComponent();
-            
         }
     }
 }
