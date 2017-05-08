@@ -8,8 +8,9 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace ViewModelDataBase.VMTypes
 {
-    public class VMImage : IBitmapImage
+    public class VMImage : IFileVM
     {
-        public BitmapImage Poster { get; set; }
+        public string Type { get; set; }
+        public byte[] Bytes { get; set; }
     }
 }

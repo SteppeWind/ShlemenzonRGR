@@ -34,11 +34,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VMInterfaces\IDescriptionVM.cs" />
-    <Compile Include="VMInterfaces\IBitmapImage.cs" />
+    <Compile Include="VMInterfaces\IFileVM.cs" />
     <Compile Include="VMInterfaces\IListBitmapImages.cs" />
-    <Compile Include="VMInterfaces\ISongFile.cs" />
-    <Compile Include="VMInterfaces\IStorageFIleVM.cs" />
     <Compile Include="VMPublicationTypes\VMActor.cs" />
     <Compile Include="VMPublicationTypes\VMComment.cs" />
     <Compile Include="VMPublicationTypes\VMFilmPublication.cs" />
@@ -50,6 +47,7 @@
     <Compile Include="VMPublicationTypes\VMNewsTypes\VMNewsPublication.cs" />
     <Compile Include="VMPublicationTypes\VMPublication.cs" />
     <Compile Include="VMPublicationTypes\VMRating.cs" />
+    <Compile Include="VMTypes\VMDescription.cs" />
     <Compile Include="VMTypes\VMImage.cs" />
     <Compile Include="VMTypes\VMSong.cs" />
     <Compile Include="VMUser.cs" />

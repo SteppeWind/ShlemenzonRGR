@@ -12,5 +12,6 @@ namespace RequestServer.Request
 
         public TypeDataRequest TypeDataRequest { get; set; }
 
+        public int UserId { get; set; }
     }
 }

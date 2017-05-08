@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using ViewModelDataBase.VMInterfaces;
 using System.Collections.ObjectModel;
+using ViewModelDataBase.VMTypes;
 
 namespace ViewModelDataBase.VMPublicationTypes
 {
-    public class VMMusicPublication : VMPublication, IMusicPublication<ISongFile, IGenre>, IListBitmapImages
+    public class VMMusicPublication : VMPublication, IMusicPublication<VMSong, IGenre>, IListBitmapImages
     {
         public string Formats { get; set; }
 
@@ -19,12 +20,12 @@ namespace ViewModelDataBase.VMPublicationTypes
 
         public string Album { get; set; }
 
-        public ICollection<ISongFile> ListSongs { get; set; }
+        public ICollection<VMSong> ListSongs { get; set; }
 
         public DateTime? ReleaseYear { get; set; }
 
         public virtual ICollection<IGenre> ListGenres { get; set; }
 
-        public ObservableCollection<IBitmapImage> ListImages { get; set; }
+        public ObservableCollection<VMImage> ListImages { get; set; }
     }
 }

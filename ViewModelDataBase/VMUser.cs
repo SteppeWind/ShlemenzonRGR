@@ -11,6 +11,7 @@ namespace ViewModelDataBase
 {
     public class VMUser : User
     {
+
         public ObservableCollection<VMRating> ListMarks { get; set; }
 
         public ObservableCollection<VMComment> ListComments { get; set; }

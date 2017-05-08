@@ -2798,6 +2798,15 @@
             "rid": "aot"
           }
         }
+      },
+      "Model/1.0.0": {
+        "type": "project"
+      },
+      "ViewModelDataBase/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "Model": "1.0.0"
+        }
       }
     },
     "UAP,Version=v10.0/win10-arm": {
@@ -5599,6 +5608,15 @@
         },
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "Model/1.0.0": {
+        "type": "project"
+      },
+      "ViewModelDataBase/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "Model": "1.0.0"
         }
       }
     },
@@ -8441,6 +8459,15 @@
         "runtime": {
           "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "Model/1.0.0": {
+        "type": "project"
+      },
+      "ViewModelDataBase/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "Model": "1.0.0"
+        }
       }
     },
     "UAP,Version=v10.0/win10-x64": {
@@ -11251,6 +11278,15 @@
         },
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "Model/1.0.0": {
+        "type": "project"
+      },
+      "ViewModelDataBase/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "Model": "1.0.0"
         }
       }
     },
@@ -14102,6 +14138,15 @@
         "runtime": {
           "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "Model/1.0.0": {
+        "type": "project"
+      },
+      "ViewModelDataBase/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "Model": "1.0.0"
+        }
       }
     },
     "UAP,Version=v10.0/win10-x86": {
@@ -16912,6 +16957,15 @@
         },
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "Model/1.0.0": {
+        "type": "project"
+      },
+      "ViewModelDataBase/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "Model": "1.0.0"
         }
       }
     },
@@ -19762,6 +19816,15 @@
         },
         "runtime": {
           "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "Model/1.0.0": {
+        "type": "project"
+      },
+      "ViewModelDataBase/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "Model": "1.0.0"
         }
       }
     }
@@ -28701,6 +28764,16 @@
         "system.xml.xmlserializer.4.0.11.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
+    },
+    "Model/1.0.0": {
+      "type": "project",
+      "path": "../Model/Model.csproj",
+      "msbuildProject": "../Model/Model.csproj"
+    },
+    "ViewModelDataBase/1.0.0": {
+      "type": "project",
+      "path": "../ViewModelDataBase/ViewModelDataBase.csproj",
+      "msbuildProject": "../ViewModelDataBase/ViewModelDataBase.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -28717,11 +28790,23 @@
   },
   "project": {
     "restore": {
-      "projectUniqueName": "F:\\учеба\\3 курс\\2ой семестр\\Шлемензон_всё\\ргр\\NewsForum\\NewsForum\\NewsForum.csproj",
+      "projectUniqueName": "F:\\учеба\\3 курс\\2ой семестр\\Шлемензон_всё\\ргр\\NewsForum\\ShlemenzonRGR\\NewsForum\\NewsForum.csproj",
       "projectName": "NewsForum",
-      "projectPath": "F:\\учеба\\3 курс\\2ой семестр\\Шлемензон_всё\\ргр\\NewsForum\\NewsForum\\NewsForum.csproj",
-      "projectJsonPath": "F:\\учеба\\3 курс\\2ой семестр\\Шлемензон_всё\\ргр\\NewsForum\\NewsForum\\project.json",
-      "projectStyle": "ProjectJson"
+      "projectPath": "F:\\учеба\\3 курс\\2ой семестр\\Шлемензон_всё\\ргр\\NewsForum\\ShlemenzonRGR\\NewsForum\\NewsForum.csproj",
+      "projectJsonPath": "F:\\учеба\\3 курс\\2ой семестр\\Шлемензон_всё\\ргр\\NewsForum\\ShlemenzonRGR\\NewsForum\\project.json",
+      "projectStyle": "ProjectJson",
+      "frameworks": {
+        "uap10.0": {
+          "projectReferences": {
+            "F:\\учеба\\3 курс\\2ой семестр\\Шлемензон_всё\\ргр\\NewsForum\\ShlemenzonRGR\\ViewModelDataBase\\ViewModelDataBase.csproj": {
+              "projectPath": "F:\\учеба\\3 курс\\2ой семестр\\Шлемензон_всё\\ргр\\NewsForum\\ShlemenzonRGR\\ViewModelDataBase\\ViewModelDataBase.csproj"
+            },
+            "F:\\учеба\\3 курс\\2ой семестр\\Шлемензон_всё\\ргр\\NewsForum\\ShlemenzonRGR\\Model\\Model.csproj": {
+              "projectPath": "F:\\учеба\\3 курс\\2ой семестр\\Шлемензон_всё\\ргр\\NewsForum\\ShlemenzonRGR\\Model\\Model.csproj"
+            }
+          }
+        }
+      }
     },
     "dependencies": {
       "Microsoft.EntityFrameworkCore.Sqlite": "1.1.1",

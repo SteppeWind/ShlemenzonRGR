@@ -302,7 +302,20 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{4de056d3-93b0-4fd8-8df8-fa3992a3ca77}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RequestServer\RequestServer.csproj">
+      <Project>{c89f53f6-5954-43f3-8006-c5f3ea0137d8}</Project>
+      <Name>RequestServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ViewModelDataBase\ViewModelDataBase.csproj">
+      <Project>{6aa4e45e-7ac9-4bc8-a38f-8bd4526815e6}</Project>
+      <Name>ViewModelDataBase</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

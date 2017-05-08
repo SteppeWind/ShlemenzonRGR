@@ -8,16 +8,21 @@ using ViewModelDataBase.VMInterfaces;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Text;
 using System.Collections.ObjectModel;
+using ViewModelDataBase.VMTypes;
 
 namespace ViewModelDataBase.VMPublicationTypes
 {
-    public class VMPublication : Publication, IBitmapImage, IDescriptionVM
+    public class VMPublication : Publication
     {
-        public BitmapImage Poster { get; set; }
+        //    public BitmapImage Poster { get; set; }
 
-        public ITextDocument Description { get; set; }
+        //    public ITextDocument Description { get; set; }
+
+        public VMDescription Description { get; set; }
+        public VMImage PosterImage { get; set; }
 
         public VMUser User { get; set; }
+
 
         public ObservableCollection<VMRating> ListMarks { get; set; }
 

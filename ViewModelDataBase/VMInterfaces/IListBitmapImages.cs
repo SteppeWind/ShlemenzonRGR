@@ -4,11 +4,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViewModelDataBase.VMTypes;
 
 namespace ViewModelDataBase.VMInterfaces
 {
     public interface IListBitmapImages
     {
-        ObservableCollection<IBitmapImage> ListImages { get; set; }
+        ObservableCollection<VMImage> ListImages { get; set; }
     }
 }

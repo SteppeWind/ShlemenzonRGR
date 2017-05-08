@@ -43,10 +43,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicationsRequest\CreatePublicationRequest.cs" />
     <Compile Include="PublicationsRequest\DeletePublicationRequest.cs" />
+    <Compile Include="PublicationsRequest\ReadPublciationRequest.cs" />
     <Compile Include="PublicationsRequest\UpdatePublicationRequest.cs" />
     <Compile Include="Request\MainRequest.cs" />
     <Compile Include="Request\TypeDataRequest.cs" />
     <Compile Include="Request\TypeRequest.cs" />
+    <Compile Include="SortingsDataRequest\PublicationsSortingData.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

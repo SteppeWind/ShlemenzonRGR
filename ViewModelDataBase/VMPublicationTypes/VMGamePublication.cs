@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ViewModelDataBase.VMInterfaces;
 using System.Collections.ObjectModel;
+using ViewModelDataBase.VMTypes;
 
 namespace ViewModelDataBase.VMPublicationTypes
 {
@@ -23,6 +24,6 @@ namespace ViewModelDataBase.VMPublicationTypes
 
         public virtual ICollection<IGenre> ListGenres { get; set; }
 
-        public ObservableCollection<IBitmapImage> ListImages { get; set; }
+        public ObservableCollection<VMImage> ListImages { get; set; }
     }
 }

@@ -6,12 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ViewModelDataBase.VMInterfaces;
+using ViewModelDataBase.VMTypes;
 
 namespace ViewModelDataBase.VMPublicationTypes
 {
     public class VMFilmPublication : VMPublication, IListBitmapImages, IFilmPublication<VMActor, IGenre>
     {
-        public ObservableCollection<IBitmapImage> ListImages { get; set; }
+        public ObservableCollection<VMImage> ListImages { get; set; }
 
         public string Country { get; set; }
 

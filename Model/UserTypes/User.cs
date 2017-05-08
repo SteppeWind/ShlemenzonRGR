@@ -9,7 +9,9 @@ namespace Model.UserTypes
     public class User
     {
         #region Свойства
-        
+
+        public virtual int UserId { get; set; }
+
         public string Name { get; set; }
 
         public virtual string Surname { get; set; }
