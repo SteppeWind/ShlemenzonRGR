@@ -104,8 +104,10 @@
     <Compile Include="Model\FileExplorer.cs" />
     <Compile Include="Model\IFileSettings.cs" />
     <Compile Include="Model\ImageContainer.cs" />
+    <Compile Include="Model\ServerRequest.cs" />
     <Compile Include="Model\SongDuration.cs" />
     <Compile Include="Model\SoundFileContainer.cs" />
+    <Compile Include="Model\FilesAction.cs" />
     <Compile Include="Pages\EditorPublication\LastStepPage.xaml.cs">
       <DependentUpon>LastStepPage.xaml</DependentUpon>
     </Compile>
@@ -147,6 +149,7 @@
     <Compile Include="View\Converters\ExpandSearchCollapseGenresConverter.cs" />
     <Compile Include="View\Converters\HeightColumnGridConverter.cs" />
     <Compile Include="View\Converters\HideControlsConverter.cs" />
+    <Compile Include="View\Converters\IntToTypePublicationConverter.cs" />
     <Compile Include="View\Converters\MethodNamePlayerConverter.cs" />
     <Compile Include="View\MyUserControls\AddCoverPublicationUserControl.xaml.cs">
       <DependentUpon>AddCoverPublicationUserControl.xaml</DependentUpon>
@@ -169,6 +172,9 @@
     </Compile>
     <Compile Include="View\MyUserControls\PanelEditDecriptionPublicationUserControl.xaml.cs">
       <DependentUpon>PanelEditDecriptionPublicationUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MyUserControls\PopupListUserControl.xaml.cs">
+      <DependentUpon>PopupListUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MyUserControls\SeparatorUserControl.xaml.cs">
       <DependentUpon>SeparatorUserControl.xaml</DependentUpon>
@@ -283,6 +289,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MyUserControls\PanelEditDecriptionPublicationUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MyUserControls\PopupListUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

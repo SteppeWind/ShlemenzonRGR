@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RequestServer.Request
+namespace RequestServer.AnswerForRequest
 {
-    public enum TypeDataRequest
+    public enum TypeAnswer
     {
-        Publication,
-        User
+        Bool,
+        Publications,
+        Users
     }
 }

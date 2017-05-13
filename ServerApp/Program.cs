@@ -13,8 +13,8 @@ namespace ServerApp
     {
         static void Main(string[] args)
         {
-            NewsForumContext nfc = new NewsForumContext();
-
+            Server s = new Server();
+            s.ExceptionRecived += S_ExceptionRecived;
             //var user = nfc.Users.Where(u => u.UserId == 1).FirstOrDefault();
             //DBUser newUser = new DBUser()
             //{
@@ -35,7 +35,7 @@ namespace ServerApp
             //    Surname = "Pupkin",
             //    PhoneNumber = "898923"
             //});
-
+            //nfc.SaveChanges();
 
             //nfc.FilmPublications.Add(new ModelDataBase.DBPublicationTypes.DBFilmPublication()
             //{
@@ -48,8 +48,12 @@ namespace ServerApp
             //    CreateDate = DateTime.Now
             //});
 
-            nfc.SaveChanges();
-            
+            Console.ReadKey();
+        }
+
+        private static void S_ExceptionRecived(string obj)
+        {
+            Console.WriteLine(obj);
         }
     }
 }

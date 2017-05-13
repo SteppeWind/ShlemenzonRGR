@@ -16,7 +16,7 @@ namespace Model.PublicationTypes
         /// </summary>
         public virtual string Title { get; set; }
 
-        public virtual PublicationType TypePublication { get; set; }
+        public virtual PublicationType TypePublication { get; set; } = PublicationType.Game;
         
         /// <summary>
         /// Дата создания публикации
@@ -27,6 +27,7 @@ namespace Model.PublicationTypes
         /// Указывает на то, удалена ли публикация
         /// </summary>
         public virtual bool IsDeleted { get; set; } = false;
+        
 
         #endregion
     }

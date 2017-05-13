@@ -1,14 +1,29 @@
-﻿using System;
+﻿using Model.UserTypes;
+using NewsForum.Model;
+using Newtonsoft.Json;
+using RequestServer.PublicationsRequest;
+using RequestServer.Request;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
+using System.Threading.Tasks;
+using ViewModelDataBase.VMPublicationTypes;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Networking;
+using Windows.Networking.Sockets;
+using Windows.Storage;
+using Windows.Storage.Streams;
+using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Documents;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
@@ -22,9 +37,70 @@ namespace NewsForum.Pages.EditorPublication
     /// </summary>
     public sealed partial class LastStepPage : Page
     {
+        VMPublication Publication;
+        VMGamePublication GamePublication;
         public LastStepPage()
         {
             this.InitializeComponent();
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var currPublic = (e.Parameter as VMPublication);
+            switch (currPublic.TypePublication)
+            {
+                case global::Model.PublicationTypes.PublicationType.Game:
+                    GamePublication = currPublic as VMGamePublication;
+                    break;
+                case global::Model.PublicationTypes.PublicationType.Film:
+                    break;
+                case global::Model.PublicationTypes.PublicationType.Music:
+                    break;
+                case global::Model.PublicationTypes.PublicationType.News:
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+        }
+
+        private async void Button_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            GamePublication.User = new ViewModelDataBase.VMUser() { AccessLevel = UserAccessLevel.God, UserId = 1 };
+            CreatePublicationRequest createPublicRequest = new CreatePublicationRequest()
+            {
+                NewPublication = GamePublication,
+            };
+            MainRequest mr = new MainRequest()
+            {
+                DataType = RequestServer.DataType.Publication,
+                TypeRequest = RequestServer.Request.TypeRequest.Create,
+                RecievedRequest = createPublicRequest
+            };
+            try
+            {
+                var res = await ServerRequest.SendRequest(mr);
+                switch (res.TypeAnswer)
+                {
+                    case RequestServer.AnswerForRequest.TypeAnswer.Bool:
+                        break;
+                    case RequestServer.AnswerForRequest.TypeAnswer.Publications:
+                        break;
+                    case RequestServer.AnswerForRequest.TypeAnswer.Users:
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
     }
 }

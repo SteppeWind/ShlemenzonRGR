@@ -14,16 +14,12 @@ namespace ViewModelDataBase.VMPublicationTypes
 {
     public class VMPublication : Publication
     {
-        //    public BitmapImage Poster { get; set; }
-
-        //    public ITextDocument Description { get; set; }
-
         public VMDescription Description { get; set; }
+
         public VMImage PosterImage { get; set; }
 
         public VMUser User { get; set; }
-
-
+        
         public ObservableCollection<VMRating> ListMarks { get; set; }
 
         public ObservableCollection<VMComment> ListComments { get; set; }

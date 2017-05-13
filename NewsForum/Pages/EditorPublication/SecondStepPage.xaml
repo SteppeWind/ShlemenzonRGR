@@ -7,15 +7,18 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Converters="using:NewsForum.View.Converters"
     xmlns:UserControls="using:NewsForum.View.MyUserControls"
+    xmlns:Publication="using:ViewModelDataBase.VMPublicationTypes"
     xmlns:I="using:Microsoft.Xaml.Interactivity"
     xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:vmpublicationtypes="using:ViewModelDataBase.VMPublicationTypes"
     mc:Ignorable="d"
+    NavigationCacheMode="Enabled"
     Transitions="{StaticResource BaseAnimation}">
 
     <Page.Resources>
         <Converters:HideControlsConverter x:Key="HideControlsConverter"/>
+        <Converters:IntToTypePublicationConverter x:Key="IntToTypePublicationConverter"/>
         <x:String x:Key="TitlePageString">Название и обложка</x:String>
-
     </Page.Resources>
 
     <Grid ChildrenTransitions="{StaticResource BaseChildrenAnimation}"
@@ -86,14 +89,19 @@
 
                 <TextBox Name="TitlePublicationTextBox"
                          Grid.Row="0"
+                         Text="{x:Bind Publication.Title, Mode=TwoWay}"
+                         VerticalAlignment="Bottom"
                          PlaceholderText="Название"
                          Style="{StaticResource BaseTextBoxStyle}"/>
 
                 <ComboBox Name="flip"
                           FontSize="20"
-                          ElementSoundMode="FocusOnly"
-                          PlaceholderText="Выберите тип публикации"
+                          SelectedIndex="{x:Bind Publication.TypePublication, Mode=TwoWay, Converter={StaticResource IntToTypePublicationConverter}}"
                           Grid.Column="1">
+                    <ComboBox.Header>
+                        <TextBlock Text="Выберите тип публикации"
+                                   Style="{StaticResource BaseMenuTextBlockStyle}"/>
+                    </ComboBox.Header>
                     <ComboBoxItem FontSize="20">
                         <StackPanel Margin="5 0 0 0"
                                     Orientation="Horizontal">

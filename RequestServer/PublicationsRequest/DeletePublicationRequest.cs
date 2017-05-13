@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RequestServer.PublicationsRequest
 {
-    public class DeletePublicationRequest : MainRequest
+    public class DeletePublicationRequest
     {
         public int IdPublication { get; set; }
     }

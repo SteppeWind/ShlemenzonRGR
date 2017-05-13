@@ -8,9 +8,9 @@ namespace Model.PublicationTypes
 {
     public enum PublicationType
     {
-        Game,
-        Music,
-        News,
-        Film
+        Game = 0,
+        Film = 1,
+        Music = 2,
+        News = 3,
     }
 }

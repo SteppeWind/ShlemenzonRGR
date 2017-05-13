@@ -8,6 +8,7 @@
     xmlns:Converters="using:NewsForum.View.Converters"
     xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:I="using:Microsoft.Xaml.Interactivity"
+    xmlns:userControls="using:NewsForum.View.MyUserControls"
     xmlns:ei="using:Microsoft.Xaml.Interactions.Media"
     mc:Ignorable="d"
     Transitions="{StaticResource BaseAnimation}">
@@ -47,15 +48,52 @@
                     <AddDeleteThemeTransition/>
                 </TransitionCollection>
             </ListView.ItemContainerTransitions>
-            <ComboBox>
+            <ComboBox Name="GenresCombox"
+                      SelectedIndex="0"
+                      SelectionChanged="GenresCombox_SelectionChanged">
+                <ComboBoxItem FontSize="20">
+                    <StackPanel Margin="5 0 0 0"
+                                    Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource BaseSmallMenuIconTextBlockStyle}"
+                                       Text=""
+                                       Margin="0 0 10 0"
+                                       VerticalAlignment="Center"/>
+                        <TextBlock Text="Игры"
+                                       Style="{StaticResource BaseMenuTextBlockStyle}"/>
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem FontSize="20">
+                    <StackPanel Margin="5 0 0 0"
+                                    Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource BaseSmallMenuIconTextBlockStyle}"
+                                       Text=""       
+                                       Margin="0 0 10 0"
+                                       VerticalAlignment="Center"/>
+                        <TextBlock Text="Фильмы"
+                                       Style="{StaticResource BaseMenuTextBlockStyle}"/>
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem FontSize="20">
+                    <StackPanel Margin="5 0 0 0"
+                                    Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource BaseSmallMenuIconTextBlockStyle}"
+                                       Text=""
+                                       Margin="0 0 10 0"
+                                       VerticalAlignment="Center"/>
+                        <TextBlock Text="Музыка"
+                                       Style="{StaticResource BaseMenuTextBlockStyle}"/>
+
+                    </StackPanel>
+                </ComboBoxItem>
                 <ComboBox.Header>
                     <TextBlock Text="Выберите тип публикации"
-                           FontSize="20"
-                           Style="{StaticResource SubheaderTextBlockStyle}"/>
+                           Style="{StaticResource BaseMenuTextBlockStyle}"/>
                 </ComboBox.Header>
             </ComboBox>
 
-            <StackPanel>
+            <userControls:PopupListUserControl x:Name="GenresListView"/>
+
+            <!--<StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Выберите жанр"
                                FontSize="20"
@@ -91,11 +129,9 @@
                 </StackPanel>
 
                 <Popup Name="GenresPopup"
-                       Grid.Row="1"
                        Margin="{Binding ElementName=Swipe, Path=IsChecked, Converter={StaticResource HeightColumnGridConverter}}"
                        IsOpen="{Binding ElementName=Swipe, Path=IsChecked}">
-                    <ListView ItemsSource="{x:Bind Types}"
-                              Grid.Row="1"
+                    <ListView Name="GenresListView"
                               SelectionMode="Multiple"/>
                     <Popup.ChildTransitions>
                         <TransitionCollection>
@@ -103,7 +139,7 @@
                         </TransitionCollection>
                     </Popup.ChildTransitions>
                 </Popup>
-            </StackPanel>
+            </StackPanel>-->
 
 
             <StackPanel>

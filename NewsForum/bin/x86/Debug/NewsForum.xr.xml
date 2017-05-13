@@ -4,7 +4,6 @@
     <RootInterface FullName="Windows.UI.Xaml.Data.IValueConverter" />
   </Roots.Interfaces>
   <Roots.PropertyPathNames>
-    <RootPropertyPathName Name="IsChecked" />
     <RootPropertyPathName Name="IsEnabled" />
     <RootPropertyPathName Name="Source" />
     <RootPropertyPathName Name="Opacity" />
@@ -18,6 +17,8 @@
     <RootPropertyPathName Name="PlaySoundCommand" />
     <RootPropertyPathName Name="SelectedItem" />
     <RootPropertyPathName Name="Count" />
+    <RootPropertyPathName Name="IsChecked" />
+    <RootPropertyPathName Name="ItemsSource" />
     <RootPropertyPathName Name="Background" />
   </Roots.PropertyPathNames>
   <Roots.RootTypes>
@@ -33,6 +34,7 @@
       <RootProperty Name="Transitions" />
       <RootProperty Name="Resources" />
       <RootProperty Name="Content" />
+      <RootProperty Name="NavigationCacheMode" />
       <RootEvent Name="SizeChanged" />
     </RootType>
     <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.StaticResourceExtension" />
@@ -153,9 +155,10 @@
       <RootProperty Name="ItemTemplate" />
       <RootProperty Name="ItemsPanel" />
       <RootProperty Name="ItemContainerTransitions" />
-      <RootProperty Name="ItemsSource" />
       <RootProperty Name="SelectedItem" />
+      <RootProperty Name="ItemsSource" />
       <RootEvent Name="ItemClick" />
+      <RootEvent Name="SelectionChanged" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ListViewItem">
       <RootProperty Name="Content" />
@@ -229,27 +232,31 @@
     </RootType>
     <RootType FullName="NewsForum.Pages.EditorPublication.NavigationPage" />
     <RootType FullName="NewsForum.View.Converters.HideControlsConverter" />
+    <RootType FullName="NewsForum.View.Converters.IntToTypePublicationConverter" />
     <RootType FullName="System.String" />
     <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
       <RootProperty Name="Name" />
+      <RootProperty Name="Text" />
+      <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="PlaceholderText" />
       <RootProperty Name="Style" />
       <RootProperty Name="Margin" />
-      <RootProperty Name="VerticalAlignment" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ComboBox">
       <RootProperty Name="Name" />
       <RootProperty Name="FontSize" />
-      <RootProperty Name="ElementSoundMode" />
-      <RootProperty Name="PlaceholderText" />
-      <RootProperty Name="Items" />
-      <RootProperty Name="Header" />
-      <RootProperty Name="Tag" />
       <RootProperty Name="SelectedIndex" />
+      <RootProperty Name="Header" />
+      <RootProperty Name="Items" />
+      <RootProperty Name="Tag" />
       <RootEvent Name="SelectionChanged" />
     </RootType>
     <RootType FullName="NewsForum.View.MyUserControls.AddCoverPublicationUserControl">
       <RootEvent Name="CompleteDropEvent" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.BindExtension">
+      <RootProperty Name="Mode" />
+      <RootProperty Name="Converter" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ComboBoxItem">
       <RootProperty Name="FontSize" />
@@ -269,6 +276,7 @@
     </RootType>
     <RootType FullName="NewsForum.View.MyUserControls.AddPhotosToPublicationUserControl">
       <RootProperty Name="Margin" />
+      <RootEvent Name="LoadFilesEvent" />
     </RootType>
     <RootType FullName="NewsForum.View.MyUserControls.LinkVideoViewUserControl">
       <RootProperty Name="Margin" />
@@ -284,9 +292,20 @@
       <RootProperty Name="RenderTransform" />
     </RootType>
     <RootType FullName="NewsForum.Pages.EditorPublication.ThirdStepDistributionEditorPage" />
+    <RootType FullName="NewsForum.View.MyUserControls.PopupListUserControl">
+      <RootProperty Name="ItemsSource" />
+      <RootProperty Name="Margin" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.CheckBox">
+      <RootProperty Name="IsChecked" />
       <RootProperty Name="Margin" />
       <RootProperty Name="Content" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.DatePicker">
+      <RootProperty Name="Name" />
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="FontFamily" />
+      <RootProperty Name="Header" />
     </RootType>
     <RootType FullName="NewsForum.Pages.EditorPublication.ThirdStepGamePage" />
     <RootType FullName="NewsForum.View.MyUserControls.SetOrDropFilesUserControl">
@@ -329,51 +348,6 @@
       <RootProperty Name="From" />
       <RootProperty Name="To" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.DatePicker">
-      <RootProperty Name="Header" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.Primitives.Popup">
-      <RootProperty Name="Name" />
-      <RootProperty Name="Margin" />
-      <RootProperty Name="IsOpen" />
-      <RootProperty Name="Child" />
-      <RootProperty Name="ChildTransitions" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Data.Binding">
-      <RootProperty Name="ElementName" />
-      <RootProperty Name="Path" />
-      <RootProperty Name="Converter" />
-      <RootProperty Name="Source" />
-      <RootProperty Name="Mode" />
-    </RootType>
-    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.BindExtension">
-      <RootProperty Name="Mode" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Media.Animation.PopupThemeTransition" />
-    <RootType FullName="Windows.UI.Xaml.Controls.Primitives.ToggleButton">
-      <RootProperty Name="Name" />
-      <RootProperty Name="FontSize" />
-      <RootProperty Name="Margin" />
-      <RootProperty Name="Style" />
-      <RootProperty Name="FontFamily" />
-      <RootProperty Name="Content" />
-      <RootProperty Name="RenderTransformOrigin" />
-      <RootProperty Name="RenderTransform" />
-    </RootType>
-    <RootType FullName="Microsoft.Xaml.Interactivity.Interaction">
-      <RootMethod Name="GetBehaviors" />
-      <RootMethod Name="SetBehaviors" />
-    </RootType>
-    <RootType FullName="Microsoft.Xaml.Interactions.Core.DataTriggerBehavior">
-      <RootProperty Name="Binding" />
-      <RootProperty Name="Value" />
-      <RootProperty Name="Actions" />
-    </RootType>
-    <RootType FullName="Microsoft.Xaml.Interactions.Media.ControlStoryboardAction">
-      <RootProperty Name="ControlStoryboardOption" />
-      <RootProperty Name="Storyboard" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Media.CompositeTransform" />
     <RootType FullName="NewsForum.Pages.ExpandSearchPage" />
     <RootType FullName="Windows.UI.Xaml.Controls.PasswordBox">
       <RootProperty Name="PlaceholderText" />
@@ -410,11 +384,8 @@
       <RootProperty Name="Value" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Border">
-      <RootProperty Name="Background" />
       <RootProperty Name="Margin" />
       <RootProperty Name="Opacity" />
-      <RootProperty Name="BorderBrush" />
-      <RootProperty Name="BorderThickness" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ContentPresenter">
       <RootProperty Name="Visibility" />
@@ -429,7 +400,6 @@
       <RootMethod Name="SetAccessibilityView" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ContentControl">
-      <RootProperty Name="Foreground" />
       <RootProperty Name="Margin" />
       <RootProperty Name="Padding" />
       <RootProperty Name="IsTabStop" />
@@ -444,12 +414,24 @@
       <RootProperty Name="Content" />
       <RootProperty Name="Tag" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Data.Binding">
+      <RootProperty Name="ElementName" />
+      <RootProperty Name="Path" />
+      <RootProperty Name="Converter" />
+      <RootProperty Name="Source" />
+      <RootProperty Name="Mode" />
+      <RootProperty Name="ConverterParameter" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.HyperlinkButton">
       <RootProperty Name="Name" />
       <RootProperty Name="Content" />
       <RootProperty Name="FontSize" />
       <RootProperty Name="HorizontalAlignment" />
       <RootEvent Name="Tapped" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.Interactivity.Interaction">
+      <RootMethod Name="GetBehaviors" />
+      <RootMethod Name="SetBehaviors" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Image">
       <RootProperty Name="Name" />
@@ -481,6 +463,7 @@
       <RootProperty Name="Value" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Media.PlaneProjection" />
+    <RootType FullName="Windows.UI.Xaml.Media.CompositeTransform" />
     <RootType FullName="NewsForum.View.MyUserControls.ContainerForUserControl" />
     <RootType FullName="NewsForum.View.Converters.DoubleToTimeSpanConverter" />
     <RootType FullName="NewsForum.View.Converters.MethodNamePlayerConverter" />
@@ -528,6 +511,33 @@
     <RootType FullName="Windows.UI.Xaml.Controls.Primitives.FlyoutBase">
       <RootMethod Name="GetAttachedFlyout" />
       <RootMethod Name="SetAttachedFlyout" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Primitives.Popup">
+      <RootProperty Name="Name" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="IsOpen" />
+      <RootProperty Name="Child" />
+      <RootProperty Name="ChildTransitions" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.PopupThemeTransition" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Primitives.ToggleButton">
+      <RootProperty Name="Name" />
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Style" />
+      <RootProperty Name="FontFamily" />
+      <RootProperty Name="Content" />
+      <RootProperty Name="RenderTransformOrigin" />
+      <RootProperty Name="RenderTransform" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.Interactions.Core.DataTriggerBehavior">
+      <RootProperty Name="Binding" />
+      <RootProperty Name="Value" />
+      <RootProperty Name="Actions" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.Interactions.Media.ControlStoryboardAction">
+      <RootProperty Name="ControlStoryboardOption" />
+      <RootProperty Name="Storyboard" />
     </RootType>
     <RootType FullName="NewsForum.View.MyUserControls.SeparatorUserControl" />
     <RootType FullName="NewsForum.View.MyUserControls.WaitingLoadingUserControl" />

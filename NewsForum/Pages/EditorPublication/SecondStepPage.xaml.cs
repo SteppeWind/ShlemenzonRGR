@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using ViewModelDataBase.VMPublicationTypes;
+using ViewModelDataBase.VMPublicationTypes.VMNewsTypes;
+using ViewModelDataBase.VMTypes;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -26,14 +29,37 @@ namespace NewsForum.Pages.EditorPublication
     /// </summary>
     public sealed partial class SecondStepPage : Page
     {
+        public VMPublication Publication { get; set; } = new VMPublication();
+
+
         public SecondStepPage()
         {
             this.InitializeComponent();
+            //Publication = Resources["Publication"] as VMPublication;
         }
-       
-        private void AddCoverPublicationUserControl_CompleteDropEvent(StorageFile obj)
-        {
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            Publication = e.Parameter as VMPublication;
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            
+        }
+
+        private async void AddCoverPublicationUserControl_CompleteDropEvent(StorageFile obj)
+        {
+            using (Stream stream = await obj.OpenStreamForReadAsync())
+            {
+                BinaryReader br = new BinaryReader(stream);
+                var bytes = br.ReadBytes((int)stream.Length);
+                Publication.PosterImage = new VMImage()
+                {
+                    Bytes = bytes,
+                    Type = obj.FileType
+                };
+            }
         }
     }
 }

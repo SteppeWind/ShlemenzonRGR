@@ -27,6 +27,9 @@ namespace NewsForum.View.MyUserControls
 {
     public sealed partial class AddPhotosToPublicationUserControl : UserControl
     {
+        public event Action<IEnumerable<StorageFile>> LoadFilesEvent;
+
+
         public AddPhotosToPublicationUserControl()
         {
             this.InitializeComponent();
@@ -56,8 +59,10 @@ namespace NewsForum.View.MyUserControls
         {
             LoadPhotosProgress.IsActive = true;
             if (obj != null)
+            {
                 (Resources["CollectionViewModel"] as BaseCollectionViewModel).AddRange(await getImages(obj));
-
+                LoadFilesEvent?.Invoke(obj);
+            }
             LoadPhotosProgress.IsActive = false;
         }
     }

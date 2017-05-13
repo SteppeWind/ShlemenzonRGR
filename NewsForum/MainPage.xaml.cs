@@ -1,10 +1,16 @@
-﻿using NewsForum.Pages;
+﻿using Model.PublicationTypes;
+using NewsForum.Model;
+using NewsForum.Pages;
 using NewsForum.Pages.EditorPublication;
+using Newtonsoft.Json;
+using RequestServer.PublicationsRequest;
+using RequestServer.Request;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Data.Json;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -24,9 +30,41 @@ namespace NewsForum
     /// </summary>
     public sealed partial class MainPage : Page
     {
+
         public MainPage()
         {
             this.InitializeComponent();
+            go();
+         }
+
+        async void go()
+        {
+            ReadPublciationRequest rpr = new ReadPublciationRequest()
+            {
+                LeftLimitTime = "1",
+                ListGenres = new List<string>() { "азаз", "кек", "лол" },
+                PublicationType = PublicationType.Game,
+                RightLimitTime = "2"
+            };
+            MainRequest mr = new MainRequest()
+            {
+                RecievedRequest = rpr,
+                DataType = RequestServer.DataType.Publication,
+                TypeRequest = TypeRequest.Read,
+                UserId = 1
+            };
+            var answer = await ServerRequest.SendRequest(mr);
+            switch (answer.TypeAnswer)
+            {
+                case RequestServer.AnswerForRequest.TypeAnswer.Bool:
+                    break;
+                case RequestServer.AnswerForRequest.TypeAnswer.Publications:
+                    break;
+                case RequestServer.AnswerForRequest.TypeAnswer.Users:
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)

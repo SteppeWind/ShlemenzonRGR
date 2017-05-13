@@ -40,6 +40,7 @@
     <Compile Include="VMPublicationTypes\VMComment.cs" />
     <Compile Include="VMPublicationTypes\VMFilmPublication.cs" />
     <Compile Include="VMPublicationTypes\VMGamePublication.cs" />
+    <Compile Include="VMPublicationTypes\VMGenre.cs" />
     <Compile Include="VMPublicationTypes\VMMusicPublication.cs" />
     <Compile Include="VMPublicationTypes\VMNewsTypes\VMElementLinkVideo.cs" />
     <Compile Include="VMPublicationTypes\VMNewsTypes\VMNewsElement.cs" />
@@ -53,6 +54,12 @@
     <Compile Include="VMUser.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\portable-net45+win8+wpa81+wp8\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.3.1\lib\portable-net40+sl4+win8+wp8\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="Windows.Foundation.UniversalApiContract">
       <HintPath>C:\Program Files (x86)\Windows Kits\10\References\Windows.Foundation.UniversalApiContract\3.0.0.0\Windows.Foundation.UniversalApiContract.winmd</HintPath>
     </Reference>
@@ -62,6 +69,9 @@
       <Project>{4de056d3-93b0-4fd8-8df8-fa3992a3ca77}</Project>
       <Name>Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

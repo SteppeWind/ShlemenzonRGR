@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.PublicationTypes;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,11 +23,32 @@ namespace NewsForum.Pages
     /// </summary>
     public sealed partial class ExpandSearchPage : Page
     {
-        private string[] Types = { "Все жанры", "Экшен", "Рпг", "Стэлс", "Стратегия" };
         
         public ExpandSearchPage()
         {
             this.InitializeComponent();
+            GenresListView.ItemsSource = GenreTypes.GameGenres;
+        }
+
+        private void GenresCombox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (GenresListView != null)
+                switch (GenresCombox.SelectedIndex)
+                {
+                    case 0:
+                        GenresListView.ItemsSource = GenreTypes.GameGenres;
+                        break;
+
+                    case 1:
+                        GenresListView.ItemsSource = GenreTypes.FilmGenres;
+                        break;
+
+                    case 2:
+                        GenresListView.ItemsSource = GenreTypes.MusicGenres;
+                        break;
+                    default:
+                        break;
+                }
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace NewsForum.Model
@@ -43,6 +44,8 @@ namespace NewsForum.Model
                 ChangeProperty();
             }
         }
+
+        public StorageFile File { get ; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

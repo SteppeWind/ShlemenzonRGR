@@ -1,4 +1,4 @@
-﻿<Page x:ConnectionId='1'
+﻿<Page
     x:Class="NewsForum.Pages.ExpandSearchPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,6 +8,7 @@
     xmlns:Converters="using:NewsForum.View.Converters"
     xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:I="using:Microsoft.Xaml.Interactivity"
+    xmlns:userControls="using:NewsForum.View.MyUserControls"
     xmlns:ei="using:Microsoft.Xaml.Interactions.Media"
     mc:Ignorable="d"
     Transitions="{StaticResource BaseAnimation}">
@@ -16,7 +17,7 @@
         <Converters:ExpandSearchCollapseGenresConverter x:Key="CollapseGenresConverter"/>
         <Converters:HeightColumnGridConverter x:Key="HeightColumnGridConverter"/>
 
-        <Storyboard x:ConnectionId='2' x:Name="ExpandGenresListStoryboard">
+        <Storyboard x:ConnectionId='1' x:Name="ExpandGenresListStoryboard">
             <DoubleAnimation Duration="0:0:0.3"
                              To="-90"
                              Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)"
@@ -28,7 +29,7 @@
                              Storyboard.TargetName="Swipe"
                              d:IsOptimized="True"/>
         </Storyboard>
-        <Storyboard x:ConnectionId='3' x:Name="CollapseGenresListStoryboard">
+        <Storyboard x:ConnectionId='2' x:Name="CollapseGenresListStoryboard">
             <DoubleAnimation Duration="0:0:0.3"
                              From="-90"
                              To="0"
@@ -47,20 +48,57 @@
                     <AddDeleteThemeTransition/>
                 </TransitionCollection>
             </ListView.ItemContainerTransitions>
-            <ComboBox>
+            <ComboBox x:ConnectionId='3' Name="GenresCombox"
+                      SelectedIndex="0"
+                                                                      >
+                <ComboBoxItem FontSize="20">
+                    <StackPanel Margin="5 0 0 0"
+                                    Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource BaseSmallMenuIconTextBlockStyle}"
+                                       Text=""
+                                       Margin="0 0 10 0"
+                                       VerticalAlignment="Center"/>
+                        <TextBlock Text="Игры"
+                                       Style="{StaticResource BaseMenuTextBlockStyle}"/>
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem FontSize="20">
+                    <StackPanel Margin="5 0 0 0"
+                                    Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource BaseSmallMenuIconTextBlockStyle}"
+                                       Text=""       
+                                       Margin="0 0 10 0"
+                                       VerticalAlignment="Center"/>
+                        <TextBlock Text="Фильмы"
+                                       Style="{StaticResource BaseMenuTextBlockStyle}"/>
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem FontSize="20">
+                    <StackPanel Margin="5 0 0 0"
+                                    Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource BaseSmallMenuIconTextBlockStyle}"
+                                       Text=""
+                                       Margin="0 0 10 0"
+                                       VerticalAlignment="Center"/>
+                        <TextBlock Text="Музыка"
+                                       Style="{StaticResource BaseMenuTextBlockStyle}"/>
+
+                    </StackPanel>
+                </ComboBoxItem>
                 <ComboBox.Header>
                     <TextBlock Text="Выберите тип публикации"
-                           FontSize="20"
-                           Style="{StaticResource SubheaderTextBlockStyle}"/>
+                           Style="{StaticResource BaseMenuTextBlockStyle}"/>
                 </ComboBox.Header>
             </ComboBox>
 
-            <StackPanel>
+            <userControls:PopupListUserControl x:ConnectionId='4' x:Name="GenresListView"/>
+
+            <!--<StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Выберите жанр"
                                FontSize="20"
                                Style="{StaticResource SubheaderTextBlockStyle}"/>
-                    <ToggleButton x:ConnectionId='6' Name="Swipe"
+                    <ToggleButton Name="Swipe"
                               FontSize="20"
                               Margin="5 0 0 0"
                               Style="{StaticResource TextBlockButtonStyle}"
@@ -90,12 +128,10 @@
                     
                 </StackPanel>
 
-                <Popup x:ConnectionId='4' Name="GenresPopup"
-                       Grid.Row="1"
+                <Popup Name="GenresPopup"
                        Margin="{Binding ElementName=Swipe, Path=IsChecked, Converter={StaticResource HeightColumnGridConverter}}"
                        IsOpen="{Binding ElementName=Swipe, Path=IsChecked}">
-                    <ListView x:ConnectionId='5'                             
-                              Grid.Row="1"
+                    <ListView Name="GenresListView"
                               SelectionMode="Multiple"/>
                     <Popup.ChildTransitions>
                         <TransitionCollection>
@@ -103,7 +139,7 @@
                         </TransitionCollection>
                     </Popup.ChildTransitions>
                 </Popup>
-            </StackPanel>
+            </StackPanel>-->
 
 
             <StackPanel>

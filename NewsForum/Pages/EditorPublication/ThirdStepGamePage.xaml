@@ -8,9 +8,7 @@
     mc:Ignorable="d"
     xmlns:controls="using:NewsForum.View.MyUserControls">
 
-    <Grid Margin="{StaticResource BaseMainGridThickness}"
-          ChildrenTransitions="{StaticResource BaseChildrenAnimation}">
-
+    <ScrollViewer>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="VisualStateGroup">
                 <VisualState x:Name="MobileState">
@@ -32,6 +30,10 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
+        <Grid Margin="{StaticResource BaseMainGridThickness}"
+          ChildrenTransitions="{StaticResource BaseChildrenAnimation}">
+
+    
 
 
         <Grid.RowDefinitions>
@@ -62,22 +64,34 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBox Grid.Row="0"
-                             Style="{StaticResource BaseTextBoxStyle}"
-                             PlaceholderText="Год выпуска"
-                             Margin="0 15 0 0"/>
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Row="0"
+                                Margin="0 15 0 0">
+                        <TextBlock Style="{StaticResource BaseMenuTextBlockStyle}"
+                                   Text="Год выпуска"
+                                   Margin="0 0 10 0"
+                                   VerticalAlignment="Center"/>
+                        <DatePicker Name="RealeseDatePicker"
+                                    FontSize="20"
+                                    FontFamily="Microsoft YaHei Light"/>
+                    </StackPanel>
 
                 <TextBox Grid.Row="1"
+                         Text="{x:Bind Publication.CompanyDeveloper, Mode=TwoWay}"
                              Style="{StaticResource BaseTextBoxStyle}"
                              PlaceholderText="Разработчик"
-                             Margin="0 15 0 0"/>
+                             Margin="0 19 0 0"/>
 
-                <TextBox Grid.Row="2"
-                             Style="{StaticResource BaseTextBoxStyle}"
-                             PlaceholderText="Язык интерфейса"
-                             Margin="0 15 0 0"/>
+                    <CheckBox Grid.Row="2"
+                              IsChecked="{x:Bind Publication.MultiPlayer, Mode=TwoWay}"
+                          Margin="0 15 0 0">
 
-            </Grid>
+                        <TextBlock Text="Мультуиплеер"
+                               Style="{StaticResource BaseMenuTextBlockStyle}"/>
+                    </CheckBox>
+
+
+                </Grid>
 
             <MenuFlyoutSeparator x:Name="menuFlyoutSeparator" Grid.Column="1"/>
 
@@ -91,21 +105,23 @@
                 </Grid.RowDefinitions>
 
                 <TextBox Grid.Row="0"
+                         Text="{x:Bind Publication.Platform, Mode=TwoWay}"
                          Style="{StaticResource BaseTextBoxStyle}"
                          PlaceholderText="Платформа"
                          Margin="0 15 0 0"/>
 
-                <TextBox Grid.Row="1"
-                         Style="{StaticResource BaseTextBoxStyle}"
-                         PlaceholderText="Жанр"
-                         Margin="0 15 0 0"/>
+                    <TextBox Grid.Row="1"
+                             Text="{x:Bind Publication.InterfaceLanguage, Mode=TwoWay}"
+                             Style="{StaticResource BaseTextBoxStyle}"
+                             PlaceholderText="Язык интерфейса"
+                             Margin="0 15 0 0"/>
 
-                <CheckBox Grid.Row="2"
-                          Margin="0 15 0 0">
-                    <TextBlock Text="Мультуиплеер"
-                               Style="{StaticResource BaseMenuTextBlockStyle}"/>
-                </CheckBox>
-            </Grid>
+                    <controls:PopupListUserControl x:Name="GenresListView"
+                          Grid.Row="2"
+                          ItemsSource="{x:Bind Genres}"
+                          Margin="0 15 0 0"/>
+
+                </Grid>
         </Grid>
 
         <Grid Grid.Row="1"
@@ -125,7 +141,9 @@
 
         </Grid>
 
-        <controls:AddPhotosToPublicationUserControl Margin="0 15 0 0"
-                                                    Grid.Row="2"/>
-    </Grid>
+            <controls:AddPhotosToPublicationUserControl Margin="0 15 0 0"
+                                                        LoadFilesEvent="AddPhotosToPublicationUserControl_LoadFilesEvent"
+                                                        Grid.Row="2"/>
+        </Grid>
+    </ScrollViewer>
 </Page>

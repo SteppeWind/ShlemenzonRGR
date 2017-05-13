@@ -10,11 +10,15 @@ namespace NewsForum.View.Converters
 {
     class HeightColumnGridConverter : IValueConverter
     {
-        private Thickness expandHeight = new Thickness(0, 0, 0, 250);
+        private Thickness expandHeight;
         private Thickness collapseHeight = new Thickness(0);
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            int length = 9;
+            if (parameter != null)
+                length = (parameter as string[]).Length;
+            expandHeight = new Thickness(0, 0, 0, 45 * length);
             return (bool)value ? expandHeight : collapseHeight;
             
         }

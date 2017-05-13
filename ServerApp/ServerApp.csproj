@@ -38,11 +38,17 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ValueTuple, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.3.1\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -76,6 +82,10 @@
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{4de056d3-93b0-4fd8-8df8-fa3992a3ca77}</Project>
       <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RequestServer\RequestServer.csproj">
+      <Project>{c89f53f6-5954-43f3-8006-c5f3ea0137d8}</Project>
+      <Name>RequestServer</Name>
     </ProjectReference>
     <ProjectReference Include="..\ViewModelDataBase\ViewModelDataBase.csproj">
       <Project>{6aa4e45e-7ac9-4bc8-a38f-8bd4526815e6}</Project>

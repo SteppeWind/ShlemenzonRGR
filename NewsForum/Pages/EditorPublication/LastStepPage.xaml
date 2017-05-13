@@ -8,6 +8,6 @@
     mc:Ignorable="d">
 
     <Grid ChildrenTransitions="{StaticResource BaseChildrenAnimation}">
-
+        <Button Tapped="Button_Tapped"/>
     </Grid>
 </Page>

@@ -20,6 +20,7 @@ namespace ModelDataBase.DBPublicationTypes
         public virtual ICollection<DBActor> ListActors { get; set; }
 
         public virtual DateTime? ReleaseYear { get; set; }
-        
+
+        public ICollection<DBGenre> ListGenres { get; set ; }
     }
 }

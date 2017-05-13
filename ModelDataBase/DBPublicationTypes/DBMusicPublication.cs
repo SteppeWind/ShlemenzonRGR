@@ -23,5 +23,6 @@ namespace ModelDataBase.DBPublicationTypes
 
         public virtual DateTime? ReleaseYear { get; set; }
 
+        public ICollection<DBGenre> ListGenres { get; set ; }
     }
 }

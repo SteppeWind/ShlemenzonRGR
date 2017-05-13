@@ -25,5 +25,12 @@ namespace ViewModelDataBase.VMPublicationTypes
         public virtual ICollection<IGenre> ListGenres { get; set; }
 
         public ObservableCollection<VMImage> ListImages { get; set; }
+
+        public VMGamePublication()
+        {
+            TypePublication = PublicationType.Game;
+            ListGenres = new List<IGenre>();
+            ListImages = new ObservableCollection<VMImage>();
+        }
     }
 }

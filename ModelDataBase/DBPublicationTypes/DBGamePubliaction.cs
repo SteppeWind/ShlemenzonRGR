@@ -27,5 +27,6 @@ namespace ModelDataBase.DBPublicationTypes
         /// </summary>
         public virtual ICollection<DBInfoFile> ListFiles { get; set; }
 
+        public ICollection<DBGenre> ListGenres { get; set; }
     }
 }
