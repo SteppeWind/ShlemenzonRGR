@@ -9,6 +9,11 @@ namespace ViewModelDataBase.VMPublicationTypes.VMNewsTypes
 {
     public class VMNewsPublication : VMPublication, INewsPublication<VMNewsElement>
     {
-        public ICollection<VMNewsElement> ListElements { get; set; }
+        public List<VMNewsElement> ListElements { get; set; }
+
+        public VMNewsPublication()
+        {
+            TypePublication = Model.PublicationTypes.PublicationType.News;
+        }
     }
 }

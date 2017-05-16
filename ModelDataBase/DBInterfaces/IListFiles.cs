@@ -9,6 +9,6 @@ namespace ModelDataBase.DBInterfaces
 {
     public interface IListFiles
     {
-        ICollection<DBInfoFile> ListFiles { get; set; }
+        List<DBInfoFile> ListFiles { get; set; }
     }
 }

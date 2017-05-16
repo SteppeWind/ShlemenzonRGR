@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,8 @@ namespace NewsForum.Model
 {
     class FileExplorer
     {
-        public static readonly string[] FiltersImage = { "jpg", "png", "jpeg" };
-        public static readonly string[] FiltersMusic = { "wav", "mp3" };
+        public static readonly string[] FiltersImage = FilterTypes.FiltersImage;
+        public static readonly string[] FiltersMusic = FilterTypes.FiltersMusic;
         public static readonly string[] ContentImageTypes = { "image/png", "image/jpeg" };
         public static readonly string[] ContentMusicTypes = { "audio/mpeg" };
 

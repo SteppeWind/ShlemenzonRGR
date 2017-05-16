@@ -1,15 +1,14 @@
-﻿using Model.PublicationTypes;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViewModelDataBase.VMTypes;
 
 namespace ViewModelDataBase.VMInterfaces
 {
-    public interface IFileVM : IInfoFile
+    public interface IListSongs : IListBitmapImages
     {
-        byte[] Bytes { get; set; }
+        List<VMFile> ListSongs { get; }
     }
 }

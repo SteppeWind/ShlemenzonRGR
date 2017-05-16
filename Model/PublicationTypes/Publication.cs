@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Model.PublicationTypes
 {
-    public class Publication
+    public class Publication<TFile, TGenre> where TFile : IInfoFile where TGenre : IGenre
     {
         #region Свойства
         
@@ -27,8 +27,21 @@ namespace Model.PublicationTypes
         /// Указывает на то, удалена ли публикация
         /// </summary>
         public virtual bool IsDeleted { get; set; } = false;
-        
 
+        public virtual List<TFile> ListFiles { get; set; }
+
+        public virtual List<TGenre> ListGenres { get; set; }
+        
         #endregion
+
+        public Publication()
+        {
+            ListFiles = ListFiles ?? new List<TFile>();
+            ListGenres = ListGenres ?? new List<TGenre>();
+            if (CreateDate == DateTime.MinValue)
+            {
+                CreateDate = DateTime.Now;
+            }
+        }
     }
 }

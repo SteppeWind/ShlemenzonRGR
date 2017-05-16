@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Model.PublicationTypes.NewsPublications
 {
-    public class NewsElement
+    public interface INewsElement
     {
-        public virtual TypeElementOfNews TypeElement { get; set; }
+        TypeElementOfNews TypeElement { get; set; }
 
-        public virtual int NumberOfList { get; set; }
+        int NumberOfList { get; set; }
     }
 }

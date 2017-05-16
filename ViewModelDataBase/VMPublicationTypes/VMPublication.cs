@@ -12,11 +12,15 @@ using ViewModelDataBase.VMTypes;
 
 namespace ViewModelDataBase.VMPublicationTypes
 {
-    public class VMPublication : Publication
+    public class VMPublication : Publication<VMFile, VMGenre>
     {
-        public VMDescription Description { get; set; }
+        //public VMDescription Description { get; set; }
 
-        public VMImage PosterImage { get; set; }
+        public VMFile Description { get; set; }
+
+        //public VMImage PosterImage { get; set; }
+
+        public VMFile PosterImage { get; set; }
 
         public VMUser User { get; set; }
         

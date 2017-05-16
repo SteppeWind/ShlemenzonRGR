@@ -28,7 +28,8 @@ namespace NewsForum.View.MyUserControls
     public sealed partial class AddPhotosToPublicationUserControl : UserControl
     {
         public event Action<IEnumerable<StorageFile>> LoadFilesEvent;
-
+        public event Action<StorageFile> RemoveElementEvent;
+        public List<StorageFile> ListPhotos { get; private set; } = new List<StorageFile>();
 
         public AddPhotosToPublicationUserControl()
         {
@@ -48,8 +49,10 @@ namespace NewsForum.View.MyUserControls
                     {
                         FullPath = item.Path,
                         Name = item.DisplayName,
-                        BitMapImg = bitmap
+                        BitMapImg = bitmap,
+                        File = item
                     });
+                    ListPhotos.Add(item);
                 }
             }
             return result;
@@ -64,6 +67,12 @@ namespace NewsForum.View.MyUserControls
                 LoadFilesEvent?.Invoke(obj);
             }
             LoadPhotosProgress.IsActive = false;
+        }
+
+        private void BaseCollectionViewModel_RemoveItemCollectionEvent(IFileSettings obj)
+        {
+            RemoveElementEvent?.Invoke(obj.File);
+            ListPhotos.Remove(obj.File);
         }
     }
 }

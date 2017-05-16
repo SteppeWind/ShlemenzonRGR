@@ -10,9 +10,8 @@ namespace RequestServer.PublicationsRequest
 {
     public class UpdatePublicationRequest
     {
-        public VMPublication OldPublication { get; set; }
+        public int IdOldPublication { get; set; }
 
         public VMPublication NewPublication { get; set; }
-
     }
 }

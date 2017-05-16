@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model.PublicationTypes
 {
-    public interface IFilmPublication<T, TGenre> : INoNewsModelPublication<TGenre> where T: class where TGenre : IGenre 
+    public interface IFilmPublication<T> where T : IActor
     {
         string Country { get; set; }
 
@@ -17,6 +17,8 @@ namespace Model.PublicationTypes
         /// </summary>
         string Director { get; set; }
 
-        ICollection<T> ListActors { get; set; }
+        List<T> ListActors { get; set; }
+
+        DateTime? ReleaseYear { get; set; }
     }
 }

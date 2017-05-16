@@ -8,6 +8,6 @@ namespace Model.PublicationTypes
 {
     public interface IInfoFile
     {
-        string Name { get; set; }     
+        string Type { get; set; }
     }
 }

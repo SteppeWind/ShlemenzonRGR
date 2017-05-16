@@ -1,4 +1,5 @@
 ﻿using Model.PublicationTypes;
+using ModelDataBase.DBInterfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace ModelDataBase.DBPublicationTypes
 {
     [Table("DBFilmPublications")]
-    public class DBFilmPublication : DBPublication, IFilmPublication<DBActor, DBGenre>
+    public class DBFilmPublication : DBPublication, IFilmPublication<DBActor>
     {
         public virtual string Country { get; set; }
 
@@ -17,10 +18,14 @@ namespace ModelDataBase.DBPublicationTypes
 
         public virtual string Director { get; set; }
 
-        public virtual ICollection<DBActor> ListActors { get; set; }
+        public virtual List<DBActor> ListActors { get; set; }
 
         public virtual DateTime? ReleaseYear { get; set; }
 
-        public ICollection<DBGenre> ListGenres { get; set ; }
+        public DBFilmPublication()
+        {
+            TypePublication = PublicationType.Film;
+        }
+
     }
 }

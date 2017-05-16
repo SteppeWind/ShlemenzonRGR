@@ -19,7 +19,8 @@
             <ItemsStackPanel Orientation="Horizontal"/>
         </ItemsPanelTemplate>
 
-        <viewModel:BaseCollectionViewModel x:Key="CollectionViewModel"/>
+        <viewModel:BaseCollectionViewModel x:Key="CollectionViewModel"
+                                           RemoveItemCollectionEvent="BaseCollectionViewModel_RemoveItemCollectionEvent"/>
 
         <DataTemplate x:Key="ImageViewTemplate"
                       x:DataType="model:ImageContainer">
@@ -60,7 +61,7 @@
 
         <controls:SetOrDropFilesUserControl x:Name="SetFilesControl"
                                             FileType="Image"
-                                            LoadFilesEvent="SetFilesControl_LoadFilesEvent"/>
+                                             LoadFilesEvent="SetFilesControl_LoadFilesEvent"/>
 
         <ProgressRing Name="LoadPhotosProgress"
                       Grid.Row="1"/>

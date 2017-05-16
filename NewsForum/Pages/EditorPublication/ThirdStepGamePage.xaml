@@ -141,7 +141,8 @@
 
         </Grid>
 
-            <controls:AddPhotosToPublicationUserControl Margin="0 15 0 0"
+            <controls:AddPhotosToPublicationUserControl x:Name="AddPhotosToPublicationUserControl"
+                                                        Margin="0 15 0 0"
                                                         LoadFilesEvent="AddPhotosToPublicationUserControl_LoadFilesEvent"
                                                         Grid.Row="2"/>
         </Grid>

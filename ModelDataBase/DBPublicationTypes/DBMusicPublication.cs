@@ -1,4 +1,5 @@
 ﻿using Model.PublicationTypes;
+using ModelDataBase.DBInterfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,20 +10,24 @@ using System.Threading.Tasks;
 namespace ModelDataBase.DBPublicationTypes
 {
     [Table("DBMusicPublications")]
-    public class DBMusicPublication : DBPublication, IMusicPublication<DBInfoFile, DBGenre>
+    public class DBMusicPublication : DBPublication, IMusicPublication
     {
-        public virtual string Formats { get; set; }
+        public string Formats { get; set; }
 
-        public virtual string Performer { get; set; }
+        public string Performer { get; set; }
 
-        public virtual string CountryPerformer { get; set; }
+        public string CountryPerformer { get; set; }
 
-        public virtual string Album { get; set; }
+        public string Album { get; set; }
 
-        public virtual ICollection<DBInfoFile> ListSongs { get; set; }
+        //[NotMapped]
+        //public virtual List<DBInfoFile> ListSongs { get; set; }
 
-        public virtual DateTime? ReleaseYear { get; set; }
+        public DateTime? ReleaseYear { get; set; }
 
-        public ICollection<DBGenre> ListGenres { get; set ; }
+        public DBMusicPublication()
+        {
+            TypePublication = PublicationType.Music;
+        }
     }
 }

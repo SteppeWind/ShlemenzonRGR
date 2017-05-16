@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ModelDataBase.DBPublicationTypes
 {
-    public class DBActor : Actor, IActorDB
+    public class DBActor : IActorDB
     {
         private int actorId = -1;
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -25,5 +25,7 @@ namespace ModelDataBase.DBPublicationTypes
         }
         
         public virtual ICollection<DBFilmPublication> ListFilms { get; set; }
+
+        public string Name { get; set; }
     }
 }

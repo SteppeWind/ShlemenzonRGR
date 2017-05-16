@@ -5,13 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ViewModelDataBase.VMInterfaces;
+using ViewModelDataBase.VMPublicationTypes;
 using Windows.Storage;
 
 namespace NewsForum.Model
 {
     class FilesAction
     {
-        static StorageFolder folder = ApplicationData.Current.LocalFolder;
+        public static StorageFolder Folder => ApplicationData.Current.LocalFolder;
 
         public async static Task<Tuple<string, byte[]>> ConvertToIFileVM(StorageFile storeFile)
         {
@@ -27,7 +28,7 @@ namespace NewsForum.Model
 
         public async static Task<StorageFile> CreateLocalStorageFile(string nameWithType)
         {
-            return await folder.CreateFileAsync(nameWithType, CreationCollisionOption.ReplaceExisting);            
+            return await Folder.CreateFileAsync(nameWithType, CreationCollisionOption.ReplaceExisting);            
         }
     }
 }

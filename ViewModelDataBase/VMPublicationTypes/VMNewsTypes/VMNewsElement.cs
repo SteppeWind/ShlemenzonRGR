@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace ViewModelDataBase.VMPublicationTypes.VMNewsTypes
 {
-    public class VMNewsElement : NewsElement
+    public class VMNewsElement : INewsElement
     {
         public VMPublication Publication { get; set; }
+
+        public TypeElementOfNews TypeElement { get; set; }
+
+        public int NumberOfList { get; set; }
     }
 }

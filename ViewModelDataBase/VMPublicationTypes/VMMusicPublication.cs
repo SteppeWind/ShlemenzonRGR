@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 using ViewModelDataBase.VMInterfaces;
 using System.Collections.ObjectModel;
 using ViewModelDataBase.VMTypes;
+using Model;
+using Newtonsoft.Json;
 
 namespace ViewModelDataBase.VMPublicationTypes
 {
-    public class VMMusicPublication : VMPublication, IMusicPublication<VMSong, IGenre>, IListBitmapImages
+    public class VMMusicPublication : VMPublication, IMusicPublication, IListSongs
     {
         public string Formats { get; set; }
 
@@ -20,12 +22,46 @@ namespace ViewModelDataBase.VMPublicationTypes
 
         public string Album { get; set; }
 
-        public ICollection<VMSong> ListSongs { get; set; }
-
         public DateTime? ReleaseYear { get; set; }
 
-        public virtual ICollection<IGenre> ListGenres { get; set; }
 
-        public ObservableCollection<VMImage> ListImages { get; set; }
+        private IEnumerable<VMFile> listImages;
+        [JsonIgnore]
+        public List<VMFile> ListImages
+        {
+            get
+            {
+                if (listImages == null)
+                {
+                    listImages = from f in ListFiles
+                                 where FilterTypes.FiltersImage
+                                 .Contains(f.Type.First() == '.' ? f.Type.Substring(1) : f.Type)
+                                 select f as VMFile;
+                }
+                return listImages.ToList();
+            }
+        }
+
+        private IEnumerable<VMFile> listSongs;
+        [JsonIgnore]
+        public List<VMFile> ListSongs
+        {
+            get
+            {
+                if (listSongs == null)
+                {
+                    listSongs = from f in ListFiles
+                                where FilterTypes.FiltersMusic
+                                .Contains(f.Type.First() == '.' ? f.Type.Substring(1) : f.Type)
+                                select f as VMFile;
+                }
+                return listSongs.ToList();
+            }
+        }
+
+        public VMMusicPublication()
+        {
+            TypePublication = PublicationType.Music;
+        }
     }
 }

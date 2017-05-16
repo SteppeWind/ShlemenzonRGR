@@ -1,4 +1,5 @@
-﻿using Model.PublicationTypes.NewsPublications;
+﻿using Model.PublicationTypes;
+using Model.PublicationTypes.NewsPublications;
 using ModelDataBase.DBInterfaces;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ModelDataBase.DBPublicationTypes.DBNewsTypes
 {
-    public class DBNewsElement : NewsElement, IPublicationDB
+    public class DBNewsElement : INewsElement, IPublicationDB
     {
         private int id = -1;
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -38,5 +39,9 @@ namespace ModelDataBase.DBPublicationTypes.DBNewsTypes
         }
 
         public virtual DBPublication Publication { get; set; }
+
+        public TypeElementOfNews TypeElement { get; set; }
+
+        public int NumberOfList { get; set; }
     }
 }

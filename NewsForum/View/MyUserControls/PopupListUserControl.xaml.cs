@@ -22,7 +22,7 @@ namespace NewsForum.View.MyUserControls
     public sealed partial class PopupListUserControl : UserControl
     {
 
-        public List<IGenre> SelectedGenres = new List<IGenre>();
+        public List<VMGenre> SelectedGenres = new List<VMGenre>();
 
         public object ItemsSource
         {

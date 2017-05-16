@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Model.PublicationTypes
 {
-    public class Actor
+    public interface IActor
     {
-        public virtual string Name { get; set; }
-
-        //public virtual ICollection<T> ListFilms { get; set; }
+        string Name { get; set; }
     }
 }

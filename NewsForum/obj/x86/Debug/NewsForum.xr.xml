@@ -451,7 +451,9 @@
       <RootProperty Name="PropertyName" />
       <RootProperty Name="Value" />
     </RootType>
-    <RootType FullName="NewsForum.ViewModel.BaseCollectionViewModel" />
+    <RootType FullName="NewsForum.ViewModel.BaseCollectionViewModel">
+      <RootEvent Name="RemoveItemCollectionEvent" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ProgressRing">
       <RootProperty Name="Name" />
     </RootType>

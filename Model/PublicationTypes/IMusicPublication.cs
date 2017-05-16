@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model.PublicationTypes
 {
-    public interface IMusicPublication<T, TGenre> : INoNewsModelPublication<TGenre> where T : class where TGenre : IGenre
+    public interface IMusicPublication
     { 
         /// <summary>
         /// Форматы песни или альбома, (wav, mp3 и т.д.)
@@ -28,6 +28,6 @@ namespace Model.PublicationTypes
         /// </summary>
         string Album { get; set; }
 
-        ICollection<T> ListSongs { get; set; }
+        DateTime? ReleaseYear { get; set; }
     }
 }

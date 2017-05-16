@@ -40,7 +40,7 @@ namespace RequestServer
         public static byte[] SerializeObject(object tObj, bool IsInhertance = false)
         {
             if (IsInhertance)
-                return Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(tObj, Formatting.Indented, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All }));
+                return Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(tObj, Formatting.None, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All }));
             else
                 return Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(tObj));
         }

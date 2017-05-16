@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ViewModelDataBase.VMPublicationTypes.VMNewsTypes
 {
-    class VMElementLinkVideo : VMNewsElement
+    public class VMElementLinkVideo : VMNewsElement
     {
         string attributeYTVideo = "https://www.youtube.com/watch";
 
@@ -41,7 +41,6 @@ namespace ViewModelDataBase.VMPublicationTypes.VMNewsTypes
                     return true;
                 }
             }
-
             return false;
         }
     }

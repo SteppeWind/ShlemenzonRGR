@@ -54,7 +54,7 @@ namespace NewsForum.Pages.EditorPublication
             {
                 BinaryReader br = new BinaryReader(stream);
                 var bytes = br.ReadBytes((int)stream.Length);
-                Publication.PosterImage = new VMImage()
+                Publication.PosterImage = new VMFile()
                 {
                     Bytes = bytes,
                     Type = obj.FileType

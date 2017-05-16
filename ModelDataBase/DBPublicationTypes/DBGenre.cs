@@ -28,5 +28,10 @@ namespace ModelDataBase.DBPublicationTypes
         public virtual ICollection<DBPublication> ListPublications { get; set; }
 
         public string Name { get ; set ; }
+
+        public DBGenre()
+        {
+            ListPublications = ListPublications ?? new List<DBPublication>();
+        }
     }
 }

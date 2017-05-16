@@ -22,6 +22,7 @@
         <converters:MethodNamePlayerConverter x:Key="MethodNamePlayerConverter"/>
         <converters:EnabledConverter x:Key="EnabledConverter"/>
         <viewModel:MediaPlayerViewModel x:Key="PlayerViewModel"
+                                        RemoveItemCollectionEvent="MediaPlayerViewModel_RemoveItemCollectionEvent"
                                         MediaPlayer="{x:Bind CurrentMedia}"/>
 
         <DataTemplate x:Key="MusicFileTemplate"

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace ModelDataBase.DBPublicationTypes
 {
     [Table("DBGamePubliactions")]
-    public class DBGamePubliaction : DBPublication, IGamePublication<DBGenre>, IListFiles
+    public class DBGamePubliaction : DBPublication, IGamePublication
     {
         public virtual string CompanyDeveloper { get ; set ; }
 
@@ -20,13 +20,6 @@ namespace ModelDataBase.DBPublicationTypes
 
         public virtual bool MultiPlayer { get; set; }
 
-        public virtual DateTime? ReleaseYear { get; set; }
-
-        /// <summary>
-        /// Список фотографий к публикации
-        /// </summary>
-        public virtual ICollection<DBInfoFile> ListFiles { get; set; }
-
-        public ICollection<DBGenre> ListGenres { get; set; }
+        public virtual DateTime? ReleaseYear { get; set; }      
     }
 }

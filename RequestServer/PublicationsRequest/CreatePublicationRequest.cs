@@ -8,7 +8,7 @@ using ViewModelDataBase.VMPublicationTypes;
 
 namespace RequestServer.PublicationsRequest
 {
-    public class CreatePublicationRequest : MainRequest
+    public class CreatePublicationRequest 
     {
         public VMPublication NewPublication { get; set; }
     }

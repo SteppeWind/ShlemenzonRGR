@@ -10,6 +10,6 @@ namespace ViewModelDataBase.VMInterfaces
 {
     public interface IListBitmapImages
     {
-        ObservableCollection<VMImage> ListImages { get; set; }
+        List<VMFile> ListImages { get; }
     }
 }

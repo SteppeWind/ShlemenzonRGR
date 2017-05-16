@@ -5,6 +5,7 @@ using RequestServer.PublicationsRequest;
 using RequestServer.Request;
 using ServerApp.CRUD;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -12,6 +13,8 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using ViewModelDataBase.VMPublicationTypes;
+using System.Collections.Concurrent;
+using ViewModelDataBase.VMPublicationTypes.VMNewsTypes;
 
 namespace ServerApp
 {
@@ -51,8 +54,6 @@ namespace ServerApp
                 var tcpClient = await ListenerConnections.AcceptTcpClientAsync();
                 Client client = new Client(tcpClient);
                 client.RecievedRequest += Client_RecievedRequest;
-                client.ExceptionRecieved += Client_ExceptionRecieved;
-                client.NumPacketRecieved += Client_NumPacketRecieved;
             }
             //while (true)
             //{
@@ -75,38 +76,83 @@ namespace ServerApp
 
         private void Client_RecievedRequest(Client client, MainRequest Request)
         {
-            Answer answer;
-            bool result = false;
-            switch (Request.TypeRequest)
+            switch (Request.DataType)
+            {
+                case RequestServer.DataType.Publication:
+                    PublicationRequests(Request);
+                    break;
+                case RequestServer.DataType.User:
+                    UserRequests(Request);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Обработка запроса, поступившая от админа
+        /// </summary>
+        /// <param name="mainRequest">Запрос с данными</param>
+        private void UserRequests(MainRequest mainRequest)
+        {
+            switch (mainRequest.TypeRequest)
             {
                 case TypeRequest.Update:
                     break;
                 case TypeRequest.Delete:
                     break;
                 case TypeRequest.Create:
-                    var request = JsonConvert.DeserializeObject<CreatePublicationRequest>(Request.RecievedRequest.ToString(), new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All });
-                    result = PublicationCRUD.CreatePublication(request.NewPublication);
-                    answer = new Answer()
-                    {
-                        TypeAnswer = TypeAnswer.Bool,
-                        SelfAnswer = result,
-                    };
-
                     break;
                 case TypeRequest.Read:
-                    answer = new Answer()
-                    {
-                        TypeAnswer = TypeAnswer.Bool,
-                        DataType = RequestServer.DataType.Publication,
-                        SelfAnswer = result,
-                    };
-                    client.SendAnswer(answer);
                     break;
                 default:
                     break;
             }
+        }
 
-
+        /// <summary>
+        /// Обработка создания, удаления, обновления, чтения публикаций
+        /// </summary>
+        /// <param name="mainRequest"></param>
+        private void PublicationRequests(MainRequest mainRequest)
+        {
+            object result = null;
+            Answer answer = new Answer() { SelfAnswer = result };
+            string json = mainRequest.RecievedRequest.ToString();
+            var @public = JsonConvert.DeserializeObject<VMPublication>(json);
+            switch (mainRequest.TypeRequest)
+            {
+                case TypeRequest.Update:
+                    break;
+                case TypeRequest.Delete:
+                    break;
+                case TypeRequest.Create:
+                    VMPublication castPublic = null;
+                    switch (@public.TypePublication)
+                    {
+                        case Model.PublicationTypes.PublicationType.Game:
+                            castPublic= JsonConvert.DeserializeObject<VMGamePublication>(json);
+                            break;
+                        case Model.PublicationTypes.PublicationType.Film:
+                            castPublic = JsonConvert.DeserializeObject<VMFilmPublication>(json);
+                            break;
+                        case Model.PublicationTypes.PublicationType.Music:
+                            castPublic = JsonConvert.DeserializeObject<VMMusicPublication>(json);
+                            break;
+                        case Model.PublicationTypes.PublicationType.News:
+                            castPublic = JsonConvert.DeserializeObject<VMNewsPublication>(json);
+                            break;
+                        default:
+                            break;
+                    }
+                    result = PublicationCRUD.CreatePublication(castPublic);
+                    break;
+                case TypeRequest.Read:
+                    answer.TypeAnswer = TypeAnswer.Publications;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -117,65 +163,58 @@ namespace ServerApp
         private int SizeBuffer = Packet.BufferSizePacket;
         public delegate void RecievedRequestEventHandler(Client client, MainRequest Request);
         public event RecievedRequestEventHandler RecievedRequest;
-        public event Action<string> ExceptionRecieved;
-        public event Action<int, int> NumPacketRecieved;
+        //public event Action<string> ExceptionRecieved;
+        //public event Action<int, int> NumPacketRecieved;
+        private event Action<(byte[] bytes, int size)> DataRecieved;
 
         public Client(TcpClient tcp)
         {
             TcpClient = tcp;
             NetWorkStream = tcp.GetStream();
             ReadStreamDataAsync();
+            DataRecieved += Client_DataRecieved;
         }
 
-        public async void ReadStreamDataAsync()
+        List<Packet> listPackets = new List<Packet>();
+        private async void Client_DataRecieved((byte[] bytes, int size) item)
         {
-            List<Packet> listPackets = new List<Packet>();
-            Queue<Tup>
-            while (true)
+            try
             {
-                byte[] bytes = new byte[SizeBuffer];
-                if (NetWorkStream.CanRead)
+                var packet = await Packet.GetPacketFromFixBytes(item.bytes, item.size);
+                lock (listPackets)
                 {
-                    int sizePiecePacket = await NetWorkStream.ReadAsync(bytes, 0, bytes.Length);
-                    var packet = await GetPacket(bytes, sizePiecePacket);
                     if (packet != null)
                     {
                         listPackets.Add(packet);
-                        if (packet.NumberPacket == packet.TotalCountPackets)
+                        if (listPackets.Count == packet.TotalCountPackets)
                         {
-                            RecievedRequest(this, MainRequest.GetTObjFromPackets(listPackets));
+                            var res = MainRequest.GetTObjFromPackets(listPackets.OrderBy(el => el.NumberPacket).ToList());
+                            RecievedRequest(this, res);
                             listPackets.Clear();
                         }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+            }                          
         }
-
-        public Task<Packet> GetPacket(byte[] bytes, int sizePiecePacket)
+       
+        public async void ReadStreamDataAsync()
         {
             try
             {
-                return Task.Run(() =>
+                while (true)
                 {
-                    Array.Resize(ref bytes, sizePiecePacket);
-                    string json = Encoding.UTF8.GetString(bytes);
-                    Packet packet = Packet.GetPacketFromBytes(bytes);
-                    Packet.ExceptionRecieved += Packet_ExceptionRecieved;
-                    if (packet != null)
-                        NumPacketRecieved(packet.NumberPacket, packet.TotalCountPackets);
-                    return packet;
-                });
+                    byte[] bytes = new byte[SizeBuffer];
+                    int sizePiecePacket = await NetWorkStream.ReadAsync(bytes, 0, bytes.Length);
+                    DataRecieved((bytes, sizePiecePacket));
+                }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                ExceptionRecieved(ex.Message);
             }
-            return null;
-        }
-
-        private void Packet_ExceptionRecieved(string obj)
-        {
-            ExceptionRecieved(obj);
+            
         }
 
         public async void SendAnswer(Answer answer)
@@ -183,6 +222,7 @@ namespace ServerApp
             var collection = Answer.GetTObjectPacketsBytes(answer);
             foreach (var item in collection)
             {
+                await Task.Delay(1);
                 await NetWorkStream.WriteAsync(item, 0, item.Length);
             }
         }

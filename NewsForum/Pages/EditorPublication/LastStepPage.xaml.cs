@@ -38,7 +38,6 @@ namespace NewsForum.Pages.EditorPublication
     public sealed partial class LastStepPage : Page
     {
         VMPublication Publication;
-        VMGamePublication GamePublication;
         public LastStepPage()
         {
             this.InitializeComponent();
@@ -50,7 +49,7 @@ namespace NewsForum.Pages.EditorPublication
             switch (currPublic.TypePublication)
             {
                 case global::Model.PublicationTypes.PublicationType.Game:
-                    GamePublication = currPublic as VMGamePublication;
+                    Publication = currPublic as VMGamePublication;
                     break;
                 case global::Model.PublicationTypes.PublicationType.Film:
                     break;
@@ -71,31 +70,30 @@ namespace NewsForum.Pages.EditorPublication
 
         private async void Button_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            GamePublication.User = new ViewModelDataBase.VMUser() { AccessLevel = UserAccessLevel.God, UserId = 1 };
-            CreatePublicationRequest createPublicRequest = new CreatePublicationRequest()
-            {
-                NewPublication = GamePublication,
-            };
+            Publication.User = new ViewModelDataBase.VMUser() { AccessLevel = UserAccessLevel.God, UserId = 1 };
             MainRequest mr = new MainRequest()
             {
                 DataType = RequestServer.DataType.Publication,
                 TypeRequest = RequestServer.Request.TypeRequest.Create,
-                RecievedRequest = createPublicRequest
+                RecievedRequest = Publication
             };
             try
             {
-                var res = await ServerRequest.SendRequest(mr);
-                switch (res.TypeAnswer)
-                {
-                    case RequestServer.AnswerForRequest.TypeAnswer.Bool:
-                        break;
-                    case RequestServer.AnswerForRequest.TypeAnswer.Publications:
-                        break;
-                    case RequestServer.AnswerForRequest.TypeAnswer.Users:
-                        break;
-                    default:
-                        break;
-                }
+                await ServerRequest.SendRequest(mr);
+                ServerRequest.GetAnswerForLastRequest += (res) =>
+                  {
+                      switch (res.TypeAnswer)
+                      {
+                          case RequestServer.AnswerForRequest.TypeAnswer.Bool:
+                              break;
+                          case RequestServer.AnswerForRequest.TypeAnswer.Publications:
+                              break;
+                          case RequestServer.AnswerForRequest.TypeAnswer.Users:
+                              break;
+                          default:
+                              break;
+                      }
+                  };
             }
             catch (Exception)
             {

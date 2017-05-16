@@ -34,7 +34,7 @@ namespace NewsForum
         public MainPage()
         {
             this.InitializeComponent();
-            go();
+            //go();
          }
 
         async void go()
@@ -53,18 +53,21 @@ namespace NewsForum
                 TypeRequest = TypeRequest.Read,
                 UserId = 1
             };
-            var answer = await ServerRequest.SendRequest(mr);
-            switch (answer.TypeAnswer)
+            await ServerRequest.SendRequest(mr);
+            ServerRequest.GetAnswerForLastRequest += (answer) =>
             {
-                case RequestServer.AnswerForRequest.TypeAnswer.Bool:
-                    break;
-                case RequestServer.AnswerForRequest.TypeAnswer.Publications:
-                    break;
-                case RequestServer.AnswerForRequest.TypeAnswer.Users:
-                    break;
-                default:
-                    break;
-            }
+                switch (answer.TypeAnswer)
+                {
+                    case RequestServer.AnswerForRequest.TypeAnswer.Bool:
+                        break;
+                    case RequestServer.AnswerForRequest.TypeAnswer.Publications:
+                        break;
+                    case RequestServer.AnswerForRequest.TypeAnswer.Users:
+                        break;
+                    default:
+                        break;
+                }
+            };        
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)

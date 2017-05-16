@@ -1,4 +1,5 @@
-﻿using Model.PublicationTypes.NewsPublications;
+﻿using Model.PublicationTypes;
+using Model.PublicationTypes.NewsPublications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ using Windows.Storage;
 
 namespace ViewModelDataBase.VMPublicationTypes.VMNewsTypes
 {
-    public class VMNewsElementFile : VMNewsElement
+    public class VMNewsElementFile : VMNewsElement, IFileVM
     {
-        public string Type { get ; set ; }
-
-        public string Name { get; set; }       
+        public string Name { get; set; }
+        public byte[] Bytes { get; set; }
+        public string Type { get; set ; }
     }
 }

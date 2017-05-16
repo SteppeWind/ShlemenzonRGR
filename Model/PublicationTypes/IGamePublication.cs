@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Model.PublicationTypes
 {
-    public interface IGamePublication<TGenre> : INoNewsModelPublication<TGenre> where TGenre : IGenre
-    {
-        
+    public interface IGamePublication
+    {        
         /// <summary>
         /// Разработчик
         /// </summary>
@@ -28,5 +27,7 @@ namespace Model.PublicationTypes
         /// Поддержка мультиплеера
         /// </summary>
         bool MultiPlayer { get; set; }
+
+        DateTime? ReleaseYear { get; set; }
     }
 }

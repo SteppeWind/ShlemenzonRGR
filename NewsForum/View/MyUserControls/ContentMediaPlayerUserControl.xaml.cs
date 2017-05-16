@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using NewsForum.ViewModel;
+using ViewModelDataBase.VMTypes;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -24,6 +25,8 @@ namespace NewsForum.View.MyUserControls
 {
     public sealed partial class ContentMediaPlayerUserControl : UserControl
     {
+        public List<StorageFile> ListMusic { get; private set; } = new List<StorageFile>();
+
         MediaElement CurrentMedia { get; set; }
 
         public static readonly DependencyProperty IsEditMusicCollectionProperty = DependencyProperty.Register("IsEditMusicCollection",
@@ -63,6 +66,18 @@ namespace NewsForum.View.MyUserControls
             {
                 PauseOrPlayButton.Icon = new SymbolIcon(Symbol.Play);
             }
+        }
+
+        private void MediaPlayerViewModel_RemoveItemCollectionEvent(IFileSettings obj)
+        {
+            if (obj != null)
+                ListMusic.Remove(obj.File);
+        }
+
+        public void AddMusicFile(StorageFile file)
+        {
+            if (file != null)
+                ListMusic.Add(file);
         }
     }
 }

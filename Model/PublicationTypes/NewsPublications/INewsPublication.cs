@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Model.PublicationTypes.NewsPublications
 {
-    public interface INewsPublication<T> where T : class
+    public interface INewsPublication<TNewsElement> where TNewsElement : INewsElement
     {
-        ICollection<T> ListElements { get; set; }
+        List<TNewsElement> ListElements { get; set; }
     }
 }

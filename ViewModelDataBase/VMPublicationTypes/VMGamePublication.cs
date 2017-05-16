@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 using ViewModelDataBase.VMInterfaces;
 using System.Collections.ObjectModel;
 using ViewModelDataBase.VMTypes;
+using Model;
+using Newtonsoft.Json;
 
 namespace ViewModelDataBase.VMPublicationTypes
 {
-    public class VMGamePublication : VMPublication, IGamePublication<IGenre>, IListBitmapImages
+    public class VMGamePublication : VMPublication, IGamePublication, IListBitmapImages
     {
         public string CompanyDeveloper { get; set; }
 
@@ -22,15 +24,27 @@ namespace ViewModelDataBase.VMPublicationTypes
 
         public DateTime? ReleaseYear { get; set; }
 
-        public virtual ICollection<IGenre> ListGenres { get; set; }
-
-        public ObservableCollection<VMImage> ListImages { get; set; }
+        //public List<VMGenre> ListGenres { get; set; }
+        private IEnumerable<VMFile> listImages;
+        [JsonIgnore]
+        public List<VMFile> ListImages
+        {
+            get
+            {
+                if (listImages == null)
+                {
+                    listImages = from f in ListFiles
+                                 where FilterTypes.FiltersImage
+                                 .Contains(f.Type.First() == '.' ? f.Type.Substring(1) : f.Type)
+                                 select f as VMFile;
+                }
+                return listImages.ToList();
+            }
+        }
 
         public VMGamePublication()
         {
             TypePublication = PublicationType.Game;
-            ListGenres = new List<IGenre>();
-            ListImages = new ObservableCollection<VMImage>();
         }
     }
 }

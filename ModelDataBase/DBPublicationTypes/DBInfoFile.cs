@@ -12,10 +12,9 @@ namespace ModelDataBase.DBPublicationTypes
 {
     public class DBInfoFile : IInfoFile, IStoreFileDB, IPublicationDB
     {
-        public virtual string Name { get; set ; }
-
         public virtual string FullPath { get; set; }
 
+        public string Type { get; set; }
 
         private int id = -1;
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -43,5 +42,6 @@ namespace ModelDataBase.DBPublicationTypes
         }
 
         public virtual DBPublication Publication { get; set; }
+
     }
 }

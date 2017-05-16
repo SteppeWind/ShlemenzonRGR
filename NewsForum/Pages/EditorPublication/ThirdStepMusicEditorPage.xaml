@@ -68,10 +68,17 @@
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
 
-                    <TextBox Grid.Row="0"
-                             Style="{StaticResource BaseTextBoxStyle}"
-                             PlaceholderText="Год выпуска"
-                             Margin="0 15 0 0"/>
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Row="0"
+                                Margin="0 15 0 0">
+                        <TextBlock Style="{StaticResource BaseMenuTextBlockStyle}"
+                                   Text="Год выпуска"
+                                   Margin="0 0 10 0"
+                                   VerticalAlignment="Center"/>
+                        <DatePicker Name="RealeseDatePicker"
+                                    FontSize="20"
+                                    FontFamily="Microsoft YaHei Light"/>
+                    </StackPanel>
 
                     <TextBox Grid.Row="1"
                              Style="{StaticResource BaseTextBoxStyle}"
@@ -101,16 +108,42 @@
                              PlaceholderText="Альбом"
                              Margin="0 15 0 0"/>
 
-                    <TextBox Grid.Row="1"
-                             Style="{StaticResource BaseTextBoxStyle}"
-                             PlaceholderText="Жанр"
-                             Margin="0 15 0 0"/>
+                    <Grid Grid.Row="1"
+                          Margin="0 15 0 0">
+                        
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
 
-                    <TextBox Grid.Row="2"
-                             Style="{StaticResource BaseTextBoxStyle}"
-                             PlaceholderText="Форматы"
-                             Margin="0 15 0 0"
-                             ToolTipService.ToolTip="Если их несколько, перечислите через запятую"/>
+                        <TextBox Style="{StaticResource BaseTextBoxStyle}"
+                                 PlaceholderText="Форматы"
+                                 ToolTipService.ToolTip="Если их несколько, перечислите через запятую"/>
+
+                        <Button Grid.Column="1"
+                                Style="{StaticResource BaseMenuIconButtonStyle}"
+                                Content=""
+                                Margin="5 0 0 0"
+                                Padding="-1">
+                            <Button.Flyout>
+                                <Flyout>
+                                    <RichTextBlock>
+                                        <Paragraph>
+                                             Если форматов несколько, перечислите через запятую
+                                        </Paragraph>
+                                        <Paragraph>
+                                            Например: mp3, wav 
+                                        </Paragraph>
+                                    </RichTextBlock>
+                                </Flyout>
+                            </Button.Flyout>
+                        </Button>
+                    </Grid>
+                    
+                    <controls:PopupListUserControl x:Name="GenresControl"
+                                                   Grid.Row="2"
+                                                   Margin="0 15 0 0"
+                                                   ItemsSource="{x:Bind Genres}"/>
 
                 </Grid>
             </Grid>
@@ -131,7 +164,8 @@
             </Grid>
 
 
-            <controls:AddPhotosToPublicationUserControl Grid.Row="2"/>
+            <controls:AddPhotosToPublicationUserControl x:Name="AddPhotosControl"
+                                                        Grid.Row="2"/>
 
             <controls:SetOrDropFilesUserControl x:Name="SelectFileControl"
                                                 Grid.Row="3"

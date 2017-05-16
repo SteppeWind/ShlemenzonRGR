@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace ViewModelDataBase.VMPublicationTypes
 {
-    public class VMActor : Actor
+    public class VMActor : IActor
     {
         public ObservableCollection<VMFilmPublication> ListFilms { get; set; }
+        public string Name { get; set; }
     }
 }

@@ -16,6 +16,8 @@ namespace NewsForum.ViewModel
        
         public ObservableCollection<IFileSettings> BaseFileCollection { get; private set; }
 
+        public event Action<IFileSettings> RemoveItemCollectionEvent;
+
         public BaseCollectionViewModel()
         {
             AddDeleteCommand = new AddDeleteCommand(this);
@@ -25,6 +27,7 @@ namespace NewsForum.ViewModel
         public virtual void RemoveElement(IFileSettings element)
         {
             BaseFileCollection.Remove(element);
+            RemoveItemCollectionEvent?.Invoke(element);
         }
 
         public void AddRange(IEnumerable<IFileSettings> collection)

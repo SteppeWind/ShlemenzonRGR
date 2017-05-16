@@ -40,20 +40,20 @@ namespace NewsForum.Pages.EditorPublication
 
         protected async override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            var doc = EditDescriptionBox.Document;
             var file = await FilesAction.CreateLocalStorageFile("Description.rtf");
-            using (var stream = await file.OpenAsync(FileAccessMode.ReadWrite))
-            {
-                doc.SaveToStream(Windows.UI.Text.TextGetOptions.FormatRtf, stream);
-            }
-            var result = await FilesAction.ConvertToIFileVM(file);
-            Publication.Description = new ViewModelDataBase.VMTypes.VMDescription()
-            {
-                Bytes = result.Item2,
-                Type = result.Item1
-            };
+            await EditDescriptionBox.SaveDocumentStreamToFile(file);
             Publication.ListGenres = GenresListView.SelectedGenres;
-            Publication.CreateDate = RealeseDatePicker.Date.DateTime;
+            Publication.ReleaseYear = RealeseDatePicker.Date.DateTime;
+            Publication.ListFiles.Clear();
+            foreach (var item in AddPhotosToPublicationUserControl.ListPhotos)
+            {
+                var curr = await FilesAction.ConvertToIFileVM(item);
+                Publication.ListFiles.Add(new VMFile()
+                {
+                    Type = curr.Item1,
+                    Bytes = curr.Item2
+                });
+            }
         } 
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -63,15 +63,22 @@ namespace NewsForum.Pages.EditorPublication
 
         private async void AddPhotosToPublicationUserControl_LoadFilesEvent(IEnumerable<StorageFile> obj)
         {
-            foreach (var file in obj)
-            {
-                var curr = await FilesAction.ConvertToIFileVM(file);
-                Publication.ListImages.Add(new VMImage()
-                {
-                    Type = curr.Item1,
-                    Bytes = curr.Item2
-                });
-            }
+            //foreach (var file in obj)
+            //{
+            //    var curr = await FilesAction.ConvertToIFileVM(file);
+            //    Publication.ListFiles.Add(new VMFile()
+            //    {
+            //        Type = curr.Item1,
+            //        Bytes = curr.Item2
+            //    });
+            //}
+        }
+
+        private async void AddPhotosToPublicationUserControl_RemoveElementEvent(StorageFile obj)
+        {
+            var curr = await FilesAction.ConvertToIFileVM(obj);
+            var el = Publication.ListFiles.FirstOrDefault(f => f.Bytes == curr.Item2);
+            Publication.ListFiles.Remove(el);
         }
     }
 }

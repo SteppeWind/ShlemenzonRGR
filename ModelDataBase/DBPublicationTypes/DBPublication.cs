@@ -11,7 +11,7 @@ using ModelDataBase.DBUserTypes;
 
 namespace ModelDataBase.DBPublicationTypes
 {
-    public class DBPublication : Publication, IPosterDB, IDescriptionDB, IUserDB
+    public class DBPublication : Publication<DBInfoFile, DBGenre>, IPosterDB, IDescriptionDB, IUserDB
     {
         private int publicationId = -1;
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -46,5 +46,11 @@ namespace ModelDataBase.DBPublicationTypes
 
         public virtual ICollection<DBComment> ListComments { get; set; }
 
+        //public virtual List<DBGenre> ListGenres { get; set; }
+
+        ///// <summary>
+        ///// Список фотографий к публикации
+        ///// </summary>
+        //public virtual List<DBInfoFile> ListFiles { get; set; }
     }
 }

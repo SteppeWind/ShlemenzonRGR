@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
@@ -27,6 +29,14 @@ namespace NewsForum.View.MyUserControls
         {
             get => (string)GetValue(TextBox.PlaceholderTextProperty);
             set => SetValue(TextBox.PlaceholderTextProperty, MainRichEditBox.PlaceholderText = value);
+        }
+
+        public async Task SaveDocumentStreamToFile(StorageFile file)
+        {
+            using (var stream = await file.OpenAsync(FileAccessMode.ReadWrite))
+            {
+                Document.SaveToStream(Windows.UI.Text.TextGetOptions.FormatRtf, stream);
+            }            
         }
 
         public EditDescriptionBoxUserControl()
