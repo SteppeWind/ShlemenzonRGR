@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using ViewModelDataBase.VMPublicationTypes;
 using Windows.Networking;
@@ -24,6 +25,13 @@ namespace NewsForum.Model
         private static event Action<(byte[] bytes, int size)> DataRecieved;
         public static event Action<Answer> GetAnswerForLastRequest;
 
+        private static event Action IsEnded;
+
+        public static int Delay { get; private set; } = 5;
+        
+
+        private static List<Packet> ListPackets = new List<Packet>();
+
         public async static Task ConnectToServer()
         {
             try
@@ -31,9 +39,8 @@ namespace NewsForum.Model
                 Socket = new StreamSocket();
                 HostName host = new HostName(ServerSettings.Host);
                 await Socket.ConnectAsync(host, ServerSettings.Port.ToString());
+                IsEnded += ServerRequest_IsEnded;
                 IsConnect = true;
-                DataRecieved += ServerRequest_DataRecieved;
-                ReadAnswer();
             }
             catch (Exception)
             {
@@ -41,28 +48,18 @@ namespace NewsForum.Model
             }
         }
 
-        private static List<Packet> listPackets = new List<Packet>();
-
-        private async static void ServerRequest_DataRecieved((byte[] bytes, int size) item)
+        public async static Task<Answer> SendRequest(MainRequest mainRequest)
         {
-            var packet = await Packet.GetPacketFromFixBytes(item.bytes, item.size);
-            lock (listPackets)
+            Answer answer = null;
+            if (mainRequest.RecievedRequest is VMMusicPublication)
             {
-                if (packet != null)
-                {
-                    listPackets.Add(packet);
-                    if (packet.TotalCountPackets == listPackets.Count)
-                    {
-                        GetAnswerForLastRequest?.Invoke(Answer.GetTObjFromPackets(listPackets.OrderBy(p => p.NumberPacket).ToList()));
-                        listPackets.Clear();
-                    }
-                }
+                Delay = 50;
             }
-        }
+            else
+            {
+                Delay = 5;
+            }
 
-        
-        public async static Task SendRequest(MainRequest mainRequest)
-        {
             List<Packet> tempListPackets = new List<Packet>();
             if (!IsConnect)
             {
@@ -73,11 +70,55 @@ namespace NewsForum.Model
                 var collection = MainRequest.GetTObjectPacketsBytes(mainRequest);
                 foreach (var item in collection)
                 {
-                    await Task.Delay(1);
+                    await Task.Delay(Delay);
                     await OutputStream.WriteAsync(item, 0, item.Length);
                     await OutputStream.FlushAsync();
                 }
+                CancellationTokenSource source = new CancellationTokenSource();
+                var token = source.Token;
+                try
+                {
+                    while (true)
+                    {
+                        byte[] pieceAnswerBytes = new byte[Packet.BufferSizePacket];
+                        int pieceAnswerSize = await InputStream.ReadAsync(pieceAnswerBytes, 0, pieceAnswerBytes.Length, token);
+                        if (token.IsCancellationRequested)
+                            break;
+                        DataProcessing((pieceAnswerBytes, pieceAnswerSize), source);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    IsConnect = false;
+                }
+                
+                answer = Answer.GetTObjFromPackets(ListPackets.OrderBy(p => p.NumberPacket).ToList());
+                var js = answer.SelfAnswer.ToString();
+                ListPackets.Clear();
             }
+
+            return answer;
+        }
+
+        public static async void DataProcessing((byte[] bytes, int size) item, CancellationTokenSource sourceToken)
+        {
+            var packet = await Packet.GetPacketFromFixBytesAsync(item.bytes, item.size);
+            lock (ListPackets)
+            {
+                if (packet != null)
+                {
+                    ListPackets.Add(packet);
+                    if (packet.TotalCountPackets == ListPackets.Count)
+                    {
+                        sourceToken.Cancel();
+                    }
+                }
+            }
+        }
+
+
+        private static void ServerRequest_IsEnded()
+        {
         }
 
         private async static void ReadAnswer()
@@ -88,6 +129,6 @@ namespace NewsForum.Model
                 int pieceAnswerSize = await InputStream.ReadAsync(pieceAnswerBytes, 0, pieceAnswerBytes.Length);
                 DataRecieved((pieceAnswerBytes, pieceAnswerSize));
             }
-         }
+        }
     }
 }

@@ -1,0 +1,81 @@
+﻿<Page
+    x:Class="NewsForum.Pages.InfoUsersPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NewsForum.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:main="using:NewsForum"
+    xmlns:commands="using:NewsForum.ViewModel.Commands"
+    xmlns:converters="using:NewsForum.View.Converters"
+    xmlns:viewmodelUserDll="using:ViewModel.UserTypes"
+    xmlns:viewModelDB="using:ViewModelDataBase">
+
+    <Page.Resources>
+        <converters:AccessLevelToWordCovnerter x:Key="AccessLevelToWordCovnerter"/>
+        <converters:IsBanedConverter x:Key="IsBanedConverter"/>
+        <converters:IsEnabledFromUserBannedConverter x:Key="IsEnabledFromUserBannedConverter"/>
+        <commands:BanCommand x:Key="BanCommand"/>
+
+
+        <DataTemplate x:Key="InfoUserTemplate"
+                      x:DataType="viewModelDB:VMUser">
+
+            <Grid x:Name="grid"
+                  Margin="0 15 0 0"
+                  DataContext="{x:Bind Mode=OneWay}">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="{x:Bind EMail}"
+                               Grid.Row="0"
+                           TextWrapping="NoWrap"
+                           TextTrimming="CharacterEllipsis"
+                               Style="{StaticResource BaseMenuTextBlockStyle}"/>
+
+                <StackPanel Orientation="Horizontal"
+                                Grid.Row="1">
+                    <TextBlock Text="Статус: "
+                                   FontSize="15"
+                               Margin="0 0 5 0"
+                                   Style="{StaticResource SubtitleTextBlockStyle}"/>
+
+                    <TextBlock Text="{x:Bind AccessLevel, Converter={StaticResource AccessLevelToWordCovnerter}}"                               
+                                   FontSize="15"
+                                   Style="{StaticResource SubtitleTextBlockStyle}"/>
+                </StackPanel>
+
+
+                <Button Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Grid.Column="1"
+                        Command="{StaticResource BanCommand}"
+                        CommandParameter="{Binding ElementName=grid, Path=DataContext}"
+                        HorizontalAlignment="Center"
+                        Content="{Binding Path=IsBunned, Converter={StaticResource IsBanedConverter}, UpdateSourceTrigger=PropertyChanged}"
+                        IsEnabled="{x:Bind Path=AccessLevel, Converter={StaticResource IsEnabledFromUserBannedConverter}}"/>
+
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource MenuColorStyle}"
+         DataContext="{x:Bind main:CurrentUser.User}">
+        <ListView Name="UsersListView"
+                  ItemsSource="{x:Bind ListUsers}"
+                  IsItemClickEnabled="True"
+                 ItemClick="UsersListView_ItemClick"
+                  ItemTemplate="{StaticResource InfoUserTemplate}">
+
+        </ListView>
+    </Grid>
+</Page>

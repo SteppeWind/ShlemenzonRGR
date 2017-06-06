@@ -8,7 +8,10 @@ namespace RequestServer
 {
     public enum DataType
     {
+        Bool,
         Publication,
-        User
+        User,
+        Actor,
+        SmallPublication
     }
 }

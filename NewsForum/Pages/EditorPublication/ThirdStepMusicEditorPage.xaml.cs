@@ -31,7 +31,7 @@ namespace NewsForum.Pages.EditorPublication
     public sealed partial class ThirdStepMusicEditorPage : Page
     {
         public string[] Genres = GenreTypes.MusicGenres;
-        VMMusicPublication Publication;
+        VMMusicPublication Publication { get; set; } = new VMMusicPublication();
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -41,17 +41,20 @@ namespace NewsForum.Pages.EditorPublication
         protected async override void OnNavigatedFrom(NavigationEventArgs e)
         {
             var file = await FilesAction.CreateLocalStorageFile("Description.rtf");
-            await EditDescriptionBox.SaveDocumentStreamToFile(file);            
-            Publication.ListGenres = GenresControl.SelectedGenres;
-            Publication.ReleaseYear = RealeseDatePicker.Date.DateTime;
-            Publication.ListFiles.Clear();
-            foreach (var item in AddPhotosControl.ListPhotos)
+            await EditDescriptionBox.SaveDocumentStreamToFile(file);
+            if (Publication != null)
             {
-                await AddFileToFilesPublic(item);
-            }
-            foreach (var item in MediaPlayerControl.ListMusic)
-            {
-                await AddFileToFilesPublic(item);
+                Publication.ListGenres = GenresControl.SelectedGenres;
+                Publication.ReleaseYear = RealeseDatePicker.GetCurrentDate.DateTime;
+                Publication.ListFiles.Clear();
+                foreach (var item in AddPhotosControl.ListPhotos)
+                {
+                    await AddFileToFilesPublic(item);
+                }
+                foreach (var item in MediaPlayerControl.ListMusic)
+                {
+                    await AddFileToFilesPublic(item);
+                }
             }
         }
 
@@ -60,6 +63,7 @@ namespace NewsForum.Pages.EditorPublication
             var curr = await FilesAction.ConvertToIFileVM(item);
             Publication.ListFiles.Add(new VMFile()
             {
+                Name = item.DisplayName,
                 Type = curr.Item1,
                 Bytes = curr.Item2
             });

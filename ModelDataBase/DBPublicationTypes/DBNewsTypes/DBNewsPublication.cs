@@ -11,11 +11,12 @@ namespace ModelDataBase.DBPublicationTypes.DBNewsTypes
     [Table("DBNewsPublications")]
     public class DBNewsPublication : DBPublication, INewsPublication<DBNewsElement>
     {
-        public List<DBNewsElement> ListElements { get; set; }
+        public virtual List<DBNewsElement> ListElements { get; set; }
 
         public DBNewsPublication()
         {
             TypePublication = Model.PublicationTypes.PublicationType.News;
+            ListElements = ListElements ?? new List<DBNewsElement>();
         }
     }
 }

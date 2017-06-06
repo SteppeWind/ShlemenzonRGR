@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace ModelDataBase.DBPublicationTypes.DBNewsTypes
 {
-    public class DBNewsElement : INewsElement, IPublicationDB
+    public class DBNewsElement : NewsElement
     {
         private int id = -1;
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int NewsElementFileId
+        public int NewsElementId
         {
             get { return id; }
             set
@@ -28,7 +28,7 @@ namespace ModelDataBase.DBPublicationTypes.DBNewsTypes
 
         private int publicationId = -1;
         [ForeignKey("Publication")]
-        public int PublicatoinId
+        public override int PublicationId
         {
             get => publicationId;
             set
@@ -39,9 +39,5 @@ namespace ModelDataBase.DBPublicationTypes.DBNewsTypes
         }
 
         public virtual DBPublication Publication { get; set; }
-
-        public TypeElementOfNews TypeElement { get; set; }
-
-        public int NumberOfList { get; set; }
     }
 }

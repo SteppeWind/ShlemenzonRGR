@@ -6,10 +6,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:modelDll="using:Model.UserTypes"
+    xmlns:converters="using:NewsForum.View.Converters"
     Transitions="{StaticResource BaseAnimation}">
 
     <Page.Resources>
 
+        <converters:ReverseAdminAccessConverter x:Key="AdminAccessVisibleConverter"/>
+        <converters:UserAccessVisibleConverter x:Key="UserAccessVisibleConverter"/>
 
         <Style x:Key="MenuTitleStyle"
                TargetType="TextBlock"
@@ -79,7 +83,7 @@
                    PaneBackground="#d6d7d8">
             <SplitView.Pane>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <Grid>
+                    <Grid DataContext="{x:Bind local:CurrentUser.User}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="*"/>
@@ -87,6 +91,7 @@
                         </Grid.RowDefinitions>
 
                         <ListView Name="FirstMenuListView"
+                         
                                   Grid.Row="0"
                                   SelectionMode="None"
                                   ItemClick="ListView_ItemClick"
@@ -110,28 +115,22 @@
                                 </StackPanel>
                             </ListViewItem>
 
-                            <!--<ListViewItem Name="Share">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Style="{StaticResource MenuIconStyle}"
-                                       Text=""/>
+                            <ListViewItem Visibility="{Binding Path=AccessLevel, Converter={StaticResource AdminAccessVisibleConverter}, UpdateSourceTrigger=PropertyChanged}">
+                                <StackPanel Tag="Users"
+                                    Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource BaseSmallMenuIconTextBlockStyle}"
+                                       Text=""/>
                                     <TextBlock Style="{StaticResource MenuTitleStyle}"
-                                       Text="Фильмы"/>
+                                       Text="Пользователи"/>
                                 </StackPanel>
                             </ListViewItem>
-                            <ListViewItem>
+                            <!--<ListViewItem Name="NonPublished">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Style="{StaticResource MenuIconStyle}"
-                                       Text=""/>
+                                    <TextBlock Style="{StaticResource BaseSmallMenuIconTextBlockStyle}"
+                                       Text=""/>
                                     <TextBlock Style="{StaticResource MenuTitleStyle}"
-                                       Text="Игры"/>
-                                </StackPanel>
-                            </ListViewItem>
-                            <ListViewItem>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Style="{StaticResource MenuIconStyle}"
-                                       Text=""/>
-                                    <TextBlock Style="{StaticResource MenuTitleStyle}"
-                                       Text="Музыка"/>
+                                       Text="Не опубликованные публикации"
+                                               TextWrapping="Wrap"/>
                                 </StackPanel>
                             </ListViewItem>-->
                         </ListView>
@@ -140,7 +139,7 @@
                                   IsItemClickEnabled="True"
                                   SelectionMode="None"
                                   ItemClick="ListView_ItemClick">
-                            <ListViewItem>
+                            <ListViewItem Visibility="{Binding Path=AccessLevel, Converter={StaticResource UserAccessVisibleConverter}, UpdateSourceTrigger=PropertyChanged}">
                                 <StackPanel Tag="Publication"
                                             Orientation="Horizontal">
                                     <TextBlock Style="{StaticResource BaseSmallMenuIconTextBlockStyle}"

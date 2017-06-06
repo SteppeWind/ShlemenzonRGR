@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ModelDataBase.DBPublicationTypes
 {
-    public class DBGenre : IGenre
+    public class DBGenre : Genre
     {
 
         private int genreId = -1;
@@ -26,9 +26,7 @@ namespace ModelDataBase.DBPublicationTypes
         }
         
         public virtual ICollection<DBPublication> ListPublications { get; set; }
-
-        public string Name { get ; set ; }
-
+        
         public DBGenre()
         {
             ListPublications = ListPublications ?? new List<DBPublication>();

@@ -159,6 +159,7 @@
 
         <ListView x:Name="MusicCollectionListView"
                   Grid.Row="2"
+                  HorizontalAlignment="Left"
                   Grid.ColumnSpan="5"
                   IsItemClickEnabled="True" 
                   SelectedItem="{Binding Source={StaticResource PlayerViewModel}, Path=CurrentSong, Mode=TwoWay}"

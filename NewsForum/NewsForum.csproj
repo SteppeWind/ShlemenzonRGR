@@ -98,6 +98,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CurrentUser.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -108,6 +109,12 @@
     <Compile Include="Model\SongDuration.cs" />
     <Compile Include="Model\SoundFileContainer.cs" />
     <Compile Include="Model\FilesAction.cs" />
+    <Compile Include="Pages\ContentPage.xaml.cs">
+      <DependentUpon>ContentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CurrentUserInfoPage.xaml.cs">
+      <DependentUpon>CurrentUserInfoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\EditorPublication\LastStepPage.xaml.cs">
       <DependentUpon>LastStepPage.xaml</DependentUpon>
     </Compile>
@@ -132,30 +139,66 @@
     <Compile Include="Pages\ExpandSearchPage.xaml.cs">
       <DependentUpon>ExpandSearchPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\InfoUsersPage.xaml.cs">
+      <DependentUpon>InfoUsersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\LoginOrRegistrationPage.xaml.cs">
       <DependentUpon>LoginOrRegistrationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PersonalUserPage.xaml.cs">
+      <DependentUpon>PersonalUserPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\RegistrationPage.xaml.cs">
       <DependentUpon>RegistrationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ViewPublicationInfo\ViewInfoFilmPublicationPage.xaml.cs">
+      <DependentUpon>ViewInfoFilmPublicationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ViewPublicationInfo\ViewInfoGamePublicationPage.xaml.cs">
+      <DependentUpon>ViewInfoGamePublicationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ViewPublicationInfo\ViewInfoMusicPublicationPage.xaml.cs">
+      <DependentUpon>ViewInfoMusicPublicationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ViewPublicationInfo\ViewInfoNewsPublicationPage.xaml.cs">
+      <DependentUpon>ViewInfoNewsPublicationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\BaseCollectionViewModel.cs" />
     <Compile Include="ViewModel\Commands\AddDeleteCommand.cs" />
+    <Compile Include="ViewModel\Commands\BanCommand.cs" />
     <Compile Include="ViewModel\Commands\BaseCommand.cs" />
+    <Compile Include="ViewModel\Commands\DeleteFromPublicAccessCommand.cs" />
     <Compile Include="ViewModel\Commands\PlaySoundCommand.cs" />
     <Compile Include="ViewModel\MediaPlayerViewModel.cs" />
+    <Compile Include="View\Converters\AccessLevelToWordCovnerter.cs" />
+    <Compile Include="View\Converters\AdminAccessVisibleConverter.cs" />
     <Compile Include="View\Converters\DoubleToTimeSpanConverter.cs" />
     <Compile Include="View\Converters\EnabledConverter.cs" />
     <Compile Include="View\Converters\ExpandSearchCollapseGenresConverter.cs" />
+    <Compile Include="View\Converters\FileConverter.cs" />
     <Compile Include="View\Converters\HeightColumnGridConverter.cs" />
     <Compile Include="View\Converters\HideControlsConverter.cs" />
+    <Compile Include="View\Converters\InfoPropertyConverter.cs" />
     <Compile Include="View\Converters\IntToTypePublicationConverter.cs" />
+    <Compile Include="View\Converters\IsBanedConverter.cs" />
+    <Compile Include="View\Converters\IsDeletedConverter.cs" />
+    <Compile Include="View\Converters\IsDeleteMessageConverter.cs" />
+    <Compile Include="View\Converters\IsEnabledFromUserBannedConverter.cs" />
+    <Compile Include="View\Converters\IsPublishedConverter.cs" />
     <Compile Include="View\Converters\MethodNamePlayerConverter.cs" />
+    <Compile Include="View\Converters\ReverseAdminAccessConverter.cs" />
+    <Compile Include="View\Converters\TrueOrFalseConverter.cs" />
+    <Compile Include="View\Converters\TypePublicationToWordConverter.cs" />
+    <Compile Include="View\Converters\UserAccessVisibleConverter.cs" />
     <Compile Include="View\MyUserControls\AddCoverPublicationUserControl.xaml.cs">
       <DependentUpon>AddCoverPublicationUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MyUserControls\AddPhotosToPublicationUserControl.xaml.cs">
       <DependentUpon>AddPhotosToPublicationUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MyUserControls\CommentsUserControl.xaml.cs">
+      <DependentUpon>CommentsUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MyUserControls\ContainerForUserControl.xaml.cs">
       <DependentUpon>ContainerForUserControl.xaml</DependentUpon>
@@ -170,8 +213,14 @@
     <Compile Include="View\MyUserControls\LinkVideoViewUserControl.xaml.cs">
       <DependentUpon>LinkVideoViewUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MyUserControls\ModifyWebViewUserControl.xaml.cs">
+      <DependentUpon>ModifyWebViewUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MyUserControls\PanelEditDecriptionPublicationUserControl.xaml.cs">
       <DependentUpon>PanelEditDecriptionPublicationUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MyUserControls\PhotosContainerUserControl.xaml.cs">
+      <DependentUpon>PhotosContainerUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MyUserControls\PopupListUserControl.xaml.cs">
       <DependentUpon>PopupListUserControl.xaml</DependentUpon>
@@ -181,6 +230,9 @@
     </Compile>
     <Compile Include="View\MyUserControls\SetOrDropFilesUserControl.xaml.cs">
       <DependentUpon>SetOrDropFilesUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MyUserControls\TitleDatePickerUserControl.xaml.cs">
+      <DependentUpon>TitleDatePickerUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MyUserControls\WaitingLoadingUserControl.xaml.cs">
       <DependentUpon>WaitingLoadingUserControl.xaml</DependentUpon>
@@ -212,6 +264,14 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ContentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CurrentUserInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\EditorPublication\LastStepPage.xaml">
       <SubType>Designer</SubType>
@@ -245,11 +305,35 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\InfoUsersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\LoginOrRegistrationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\PersonalUserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\RegistrationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ViewPublicationInfo\ViewInfoFilmPublicationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ViewPublicationInfo\ViewInfoGamePublicationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ViewPublicationInfo\ViewInfoMusicPublicationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ViewPublicationInfo\ViewInfoNewsPublicationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -272,6 +356,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\MyUserControls\CommentsUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MyUserControls\ContainerForUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -288,7 +376,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\MyUserControls\ModifyWebViewUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MyUserControls\PanelEditDecriptionPublicationUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MyUserControls\PhotosContainerUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -301,6 +397,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MyUserControls\SetOrDropFilesUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MyUserControls\TitleDatePickerUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -326,6 +426,7 @@
       <Name>ViewModelDataBase</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

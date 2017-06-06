@@ -39,20 +39,34 @@
   <ItemGroup>
     <Compile Include="FilterTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Property.cs" />
+    <Compile Include="PublicationTypes\Actor.cs" />
     <Compile Include="PublicationTypes\Comment.cs" />
+    <Compile Include="PublicationTypes\ConvertProperty.cs" />
+    <Compile Include="PublicationTypes\Genre.cs" />
+    <Compile Include="PublicationTypes\GenreGroup.cs" />
     <Compile Include="PublicationTypes\GenreTypes.cs" />
     <Compile Include="PublicationTypes\IActor.cs" />
+    <Compile Include="PublicationTypes\IComment.cs" />
     <Compile Include="PublicationTypes\IFilmPublication.cs" />
     <Compile Include="PublicationTypes\IGamePublication.cs" />
     <Compile Include="PublicationTypes\IGenre.cs" />
     <Compile Include="PublicationTypes\IInfoFile.cs" />
+    <Compile Include="PublicationTypes\IListFiles.cs" />
     <Compile Include="PublicationTypes\IMusicPublication.cs" />
+    <Compile Include="PublicationTypes\IPublication.cs" />
+    <Compile Include="PublicationTypes\IRating.cs" />
+    <Compile Include="PublicationTypes\ISmallPublication.cs" />
     <Compile Include="PublicationTypes\NewsPublications\INewsElement.cs" />
     <Compile Include="PublicationTypes\NewsPublications\INewsPublication.cs" />
+    <Compile Include="PublicationTypes\NewsPublications\NewsElement.cs" />
     <Compile Include="PublicationTypes\NewsPublications\TypeElementOfNews.cs" />
     <Compile Include="PublicationTypes\Publication.cs" />
     <Compile Include="PublicationTypes\PublicationType.cs" />
     <Compile Include="PublicationTypes\Rating.cs" />
+    <Compile Include="PublicationTypes\SmallPublication.cs" />
+    <Compile Include="UserTypes\ISmallUser.cs" />
+    <Compile Include="UserTypes\IUser.cs" />
     <Compile Include="UserTypes\User.cs" />
     <Compile Include="UserTypes\UserAccessLevel.cs" />
   </ItemGroup>

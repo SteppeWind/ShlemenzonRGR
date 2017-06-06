@@ -30,7 +30,7 @@ namespace NewsForum.ViewModel
             RemoveItemCollectionEvent?.Invoke(element);
         }
 
-        public void AddRange(IEnumerable<IFileSettings> collection)
+        public virtual void AddRange(IEnumerable<IFileSettings> collection)
         {
             foreach (var item in collection)
             {
@@ -38,7 +38,7 @@ namespace NewsForum.ViewModel
             }
         }
 
-        public void AddElement(IFileSettings element)
+        public virtual void AddElement(IFileSettings element)
         {
             BaseFileCollection.Add(element);
         }

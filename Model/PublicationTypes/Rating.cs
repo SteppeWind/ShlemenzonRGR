@@ -7,12 +7,19 @@ using System.Threading.Tasks;
 
 namespace Model.PublicationTypes
 {
-    public class Rating
+    public class Rating : ConvertProperty, IRating
     {
         //public virtual User User { get; set; }
-        
+
         //public virtual Publication Publication { get; set; }
 
+        [Property("UserId")]
+        public virtual int UserId { get; set; }
+
+        [Property("PublicationId")]
+        public virtual int PublicationId { get; set; }
+
+        [Property("Mark")]
         public virtual int Mark { get; set; }
     }
 }

@@ -10,9 +10,7 @@ namespace RequestServer.AnswerForRequest
 {
     public class Answer : SendReciveObject<Answer>
     {
-        public TypeAnswer TypeAnswer { get; set; } = TypeAnswer.Bool;
-
-        public DataType DataType { get; set; } = DataType.Publication;
+        public DataType TypeAnswer { get; set; } = DataType.Bool;
 
         public Object SelfAnswer { get; set; }        
     }

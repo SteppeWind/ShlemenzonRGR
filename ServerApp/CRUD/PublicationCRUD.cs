@@ -21,6 +21,10 @@ using System.Runtime.Serialization.Formatters.Binary;
 using ViewModelDataBase.VMInterfaces;
 using ModelDataBase.DBPublicationTypes.DBNewsTypes;
 using Model.PublicationTypes.NewsPublications;
+using ViewModelDataBase.VMTypes;
+using RequestServer.PublicationsRequest;
+using ServerApp.Converting;
+using RequestServer.Request;
 
 namespace ServerApp.CRUD
 {
@@ -28,225 +32,334 @@ namespace ServerApp.CRUD
     {
         private static NewsForumContext CurrentNewsForumContext = NewsForumContext.GetNewsForumContext;
 
+        public static List<DBPublication> GetPublishedPublications => CurrentNewsForumContext.Publications.Where(p => p.IsPublished == true).ToList();
+
+        public static List<DBPublication> GetDeletedPublications => CurrentNewsForumContext.Publications.Where(p => p.IsDeleted).ToList();
+
         public static bool CreatePublication(VMPublication publication)
         {
             bool result = false;
             try
             {
-                var user = CurrentNewsForumContext.Users.FirstOrDefault(u => publication.User.UserId == u.UserId);
-                if (user != null)
-                    if (user.AccessLevel >= UserAccessLevel.User)
-                    {
-                        var lastPublic = CurrentNewsForumContext.Publications.ToList().LastOrDefault();
-                        int index = 1;
-                        //проверяем, есть ли записи в базе
-                        if (lastPublic != null)
-                            index = lastPublic.PublicatoinId + 1;
+                var user = UserCRUD.GetDBUserFromId(publication.UserId);
+                if (user != null && user.AccessLevel >= UserAccessLevel.User)
+                {
+                    var lastPublic = CurrentNewsForumContext.Publications.ToList().LastOrDefault();
+                    int index = 1;
+                    //проверяем, есть ли записи в базе
+                    if (lastPublic != null)
+                        index = lastPublic.PublicationId + 1;
 
-                        string newPath = $@"{Server.PathServerDirecotory}\Publications\{index}\";//каталог целой публикации
-                        string pathDescriptionImages = $@"{newPath}\DescriptionImages\";//каталог для фото материалов 
-                        string pathMusicFiles = $@"{newPath}\DescriptionSongs\";//каталг для музыкальных файлов
-                        string pathNewsPublicationFiles = $@"{newPath}\ContentNewsPublication\";//каталог для файлов статьи
-                        string pathPoster = string.Empty;
-                        string pathDescription = string.Empty;
+                    DBPublication dbPublication = new DBPublication() { PublicationId = index };
 
-                        Directory.CreateDirectory(newPath);
-
-                        var currDescImagesPublicatiton = publication as IListBitmapImages;//проверяем, есть ли у публикации набор фотографий в описании
-                        var currMusicPulication = publication as IListSongs;//проверяем, есть ли у публикации набор аудио файлов
-                        
-                        List<DBInfoFile> ListFilesPublication = new List<DBInfoFile>();
-
-                        #region Локальная функция для создания и заполнения указанной директории файлами из переданной публикации
-
-                        void CreateAndFillDirectoryFiles(string path)
-                        {
-                            Directory.CreateDirectory(path);
-                            int nameIndex = 1;
-                            currDescImagesPublicatiton.ListImages.ToList().ForEach(file =>
-                            {
-                                string currPath = $@"{path}{nameIndex++}{file.Type}";
-                                FilesManipulation.CreateFile(file.Bytes, currPath);
-                                ListFilesPublication.Add(new DBInfoFile()
-                                {
-                                    FullPath = currPath,
-                                    Type = file.Type
-                                });
-                            });
-                        }
-
-                        #endregion
-
-                        //сохраняем фотографии
-                        if (currDescImagesPublicatiton != null)
-                        {
-                            CreateAndFillDirectoryFiles(pathDescriptionImages);
-                        }
-                       
-                        //сохраняем аудио файлы
-                        if (currMusicPulication != null)
-                        {
-                            CreateAndFillDirectoryFiles(pathMusicFiles);
-                        }
-
-                        //сохраняем обложку (изображение)
-                        if (publication.PosterImage != null)
-                        {
-                            var dataPosterBytes = publication.PosterImage.Bytes;
-                            pathPoster = $@"{newPath}{index}_{publication.Title}_poster{publication.PosterImage.Type}";
-                            FilesManipulation.CreateFile(dataPosterBytes, pathPoster);
-                        }
-
-                        //сохраняем файл с описанием (если такой есть)
-                        if (publication.Description != null)
-                        {
-                            var dataDescriptionArray = publication.Description.Bytes;
-                            pathDescription = $@"{newPath}{index}_{publication.Title}_description.rtf";
-                            FilesManipulation.CreateFile(dataDescriptionArray, pathDescription);
-                        }
-
-                        //выбираем список жанров для публикации (вытаскиваем имя и получаем список строк)
-                        var genres = publication.ListGenres.Select(g => $"{g.Name}").ToList();
-                        List<DBGenre> listGenres = CurrentNewsForumContext.Genres.Where(g => genres.Contains(g.Name)).ToList();
-
-                        //DBPublication currDBPublication = new DBPublication()
-                        //{
-                        //    ListFiles = ListFilesPublication,
-                        //    CreateDate = publication.CreateDate,
-                        //    ListGenres = listGenres,
-                        //    RefDescription = pathDescription,
-                        //    RefPoster = pathPoster,
-                        //    UserId = publication.User.UserId,
-                        //    TypePublication = publication.TypePublication,
-                        //    Title = publication.Title,
-                        //};
-
-                        switch (publication.TypePublication)
-                        {
-                            case PublicationType.Game:
-                                VMGamePublication gamePublic = publication as VMGamePublication;
-                                DBGamePubliaction dbGamePublic = new DBGamePubliaction()
-                                {
-                                    CompanyDeveloper = gamePublic.CompanyDeveloper,
-                                    CreateDate = gamePublic.CreateDate,
-                                    InterfaceLanguage = gamePublic.InterfaceLanguage,
-                                    MultiPlayer = gamePublic.MultiPlayer,
-                                    Platform = gamePublic.Platform,
-                                    Title = gamePublic.Title,
-                                    UserId = gamePublic.User.UserId,
-                                    TypePublication = gamePublic.TypePublication,
-                                    ReleaseYear = gamePublic.ReleaseYear,
-                                    RefDescription = pathDescription,
-                                    RefPoster = pathPoster,
-                                    ListGenres = listGenres,
-                                    ListFiles = ListFilesPublication
-                                };
-                                CurrentNewsForumContext.GamePublications.Add(dbGamePublic);
-                                break;
-                            case PublicationType.Music:
-                                VMMusicPublication musicPublic = publication as VMMusicPublication;
-                                DBMusicPublication dbMusicPublic = new DBMusicPublication()
-                                {
-                                    Album = musicPublic.Album,
-                                    CountryPerformer = musicPublic.CountryPerformer,
-                                    CreateDate = musicPublic.CreateDate,
-                                    Formats = musicPublic.Formats,
-                                    Performer = musicPublic.Performer,
-                                    Title = musicPublic.Title,
-                                    UserId = musicPublic.User.UserId,
-                                    ReleaseYear = musicPublic.ReleaseYear,
-                                    RefPoster = pathPoster,
-                                    RefDescription = pathDescription,
-                                    ListGenres = listGenres,
-                                    ListFiles = ListFilesPublication,
-                                };
-                                CurrentNewsForumContext.MusicPublications.Add(dbMusicPublic);
-                                break;
-                            case PublicationType.News:
-                                VMNewsPublication newsPublic = publication as VMNewsPublication;
-                                List<DBNewsElement> newsElements = new List<DBNewsElement>();
-
-                                foreach (var item in newsPublic.ListElements)
-                                {
-                                    DBNewsElement currDbNewsEl = new DBNewsElement()
-                                    {
-                                        NumberOfList = item.NumberOfList,
-                                        TypeElement = item.TypeElement
-                                    };
-                                    string pathFile = $"{pathNewsPublicationFiles}{item.NumberOfList}";
-                                    switch (item.TypeElement)
-                                    {
-                                        case TypeElementOfNews.Image:
-                                        case TypeElementOfNews.Text:
-                                            VMNewsElementFile currNewsElFile = item as VMNewsElementFile;
-                                            pathFile += currNewsElFile.Type;
-                                            FilesManipulation.CreateFile(currNewsElFile.Bytes, pathFile);
-                                            currDbNewsEl = new DBNewsElementFile()
-                                            {
-                                                TypeElement = item.TypeElement,
-                                                Type = currNewsElFile.Type,
-                                                NumberOfList = item.NumberOfList,
-                                                FullPath = pathFile
-                                            };
-                                            break;
-
-                                        case TypeElementOfNews.LinkVideo:
-                                            VMElementLinkVideo linkVideoEl = item as VMElementLinkVideo;
-                                            currDbNewsEl = new DBNewsElementFile()
-                                            {
-                                                NumberOfList = item.NumberOfList,
-                                                FullPath = linkVideoEl.FullLinkForVideo,
-                                                TypeElement = TypeElementOfNews.LinkVideo
-                                            };
-                                            break;
-
-                                        default:
-                                            break;
-                                    }
-                                    newsElements.Add(currDbNewsEl);
-                                }
-
-                                DBNewsPublication dbNewPublic = new DBNewsPublication()
-                                {
-                                    Title = newsPublic.Title,
-                                    UserId = newsPublic.User.UserId,
-                                    RefPoster = pathPoster,
-                                    RefDescription = pathDescription,
-                                    ListElements = newsElements,
-                                    ListGenres = listGenres
-                                };
-                                CurrentNewsForumContext.NewsPublications.Add(dbNewPublic);
-                                break;
-                            case PublicationType.Film:
-                                VMFilmPublication filmPublic = publication as VMFilmPublication;
-                                DBFilmPublication dbFilmPublic = new DBFilmPublication()
-                                {
-                                    Director = filmPublic.Director,
-                                    Country = filmPublic.Country,
-                                    CreateDate = filmPublic.CreateDate,
-                                    Duration = filmPublic.Duration,                                    
-                                    Title = filmPublic.Title,
-                                    UserId = filmPublic.User.UserId,
-                                    ReleaseYear = filmPublic.ReleaseYear,
-                                    RefPoster = pathPoster,
-                                    RefDescription = pathDescription,
-                                    ListGenres = listGenres,
-                                    ListFiles = ListFilesPublication,
-                                };
-                                CurrentNewsForumContext.FilmPublications.Add(dbFilmPublic);
-                                break;
-                            default:
-                                break;
-                        }
-                        CurrentNewsForumContext.SaveChanges();
-                        result = true;
-                    }
+                    CreateFilesForPublication(publication, ref dbPublication, true);
+                    
+                    CurrentNewsForumContext.Publications.Add(dbPublication);
+                    CurrentNewsForumContext.SaveChanges();
+                    result = true;
+                }
             }
             catch (Exception ex)
             {
-                
+
             }
             return result;
+        }
+
+        public static VMPublication GetPublication(int publicationId)
+        {
+            VMPublication result = null;
+            DBPublication dbPublication = CurrentNewsForumContext.Publications.FirstOrDefault(p => p.PublicationId == publicationId);
+
+            if (dbPublication != null)
+            {
+                switch (dbPublication.TypePublication)
+                {
+                    case PublicationType.Game:
+                        result = new PublicationConverter<DBPublication, VMGamePublication>().ConvertPublication(dbPublication);
+                        break;
+                    case PublicationType.Music:
+                        result = new PublicationConverter<DBPublication, VMMusicPublication>().ConvertPublication(dbPublication);
+                        break;
+
+                    case PublicationType.Film:
+                        result = new FilmPublicationConverter().ConvertPublication(dbPublication as DBFilmPublication);
+                        break;
+
+                    case PublicationType.News:
+                        result = new NewsPublicationConvert().ConvertPublication(dbPublication as DBNewsPublication);
+                        break;
+                }
+            }
+
+            return result;
+        }
+
+        private static void CreateFilesForPublication(VMPublication publication, ref DBPublication dbPublication, bool isCreatePublication = false)
+        {
+            int index = dbPublication.PublicationId;
+            
+            string publicationTitleForDirectory = new string(publication.Title
+                .Where(c => !FilesManipulation.ForbiddenSymbols.Contains(c))
+                .Select(c => c).ToArray());
+
+            string newPath = $@"{Server.PathServerDirecotory}\Publications\{index}\";//каталог целой публикации
+            string pathDescriptionImages = $@"{newPath}\DescriptionImages\";//каталог для фото материалов 
+            string pathMusicFiles = $@"{newPath}\DescriptionSongs\";//каталoг для музыкальных файлов
+            string pathNewsPublicationFiles = $@"{newPath}\ContentNewsPublication\";//каталог для файлов статьи
+            string pathPoster = string.Empty;
+            string pathDescription = string.Empty;
+
+            Directory.CreateDirectory(newPath);
+
+            var currDescImagesPublicatiton = publication as IListBitmapImages;//проверяем, есть ли у публикации набор фотографий в описании
+            var currMusicPulication = publication as IListSongs;//проверяем, есть ли у публикации набор аудио файлов
+
+            List<DBInfoFile> ListFilesPublication = new List<DBInfoFile>();
+
+            #region Локальная функция для создания и заполнения указанной директории файлами из переданной публикации
+
+            void CreateAndFillDirectoryFiles(string path, List<VMFile> files)
+            {
+                Directory.CreateDirectory(path);
+                int nameIndex = 1;
+                files.ToList().ForEach(file =>
+                {
+                    string currPath = $@"{path}{nameIndex++}{file.Type}";
+                    FilesManipulation.CreateFile(file.Bytes, currPath);
+                    ListFilesPublication.Add(new DBInfoFile()
+                    {
+                        Name = file.Name,
+                        FullPath = currPath,
+                        Type = file.Type
+                    });
+                });
+            }
+
+            #endregion
+
+            //сохраняем фотографии
+            if (currDescImagesPublicatiton != null)
+            {
+                CreateAndFillDirectoryFiles(pathDescriptionImages, currDescImagesPublicatiton.ListImages);
+            }
+
+            //сохраняем аудио файлы
+            if (currMusicPulication != null)
+            {
+                CreateAndFillDirectoryFiles(pathMusicFiles, currMusicPulication.ListSongs);
+            }
+
+
+            //сохраняем обложку (изображение)
+            if (publication.PosterImage != null)
+            {
+                var dataPosterBytes = publication.PosterImage.Bytes;
+                pathPoster = $@"{newPath}{index}_{publicationTitleForDirectory}_poster{publication.PosterImage.Type}";
+                FilesManipulation.CreateFile(dataPosterBytes, pathPoster);
+            }
+
+            //сохраняем файл с описанием (если такой есть)
+            if (publication.Description != null)
+            {
+                var dataDescriptionArray = publication.Description.Bytes;
+                pathDescription = $@"{newPath}{index}_{publicationTitleForDirectory}_description.rtf";
+                FilesManipulation.CreateFile(dataDescriptionArray, pathDescription);
+            }
+
+            if (isCreatePublication)
+            {
+                switch (publication.TypePublication)
+                {
+                    case PublicationType.Game:
+                        dbPublication = new PublicationConverter<DBGamePubliaction, VMPublication>().ConvertPublication(publication);
+                        break;
+                    case PublicationType.Music:
+                        dbPublication = new PublicationConverter<DBMusicPublication, VMPublication>().ConvertPublication(publication);
+                        break;
+                    case PublicationType.News:
+                        Directory.CreateDirectory(pathNewsPublicationFiles);
+                        VMNewsPublication newsPublic = publication as VMNewsPublication;
+                        dbPublication = new NewsPublicationConvert().ConvertAndCreatePublication(pathNewsPublicationFiles, newsPublic);
+                        break;
+                    case PublicationType.Film:
+                        dbPublication = new FilmPublicationConverter().ConvertPublication(publication as VMFilmPublication);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                dbPublication.ListGenres = CurrentNewsForumContext.Genres
+                    .Where(dbGenre => publication.ListGenres
+                        .Select(genre => genre.Name)
+                        .Contains(dbGenre.Name))
+                    .ToList();
+                dbPublication.Convert(publication);
+                switch (publication.TypePublication)
+                {
+                    case PublicationType.News:
+                        Directory.CreateDirectory(pathNewsPublicationFiles);
+                        VMNewsPublication newsPublic = publication as VMNewsPublication;
+                        DBNewsPublication dbNewsPublic = dbPublication as DBNewsPublication;
+                        NewsPublicationConvert.CreateAndSaveListElements(ref dbNewsPublic, newsPublic, pathNewsPublicationFiles);
+                        break;
+                    case PublicationType.Film:
+                        DBFilmPublication dbFilm = dbPublication as DBFilmPublication;
+                        FilmPublicationConverter.SaveActors(ref dbFilm, publication as VMFilmPublication);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+
+            dbPublication.ListFiles = ListFilesPublication;
+            if (File.Exists(pathPoster))
+            {
+                dbPublication.RefPoster = pathPoster;
+            }
+
+            if (File.Exists(pathDescription))
+            {
+                dbPublication.RefDescription = pathDescription;
+            }
+        }
+
+        public static bool UpdatePublication(VMPublication publication, int userId)
+        {
+            var dbPublication = CurrentNewsForumContext.Publications.FirstOrDefault(p => p.PublicationId == publication.PublicationId);
+            var dbUser = UserCRUD.GetDBUserFromId(userId);
+
+            if (dbUser != null)
+            {
+                var findedPubl = dbUser.ListPublications.FirstOrDefault(p => p.PublicationId == publication.PublicationId);
+                if (findedPubl == null)
+                {
+                    return false;
+                }
+                
+                if ((dbPublication != null && dbUser.AccessLevel >= UserAccessLevel.User) || dbUser.AccessLevel >= UserAccessLevel.Admin)
+                {
+                    Directory.Delete($@"{Server.PathServerDirecotory}\Publications\{dbPublication.PublicationId}", true);
+                    CreateFilesForPublication(publication, ref dbPublication);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static bool DeletePublication(int idPublication, int idUser)
+        {
+            var currUser = UserCRUD.GetDBUserFromId(idUser);
+            var currPublication = CurrentNewsForumContext.Publications.FirstOrDefault(p => p.PublicationId == idPublication);
+            if (currUser != null && currPublication != null)
+            {
+                if (currUser.AccessLevel >= UserAccessLevel.Admin)
+                {
+                    currPublication.IsDeleted = true;
+                    CurrentNewsForumContext.SaveChanges();
+                    return true;
+                }
+
+                if (currUser.ListPublications.FirstOrDefault(p => p.PublicationId == idPublication) != null)
+                {
+                    currPublication.IsDeleted = true;
+                    CurrentNewsForumContext.SaveChanges();
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static bool UndeletePublication(int idPublication, int idUser)
+        {
+            var currUser = UserCRUD.GetDBUserFromId(idUser);
+            var currPublication = CurrentNewsForumContext.Publications.FirstOrDefault(p => p.PublicationId == idPublication);
+            if (currUser != null && currPublication != null)
+            {
+                if (currUser.AccessLevel >= UserAccessLevel.Admin)
+                {
+                    currPublication.IsDeleted = false;
+                    CurrentNewsForumContext.SaveChanges();
+                    return true;
+                }
+
+                if (currUser.ListPublications.FirstOrDefault(p => p.PublicationId == idPublication) != null)
+                {
+                    currPublication.IsDeleted = false;
+                    CurrentNewsForumContext.SaveChanges();
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static List<VMSmallPublication> GetSmallPublications(ReadPublciationRequest request, int userId)
+        {
+            var currUser = UserCRUD.GetDBUserFromId(userId);
+            var result = new List<VMSmallPublication>();
+            DateTime left = DateTime.MinValue;
+            DateTime right = DateTime.MaxValue;
+
+            if (request.LeftLimitTime != null && request.RightLimitTime != null)
+            {
+                left = DateTime.Parse(request.LeftLimitTime);
+                right = DateTime.Parse(request.RightLimitTime);
+            }
+
+            var searchList = new List<DBPublication>();
+
+            if (currUser != null && currUser.AccessLevel >= UserAccessLevel.Admin)
+            {
+                searchList = CurrentNewsForumContext.Publications.ToList();
+            }
+
+            if (currUser == null || currUser.AccessLevel <= UserAccessLevel.User)
+            {
+                searchList = GetPublishedPublications;
+            }
+
+            if (request.ListGenres.Any())
+            {
+                searchList = searchList
+                    .Where(p => p.ListGenres
+                        .Select(g => g.Name)
+                        .Intersect(request.ListGenres)
+                        .Any())
+                    .ToList();
+            }
+
+            if (request.PublicationType == PublicationType.Any)
+            {
+                foreach (var p in searchList)
+                {
+                    result.Add(ConvertToBasePublication.GetBasePublication(p));
+                }
+                return result;
+            }
+
+            searchList = searchList
+                .Where(p => p.CreateDate >= left && p.CreateDate <= right)
+                .Where(p => p.TypePublication == request.PublicationType)
+                .ToList();
+
+            foreach (var p in searchList)
+            {
+                result.Add(ConvertToBasePublication.GetBasePublication(p));
+            }
+
+            return result;
+        }
+
+        public static List<VMSmallPublication> GetCertainPublications(int userId)
+        {
+            return CurrentNewsForumContext.Publications
+                .ToList()
+                .Where(p => p.UserId == userId)
+                .Select(p => ConvertToBasePublication.GetBasePublication(p))
+                .ToList();
         }
     }
 }

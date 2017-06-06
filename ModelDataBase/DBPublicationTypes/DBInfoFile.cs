@@ -10,9 +10,11 @@ using System.Threading.Tasks;
 
 namespace ModelDataBase.DBPublicationTypes
 {
-    public class DBInfoFile : IInfoFile, IStoreFileDB, IPublicationDB
+    public class DBInfoFile : IInfoFile, IPublicationDB
     {
-        public virtual string FullPath { get; set; }
+        public string FullPath { get; set; }
+
+        public string Name { get; set; }
 
         public string Type { get; set; }
 
@@ -42,6 +44,5 @@ namespace ModelDataBase.DBPublicationTypes
         }
 
         public virtual DBPublication Publication { get; set; }
-
     }
 }

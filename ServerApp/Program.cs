@@ -8,17 +8,100 @@ using System.Data.Entity;
 using ModelDataBase.DBUserTypes;
 using ModelDataBase.DBPublicationTypes;
 using Model.PublicationTypes;
+using ServerApp.CRUD;
+using ViewModelDataBase.VMPublicationTypes;
+using Model.UserTypes;
+using Model;
+using ViewModelDataBase;
+using Newtonsoft.Json;
+using System.Reflection;
+using ViewModelDataBase.VMPublicationTypes.VMNewsTypes;
+using ServerApp.Converting;
 
 namespace ServerApp
 {
     class Program
     {
+
         static void Main(string[] args)
         {
+
+            var nfc = NewsForumContext.GetNewsForumContext;
+
             Server s = new Server();
             s.ExceptionRecived += S_ExceptionRecived;
 
-           // var nfc = NewsForumContext.GetNewsForumContext;
+            //nfc.Users.Add(new DBUser()
+            //{
+            //    AccessLevel = UserAccessLevel.User,
+            //    City = "Москва",
+            //    EMail = "vasy@mail.ru",
+            //    Name = "Вася",
+            //    Password = "qwe",
+            //    Surname = "Иванов"
+            //});
+
+            //nfc.Users.Add(new DBUser()
+            //{
+            //    AccessLevel = UserAccessLevel.User,
+            //    City = "Санкт-Питербург",
+            //    Surname = "Ларин",
+            //    Name = "Дмитрий",
+            //    EMail = "larinChushka@mail.ru",
+            //    Password = "чушка",
+            //    PhoneNumber = "89994554112",
+            //});
+
+            //nfc.Users.Add(new DBUser()
+            //{
+            //    AccessLevel = UserAccessLevel.Admin,
+            //    PhoneNumber = "89137176239",
+            //    Name = "Алексей",
+            //    Surname = "Нваальный",
+            //    City = "Москва",
+            //    EMail = "Navalnyi@mail.ru",
+            //    Password = "2018"
+            //});
+
+            //nfc.Users.Add(new DBUser()
+            //{
+            //    Name = "Сергей",
+            //    Surname = "Безруков",
+            //    EMail = "SashaBelyi@yandex.ru",
+            //    City = "Москва",
+            //    Password = "qweqwe",
+            //    AccessLevel = UserAccessLevel.Admin
+            //});
+
+            //var a = PublicationCRUD.GetSmallPublications(new RequestServer.PublicationsRequest.ReadPublciationRequest()
+            //{
+            //    LeftLimitTime = DateTime.Now.AddDays(-10).ToShortDateString(),
+            //    RightLimitTime = DateTime.Now.ToShortDateString(),
+            //    ListGenres = nfc.Genres.Where(g => g.GentreId == 16).Select(g => g.Name).ToList(),
+            //    PublicationType = PublicationType.Film
+            //});
+
+
+            //DBPublication p = new DBPublication();
+            //p.AddComment(new DBComment() { UserId = 2,PublicationId = 213 });
+            //var list = (new RequestServer.PublicationsRequest.ReadPublciationRequest()
+            //{
+            //    LeftLimitTime = DateTime.Now.AddDays(-2).ToShortDateString(),
+            //    RightLimitTime = DateTime.Now.AddDays(3).ToShortDateString(),
+            //    ListGenres = GenreTypes.FilmGenres.ToList(),
+            //    PublicationType = PublicationType.Film
+            //});
+            //var d = PublicationCRUD.GetPublication<VMGamePublication>(3);
+
+
+            //foreach (var item in GenreGroup.AllGenresGroups)
+            //{
+            //    foreach (var genre in item.ListGenreTypes)
+            //    {
+            //        nfc.Genres.Add(new DBGenre() { Name = genre.Name });
+            //    }
+            //}
+
             //Database.SetInitializer(new DropCreateDatabaseAlways<NewsForumContext>());
 
             //List<DBGenre> genres = new List<DBGenre>()
@@ -40,24 +123,34 @@ namespace ServerApp
 
             //var publ = new ModelDataBase.DBPublicationTypes.DBGamePubliaction()
             //{
-            //    CompanyDeveloper = "dev",
+            //    CompanyDeveloper = "dev1",
             //    CreateDate = DateTime.Now,
-            //    InterfaceLanguage = "ru",
+            //    InterfaceLanguage = "ru1",
             //    MultiPlayer = true,
-            //    Platform = "pc",
-            //    RefDescription = "desc",
-            //    RefPoster = "post",
-            //    Title = "title",
-            //    UserId = 1,
+            //    Platform = "pc1",
+            //    RefDescription = "desc1",
+            //    RefPoster = "pos1t",
+            //    Title = "titl1e",
             //    ReleaseYear = DateTime.Now.AddDays(3),
             //    ListGenres = nfc.Genres.Where(g => g.Name == "Аркада" || g.Name == "Шутер").ToList(),
             //    ListFiles = new List<DBInfoFile>()
             //    {
             //        new DBInfoFile(){FullPath = "fff", Type = "f"},
             //        new DBInfoFile(){FullPath = "sss", Type = "s"}
-            //    },                
+            //    },
             //};
-            //nfc.GamePublications.Add(publ);
+            //var newPubl = nfc.GamePublications.First();
+            //var files =  nfc.InfoFiles.Where(p => p.PublicatoinId == newPubl.PublicationId).ToList();
+            //newPubl.Convert(publ);
+
+            //for (int i = 0; i < files.Count; i++)
+            //{
+            //    nfc.InfoFiles.Remove(files[i]);
+            //}
+            //newPubl.ListFiles = new List<DBInfoFile>()
+            //    {
+            //        new DBInfoFile(){FullPath = "трололо", Type = "f"},
+            //    };
 
             //var user = nfc.Users.Where(u => u.UserId == 1).FirstOrDefault();
 
@@ -74,7 +167,7 @@ namespace ServerApp
 
             //nfc.Users.Add(new ModelDataBase.DBUserTypes.DBUser()
             //{
-            //    AccessLevel = Model.UserTypes.UserAccessLevel.Admin,
+            //    AccessLevel = Model.UserTypes.UserAccessLevel.God,
             //    City = "Нск",
             //    Name = "Vasy",
             //    Surname = "Pupkin",
@@ -92,6 +185,7 @@ namespace ServerApp
             //    CreateDate = DateTime.Now
             //});
 
+           // nfc.SaveChanges();
             Console.ReadKey();
         }
 

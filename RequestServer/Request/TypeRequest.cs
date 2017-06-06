@@ -10,7 +10,10 @@ namespace RequestServer.Request
     {
         Update,
         Delete,
+        Undelete,
         Create,
-        Read
+        Read,
+        ReadSelf,
+        Published
     }
 }

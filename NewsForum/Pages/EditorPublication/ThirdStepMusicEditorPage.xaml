@@ -6,7 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:NewsForum.View.MyUserControls"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    NavigationCacheMode="Enabled">
 
     <ScrollViewer Margin="{StaticResource BaseMainGridThickness}"
                   HorizontalScrollBarVisibility="Disabled"
@@ -68,31 +69,26 @@
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
 
-                    <StackPanel Orientation="Horizontal"
-                                Grid.Row="0"
-                                Margin="0 15 0 0">
-                        <TextBlock Style="{StaticResource BaseMenuTextBlockStyle}"
-                                   Text="Год выпуска"
-                                   Margin="0 0 10 0"
-                                   VerticalAlignment="Center"/>
-                        <DatePicker Name="RealeseDatePicker"
-                                    FontSize="20"
-                                    FontFamily="Microsoft YaHei Light"/>
-                    </StackPanel>
+                    <controls:TitleDatePickerUserControl x:Name="RealeseDatePicker"
+                                                         Margin="0 15 0 0"
+                                                         Grid.Row="2"/>
 
-                    <TextBox Grid.Row="1"
+                    <TextBox Grid.Row="0"
+                             Text="{x:Bind Publication.Performer, Mode=TwoWay}"
                              Style="{StaticResource BaseTextBoxStyle}"
                              PlaceholderText="Исполнитель"
                              Margin="0 15 0 0"/>
 
-                    <TextBox Grid.Row="2"
+                    <TextBox Grid.Row="1"
+                             Text="{x:Bind Publication.CountryPerformer, Mode=TwoWay}"
                              Style="{StaticResource BaseTextBoxStyle}"
                              PlaceholderText="Страна исполнителя"
                              Margin="0 15 0 0"/>
 
                 </Grid>
 
-                <MenuFlyoutSeparator x:Name="menuFlyoutSeparator" Grid.Column="1"/>
+                <MenuFlyoutSeparator x:Name="menuFlyoutSeparator"
+                                     Grid.Column="1"/>
 
                 <Grid Name="SecondColumnDataMusicGrid"
                       Grid.Column="2">
@@ -104,6 +100,7 @@
                     </Grid.RowDefinitions>
 
                     <TextBox Grid.Row="0"
+                             Text="{x:Bind Publication.Album, Mode=TwoWay}"
                              Style="{StaticResource BaseTextBoxStyle}"
                              PlaceholderText="Альбом"
                              Margin="0 15 0 0"/>
@@ -118,6 +115,7 @@
 
                         <TextBox Style="{StaticResource BaseTextBoxStyle}"
                                  PlaceholderText="Форматы"
+                                 Text="{x:Bind Publication.Formats, Mode=TwoWay}"
                                  ToolTipService.ToolTip="Если их несколько, перечислите через запятую"/>
 
                         <Button Grid.Column="1"

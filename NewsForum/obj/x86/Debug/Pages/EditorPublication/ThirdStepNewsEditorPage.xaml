@@ -6,23 +6,30 @@
     xmlns:UserControls="using:NewsForum.View.MyUserControls"
     xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:I="using:Microsoft.Xaml.Interactivity"
+    xmlns:modelDll="using:Model.PublicationTypes"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    NavigationCacheMode="Enabled"
+    xmlns:toolkit="using:WinRTXamlToolkit.Controls"
     Transitions="{StaticResource BaseAnimation}"
                                   >
 
     <Page.Resources>
         <x:String x:Key="TitlePageString">Редактор публикации</x:String>
         <x:Double x:Key="MiddleFontSize">30</x:Double>
-
+        <CollectionViewSource x:ConnectionId='2' x:Name="GenresGroupCollection"
+                              IsSourceGrouped="True"
+                              ItemsPath="ListGenreTypes"
+                                                                                   />
     </Page.Resources>
 
     <Grid ChildrenTransitions="{StaticResource BaseChildrenAnimation}"
+          Background="{StaticResource MenuColorStyle}"
           Margin="{StaticResource BaseMainGridThickness}">
         <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:ConnectionId='2' x:Name="VisualStateGroup">
-                <VisualState x:ConnectionId='6' x:Name="Mobile">
+            <VisualStateGroup x:ConnectionId='3' x:Name="VisualStateGroup">
+                <VisualState x:ConnectionId='7' x:Name="Mobile">
                     <VisualState.Setters>
                         <Setter Target="AddTextTextBlock.(TextBlock.Style)" Value="{StaticResource BaseMiddleMenuIconTextBlockStyle}"/>
                         <Setter Target="AddSeparatorTextBlock.(TextBlock.Style)" Value="{StaticResource BaseMiddleMenuIconTextBlockStyle}"/>
@@ -34,17 +41,18 @@
                         <Setter Target="AddImageTextBlock.(TextBlock.Text)" Value="&#xE9D9;"/>
                         <Setter Target="AddVideoTextBlock.(TextBlock.Text)" Value="&#xE173;"/>
                         <Setter Target="PanelAddElementsToPublicGriView.(FrameworkElement.HorizontalAlignment)" Value="Center"/>
+                        <Setter Target="ExpandOrCollapsGenresPanel.(Orientation)" Value="Vertical"/>
                     </VisualState.Setters>
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="0"/>
                     </VisualState.StateTriggers>
                 </VisualState>
-                <VisualState x:ConnectionId='7' x:Name="SmallDesktop">
+                <VisualState x:ConnectionId='8' x:Name="SmallDesktop">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="540"/>
+                        <AdaptiveTrigger MinWindowWidth="600"/>
                     </VisualState.StateTriggers>
                 </VisualState>
-                <VisualState x:ConnectionId='8' x:Name="MiddleDesktop">
+                <VisualState x:ConnectionId='9' x:Name="MiddleDesktop">
                     <VisualState.Setters>
                         <Setter Target="AddImageTextBlock.(TextBlock.FontSize)" Value="{StaticResource MiddleFontSize}"/>
                         <Setter Target="AddTextTextBlock.(TextBlock.FontSize)" Value="{StaticResource MiddleFontSize}"/>
@@ -58,20 +66,22 @@
                 </VisualState>
 
             </VisualStateGroup>
-            <VisualStateGroup x:ConnectionId='3' x:Name="VisualStateGroup1">
-                <VisualState x:ConnectionId='4' x:Name="EditorContentStretch">
+            <VisualStateGroup x:ConnectionId='4' x:Name="VisualStateGroup1">
+                <VisualState x:ConnectionId='5' x:Name="EditorContentStretch">
                     <VisualState.Setters>
                         <Setter Target="EditorContentListView.(Grid.Row)" Value="0"/>
                         <Setter Target="EditorContentListView.(Grid.RowSpan)" Value="4"/>
                         <Setter Target="TitlePageTextBlock.(UIElement.Visibility)" Value="Collapsed"/>
                         <Setter Target="PanelEditDecriptionPublicationUserControl.(UIElement.Visibility)" Value="Collapsed"/>
                         <Setter Target="PanelAddElementsToPublicGriView.(UIElement.Visibility)" Value="Collapsed"/>
+                        <Setter Target="GenresListView.(UIElement.Visibility)" Value="Collapsed"/>
+                        <Setter Target="HeaderPagePanel.(UIElement.Visibility)" Value="Collapsed"/>
                     </VisualState.Setters>
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowHeight="0"/>
                     </VisualState.StateTriggers>
                 </VisualState>
-                <VisualState x:ConnectionId='5' x:Name="EditorContentCompress">
+                <VisualState x:ConnectionId='6' x:Name="EditorContentCompress">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowHeight="550"/>
                     </VisualState.StateTriggers>
@@ -82,61 +92,134 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock x:ConnectionId='9' x:Name="TitlePageTextBlock" Style="{StaticResource SubheaderTextBlockStyle}"
-                   Text="{StaticResource TitlePageString}"/>
-
-        <UserControls:PanelEditDecriptionPublicationUserControl x:ConnectionId='10' x:Name="PanelEditDecriptionPublicationUserControl"
-                                                                Grid.Row="1"
+        
+        <StackPanel x:ConnectionId='10' Name="HeaderPagePanel"
+                    Orientation="Vertical"
+                    Grid.Row="0">
+            <TextBlock x:ConnectionId='21' x:Name="TitlePageTextBlock"
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       Text="{StaticResource TitlePageString}"/>
+            <StackPanel x:ConnectionId='22' Name="ExpandOrCollapsGenresPanel"
+                        Orientation="Horizontal">
+                 <TextBlock Text="Выберите жанры, с которыми связана статья"
+                            TextWrapping="Wrap"
+                            Style="{StaticResource BaseMenuTextBlockStyle}"/>
+                 <ToggleButton x:ConnectionId='23' Name="ExpandOrCollapsGenresButton"
+                               Style="{StaticResource TextBlockButtonStyle}"
+                               FontSize="17"                               
+                               Margin="0 -6 0 0"                               
+                               Content="Развернуть">
+                     <I:Interaction.Behaviors>
+                         <Core:EventTriggerBehavior EventName="Checked">
+                             <Core:ChangePropertyAction x:ConnectionId='26'                                       
+                                                        PropertyName="Visibility"
+                                                        Value="Visible"/>
+                             <Core:ChangePropertyAction x:ConnectionId='27'                                                    
+                                                        PropertyName="Content"
+                                                        Value="Свернуть"/>
+                         </Core:EventTriggerBehavior>
+                          <Core:EventTriggerBehavior EventName="Unchecked">
+                             <Core:ChangePropertyAction x:ConnectionId='24'                                       
+                                                        PropertyName="Visibility"
+                                                        Value="Collapsed"/>
+                             <Core:ChangePropertyAction x:ConnectionId='25'                                                    
+                                                        PropertyName="Content"
+                                                        Value="Развернуть"/>
+                         </Core:EventTriggerBehavior>
+                     </I:Interaction.Behaviors>
+                 </ToggleButton>
+            </StackPanel>
+        </StackPanel>
+        
+      <ScrollViewer Grid.Row="1"
+                    VerticalScrollBarVisibility="Auto"
+                    HorizontalScrollBarVisibility="Auto">
+        <ListView x:ConnectionId='19' Name="GenresListView"
+                  Visibility="Collapsed"
+                  SelectionMode="Multiple"      
+                  ItemsSource="{Binding Source={StaticResource GenresGroupCollection}}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"
+                               FontSize="13"
+                               Style="{StaticResource SubheaderTextBlockStyle}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+                    <ListView.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.HeaderTemplate>
+                                <DataTemplate                                 >
+                                    <TextBlock x:ConnectionId='20'                          
+                                               Style="{StaticResource BaseMenuTextBlockStyle}"/>
+                                </DataTemplate>
+                            </GroupStyle.HeaderTemplate>
+                            <GroupStyle.Panel>
+                                <ItemsPanelTemplate>
+                                    <toolkit:WrapPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                             </GroupStyle.Panel>
+                        </GroupStyle>
+                    </ListView.GroupStyle>
+                        <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>   
+          </ScrollViewer>
+        
+        <UserControls:PanelEditDecriptionPublicationUserControl x:ConnectionId='11' x:Name="PanelEditDecriptionPublicationUserControl"
+                                                                Grid.Row="2"
                                                                 HorizontalAlignment="Left"/>
-
-        <ScrollViewer x:ConnectionId='11' Name="sv"
-                      Grid.Row="2"
+        <ScrollViewer x:ConnectionId='12' Name="sv"
+                      Grid.Row="3"
                       VerticalScrollBarVisibility="Auto">
-            <StackPanel x:ConnectionId='17' Name="EditorContentListView">
+            <StackPanel x:ConnectionId='18' Name="EditorContentListView">
                 <StackPanel.ChildrenTransitions>
                     <TransitionCollection>
                         <AddDeleteThemeTransition/>
                     </TransitionCollection>
                 </StackPanel.ChildrenTransitions>
             </StackPanel>
-        </ScrollViewer>
+       </ScrollViewer>
         
-        
-        <GridView x:ConnectionId='12' x:Name="PanelAddElementsToPublicGriView"
+        <GridView x:ConnectionId='13' x:Name="PanelAddElementsToPublicGriView"
                   HorizontalAlignment="Center"
                   IsItemClickEnabled="True"
                   SelectionMode="None"
                                                                        
-                  Grid.Row="3">
+                  Grid.Row="4">
             <GridViewItem>
-                <TextBlock x:ConnectionId='16' Name="AddImageTextBlock"
+                <TextBlock x:ConnectionId='17' Name="AddImageTextBlock"
                            Tag="Image"
                            Style="{StaticResource BaseMenuTextBlockStyle}"
                            Text="Изображение"/>
             </GridViewItem>
             <GridViewItem>
-                <TextBlock x:ConnectionId='15' Name="AddTextTextBlock"
+                <TextBlock x:ConnectionId='16' Name="AddTextTextBlock"
                            Tag="Text"
                            Style="{StaticResource BaseMenuTextBlockStyle}"
                            Text="Текст"/>
             </GridViewItem>
             <GridViewItem>
-                <TextBlock x:ConnectionId='14' Name="AddSeparatorTextBlock"
+                <TextBlock x:ConnectionId='15' Name="AddSeparatorTextBlock"
                            Tag="Separator"
                            Style="{StaticResource BaseMenuTextBlockStyle}"
                            Text="Разделитель"/>
             </GridViewItem>
             <GridViewItem>
-                <TextBlock x:ConnectionId='13' Name="AddVideoTextBlock"
+                <TextBlock x:ConnectionId='14' Name="AddVideoTextBlock"
                            Tag="Video"
                            Style="{StaticResource BaseMenuTextBlockStyle}"
                            Text="Видео"/>
             </GridViewItem>
         </GridView>
+    
     </Grid>
 </Page>
 

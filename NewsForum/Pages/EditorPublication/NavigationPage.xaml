@@ -158,7 +158,7 @@
             <Button Name="BackPageButton"
                     Grid.Column="0"
                     HorizontalAlignment="Right"
-                    Style="{StaticResource BaseMiddleMenuIconButtonStyle}"
+                    Style="{StaticResource BaseMiddleMenuIconTextBlockButtonStyle}"
                     Content=""
                     IsEnabled="False"
                     Tapped="BackPageButton_Tapped">
@@ -167,7 +167,7 @@
             <Button Name="ForwardPageButton"
                     Grid.Column="2"
                     HorizontalAlignment="Left"
-                    Style="{StaticResource BaseMiddleMenuIconButtonStyle}"
+                    Style="{StaticResource BaseMiddleMenuIconTextBlockButtonStyle}"
                     Content=""
                     Tapped="ForwardPageButton_Tapped"/>
         </Grid>

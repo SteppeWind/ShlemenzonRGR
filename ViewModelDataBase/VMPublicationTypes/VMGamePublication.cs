@@ -14,14 +14,19 @@ namespace ViewModelDataBase.VMPublicationTypes
 {
     public class VMGamePublication : VMPublication, IGamePublication, IListBitmapImages
     {
+        [Property("CompanyDeveloper")]
         public string CompanyDeveloper { get; set; }
 
+        [Property("InterfaceLanguage")]
         public string InterfaceLanguage { get; set; }
 
+        [Property("Platform")]
         public string Platform { get; set; }
 
+        [Property("MultiPlayer")]
         public bool MultiPlayer { get; set; }
 
+        [Property("ReleaseYear")]
         public DateTime? ReleaseYear { get; set; }
 
         //public List<VMGenre> ListGenres { get; set; }

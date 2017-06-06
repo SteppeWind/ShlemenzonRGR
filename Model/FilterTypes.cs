@@ -8,7 +8,7 @@ namespace Model
 {
     public static class FilterTypes
     {
-        public static readonly string[] FiltersImage = { "jpg", "png", "jpeg" };
-        public static readonly string[] FiltersMusic = { "wav", "mp3" };
+        public static readonly string[] FiltersImage = { "jpg", "png", "jpeg", "JPG", "PNG", "JPEG" };
+        public static readonly string[] FiltersMusic = { "wav", "mp3", "WAV", "MP3" };
     }
 }

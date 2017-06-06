@@ -1,4 +1,4 @@
-﻿<Page
+﻿<Page x:ConnectionId='1'
     x:Class="NewsForum.Pages.LoginOrRegistrationPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -46,24 +46,31 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <TextBox Grid.Row="0"
+            <TextBox x:ConnectionId='2' Grid.Row="0"
                      PlaceholderText="Логин"
+                                                       
                      Style="{StaticResource BaseTextBoxStyle}"
                      Margin="0,5"/>
 
-            <PasswordBox Grid.Row="1"
+            <PasswordBox x:ConnectionId='3' Grid.Row="1"
+                                                                  
                          PlaceholderText="Пароль"
                          Style="{StaticResource BasePasswordBoxStyle}"
                          Margin="0,5"/>
 
-            <StackPanel x:ConnectionId='1' Name="mystack" Grid.Row="2"
+            <StackPanel x:ConnectionId='4' Name="mystack"
+                        Grid.Row="2"
                         Orientation="Horizontal"
                         HorizontalAlignment="Center">
-                <Button Content="Вход"
+                <Button x:ConnectionId='5' Name="AutorizeButton"
+                        Content="Вход"
+                                                      
                         Style="{StaticResource BaseMenuButtonStyle}"/>
-                <Button Content="Регистрация"
+                <Button x:ConnectionId='6' Name="RegistrationButton"
+                        Content="Регистрация"
+                                                          
                         Style="{StaticResource BaseMenuButtonStyle}"
-                        Margin="5"/>
+                        Margin="5 0 0 0"/>
             </StackPanel>
         </Grid>
     </Grid>

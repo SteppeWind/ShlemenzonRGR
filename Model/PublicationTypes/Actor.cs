@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RequestServer.AnswerForRequest
+namespace Model.PublicationTypes
 {
-    public enum TypeAnswer
+    public class Actor : IActor
     {
-        Bool,
-        Publications,
-        Users
+        public string Name { get; set; }
     }
 }

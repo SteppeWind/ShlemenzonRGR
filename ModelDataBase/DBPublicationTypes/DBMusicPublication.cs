@@ -1,4 +1,5 @@
-﻿using Model.PublicationTypes;
+﻿using Model;
+using Model.PublicationTypes;
 using ModelDataBase.DBInterfaces;
 using System;
 using System.Collections.Generic;
@@ -12,17 +13,19 @@ namespace ModelDataBase.DBPublicationTypes
     [Table("DBMusicPublications")]
     public class DBMusicPublication : DBPublication, IMusicPublication
     {
+        [Property("Formats")]
         public string Formats { get; set; }
 
+        [Property("Performer")]
         public string Performer { get; set; }
 
+        [Property("CountryPerformer")]
         public string CountryPerformer { get; set; }
 
+        [Property("Album")]
         public string Album { get; set; }
 
-        //[NotMapped]
-        //public virtual List<DBInfoFile> ListSongs { get; set; }
-
+        [Property("ReleaseYear")]
         public DateTime? ReleaseYear { get; set; }
 
         public DBMusicPublication()

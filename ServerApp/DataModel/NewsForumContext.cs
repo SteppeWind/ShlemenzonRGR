@@ -25,9 +25,9 @@
         public DbSet<DBInfoFile> InfoFiles { get; set; }
         public DbSet<DBNewsElement> NewsElements { get; set; }
         public DbSet<DBNewsElementFile> NewsElementFiles { get; set; }
-        public DbSet<DBComment> Comments { get; set; }
         public DbSet<DBRating> Ratings { get; set; }
-
+        public DbSet<DBComment> Comments { get; set; }
+        
         public NewsForumContext()
             : base("NewsForumContext")
         {

@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using ViewModelDataBase.VMPublicationTypes;
 using ViewModelDataBase.VMPublicationTypes.VMNewsTypes;
 using ViewModelDataBase.VMTypes;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -42,7 +44,7 @@ namespace NewsForum.Pages.EditorPublication
         {
         }
 
-        private async void ForwardPageButton_Tapped(object sender, TappedRoutedEventArgs e)
+        private async void ForwardPageButton_TappedAsync(object sender, TappedRoutedEventArgs e)
         {
             ++CurrentStep;
             SetEnNavigationButtons();
@@ -61,7 +63,7 @@ namespace NewsForum.Pages.EditorPublication
                                 PosterImage = Publication.PosterImage,
                                 Title = Publication.Title
                             };
-                            NavigationEditFrame.Navigate(typeof(ThirdStepGamePage), Publication);            
+                            NavigationEditFrame.Navigate(typeof(ThirdStepGamePage), Publication);
                             break;
                         case global::Model.PublicationTypes.PublicationType.Music:
                             Publication = new VMMusicPublication()
@@ -69,7 +71,7 @@ namespace NewsForum.Pages.EditorPublication
                                 PosterImage = Publication.PosterImage,
                                 Title = Publication.Title
                             };
-                            NavigationEditFrame.Navigate(typeof(ThirdStepMusicEditorPage));
+                            NavigationEditFrame.Navigate(typeof(ThirdStepMusicEditorPage), Publication);
                             break;
                         case global::Model.PublicationTypes.PublicationType.News:
                             Publication = new VMNewsPublication()
@@ -77,7 +79,7 @@ namespace NewsForum.Pages.EditorPublication
                                 PosterImage = Publication.PosterImage,
                                 Title = Publication.Title
                             };
-                            NavigationEditFrame.Navigate(typeof(ThirdStepNewsEditorPage));
+                            NavigationEditFrame.Navigate(typeof(ThirdStepNewsEditorPage), Publication);
                             break;
                         case global::Model.PublicationTypes.PublicationType.Film:
                             Publication = new VMFilmPublication()
@@ -85,7 +87,7 @@ namespace NewsForum.Pages.EditorPublication
                                 PosterImage = Publication.PosterImage,
                                 Title = Publication.Title
                             };
-                            NavigationEditFrame.Navigate(typeof(ThirdStepDistributionEditorPage));
+                            NavigationEditFrame.Navigate(typeof(ThirdStepDistributionEditorPage), Publication);
                             break;
                         default:
                             break;
@@ -95,30 +97,19 @@ namespace NewsForum.Pages.EditorPublication
                 case 3:
                     SecondToThirdStepStoryBoard.Begin();
                     //Вот тут бля
-                    ForwardPageButton.IsEnabled = false;
-                    var file = await FilesAction.Folder.GetFileAsync("Description.rtf");
-                    var result = await FilesAction.ConvertToIFileVM(file);
-                    Publication.Description = new ViewModelDataBase.VMTypes.VMFile()
+                    foreach (var item in await FilesAction.Folder.GetItemsAsync())
                     {
-                        Bytes = result.Item2,
-                        Type = result.Item1
-                    };
-                    NavigationEditFrame.Navigate(typeof(LastStepPage), Publication);
-                    switch (Publication.TypePublication)
-                    {
-                        case global::Model.PublicationTypes.PublicationType.Game:
-                            break;
-                        case global::Model.PublicationTypes.PublicationType.Film:
-                            break;
-                        case global::Model.PublicationTypes.PublicationType.Music:
-                            break;
-                        case global::Model.PublicationTypes.PublicationType.News:
-                            break;
-                        default:
-                            break;
+                        await item.DeleteAsync();
                     }
+                    if (Publication.PosterImage != null)
+                    {
+                        var file = await FilesAction.CreateLocalStorageFile(Guid.NewGuid().ToString() + Publication.PosterImage.Type, Publication.PosterImage.Bytes);
+                        Publication.PosterImage.FullPath = file.Path;
+                    }
+                    ForwardPageButton.IsEnabled = false;
+                    NavigationEditFrame.Navigate(typeof(LastStepPage), Publication);
                     break;
-           
+
                 default:
                     break;
             }
@@ -127,17 +118,18 @@ namespace NewsForum.Pages.EditorPublication
         private void BackPageButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
             --CurrentStep;
-            NavigationEditFrame.GoBack();
             SetEnNavigationButtons();
             switch (CurrentStep)
             {
                 case 1:
                     SecondToFirstStepStoryBoard.Begin();
+                    NavigationEditFrame.Navigate(typeof(SecondStepPage), Publication);
                     BackPageButton.IsEnabled = false;
                     break;
 
                 case 2:
                     ThirdToSecondStepStoryBoard.Begin();
+                    NavigationEditFrame.GoBack();
                     break;
 
                 case 3:

@@ -1,16 +1,19 @@
-﻿using Model.UserTypes;
+﻿using Model;
+using Model.PublicationTypes;
+using Model.UserTypes;
 using ModelDataBase.DBPublicationTypes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ModelDataBase.DBUserTypes
 {
-    public class DBUser : User
+    public class DBUser : User, IUser<DBPublication, DBRating, DBComment>
     {
         private int userId = -1;
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -24,12 +27,23 @@ namespace ModelDataBase.DBUserTypes
             }
         }
 
-        public virtual ICollection<DBRating> ListMarks { get; set; }
+        //[NotMapped]
+        //public override User UserComponent { get => base.UserComponent; set => base.UserComponent = value; }
 
-        public virtual ICollection<DBComment> ListComments { get; set; }
+        [NotMapped]
+        public override bool IsCorrectUserForAutorize => base.IsCorrectUserForAutorize;
 
-        public virtual ICollection<DBPublication> ListPublications { get; set; }
+        public virtual List<DBPublication> ListPublications { get; set; }
 
-       
+        public virtual List<DBRating> ListRatings { get; set; }
+
+        public virtual List<DBComment> ListComments { get; set; }
+        
+        public DBUser()
+        {
+            ListPublications = ListPublications ?? new List<DBPublication>();
+            ListRatings = ListRatings ?? new List<DBRating>();
+            ListComments = ListComments ?? new List<DBComment>();
+        }
     }
 }

@@ -67,7 +67,13 @@
            BasedOn="{StaticResource BaseMenuIconButtonStyle}">
         <Setter Property="FontSize" Value="35"/>
     </Style>
-    
+
+    <Style x:Key="BaseMiddleMenuIconTextBlockButtonStyle"
+        TargetType="Button"
+           BasedOn="{StaticResource TextBlockButtonStyle}">
+        <Setter Property="FontSize" Value="35"/>
+        <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+    </Style>
     
     <Style x:Key="BaseSmallMenuIconTextBlockStyle"
            TargetType="TextBlock"

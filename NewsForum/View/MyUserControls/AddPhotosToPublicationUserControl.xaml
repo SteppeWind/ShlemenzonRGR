@@ -43,9 +43,9 @@
 
                 <Image x:Name="image"
                        Grid.Row="1"
-                       Height="250"
-                       Width="250"
-                       Stretch="UniformToFill"
+                       Height="300"
+                       Width="300"
+                       Stretch="Uniform"
                        Source="{x:Bind BitMapImg}"/>
             </Grid>
         </DataTemplate>

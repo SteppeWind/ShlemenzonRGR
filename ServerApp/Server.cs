@@ -15,6 +15,10 @@ using System.Threading.Tasks;
 using ViewModelDataBase.VMPublicationTypes;
 using System.Collections.Concurrent;
 using ViewModelDataBase.VMPublicationTypes.VMNewsTypes;
+using System.Runtime.Serialization.Formatters;
+using RequestServer;
+using ServerApp.DataModel;
+using Model.UserTypes;
 
 namespace ServerApp
 {
@@ -25,6 +29,7 @@ namespace ServerApp
         public int Port { get; private set; } = ServerSettings.Port;
         public event Action<string> ExceptionRecived;
         private int SizeBuffer = Packet.SizePacket * 2;
+        public static int Delay { get; private set; } = 1;
 
         private TcpListener ListenerConnections;
 
@@ -76,83 +81,168 @@ namespace ServerApp
 
         private void Client_RecievedRequest(Client client, MainRequest Request)
         {
+            Answer answer = null;
             switch (Request.DataType)
             {
-                case RequestServer.DataType.Publication:
-                    PublicationRequests(Request);
+                case DataType.Bool:
                     break;
-                case RequestServer.DataType.User:
-                    UserRequests(Request);
+                case DataType.Publication:
+                    answer = PublicationRequests(Request);
+                    break;
+                case DataType.User:
+                    answer = UserRequests(Request);
+                    break;
+                case DataType.Actor:
+                    break;
+                case DataType.SmallPublication:
+                    answer = BasePublicationRequest(Request);
                     break;
                 default:
                     break;
             }
+            client.SendAnswer(answer);
         }
+
+        /// <summary>
+        /// Обрабатывает запрос о списке публикаций
+        /// </summary>
+        /// <param name="mainRequest"></param>
+        private Answer BasePublicationRequest(MainRequest mainRequest)
+        {
+            Answer answer = new Answer();
+            string json = string.Empty;
+            if (mainRequest.RecievedRequest != null)
+                json = mainRequest.RecievedRequest.ToString();
+
+            switch (mainRequest.TypeRequest)
+            {
+                case TypeRequest.Read:
+                    answer.TypeAnswer = DataType.SmallPublication;
+                    var readPublicationRequest = JsonConvert.DeserializeObject<ReadPublciationRequest>(json);
+                    answer.SelfAnswer = PublicationCRUD.GetSmallPublications(readPublicationRequest, mainRequest.UserId);
+                    break;
+                case TypeRequest.ReadSelf:
+                    answer.TypeAnswer = DataType.SmallPublication;
+                    answer.SelfAnswer = PublicationCRUD.GetCertainPublications(mainRequest.UserId);
+                    break;
+            }
+            return answer;
+        }
+
 
         /// <summary>
         /// Обработка запроса, поступившая от админа
         /// </summary>
         /// <param name="mainRequest">Запрос с данными</param>
-        private void UserRequests(MainRequest mainRequest)
+        private Answer UserRequests(MainRequest mainRequest)
         {
+            Answer answer = new Answer();
+            string json = string.Empty;
+            if (mainRequest.RecievedRequest != null)
+                json = mainRequest.RecievedRequest.ToString();
+
             switch (mainRequest.TypeRequest)
             {
                 case TypeRequest.Update:
+                    var user = JsonConvert.DeserializeObject<User>(json);
+                    answer.SelfAnswer = UserCRUD.UpdateUser(user);
                     break;
+
                 case TypeRequest.Delete:
+                    answer.SelfAnswer = UserCRUD.BanUser(JsonConvert.DeserializeObject<int>(json), mainRequest.UserId);
                     break;
+
+                case TypeRequest.Undelete:
+                    answer.SelfAnswer = UserCRUD.UnbanUser(JsonConvert.DeserializeObject<int>(json), mainRequest.UserId);
+                    break;
+
                 case TypeRequest.Create:
+                    user = JsonConvert.DeserializeObject<User>(json);
+                    answer.SelfAnswer = UserCRUD.CreateUser(user);
                     break;
                 case TypeRequest.Read:
+                    answer.SelfAnswer = UserCRUD.GetUsers;
+                    break;
+                case TypeRequest.ReadSelf:
+                    string[] login_password = json.Split('%');
+                    answer.SelfAnswer = UserCRUD.Authorization(login_password[0], login_password[1]);
                     break;
                 default:
                     break;
             }
+
+            return answer;
         }
+
 
         /// <summary>
         /// Обработка создания, удаления, обновления, чтения публикаций
         /// </summary>
         /// <param name="mainRequest"></param>
-        private void PublicationRequests(MainRequest mainRequest)
+        private Answer PublicationRequests(MainRequest mainRequest)
         {
             object result = null;
-            Answer answer = new Answer() { SelfAnswer = result };
+            Answer answer = new Answer();
             string json = mainRequest.RecievedRequest.ToString();
-            var @public = JsonConvert.DeserializeObject<VMPublication>(json);
-            switch (mainRequest.TypeRequest)
+            VMPublication castPublic = new VMPublication();
+            if (mainRequest.TypeRequest == TypeRequest.Create || mainRequest.TypeRequest == TypeRequest.Update)
             {
-                case TypeRequest.Update:
-                    break;
-                case TypeRequest.Delete:
-                    break;
-                case TypeRequest.Create:
-                    VMPublication castPublic = null;
+                var @public = JsonConvert.DeserializeObject<VMPublication>(json);
+                if (@public != null)
+                {
                     switch (@public.TypePublication)
                     {
                         case Model.PublicationTypes.PublicationType.Game:
-                            castPublic= JsonConvert.DeserializeObject<VMGamePublication>(json);
+                            castPublic = JsonConvert.DeserializeObject<VMGamePublication>(json, new JsonSerializerSettings()
+                            {
+                                TypeNameHandling = TypeNameHandling.Auto
+                            });
                             break;
                         case Model.PublicationTypes.PublicationType.Film:
-                            castPublic = JsonConvert.DeserializeObject<VMFilmPublication>(json);
+                            castPublic = JsonConvert.DeserializeObject<VMFilmPublication>(json, new JsonSerializerSettings()
+                            {
+                                TypeNameHandling = TypeNameHandling.Auto
+                            });
                             break;
                         case Model.PublicationTypes.PublicationType.Music:
-                            castPublic = JsonConvert.DeserializeObject<VMMusicPublication>(json);
+                            castPublic = JsonConvert.DeserializeObject<VMMusicPublication>(json, new JsonSerializerSettings()
+                            {
+                                TypeNameHandling = TypeNameHandling.Auto
+                            });
                             break;
                         case Model.PublicationTypes.PublicationType.News:
-                            castPublic = JsonConvert.DeserializeObject<VMNewsPublication>(json);
+                            castPublic = JsonConvert.DeserializeObject<VMNewsPublication>(json, new JsonSerializerSettings()
+                            {
+                                TypeNameHandling = TypeNameHandling.Auto
+                            });
                             break;
                         default:
                             break;
                     }
+                }
+            }
+
+            switch (mainRequest.TypeRequest)
+            {
+                case TypeRequest.Update:
+                    result = PublicationCRUD.UpdatePublication(castPublic, mainRequest.UserId);
+                    break;
+                case TypeRequest.Delete:
+                    result = PublicationCRUD.DeletePublication(JsonConvert.DeserializeObject<int>(json), mainRequest.UserId);
+                    break;
+
+                case TypeRequest.Undelete:
+                    result = PublicationCRUD.UndeletePublication(JsonConvert.DeserializeObject<int>(json), mainRequest.UserId);
+                    break;
+                case TypeRequest.Create:
                     result = PublicationCRUD.CreatePublication(castPublic);
                     break;
                 case TypeRequest.Read:
-                    answer.TypeAnswer = TypeAnswer.Publications;
-                    break;
-                default:
+                    result = PublicationCRUD.GetPublication(JsonConvert.DeserializeObject<int>(json));
                     break;
             }
+            answer.SelfAnswer = result;
+            return answer;
         }
     }
 
@@ -164,7 +254,7 @@ namespace ServerApp
         public delegate void RecievedRequestEventHandler(Client client, MainRequest Request);
         public event RecievedRequestEventHandler RecievedRequest;
         //public event Action<string> ExceptionRecieved;
-        //public event Action<int, int> NumPacketRecieved;
+        public event Action<int, int> NumPacketRecieved;
         private event Action<(byte[] bytes, int size)> DataRecieved;
 
         public Client(TcpClient tcp)
@@ -173,6 +263,12 @@ namespace ServerApp
             NetWorkStream = tcp.GetStream();
             ReadStreamDataAsync();
             DataRecieved += Client_DataRecieved;
+            NumPacketRecieved += Client_NumPacketRecieved;
+        }
+
+        private void Client_NumPacketRecieved(int arg1, int arg2)
+        {
+            Console.WriteLine($"{arg1} пакет из {arg2}");
         }
 
         List<Packet> listPackets = new List<Packet>();
@@ -180,17 +276,18 @@ namespace ServerApp
         {
             try
             {
-                var packet = await Packet.GetPacketFromFixBytes(item.bytes, item.size);
+                var packet = await Packet.GetPacketFromFixBytesAsync(item.bytes, item.size);
                 lock (listPackets)
                 {
                     if (packet != null)
                     {
+                        //NumPacketRecieved(packet.NumberPacket, packet.TotalCountPackets);
                         listPackets.Add(packet);
                         if (listPackets.Count == packet.TotalCountPackets)
                         {
                             var res = MainRequest.GetTObjFromPackets(listPackets.OrderBy(el => el.NumberPacket).ToList());
-                            RecievedRequest(this, res);
                             listPackets.Clear();
+                            RecievedRequest(this, res);
                         }
                     }
                 }
@@ -222,7 +319,7 @@ namespace ServerApp
             var collection = Answer.GetTObjectPacketsBytes(answer);
             foreach (var item in collection)
             {
-                await Task.Delay(1);
+                await Task.Delay(Server.Delay);
                 await NetWorkStream.WriteAsync(item, 0, item.Length);
             }
         }

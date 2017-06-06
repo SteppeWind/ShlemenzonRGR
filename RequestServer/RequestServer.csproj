@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnswerForRequest\Answer.cs" />
-    <Compile Include="AnswerForRequest\TypeAnswer.cs" />
     <Compile Include="DataType.cs" />
     <Compile Include="PacketRequest\Packet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

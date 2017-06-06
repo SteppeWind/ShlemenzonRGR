@@ -47,17 +47,7 @@
                     </VisualState.StateTriggers>
                 </VisualState>
                 <VisualState x:ConnectionId='4' x:Name="Desktop">
-                    <VisualState.Setters>
-                        <Setter Target="TitlePublicationTextBox.(Grid.RowSpan)" Value="1"/>
-                        <Setter Target="TitlePublicationTextBox.(Grid.ColumnSpan)" Value="1"/>
-                        <Setter Target="flip.(Grid.Row)" Value="0"/>
-                        <Setter Target="flip.(Grid.Column)" Value="1"/>
-                        <Setter Target="flip.(Grid.RowSpan)" Value="1"/>
-                        <Setter Target="flip.(Grid.ColumnSpan)" Value="1"/>
-                        <Setter Target="TitlePublicationTextBox.(Grid.Column)" Value="0"/>
-                        <Setter Target="flip.Margin" Value="10 0 0 0"/>
-                    </VisualState.Setters>
-                    <VisualState.StateTriggers>
+                   <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="700"/>
                     </VisualState.StateTriggers>
                 </VisualState>
@@ -96,6 +86,7 @@
 
                 <ComboBox x:ConnectionId='6' Name="flip"
                           FontSize="20"
+                          Margin="10 0 0 0"
                                                                                                                                                      
                           Grid.Column="1">
                     <ComboBox.Header>
@@ -172,10 +163,12 @@
                                VerticalAlignment="Bottom"
                                Style="{StaticResource SubheaderTextBlockStyle}"/>
 
-                    <UserControls:AddCoverPublicationUserControl x:ConnectionId='7' Grid.Column="0"
+                    <UserControls:AddCoverPublicationUserControl x:ConnectionId='7' x:Name="AddCoverControl"
+                                                                 Grid.Column="0"
                                                                  Grid.ColumnSpan="3"
                                                                  Grid.Row="1"
                                                                                                                                      
+                                                                                                                      
                                                                  Grid.RowSpan="2"/>
                 </Grid>
             </Grid>

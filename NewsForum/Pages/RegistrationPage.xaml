@@ -8,8 +8,66 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <Style x:Key="ModifyTextBox"
+               TargetType="TextBox"
+               BasedOn="{StaticResource BaseTextBoxStyle}">
+            <Setter Property="Width" Value="350"/>
+            <Setter Property="Margin" Value="0 15"/>
+        </Style>
+
+    </Page.Resources>
     
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-  
+
+    <Grid Background="{StaticResource MenuColorStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        
+        <ListView>
+            <TextBox Style="{StaticResource ModifyTextBox}"
+                     Header="Имя"
+                     Text="{x:Bind CurrUser.Name, Mode=TwoWay}"/>
+         
+            <TextBox Style="{StaticResource ModifyTextBox}"
+                     Header="Фамилия"
+                     Text="{x:Bind CurrUser.Surname, Mode=TwoWay}"/>
+          
+            <TextBox Style="{StaticResource ModifyTextBox}"
+                     Header="email"
+                     Text="{x:Bind CurrUser.EMail}"/>
+          
+            <PasswordBox Style="{StaticResource BasePasswordBoxStyle}"
+                         Width="350"
+                         Margin="0 15"
+                         Header="Пароль"
+                         Password="{x:Bind CurrUser.Password, Mode=TwoWay}"/>
+           
+            <TextBox Style="{StaticResource ModifyTextBox}"
+                     Header="Город"
+                     PlaceholderText="Необзятельно"
+                     Text="{x:Bind CurrUser.City, Mode=TwoWay}"/>
+           
+            <TextBox Style="{StaticResource ModifyTextBox}"
+                     Header="Телефон"
+                     PlaceholderText="Необзятельно"
+                     Text="{x:Bind CurrUser.PhoneNumber, Mode=TwoWay}"/>
+
+        </ListView>
+
+        <StackPanel Grid.Row="1"
+                    HorizontalAlignment="Center"                    
+                    Orientation="Horizontal">
+            <Button Name="CreateUserButton"
+                    Style="{StaticResource BaseMenuButtonStyle}"
+                    Content="Создать"
+                    Tapped="CreateUserButton_Tapped"/>
+            <Button Name="CancelButton"
+                    Margin="15 0"
+                    Style="{StaticResource BaseMenuButtonStyle}"
+                    Content="Отмена"
+                    Tapped="CancelButton_Tapped"/>
+        </StackPanel>
     </Grid>
 </Page>

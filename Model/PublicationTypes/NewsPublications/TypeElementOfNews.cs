@@ -8,9 +8,9 @@ namespace Model.PublicationTypes.NewsPublications
 {
     public enum TypeElementOfNews
     {
-        Image,
-        LinkVideo,
-        Separator,
-        Text
+        LinkVideo = 1,
+        Separator = 2,
+        Image = 3,
+        Text = 4
     }
 }

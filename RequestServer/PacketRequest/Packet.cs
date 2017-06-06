@@ -9,7 +9,7 @@ namespace RequestServer.PacketRequest
 {
     public class Packet
     {
-        public static int SizePacket => 200000;
+        public static int SizePacket => 500000;
         private static int bufferSizePacket = SizePacket * 8;
         public static int BufferSizePacket
         {
@@ -28,7 +28,7 @@ namespace RequestServer.PacketRequest
         public byte[] Bytes { get; set; }
 
         public string Id { get; set; }
-        
+
 
         public int TotalCountPackets { get; set; }
 
@@ -58,7 +58,7 @@ namespace RequestServer.PacketRequest
         }
         public static Packet GetPacketFromBytes(byte[] bytes) => GetPacketFromJSON(Encoding.UTF8.GetString(bytes, 0, bytes.Length));
 
-        public static Task<Packet> GetPacketFromFixBytes(byte[] bytes, int size)
+        public static Task<Packet> GetPacketFromFixBytesAsync(byte[] bytes, int size)
         {
             return Task.Run(() =>
             {
@@ -66,6 +66,13 @@ namespace RequestServer.PacketRequest
                 Packet packet = GetPacketFromBytes(bytes);
                 return packet;
             });
+        }
+
+        public static Packet GetPacketFromFixBytes(byte[] bytes, int size)
+        {
+            Array.Resize(ref bytes, size);
+            Packet packet = GetPacketFromBytes(bytes);
+            return packet;
         }
     }
 }

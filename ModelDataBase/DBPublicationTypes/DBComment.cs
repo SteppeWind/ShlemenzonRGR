@@ -11,11 +11,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ModelDataBase.DBPublicationTypes
 {
-    public class DBComment : Comment, IUserDB, ICommentDB, IPublicationDB
+    public class DBComment : Comment, IUserDB
     {
         private int commentId = -1;
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int CommentId
+        public override int CommentId
         {
             get => commentId;
             set
@@ -27,7 +27,7 @@ namespace ModelDataBase.DBPublicationTypes
 
         private int userId = -1;
         [ForeignKey("User")]
-        public int UserId
+        public override int UserId
         {
             get => userId;
             set
@@ -39,7 +39,7 @@ namespace ModelDataBase.DBPublicationTypes
 
         private int publicationId = -1;
         [ForeignKey("Publication")]
-        public int PublicatoinId
+        public override int PublicationId
         {
             get => publicationId;
             set

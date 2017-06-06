@@ -39,7 +39,12 @@ namespace NewsForum.ViewModel
             PlaySoundCommand = new PlaySoundCommand(this);
         }    
         
-        
+        private void CreatePlayer()
+        {
+            if (MediaPlayer == null)
+                MediaPlayer = new MediaElement();
+        }
+
         public MediaElement MediaPlayer
         {
             get => (MediaElement)GetValue(MediaPlayerProperty);
@@ -58,13 +63,30 @@ namespace NewsForum.ViewModel
             if (BaseFileCollection.Count <= 1) //проверям на пустоту списка
             {
                 //список пуст, следовательно значение Source у Media убираем
-                //MediaPlayer.SetSource((IRandomAccessStream)Stream.Null, "");
+                MediaPlayer.Pause();
+                CurrentSong = null;
             }
-            if (index < BaseFileCollection.Count && index == BaseFileCollection.IndexOf(CurrentSong))
+            else if (index == BaseFileCollection.IndexOf(BaseFileCollection.Last()))
+            {
+                PlaySound((SoundFileContainer)BaseFileCollection.First());
+            }
+            else if (index < BaseFileCollection.Count && index == BaseFileCollection.IndexOf(CurrentSong))
             {
                 PlaySound((SoundFileContainer)BaseFileCollection[index + 1]);
             }
             base.RemoveElement(element);
+        }
+
+        public override void AddElement(IFileSettings element)
+        {
+            base.AddElement(element);
+            CreatePlayer();
+        }
+
+        public override void AddRange(IEnumerable<IFileSettings> collection)
+        {
+            base.AddRange(collection);
+            CreatePlayer();
         }
 
         public void PauseSound()
@@ -74,7 +96,10 @@ namespace NewsForum.ViewModel
 
         public void ContinuePlaySound()
         {
-            MediaPlayer.Play();
+            if (CurrentSong == null)
+                PlaySound((SoundFileContainer)BaseFileCollection.First());
+            else
+                MediaPlayer.Play();
         }
 
         public void PlayNextSong()

@@ -9,7 +9,7 @@ namespace Model.PublicationTypes
     public interface IMusicPublication
     { 
         /// <summary>
-        /// Форматы песни или альбома, (wav, mp3 и т.д.)
+        /// Форматы песни или альбома (wav, mp3 и т.д.)
         /// </summary>
         string Formats { get; set; }
 

@@ -10,10 +10,14 @@ using Windows.Storage;
 
 namespace ViewModelDataBase.VMPublicationTypes.VMNewsTypes
 {
-    public class VMNewsElementFile : VMNewsElement, IFileVM
+    public class VMNewsElementFile : NewsElement, IFileVM
     {
         public string Name { get; set; }
+
         public byte[] Bytes { get; set; }
+
         public string Type { get; set ; }
+
+        public string FullPath { get; set; }
     }
 }

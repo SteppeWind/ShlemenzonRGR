@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Model.PublicationTypes
 {
-    class Genre
+    public class Genre : IGenre
     {
+        public string Name { get; set; }
     }
 }

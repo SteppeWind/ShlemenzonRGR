@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using ViewModelDataBase.VMTypes;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -25,9 +26,11 @@ namespace NewsForum.View.MyUserControls
 {
     public sealed partial class AddCoverPublicationUserControl : UserControl
     {
-        public StorageFile ImageFile { get; private set; }
         public event Action<StorageFile> CompleteDropEvent;
+        public event Action DeletePosterEvent;
         private FileExplorer FileDialog;
+        public VMFile ImageFile { get; private set; }
+
 
         public AddCoverPublicationUserControl()
         {
@@ -66,7 +69,17 @@ namespace NewsForum.View.MyUserControls
                     CoverPublicationImage.Source = bitMapImage;
                     DeleteImageButton.IsEnabled = true;
                     CoverPublicationImage.Opacity = 1.0;
-                    ImageFile = storageFile;
+                    using (Stream stream = await storageFile.OpenStreamForReadAsync())
+                    {
+                        BinaryReader br = new BinaryReader(stream);
+                        var bytes = br.ReadBytes((int)stream.Length);
+                        ImageFile = new VMFile()
+                        {
+                            Name = storageFile.DisplayName,
+                            Bytes = bytes,
+                            Type = storageFile.FileType
+                        };
+                    }
                     CompleteDropEvent?.Invoke(storageFile);
                 }
             }
@@ -85,6 +98,12 @@ namespace NewsForum.View.MyUserControls
         {
             var storageFile = await FileDialog.PickSingleFileAsync();
             SetSourceCoverImageAsync(storageFile);
+        }
+
+        private void DeleteImageButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            ImageFile = null;
+            DeletePosterEvent?.Invoke();
         }
     }
 }

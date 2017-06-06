@@ -39,17 +39,22 @@ namespace NewsForum.View.MyUserControls
             set => SetValue(IsEditMusicCollectionProperty, value);
         }
         
+
+        public object ItemsSource
+        {
+            get => GetValue(ListView.ItemsSourceProperty);
+            set
+            {
+                SetValue(ListView.ItemsSourceProperty, MusicCollectionListView.ItemsSource = value);
+            }
+        }
+
         public ContentMediaPlayerUserControl()
         {
             this.InitializeComponent();
             CurrentMedia = new MediaElement();
         }
         
-
-        public void SetSource(IRandomAccessStream stream)
-        {
-            CurrentMedia.SetSource(stream, "");
-        }
 
         internal void SetMusicFiles(ObservableCollection<SoundFileContainer> collection)
         {

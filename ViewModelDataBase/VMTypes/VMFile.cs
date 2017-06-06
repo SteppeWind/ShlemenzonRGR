@@ -10,6 +10,11 @@ namespace ViewModelDataBase.VMTypes
     public class VMFile : IFileVM
     {
         public byte[] Bytes { get ; set ; }
+
+        public string Name { get; set; }
+
         public string Type { get; set; }
+
+        public string FullPath { get ; set ; }
     }
 }

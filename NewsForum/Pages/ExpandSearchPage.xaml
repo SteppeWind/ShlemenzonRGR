@@ -40,60 +40,92 @@
 
     </Page.Resources>
 
-    <Grid>
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Disabled">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="MobileState">
+                    <VisualState.Setters>
+                        <Setter Target="listView.(Grid.ColumnSpan)" Value="2"/>
+                        <Setter Target="grid.(Grid.Row)" Value="1"/>
+                        <Setter Target="grid.(Grid.Column)" Value="0"/>
+                        <Setter Target="grid.(Grid.ColumnSpan)" Value="2"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="DesctopState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="800"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
 
-        <ListView SelectionMode="None">
-            <ListView.ItemContainerTransitions>
-                <TransitionCollection>
-                    <AddDeleteThemeTransition/>
-                </TransitionCollection>
-            </ListView.ItemContainerTransitions>
-            <ComboBox Name="GenresCombox"
+        <Grid ChildrenTransitions="{StaticResource BaseChildrenAnimation}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <ListView x:Name="listView" SelectionMode="None">
+                <ListView.ItemContainerTransitions>
+                    <TransitionCollection>
+                        <AddDeleteThemeTransition/>
+                    </TransitionCollection>
+                </ListView.ItemContainerTransitions>
+                <ComboBox Name="GenresCombox"
                       SelectedIndex="0"
                       SelectionChanged="GenresCombox_SelectionChanged">
-                <ComboBoxItem FontSize="20">
-                    <StackPanel Margin="5 0 0 0"
+                    <ComboBoxItem FontSize="20">
+                        <StackPanel Margin="5 0 0 0"
                                     Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource BaseSmallMenuIconTextBlockStyle}"
+                            <TextBlock Style="{StaticResource BaseSmallMenuIconTextBlockStyle}"
                                        Text=""
                                        Margin="0 0 10 0"
                                        VerticalAlignment="Center"/>
-                        <TextBlock Text="Игры"
+                            <TextBlock Text="Игры"
                                        Style="{StaticResource BaseMenuTextBlockStyle}"/>
-                    </StackPanel>
-                </ComboBoxItem>
-                <ComboBoxItem FontSize="20">
-                    <StackPanel Margin="5 0 0 0"
+                        </StackPanel>
+                    </ComboBoxItem>
+                    <ComboBoxItem FontSize="20">
+                        <StackPanel Margin="5 0 0 0"
                                     Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource BaseSmallMenuIconTextBlockStyle}"
+                            <TextBlock Style="{StaticResource BaseSmallMenuIconTextBlockStyle}"
                                        Text=""       
                                        Margin="0 0 10 0"
                                        VerticalAlignment="Center"/>
-                        <TextBlock Text="Фильмы"
+                            <TextBlock Text="Фильмы"
                                        Style="{StaticResource BaseMenuTextBlockStyle}"/>
-                    </StackPanel>
-                </ComboBoxItem>
-                <ComboBoxItem FontSize="20">
-                    <StackPanel Margin="5 0 0 0"
+                        </StackPanel>
+                    </ComboBoxItem>
+                    <ComboBoxItem FontSize="20">
+                        <StackPanel Margin="5 0 0 0"
                                     Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource BaseSmallMenuIconTextBlockStyle}"
+                            <TextBlock Style="{StaticResource BaseSmallMenuIconTextBlockStyle}"
                                        Text=""
                                        Margin="0 0 10 0"
                                        VerticalAlignment="Center"/>
-                        <TextBlock Text="Музыка"
+                            <TextBlock Text="Музыка"
                                        Style="{StaticResource BaseMenuTextBlockStyle}"/>
 
-                    </StackPanel>
-                </ComboBoxItem>
-                <ComboBox.Header>
-                    <TextBlock Text="Выберите тип публикации"
+                        </StackPanel>
+                    </ComboBoxItem>
+                    <ComboBox.Header>
+                        <TextBlock Text="Выберите тип публикации"
                            Style="{StaticResource BaseMenuTextBlockStyle}"/>
-                </ComboBox.Header>
-            </ComboBox>
+                    </ComboBox.Header>
+                </ComboBox>
 
-            <userControls:PopupListUserControl x:Name="GenresListView"/>
+                <userControls:PopupListUserControl x:Name="GenresListView"/>
 
-            <!--<StackPanel>
+                <!--<StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Выберите жанр"
                                FontSize="20"
@@ -142,24 +174,42 @@
             </StackPanel>-->
 
 
-            <StackPanel>
-                <TextBlock Text="Год выхода"
+                <StackPanel>
+                    <TextBlock Text="Год выхода"
                        FontSize="20"
                        Style="{StaticResource SubheaderTextBlockStyle}"/>
 
-                <DatePicker Grid.Row="1"
+                    <DatePicker Name="LeftData" Grid.Row="1"
                         Header="C"/>
-                <DatePicker Grid.Row="2"
+                    <DatePicker Name="RightData"
+                            Grid.Row="2"
                         Header="По"
                             />
-            </StackPanel>
+                </StackPanel>
 
-            <Button Margin="0,10,0,0">
-                <TextBlock Text="Найти"
+                <Button Name="SearchButton"
+                    Tapped="SearchButton_Tapped"
+                    Margin="0,10,0,0">
+                    <TextBlock Text="Найти"
                            FontSize="20"
                            Style="{StaticResource SubheaderTextBlockStyle}" />
-            </Button>
-        </ListView>
+                </Button>
+            </ListView>
 
-    </Grid>
+            <Grid x:Name="grid" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Button Name="ExpandFrameButton"
+                    Tapped="ExpandFrameButton_Tapped"
+                    Content="Равзернуть"/>
+
+                <Frame Name="MyFrame"
+                   Grid.Row="1"/>
+            </Grid>
+
+        </Grid>
+    </ScrollViewer>
 </Page>

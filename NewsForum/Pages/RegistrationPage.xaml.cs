@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using NewsForum.Model;
 using System.Threading.Tasks;
+using Model.UserTypes;
 
 // Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -27,10 +28,28 @@ namespace NewsForum.Pages
     /// </summary>
     public sealed partial class RegistrationPage : Page
     {
+        User CurrUser { get; set; }
+
         public RegistrationPage()
         {
+            CurrUser = new User();
             this.InitializeComponent();
         }
-        
+
+        private async void CreateUserButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (CurrUser.IsCorrectUserForAutorize)
+            {
+                var res = await CurrentUser.Registration(CurrUser);
+                if (res)
+                {
+                }
+            }
+        }
+
+        private void CancelButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(ContentPage));
+        }
     }
 }

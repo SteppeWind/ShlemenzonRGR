@@ -8,14 +8,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ModelDataBase.DBUserTypes;
+using Model.UserTypes;
+using Model;
 
 namespace ModelDataBase.DBPublicationTypes
 {
-    public class DBPublication : Publication<DBInfoFile, DBGenre>, IPosterDB, IDescriptionDB, IUserDB
+    public class DBPublication :
+        SmallPublication,
+        IPublication<DBInfoFile, DBGenre, DBRating, DBComment>, 
+        IPosterDB,
+        IDescriptionDB
     {
+        [NotMapped]
+        public override SmallPublication PublicationComponent
+        {
+            get => base.PublicationComponent;
+            set
+            {
+                base.PublicationComponent = value;
+                
+            }
+        }
+       
         private int publicationId = -1;
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int PublicatoinId
+        public override int PublicationId
         {
             get => publicationId;
             set
@@ -26,8 +43,10 @@ namespace ModelDataBase.DBPublicationTypes
         }
 
         private int userId = -1;
+
+        [Property("UserId")]
         [ForeignKey("User")]
-        public int UserId
+        public override int UserId
         {
             get => userId;
             set
@@ -37,15 +56,39 @@ namespace ModelDataBase.DBPublicationTypes
             }
         }
 
-        public virtual string RefPoster { get; set; }
-        public virtual string RefDescription { get; set; }
+        private bool isDeleted = false;
+        public override bool IsDeleted
+        {
+            get => isDeleted;
+            set
+            {
+                isDeleted = value;
+                IsPublished = !isDeleted;
+            }
+        }
 
-        public virtual DBUser User { get; set; }
+        public DBUser User { get; set; }
 
-        public virtual ICollection<DBRating> ListMarks { get; set; }
+        public string RefPoster { get; set; }
 
-        public virtual ICollection<DBComment> ListComments { get; set; }
+        public string RefDescription { get; set; }
 
+        public virtual List<DBInfoFile> ListFiles { get; set; }
+
+        public virtual List<DBGenre> ListGenres { get; set; }
+
+        public virtual List<DBRating> ListMarks { get; set; }
+
+        public virtual List<DBComment> ListComments { get; set; }
+
+        public DBPublication()
+        {
+            ListFiles = ListFiles ?? new List<DBInfoFile>();
+            ListGenres = ListGenres ?? new List<DBGenre>();
+            ListMarks = ListMarks ?? new List<DBRating>();
+            ListComments = ListComments ?? new List<DBComment>();
+        }
+        
         //public virtual List<DBGenre> ListGenres { get; set; }
 
         ///// <summary>

@@ -11,7 +11,9 @@
     xmlns:controls="using:NewsForum.View.MyUserControls"
     xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:I="using:Microsoft.Xaml.Interactivity"
-    x:Name="MainPage">
+    xmlns:viewModelDB="using:Model.PublicationTypes"
+    x:Name="MainPage"
+    NavigationCacheMode="Enabled">
 
     <Page.Resources>
         <ItemsPanelTemplate x:Key="DesktopPanelTemplate">
@@ -22,10 +24,12 @@
             <ItemsWrapGrid/>
         </ItemsPanelTemplate>
 
-        <DataTemplate x:Key="CDActorTemplate">
-            <AutoSuggestBox/>
+        <DataTemplate x:Key="CDActorTemplate"
+                      x:DataType="viewModelDB:Actor">
+            <AutoSuggestBox Text="{x:Bind Name, Mode=TwoWay}"/>
         </DataTemplate>
-        
+
+
     </Page.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <VisualStateManager.VisualStateGroups>
@@ -83,20 +87,25 @@
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
 
-                    <TextBox Grid.Row="0"
-                             Margin="0 15 0 0"
-                             PlaceholderText="Год выпуска"
-                             Style="{StaticResource BaseTextBoxStyle}"/>
-
                     <TextBox Grid.Row="1"
+                             Text="{x:Bind Publication.Country, Mode=TwoWay}"
                              Margin="0 15 0 0"
                              PlaceholderText="Страна"
                              Style="{StaticResource BaseTextBoxStyle}"/>
 
-                    <TextBox Grid.Row="2"
+                    <controls:PopupListUserControl x:Name="GenresControl"
+                                                   Grid.Row="2"
+                                                   Margin="0 15 0 0"
+                                                   ItemsSource="{x:Bind Genres}"/>
+
+
+
+                    <TextBox Grid.Row="0"
+                             Text="{x:Bind Publication.Director, Mode=TwoWay}"
                              Margin="0 15 0 0"
-                             PlaceholderText="Продолжительность"
+                             PlaceholderText="Режисер"
                              Style="{StaticResource BaseTextBoxStyle}"/>
+
                 </Grid>
 
                 <MenuFlyoutSeparator x:Name="menuFlyoutSeparator"  Grid.Column="1"/>
@@ -109,16 +118,18 @@
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
 
+
+                    <controls:TitleDatePickerUserControl x:Name="RealeseDatePicker"
+                                                         Grid.Row="1"
+                                                         Margin="0 15 0 0"/>
+
                     <TextBox Grid.Row="0"
+                             Text="{x:Bind Publication.Duration, Mode=TwoWay}"
                              Margin="0 15 0 0"
-                             PlaceholderText="Жанр"
+                             PlaceholderText="Продолжительность"
                              Style="{StaticResource BaseTextBoxStyle}"/>
 
-                    <TextBox Grid.Row="1"
-                             Margin="0 15 0 0"
-                             PlaceholderText="Режисер"
-                             Style="{StaticResource BaseTextBoxStyle}"/>
-
+                    
                     <Grid Grid.Row="2"
                           Margin="0 15 0 0">
 
@@ -184,11 +195,13 @@
             <!--#endregion-->
 
             <!--#region А вот тут добавление фото материалов публикации-->
-            <controls:AddPhotosToPublicationUserControl Margin="0 15 0 0"
+            <controls:AddPhotosToPublicationUserControl x:Name="AddPhotosControl"
+                                                        Margin="0 15 0 0"
                                                         Grid.Row="2"/>
             <!--#endregion-->
 
             <controls:LinkVideoViewUserControl x:Name="LinkVideoControl"
+                                               LinkVideo="{x:Bind Publication.LinkTrailer, Mode=TwoWay}"
                                                Margin="0 15 0 0"
                                                Grid.Row="3"/>
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Model.PublicationTypes;
+using NewsForum.Model;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -29,9 +31,8 @@ namespace NewsForum.Pages.EditorPublication
     /// </summary>
     public sealed partial class SecondStepPage : Page
     {
-        public VMPublication Publication { get; set; } = new VMPublication();
-
-
+        public VMPublication Publication { get; set; }
+        
         public SecondStepPage()
         {
             this.InitializeComponent();
@@ -50,16 +51,25 @@ namespace NewsForum.Pages.EditorPublication
 
         private async void AddCoverPublicationUserControl_CompleteDropEvent(StorageFile obj)
         {
-            using (Stream stream = await obj.OpenStreamForReadAsync())
+            if (obj != null)
             {
-                BinaryReader br = new BinaryReader(stream);
-                var bytes = br.ReadBytes((int)stream.Length);
-                Publication.PosterImage = new VMFile()
+                using (Stream stream = await obj.OpenStreamForReadAsync())
                 {
-                    Bytes = bytes,
-                    Type = obj.FileType
-                };
+                    BinaryReader br = new BinaryReader(stream);
+                    var bytes = br.ReadBytes((int)stream.Length);
+                    Publication.PosterImage = new VMFile()
+                    {
+                        Name = obj.DisplayName,
+                        Bytes = bytes,
+                        Type = obj.FileType
+                    };
+                }
             }
+        }
+
+        private void AddCoverControl_DeletePosterEvent()
+        {
+            Publication.PosterImage = null;
         }
     }
 }

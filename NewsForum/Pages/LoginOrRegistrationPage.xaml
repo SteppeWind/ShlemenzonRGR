@@ -48,22 +48,29 @@
 
             <TextBox Grid.Row="0"
                      PlaceholderText="Логин"
+                     Text="{x:Bind login, Mode=TwoWay}"
                      Style="{StaticResource BaseTextBoxStyle}"
                      Margin="0,5"/>
 
             <PasswordBox Grid.Row="1"
+                         Password="{x:Bind password, Mode=TwoWay}"
                          PlaceholderText="Пароль"
                          Style="{StaticResource BasePasswordBoxStyle}"
                          Margin="0,5"/>
 
-            <StackPanel Name="mystack" Grid.Row="2"
+            <StackPanel Name="mystack"
+                        Grid.Row="2"
                         Orientation="Horizontal"
                         HorizontalAlignment="Center">
-                <Button Content="Вход"
+                <Button Name="AutorizeButton"
+                        Content="Вход"
+                        Tapped="AutorizeButton_Tapped"
                         Style="{StaticResource BaseMenuButtonStyle}"/>
-                <Button Content="Регистрация"
+                <Button Name="RegistrationButton"
+                        Content="Регистрация"
+                        Tapped="RegistrationButton_Tapped"
                         Style="{StaticResource BaseMenuButtonStyle}"
-                        Margin="5"/>
+                        Margin="5 0 0 0"/>
             </StackPanel>
         </Grid>
     </Grid>

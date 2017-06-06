@@ -12,17 +12,51 @@ using ViewModelDataBase.VMTypes;
 
 namespace ViewModelDataBase.VMPublicationTypes
 {
-    public class VMFilmPublication : VMPublication, IFilmPublication<VMActor>, IListBitmapImages
+    public class VMFilmPublication : VMPublication, IFilmPublication<Actor>, IListBitmapImages
     {
+        [Property("Country")]
         public string Country { get; set; }
 
+        [Property("Duration")]
         public string Duration { get; set; }
 
+        [Property("Director")]
         public string Director { get; set; }
 
-        public List<VMActor> ListActors { get; set; }
+        //private List<Actor> listActors;
+        public List<Actor> ListActors { get; set; }
+        //public List<Actor> ListActors
+        //{
+        //    get => listActors?.OrderByDescending(a => a.Name.Length).ToList();
+        //    set
+        //    {
+        //        listActors = value;
+        //    }
+        //}
 
+        [Property("ReleaseYear")]
         public DateTime? ReleaseYear { get; set; }
+
+
+        private VMNewsTypes.VMElementLinkVideo linkVideo;
+        [JsonIgnore]
+        public VMNewsTypes.VMElementLinkVideo LinkVideo
+        {
+            get
+            {
+                if (linkVideo == null)
+                {
+                    linkVideo = new VMNewsTypes.VMElementLinkVideo();
+                }
+
+                if (LinkTrailer != null)
+                {
+                    linkVideo.SetResultCode(LinkTrailer);
+                }
+
+                return linkVideo;
+            }
+        }
 
         private IEnumerable<VMFile> listImages;
         [JsonIgnore]
@@ -41,9 +75,12 @@ namespace ViewModelDataBase.VMPublicationTypes
             }
         }
 
+        [Property("LinkTrailer")]
+        public string LinkTrailer { get; set; }
+
         public VMFilmPublication()
         {
-            ListActors = ListActors ?? new List<VMActor>();
+            ListActors = ListActors ?? new List<Actor>();
             TypePublication = PublicationType.Film;
         }
     }

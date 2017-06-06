@@ -20,5 +20,7 @@ namespace Model.PublicationTypes
         List<T> ListActors { get; set; }
 
         DateTime? ReleaseYear { get; set; }
+
+        string LinkTrailer { get; set; }
     }
 }

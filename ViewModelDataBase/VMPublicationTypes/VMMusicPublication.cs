@@ -14,14 +14,19 @@ namespace ViewModelDataBase.VMPublicationTypes
 {
     public class VMMusicPublication : VMPublication, IMusicPublication, IListSongs
     {
+        [Property("Formats")]
         public string Formats { get; set; }
 
+        [Property("Performer")]
         public string Performer { get; set; }
 
+        [Property("CountryPerformer")]
         public string CountryPerformer { get; set; }
 
+        [Property("Album")]
         public string Album { get; set; }
 
+        [Property("ReleaseYear")]
         public DateTime? ReleaseYear { get; set; }
 
 
@@ -34,8 +39,9 @@ namespace ViewModelDataBase.VMPublicationTypes
                 if (listImages == null)
                 {
                     listImages = from f in ListFiles
+                                 let currType = f.Type
                                  where FilterTypes.FiltersImage
-                                 .Contains(f.Type.First() == '.' ? f.Type.Substring(1) : f.Type)
+                                 .Contains(currType.First() == '.' ? currType.Substring(1) : currType)
                                  select f as VMFile;
                 }
                 return listImages.ToList();

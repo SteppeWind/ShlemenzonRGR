@@ -11,7 +11,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ModelDataBase.DBPublicationTypes
 {
-    public class DBRating : Rating, IUserDB, IPublicationDB
+    public class DBRating : Rating, IUserDB
     {
 
         private int id = -1;
@@ -30,7 +30,7 @@ namespace ModelDataBase.DBPublicationTypes
 
         private int userId = -1;
         [ForeignKey("User")]
-        public int UserId
+        public override int UserId
         {
             get => userId;
             set
@@ -42,7 +42,7 @@ namespace ModelDataBase.DBPublicationTypes
 
         private int publicationId = -1;
         [ForeignKey("Publication")]
-        public int PublicatoinId
+        public override int PublicationId
         {
             get => publicationId;
             set

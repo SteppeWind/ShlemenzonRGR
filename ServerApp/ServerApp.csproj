@@ -63,15 +63,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converting\ConvertToBasePublication.cs" />
+    <Compile Include="Converting\FilmPublicationConverter.cs" />
+    <Compile Include="Converting\NewsPublicationConvert.cs" />
+    <Compile Include="Converting\PublicationConverter.cs" />
+    <Compile Include="Converting\SmallPublicationConverter.cs" />
+    <Compile Include="CRUD\ConvertPublication.cs" />
     <Compile Include="CRUD\FilesManipulation.cs" />
     <Compile Include="CRUD\PublicationCRUD.cs" />
+    <Compile Include="CRUD\UserCRUD.cs" />
     <Compile Include="DataModel\NewsForumContext.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Server.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

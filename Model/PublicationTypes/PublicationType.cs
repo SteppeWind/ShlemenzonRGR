@@ -12,5 +12,6 @@ namespace Model.PublicationTypes
         Film = 1,
         Music = 2,
         News = 3,
+        Any = 4
     }
 }

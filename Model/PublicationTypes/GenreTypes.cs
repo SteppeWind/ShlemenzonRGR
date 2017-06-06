@@ -10,38 +10,38 @@ namespace Model.PublicationTypes
     {
         public static readonly string[] FilmGenres =
         {
+            "Детское кино",
+            "Мультфильм",
             "Фантастика",
-            "Анимационный мультфильм",
             "Триллер",
             "Вестерн",
             "Драма",
             "Комедия",
-            "Боевик",
-            "Детское кино"
+            "Боевик"
         };
 
-        public static readonly string[] GameGenres = 
+        public static readonly string[] GameGenres =
         {
+            "Симулятор",
+            "Стратегия",
             "Аркада",
             "Шутер",
             "Action",
-            "Стратегия",
             "MMORPG",
             "Стэлс",
             "Файтинг",
-            "RPG",
-            "Симулятор"
+            "RPG"
         };
 
         public static readonly string[] MusicGenres =
         {
-            "Блюз",
+            "Дабстеп",
             "Рэпчик",
+            "Блюз",
             "Джаз",
             "Шансон",
             "Рок",
-            "Попса",
-            "Дабстеп"
+            "Попса"
         };
     }
 }

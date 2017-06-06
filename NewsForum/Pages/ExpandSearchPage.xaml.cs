@@ -1,9 +1,13 @@
 ﻿using Model.PublicationTypes;
+using NewsForum.Model;
+using Newtonsoft.Json;
+using RequestServer.PublicationsRequest;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using ViewModelDataBase.VMPublicationTypes;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -23,7 +27,8 @@ namespace NewsForum.Pages
     /// </summary>
     public sealed partial class ExpandSearchPage : Page
     {
-        
+        ReadPublciationRequest Request = new ReadPublciationRequest();
+        List<VMSmallPublication> listPublications { get; set; }
         public ExpandSearchPage()
         {
             this.InitializeComponent();
@@ -49,6 +54,29 @@ namespace NewsForum.Pages
                     default:
                         break;
                 }
+        }
+
+        private async void SearchButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Request.ListGenres = GenresListView.SelectedGenres.Select(g => g.Name).ToList();
+            Request.LeftLimitTime = LeftData.Date.ToString("dd.MM.yyyy");
+            Request.RightLimitTime = RightData.Date.ToString("dd.MM.yyyy");
+            Request.PublicationType = (PublicationType)GenresCombox.SelectedIndex;
+            var answer = await ServerRequest.SendRequest(new RequestServer.Request.MainRequest()
+            {
+                DataType = RequestServer.DataType.SmallPublication,
+                TypeRequest = RequestServer.Request.TypeRequest.Read,
+                RecievedRequest = Request,
+                UserId = CurrentUser.User.UserId
+            });
+            listPublications = JsonConvert.DeserializeObject<List<VMSmallPublication>>(answer.SelfAnswer.ToString());
+            await FilesAction.CreatePostersPublications(listPublications);
+            MyFrame.Navigate(typeof(ContentPage), listPublications);
+        }
+
+        private void ExpandFrameButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(ContentPage), listPublications);
         }
     }
 }

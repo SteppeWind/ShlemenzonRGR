@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using ViewModelDataBase.VMPublicationTypes;
 using ViewModelDataBase.VMTypes;
 using Windows.Foundation;
@@ -43,18 +44,13 @@ namespace NewsForum.Pages.EditorPublication
             var file = await FilesAction.CreateLocalStorageFile("Description.rtf");
             await EditDescriptionBox.SaveDocumentStreamToFile(file);
             Publication.ListGenres = GenresListView.SelectedGenres;
-            Publication.ReleaseYear = RealeseDatePicker.Date.DateTime;
+            Publication.ReleaseYear = RealeseDatePicker.GetCurrentDate.DateTime;
             Publication.ListFiles.Clear();
             foreach (var item in AddPhotosToPublicationUserControl.ListPhotos)
             {
-                var curr = await FilesAction.ConvertToIFileVM(item);
-                Publication.ListFiles.Add(new VMFile()
-                {
-                    Type = curr.Item1,
-                    Bytes = curr.Item2
-                });
+                Publication.ListFiles.Add(await FilesAction.ConvertToIFileVM(item, true));
             }
-        } 
+        }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

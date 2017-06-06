@@ -10,7 +10,13 @@ namespace Model.UserTypes
     {
         Goest = 1,
         User = 2,
+        /// <summary>
+        /// Модератор
+        /// </summary>
         Admin = 3,
+        /// <summary>
+        /// Админ
+        /// </summary>
         God = 4
     }
 }

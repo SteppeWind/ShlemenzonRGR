@@ -19,7 +19,7 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>7A9396F95325855216AB952AC987C40184BD202DEDB2C7D03E730FF5B2A6B754</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>514D68938A0A7C4A8DC21D34B7B551FF10CA6E9DF3DB369EBF12CD4238185E64</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>aaaeeaad-252b-4957-91bd-4ffec281831e_1.0.0.0_x86__xcsqn6hjpsy7e</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>aaaeeaad-252b-4957-91bd-4ffec281831e_xcsqn6hjpsy7e!App</RegisteredUserModeAppID>
     <RegisteredPackageID>aaaeeaad-252b-4957-91bd-4ffec281831e</RegisteredPackageID>
@@ -31,13 +31,13 @@
     <AppXManifest Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-05-15T13:43:34.406</Modified>
+      <Modified>2017-06-06T08:20:53.414</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\NewsForum.exe">
       <PackagePath>entrypoint\NewsForum.exe</PackagePath>
-      <Modified>2017-05-15T13:41:58.209</Modified>
+      <Modified>2017-06-06T08:20:51.572</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vladi\.nuget\packages\Microsoft.AspNetCore.Hosting.Abstractions\1.1.1\lib\netstandard1.3\Microsoft.AspNetCore.Hosting.Abstractions.dll">
       <PackagePath>Microsoft.AspNetCore.Hosting.Abstractions.dll</PackagePath>
@@ -631,17 +631,21 @@
       <PackagePath>System.Xml.XmlSerializer.dll</PackagePath>
       <Modified>2016-06-11T16:15:04.000</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vladi\.nuget\packages\WinRTXamlToolkit\2.3.0\lib\uap10.0\WinRTXamlToolkit.dll">
+      <PackagePath>WinRTXamlToolkit.dll</PackagePath>
+      <Modified>2017-02-12T05:18:48.000</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\Model\bin\Debug\Model.dll">
       <PackagePath>Model.dll</PackagePath>
-      <Modified>2017-05-15T13:33:15.114</Modified>
+      <Modified>2017-06-05T21:59:30.130</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\RequestServer\bin\Debug\RequestServer.dll">
       <PackagePath>RequestServer.dll</PackagePath>
-      <Modified>2017-05-15T13:33:16.227</Modified>
+      <Modified>2017-06-06T01:52:51.645</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\ViewModelDataBase\bin\Debug\ViewModelDataBase.dll">
       <PackagePath>ViewModelDataBase.dll</PackagePath>
-      <Modified>2017-05-15T13:33:15.747</Modified>
+      <Modified>2017-06-05T23:30:12.713</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\Modern-UI-Icons---Social.ttf">
       <PackagePath>Modern-UI-Icons---Social.ttf</PackagePath>
@@ -695,20 +699,28 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\NewsForum.xr.xml">
       <PackagePath>NewsForum.xr.xml</PackagePath>
-      <Modified>2017-05-14T12:56:41.697</Modified>
+      <Modified>2017-06-06T02:05:27.696</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
       <Modified>2017-04-28T08:52:51.909</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vladi\.nuget\packages\WinRTXamlToolkit\2.3.0\lib\uap10.0\WinRTXamlToolkit\WinRTXamlToolkit.xr.xml">
+      <PackagePath>WinRTXamlToolkit\WinRTXamlToolkit.xr.xml</PackagePath>
+      <Modified>2017-02-12T05:18:48.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vladi\.nuget\packages\WinRTXamlToolkit\2.3.0\lib\uap10.0\WinRTXamlToolkit\Properties\WinRTXamlToolkit.rd.xml">
+      <PackagePath>WinRTXamlToolkit\Properties\WinRTXamlToolkit.rd.xml</PackagePath>
+      <Modified>2017-02-12T05:18:50.000</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-05-15T13:43:32.522</Modified>
+      <Modified>2017-06-06T08:20:52.511</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\Core\NewsForum.exe">
       <PackagePath>NewsForum.exe</PackagePath>
-      <Modified>2017-05-15T13:43:34.398</Modified>
+      <Modified>2017-06-06T08:20:53.406</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

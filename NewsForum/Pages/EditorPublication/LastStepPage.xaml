@@ -8,6 +8,27 @@
     mc:Ignorable="d">
 
     <Grid ChildrenTransitions="{StaticResource BaseChildrenAnimation}">
-        <Button Tapped="Button_Tapped"/>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Frame Name="CurrentFrame"/>
+
+        <StackPanel Grid.Row="1" 
+                    Orientation="Horizontal">
+            <Button Tag="CreatePublication"
+                    Style="{StaticResource BaseMenuButtonStyle}"
+                    Content="Создать публикацию"
+                    Margin="0 0 15 0"
+                    Tapped="Button_Tapped"/>
+            <Button Tag="Cancel"
+                    Content="Отмена"
+                    Style="{StaticResource BaseMenuButtonStyle}"
+                    Tapped="Button_Tapped"/>
+        </StackPanel>
+        
+        
     </Grid>
 </Page>

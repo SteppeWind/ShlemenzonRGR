@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ModelDataBase.DBInterfaces
 {
-    public interface IActorDB : IActor
+    public interface IActorDB 
     {
         int ActorId { get; set; }
     }

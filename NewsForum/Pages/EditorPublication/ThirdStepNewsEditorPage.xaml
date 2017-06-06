@@ -6,19 +6,26 @@
     xmlns:UserControls="using:NewsForum.View.MyUserControls"
     xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:I="using:Microsoft.Xaml.Interactivity"
+    xmlns:modelDll="using:Model.PublicationTypes"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    NavigationCacheMode="Enabled"
+    xmlns:toolkit="using:WinRTXamlToolkit.Controls"
     Transitions="{StaticResource BaseAnimation}"
     SizeChanged="Page_SizeChanged">
 
     <Page.Resources>
         <x:String x:Key="TitlePageString">Редактор публикации</x:String>
         <x:Double x:Key="MiddleFontSize">30</x:Double>
-
+        <CollectionViewSource x:Name="GenresGroupCollection"
+                              IsSourceGrouped="True"
+                              ItemsPath="ListGenreTypes"
+                              Source="{x:Bind modelDll:GenreGroup.AllGenresGroups}"/>
     </Page.Resources>
 
     <Grid ChildrenTransitions="{StaticResource BaseChildrenAnimation}"
+          Background="{StaticResource MenuColorStyle}"
           Margin="{StaticResource BaseMainGridThickness}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="VisualStateGroup">
@@ -34,6 +41,7 @@
                         <Setter Target="AddImageTextBlock.(TextBlock.Text)" Value="&#xE9D9;"/>
                         <Setter Target="AddVideoTextBlock.(TextBlock.Text)" Value="&#xE173;"/>
                         <Setter Target="PanelAddElementsToPublicGriView.(FrameworkElement.HorizontalAlignment)" Value="Center"/>
+                        <Setter Target="ExpandOrCollapsGenresPanel.(Orientation)" Value="Vertical"/>
                     </VisualState.Setters>
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="0"/>
@@ -41,7 +49,7 @@
                 </VisualState>
                 <VisualState x:Name="SmallDesktop">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="540"/>
+                        <AdaptiveTrigger MinWindowWidth="600"/>
                     </VisualState.StateTriggers>
                 </VisualState>
                 <VisualState x:Name="MiddleDesktop">
@@ -66,6 +74,8 @@
                         <Setter Target="TitlePageTextBlock.(UIElement.Visibility)" Value="Collapsed"/>
                         <Setter Target="PanelEditDecriptionPublicationUserControl.(UIElement.Visibility)" Value="Collapsed"/>
                         <Setter Target="PanelAddElementsToPublicGriView.(UIElement.Visibility)" Value="Collapsed"/>
+                        <Setter Target="GenresListView.(UIElement.Visibility)" Value="Collapsed"/>
+                        <Setter Target="HeaderPagePanel.(UIElement.Visibility)" Value="Collapsed"/>
                     </VisualState.Setters>
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowHeight="0"/>
@@ -82,19 +92,92 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="TitlePageTextBlock" Style="{StaticResource SubheaderTextBlockStyle}"
-                   Text="{StaticResource TitlePageString}"/>
-
+        
+        <StackPanel Name="HeaderPagePanel"
+                    Orientation="Vertical"
+                    Grid.Row="0">
+            <TextBlock x:Name="TitlePageTextBlock"
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       Text="{StaticResource TitlePageString}"/>
+            <StackPanel Name="ExpandOrCollapsGenresPanel"
+                        Orientation="Horizontal">
+                 <TextBlock Text="Выберите жанры, с которыми связана статья"
+                            TextWrapping="Wrap"
+                            Style="{StaticResource BaseMenuTextBlockStyle}"/>
+                 <ToggleButton Name="ExpandOrCollapsGenresButton"
+                               Style="{StaticResource TextBlockButtonStyle}"
+                               FontSize="17"                               
+                               Margin="0 -6 0 0"                               
+                               Content="Развернуть">
+                     <I:Interaction.Behaviors>
+                         <Core:EventTriggerBehavior EventName="Checked">
+                             <Core:ChangePropertyAction TargetObject="{x:Bind GenresListView}"
+                                                        PropertyName="Visibility"
+                                                        Value="Visible"/>
+                             <Core:ChangePropertyAction TargetObject="{x:Bind ExpandOrCollapsGenresButton}"
+                                                        PropertyName="Content"
+                                                        Value="Свернуть"/>
+                         </Core:EventTriggerBehavior>
+                          <Core:EventTriggerBehavior EventName="Unchecked">
+                             <Core:ChangePropertyAction TargetObject="{x:Bind GenresListView}"
+                                                        PropertyName="Visibility"
+                                                        Value="Collapsed"/>
+                             <Core:ChangePropertyAction TargetObject="{x:Bind ExpandOrCollapsGenresButton}"
+                                                        PropertyName="Content"
+                                                        Value="Развернуть"/>
+                         </Core:EventTriggerBehavior>
+                     </I:Interaction.Behaviors>
+                 </ToggleButton>
+            </StackPanel>
+        </StackPanel>
+        
+      <ScrollViewer Grid.Row="1"
+                    VerticalScrollBarVisibility="Auto"
+                    HorizontalScrollBarVisibility="Auto">
+        <ListView Name="GenresListView"
+                  Visibility="Collapsed"
+                  SelectionMode="Multiple"      
+                  ItemsSource="{Binding Source={StaticResource GenresGroupCollection}}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"
+                               FontSize="13"
+                               Style="{StaticResource SubheaderTextBlockStyle}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+                    <ListView.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.HeaderTemplate>
+                                <DataTemplate x:DataType="modelDll:GenreGroup">
+                                    <TextBlock Text="{x:Bind GroupName}"
+                                               Style="{StaticResource BaseMenuTextBlockStyle}"/>
+                                </DataTemplate>
+                            </GroupStyle.HeaderTemplate>
+                            <GroupStyle.Panel>
+                                <ItemsPanelTemplate>
+                                    <toolkit:WrapPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                             </GroupStyle.Panel>
+                        </GroupStyle>
+                    </ListView.GroupStyle>
+                        <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>   
+          </ScrollViewer>
+        
         <UserControls:PanelEditDecriptionPublicationUserControl x:Name="PanelEditDecriptionPublicationUserControl"
-                                                                Grid.Row="1"
+                                                                Grid.Row="2"
                                                                 HorizontalAlignment="Left"/>
-
         <ScrollViewer Name="sv"
-                      Grid.Row="2"
+                      Grid.Row="3"
                       VerticalScrollBarVisibility="Auto">
             <StackPanel Name="EditorContentListView">
                 <StackPanel.ChildrenTransitions>
@@ -103,15 +186,14 @@
                     </TransitionCollection>
                 </StackPanel.ChildrenTransitions>
             </StackPanel>
-        </ScrollViewer>
-        
+       </ScrollViewer>
         
         <GridView x:Name="PanelAddElementsToPublicGriView"
                   HorizontalAlignment="Center"
                   IsItemClickEnabled="True"
                   SelectionMode="None"
                   ItemClick="PanelAddElementsToPublicGriView_ItemClick"
-                  Grid.Row="3">
+                  Grid.Row="4">
             <GridViewItem>
                 <TextBlock Name="AddImageTextBlock"
                            Tag="Image"
@@ -137,5 +219,6 @@
                            Text="Видео"/>
             </GridViewItem>
         </GridView>
+    
     </Grid>
 </Page>

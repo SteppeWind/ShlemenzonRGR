@@ -10,7 +10,8 @@
     xmlns:I="using:Microsoft.Xaml.Interactivity"
     xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     d:DesignHeight="300"
-    d:DesignWidth="400">
+    d:DesignWidth="400"
+    Tag="CoverImage">
 
     <UserControl.Resources>
         <Converters:HideControlsConverter x:Key="HideControlsConverter"/>
@@ -28,14 +29,15 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="1"
-                    MaxHeight="600"
-                    MaxWidth="400"
+                    MaxHeight="700"
+                    MaxWidth="500"
                     HorizontalAlignment="Center">
             <Button x:ConnectionId='4' Name="DeleteImageButton"
                     Content=""
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
                     IsEnabled="False"
+                                                     
                     Style="{StaticResource BaseMenuIconButtonStyle}">
                 <I:Interaction.Behaviors>
                     <Core:EventTriggerBehavior EventName="Tapped">

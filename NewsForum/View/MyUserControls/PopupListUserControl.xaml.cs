@@ -22,7 +22,7 @@ namespace NewsForum.View.MyUserControls
     public sealed partial class PopupListUserControl : UserControl
     {
 
-        public List<VMGenre> SelectedGenres = new List<VMGenre>();
+        public List<Genre> SelectedGenres = new List<Genre>();
 
         public object ItemsSource
         {
@@ -44,7 +44,7 @@ namespace NewsForum.View.MyUserControls
                 {
                     foreach (var item in GenresListView.SelectedItems)
                     {
-                        SelectedGenres.Add(new VMGenre() { Name = item as string });
+                        SelectedGenres.Add(new Genre() { Name = item as string });
                     }
                 }
             }

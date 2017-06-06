@@ -47,17 +47,7 @@
                     </VisualState.StateTriggers>
                 </VisualState>
                 <VisualState x:Name="Desktop">
-                    <VisualState.Setters>
-                        <Setter Target="TitlePublicationTextBox.(Grid.RowSpan)" Value="1"/>
-                        <Setter Target="TitlePublicationTextBox.(Grid.ColumnSpan)" Value="1"/>
-                        <Setter Target="flip.(Grid.Row)" Value="0"/>
-                        <Setter Target="flip.(Grid.Column)" Value="1"/>
-                        <Setter Target="flip.(Grid.RowSpan)" Value="1"/>
-                        <Setter Target="flip.(Grid.ColumnSpan)" Value="1"/>
-                        <Setter Target="TitlePublicationTextBox.(Grid.Column)" Value="0"/>
-                        <Setter Target="flip.Margin" Value="10 0 0 0"/>
-                    </VisualState.Setters>
-                    <VisualState.StateTriggers>
+                   <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="700"/>
                     </VisualState.StateTriggers>
                 </VisualState>
@@ -96,6 +86,7 @@
 
                 <ComboBox Name="flip"
                           FontSize="20"
+                          Margin="10 0 0 0"
                           SelectedIndex="{x:Bind Publication.TypePublication, Mode=TwoWay, Converter={StaticResource IntToTypePublicationConverter}}"
                           Grid.Column="1">
                     <ComboBox.Header>
@@ -172,10 +163,12 @@
                                VerticalAlignment="Bottom"
                                Style="{StaticResource SubheaderTextBlockStyle}"/>
 
-                    <UserControls:AddCoverPublicationUserControl Grid.Column="0"
+                    <UserControls:AddCoverPublicationUserControl x:Name="AddCoverControl"
+                                                                 Grid.Column="0"
                                                                  Grid.ColumnSpan="3"
                                                                  Grid.Row="1"
                                                                  CompleteDropEvent="AddCoverPublicationUserControl_CompleteDropEvent"
+                                                                 DeletePosterEvent="AddCoverControl_DeletePosterEvent"
                                                                  Grid.RowSpan="2"/>
                 </Grid>
             </Grid>
