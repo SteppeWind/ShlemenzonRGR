@@ -68,7 +68,7 @@
     <Compile Include="Converting\NewsPublicationConvert.cs" />
     <Compile Include="Converting\PublicationConverter.cs" />
     <Compile Include="Converting\SmallPublicationConverter.cs" />
-    <Compile Include="CRUD\ConvertPublication.cs" />
+    <Compile Include="CRUD\CommentCRUD.cs" />
     <Compile Include="CRUD\FilesManipulation.cs" />
     <Compile Include="CRUD\PublicationCRUD.cs" />
     <Compile Include="CRUD\UserCRUD.cs" />

@@ -27,34 +27,21 @@ namespace NewsForum.Pages
     {
         VMUser CurrUser = CurrentUser.User;
         VMUser CloneCurrUser = new VMUser();
-
-
-        List<VMSmallPublication> SelfListPublications { get; set; }
-
+        
         public CurrentUserInfoPage()
         {
         }
 
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             CloneCurrUser.Convert(CurrUser);
-            if (CurrUser.ListPublications == null)
-            {
-                SelfListPublications = await CurrentUser.GetSelfPublications();
-            }
             this.InitializeComponent();
         }
 
         private async void ChangeUserButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            var answer = await ServerRequest.SendRequest(new RequestServer.Request.MainRequest()
-            {
-                DataType = RequestServer.DataType.User,
-                TypeRequest = RequestServer.Request.TypeRequest.Update,
-                RecievedRequest = CloneCurrUser,
-                UserId = CurrUser.UserId
-            });
-            if ((bool)answer.SelfAnswer)
+            var answer = await CurrentUser.Update(CloneCurrUser);
+            if (answer)
             {
                 ContentDialog noWifiDialog = new ContentDialog()
                 {
@@ -66,14 +53,22 @@ namespace NewsForum.Pages
             }
         }
 
-        private async void SelfPublicationsPivotItem_Tapped(object sender, TappedRoutedEventArgs e)
+        private async void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (MainPivot.SelectedIndex == 1)
+            {
+                if (CurrUser.ListPublications == null)
+                {
+                    await CurrentUser.GetSelfPublications();
+                }
+                SelfFrame.Navigate(typeof(ContentPage), CurrUser.ListPublications);
+            }
         }
 
-        private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ExitButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
-
+            CurrentUser.Exit();
+            Frame.Navigate(typeof(ContentPage));
         }
     }
 }

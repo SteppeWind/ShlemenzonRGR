@@ -27,6 +27,7 @@ View\MyUserControls\ContainerForUserControl.xbf
 View\MyUserControls\ContentMediaPlayerUserControl.xbf
 View\MyUserControls\EditDescriptionBoxUserControl.xbf
 View\MyUserControls\LinkVideoViewUserControl.xbf
+View\MyUserControls\ModifyListUserControl.xbf
 View\MyUserControls\ModifyWebViewUserControl.xbf
 View\MyUserControls\PanelEditDecriptionPublicationUserControl.xbf
 View\MyUserControls\PhotosContainerUserControl.xbf

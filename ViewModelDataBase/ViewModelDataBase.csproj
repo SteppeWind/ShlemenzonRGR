@@ -38,9 +38,9 @@
     <Compile Include="VMInterfaces\IListBitmapImages.cs" />
     <Compile Include="VMInterfaces\IListSongs.cs" />
     <Compile Include="VMInterfaces\IModifyPropertyChanged.cs" />
+    <Compile Include="VMPublicationTypes\VMComment.cs" />
     <Compile Include="VMPublicationTypes\VMFilmPublication.cs" />
     <Compile Include="VMPublicationTypes\VMGamePublication.cs" />
-    <Compile Include="VMPublicationTypes\VMGenre.cs" />
     <Compile Include="VMPublicationTypes\VMMusicPublication.cs" />
     <Compile Include="VMPublicationTypes\VMNewsTypes\VMElementLinkVideo.cs" />
     <Compile Include="VMPublicationTypes\VMNewsTypes\VMNewsElementFile.cs" />

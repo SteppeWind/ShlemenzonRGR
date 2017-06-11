@@ -12,6 +12,12 @@ namespace RequestServer.AnswerForRequest
     {
         public DataType TypeAnswer { get; set; } = DataType.Bool;
 
-        public Object SelfAnswer { get; set; }        
+        public Object SelfAnswer { get; set; }
+
+
+        public override string ToString()
+        {
+            return SelfAnswer.ToString();
+        }
     }
 }

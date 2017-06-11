@@ -98,7 +98,7 @@ namespace NewsForum.Pages.EditorPublication
                 }
             }
             Publication.ListElements = ListElements;
-            Publication.ListGenres = GenresListView.SelectedItems.Select(genre => new Genre() { Name = (genre as IGenre).Name }).ToList();
+            Publication.ListGenres = GenresListView.SelectedItems.Select(genre => new Genre() { Name = (genre as Genre).Name }).ToList();
         }
 
         private void PanelAddElementsToPublicGriView_ItemClick(object sender, ItemClickEventArgs e)

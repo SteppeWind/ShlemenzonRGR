@@ -11,7 +11,6 @@
     Transitions="{StaticResource BaseAnimation}">
 
     <Page.Resources>
-
         <converters:ReverseAdminAccessConverter x:Key="AdminAccessVisibleConverter"/>
         <converters:UserAccessVisibleConverter x:Key="UserAccessVisibleConverter"/>
 
@@ -91,7 +90,6 @@
                         </Grid.RowDefinitions>
 
                         <ListView Name="FirstMenuListView"
-                         
                                   Grid.Row="0"
                                   SelectionMode="None"
                                   ItemClick="ListView_ItemClick"
@@ -107,7 +105,7 @@
 
                             <ListViewItem>
                                 <StackPanel Tag="ExpandSearch"
-                                    Orientation="Horizontal">
+                                            Orientation="Horizontal">
                                     <TextBlock Style="{StaticResource BaseSmallMenuIconTextBlockStyle}"
                                        Text=""/>
                                     <TextBlock Style="{StaticResource MenuTitleStyle}"
@@ -117,7 +115,7 @@
 
                             <ListViewItem Visibility="{Binding Path=AccessLevel, Converter={StaticResource AdminAccessVisibleConverter}, UpdateSourceTrigger=PropertyChanged}">
                                 <StackPanel Tag="Users"
-                                    Orientation="Horizontal">
+                                            Orientation="Horizontal">
                                     <TextBlock Style="{StaticResource BaseSmallMenuIconTextBlockStyle}"
                                        Text=""/>
                                     <TextBlock Style="{StaticResource MenuTitleStyle}"

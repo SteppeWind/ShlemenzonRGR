@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model.PublicationTypes
 {
-    public interface IActor
+    public interface IName
     {
         string Name { get; set; }
     }

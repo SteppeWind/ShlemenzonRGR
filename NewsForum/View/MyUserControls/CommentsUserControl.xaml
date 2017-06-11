@@ -7,12 +7,153 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="300"
-    d:DesignWidth="400">
+    xmlns:I="using:Microsoft.Xaml.Interactivity"
+    xmlns:Core="using:Microsoft.Xaml.Interactions.Core"  
+    d:DesignWidth="400"
+    xmlns:converters="using:NewsForum.View.Converters"
+    xmlns:viewModelDll="using:ViewModelDataBase.VMPublicationTypes"
+    xmlns:behaviors="using:Cimbalino.Toolkit.Behaviors"
+    xmlns:modelDll="using:Model.PublicationTypes"
+    xmlns:newsForum="using:NewsForum">
 
     <UserControl.Resources>
+
+        <converters:IsEnableChangeCommentConverter x:Key="IsEnableChangeCommentConverter"/>
+        <converters:UserAccessVisibleConverter x:Key="UserAccessVisibleConverter"/>
+        <converters:IsEnabledFromUserBannedConverter x:Key="IsEnabledFromUserBannedConverter"/>
+
+        <DataTemplate x:Key="ViewCommentTemplate"
+                      x:DataType="viewModelDll:VMComment">
+            <Grid x:Name="grid"
+                  Margin="0 10"
+                  DataContext="{x:Bind Mode=OneWay}">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <HyperlinkButton x:Name="InfoUserButton"
+                                 DataContext="{x:Bind User}"
+                                 Content="{x:Bind User}"
+                                 IsEnabled="{x:Bind newsForum:CurrentUser.User.AccessLevel, Converter={StaticResource UserAccessVisibleConverter}}"
+                                 Tapped="InfoUserButton_Tapped"/>
+
+                <TextBlock x:Name="ValueCommentTextBlock"
+                           Grid.Row="1"
+                           Margin="0 5"
+                           TextWrapping="Wrap"
+                           Text="{Binding Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBox x:Name="ValueCommentTextBox"
+                         Grid.Row="1"
+                         Visibility="Collapsed"
+                         Margin="0 5"
+                         TextWrapping="Wrap"
+                         TextChanged="ValueCommentTextBox_TextChanged"
+                         Text="{Binding Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
+
+
+                <StackPanel x:Name="ChangeCommentSP"
+                            Grid.Row="3"
+                            Visibility="{x:Bind Govno, Converter={StaticResource IsEnableChangeCommentConverter}}"
+                            Orientation="Horizontal">
+                    <HyperlinkButton Content="Изменить">
+                        <I:Interaction.Behaviors>
+                            <Core:EventTriggerBehavior EventName="Tapped">
+                                <Core:ChangePropertyAction TargetObject="{Binding ElementName=ChangeCommentSP, RelativeSource={RelativeSource Mode=Self}}"
+                                                           PropertyName="Visibility"
+                                                           Value="Collapsed"/>
+                                <Core:ChangePropertyAction TargetObject="{Binding ElementName=ValueCommentTextBlock, RelativeSource={RelativeSource Mode=Self}}"
+                                                           PropertyName="Visibility"
+                                                           Value="Collapsed"/>
+                                <Core:ChangePropertyAction TargetObject="{Binding ElementName=ValueCommentTextBox, RelativeSource={RelativeSource Mode=Self}}"
+                                                           PropertyName="Visibility"
+                                                           Value="Visible"/>
+                                <Core:ChangePropertyAction TargetObject="{Binding ElementName=SetNewValueCommentSP, RelativeSource={RelativeSource Mode=Self}}"
+                                                           PropertyName="Visibility"
+                                                           Value="Visible"/>
+                            </Core:EventTriggerBehavior>
+                        </I:Interaction.Behaviors>
+                    </HyperlinkButton>
+                    <TextBlock Margin="3 0"
+                               FontSize="20"
+                               Text="/"/>
+                    <HyperlinkButton x:Name="DeleteCommentButton"
+                                     DataContext="{x:Bind CommentId}"
+                                     Content="Удалить"
+                                     Tapped="DeleteCommentButton_Tapped"/>
+                </StackPanel>
+
+                <StackPanel Name="SetNewValueCommentSP"
+                            Grid.Row="3"
+                            Visibility="Collapsed"
+                            Orientation="Horizontal">
+                    <HyperlinkButton Name="SaveChangesButton"
+                                     Content="Принять"
+                                     DataContext="{x:Bind CommentId}"
+                                     Tapped="SaveChangesButton_Tapped"/>
+                    <TextBlock Margin="3 0"
+                               FontSize="20"
+                               Text="/"/>
+                    <HyperlinkButton Content="Отменить">
+                        <I:Interaction.Behaviors>
+                            <Core:EventTriggerBehavior EventName="Tapped">
+                                <Core:ChangePropertyAction TargetObject="{Binding ElementName=ChangeCommentSP, RelativeSource={RelativeSource Mode=Self}}"
+                                                           PropertyName="Visibility"
+                                                           Value="Visible"/>
+                                <Core:ChangePropertyAction TargetObject="{Binding ElementName=ValueCommentTextBlock, RelativeSource={RelativeSource Mode=Self}}"
+                                                           PropertyName="Visibility"
+                                                           Value="Visible"/>
+                                <Core:ChangePropertyAction TargetObject="{Binding ElementName=ValueCommentTextBox, RelativeSource={RelativeSource Mode=Self}}"
+                                                           PropertyName="Visibility"
+                                                           Value="Collapsed"/>
+                                <Core:ChangePropertyAction TargetObject="{Binding ElementName=SetNewValueCommentSP, RelativeSource={RelativeSource Mode=Self}}"
+                                                           PropertyName="Visibility"
+                                                           Value="Collapsed"/>
+                            </Core:EventTriggerBehavior>
+                        </I:Interaction.Behaviors>
+                    </HyperlinkButton>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
     </UserControl.Resources>
-    
-    <Grid>
+
+    <Grid DataContext="{x:Bind newsForum:CurrentUser.User}">
         
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"
+              Visibility="{Binding Path=AccessLevel, Converter={StaticResource UserAccessVisibleConverter}, UpdateSourceTrigger=PropertyChanged}">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox Name="CommentTextBox"
+                     Grid.Column="0"
+                     PlaceholderText="Ваш комментарий..."
+                     Height="50"
+                     KeyDown="CommentTextBox_KeyDown"
+                     Margin="0 0 10 0"/>
+
+            <Button Name="SendCommentButton"
+                    Grid.Column="1"
+                    Style="{StaticResource BaseMiddleMenuIconTextBlockButtonStyle}"
+                    Content=""
+                    Tapped="SendCommentButton_Tapped"/>
+
+        </Grid>
+
+        <ListView Name="CommentsListView"
+                  ItemsSource="{x:Bind ListComments, Mode=TwoWay}"
+                  SelectionMode="None"
+                  ItemTemplate="{StaticResource ViewCommentTemplate}"
+                  Grid.Row="1"/>
     </Grid>
 </UserControl>

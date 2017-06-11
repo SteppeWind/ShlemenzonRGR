@@ -15,7 +15,7 @@ using Model;
 
 namespace ViewModelDataBase
 {
-    public class VMUser : User, IUser<VMPublication, Rating, Comment>, IModifyPropertyChanged
+    public class VMUser : User, IUser<VMSmallPublication, Rating, Comment>, IModifyPropertyChanged
     {
         //[JsonIgnore]
         //public override User UserComponent { get => base.UserComponent; set => base.UserComponent = value; }
@@ -44,7 +44,7 @@ namespace ViewModelDataBase
         [JsonIgnore]
         public override bool IsCorrectUserForAutorize => base.IsCorrectUserForAutorize;
 
-        public List<VMPublication> ListPublications { get; set; }
+        public List<VMSmallPublication> ListPublications { get; set; }
 
         public List<Rating> ListRatings { get; set; }
 

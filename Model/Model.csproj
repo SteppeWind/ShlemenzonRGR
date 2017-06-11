@@ -46,14 +46,13 @@
     <Compile Include="PublicationTypes\Genre.cs" />
     <Compile Include="PublicationTypes\GenreGroup.cs" />
     <Compile Include="PublicationTypes\GenreTypes.cs" />
-    <Compile Include="PublicationTypes\IActor.cs" />
     <Compile Include="PublicationTypes\IComment.cs" />
     <Compile Include="PublicationTypes\IFilmPublication.cs" />
     <Compile Include="PublicationTypes\IGamePublication.cs" />
-    <Compile Include="PublicationTypes\IGenre.cs" />
     <Compile Include="PublicationTypes\IInfoFile.cs" />
     <Compile Include="PublicationTypes\IListFiles.cs" />
     <Compile Include="PublicationTypes\IMusicPublication.cs" />
+    <Compile Include="PublicationTypes\IName.cs" />
     <Compile Include="PublicationTypes\IPublication.cs" />
     <Compile Include="PublicationTypes\IRating.cs" />
     <Compile Include="PublicationTypes\ISmallPublication.cs" />

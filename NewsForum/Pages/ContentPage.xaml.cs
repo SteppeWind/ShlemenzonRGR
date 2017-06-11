@@ -42,8 +42,8 @@ namespace NewsForum.Pages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (ListPublications == null)
-                ListPublications = e.Parameter as List<VMSmallPublication>;
+            if (e.Parameter is List<VMSmallPublication> res)
+                ListPublications = res;
         }
 
         private async void PublicationsGridView_ItemClick(object sender, ItemClickEventArgs e)
@@ -78,7 +78,7 @@ namespace NewsForum.Pages
                     {
                         TypeNameHandling = TypeNameHandling.Auto
                     });
-                    Frame.Navigate(typeof(ViewInfoMusicPublicationPage), mp);
+                   Frame.Navigate(typeof(ViewInfoMusicPublicationPage), mp);
                     break;
 
                 case PublicationType.News:

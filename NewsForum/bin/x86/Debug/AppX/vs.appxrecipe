@@ -19,7 +19,7 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>514D68938A0A7C4A8DC21D34B7B551FF10CA6E9DF3DB369EBF12CD4238185E64</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>C4D6E0139CD9034C9369DB36284F86B54140245F34C35A83C5A9A9FD35399BEE</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>aaaeeaad-252b-4957-91bd-4ffec281831e_1.0.0.0_x86__xcsqn6hjpsy7e</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>aaaeeaad-252b-4957-91bd-4ffec281831e_xcsqn6hjpsy7e!App</RegisteredUserModeAppID>
     <RegisteredPackageID>aaaeeaad-252b-4957-91bd-4ffec281831e</RegisteredPackageID>
@@ -31,13 +31,21 @@
     <AppXManifest Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-06-06T08:20:53.414</Modified>
+      <Modified>2017-06-11T07:36:13.295</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\NewsForum.exe">
       <PackagePath>entrypoint\NewsForum.exe</PackagePath>
-      <Modified>2017-06-06T08:20:51.572</Modified>
+      <Modified>2017-06-11T07:36:11.727</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vladi\.nuget\packages\Cimbalino.Toolkit\2.5.2\lib\uap10.0\Cimbalino.Toolkit.dll">
+      <PackagePath>Cimbalino.Toolkit.dll</PackagePath>
+      <Modified>2017-06-05T08:28:10.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vladi\.nuget\packages\Cimbalino.Toolkit.Core\2.5.2\lib\uap10.0\Cimbalino.Toolkit.Core.dll">
+      <PackagePath>Cimbalino.Toolkit.Core.dll</PackagePath>
+      <Modified>2017-06-05T08:28:10.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vladi\.nuget\packages\Microsoft.AspNetCore.Hosting.Abstractions\1.1.1\lib\netstandard1.3\Microsoft.AspNetCore.Hosting.Abstractions.dll">
       <PackagePath>Microsoft.AspNetCore.Hosting.Abstractions.dll</PackagePath>
@@ -427,13 +435,13 @@
       <PackagePath>System.Net.NetworkInformation.dll</PackagePath>
       <Modified>2016-06-11T16:14:04.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\vladi\.nuget\packages\System.Net.Requests\4.0.11\runtimes\win\lib\netstandard1.3\System.Net.Requests.dll">
+    <AppxPackagedFile Include="C:\Users\vladi\.nuget\packages\System.Net.Requests\4.3.0\runtimes\win\lib\netstandard1.3\System.Net.Requests.dll">
       <PackagePath>System.Net.Requests.dll</PackagePath>
-      <Modified>2016-06-11T16:14:02.000</Modified>
+      <Modified>2016-11-04T21:56:32.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\vladi\.nuget\packages\System.Net.WebHeaderCollection\4.0.1\lib\netstandard1.3\System.Net.WebHeaderCollection.dll">
+    <AppxPackagedFile Include="C:\Users\vladi\.nuget\packages\System.Net.WebHeaderCollection\4.3.0\lib\netstandard1.3\System.Net.WebHeaderCollection.dll">
       <PackagePath>System.Net.WebHeaderCollection.dll</PackagePath>
-      <Modified>2016-06-11T16:14:08.000</Modified>
+      <Modified>2016-11-04T21:56:30.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vladi\.nuget\packages\System.Net.WebSockets\4.3.0\lib\netstandard1.3\System.Net.WebSockets.dll">
       <PackagePath>System.Net.WebSockets.dll</PackagePath>
@@ -637,15 +645,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\Model\bin\Debug\Model.dll">
       <PackagePath>Model.dll</PackagePath>
-      <Modified>2017-06-05T21:59:30.130</Modified>
+      <Modified>2017-06-10T13:32:37.916</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\RequestServer\bin\Debug\RequestServer.dll">
       <PackagePath>RequestServer.dll</PackagePath>
-      <Modified>2017-06-06T01:52:51.645</Modified>
+      <Modified>2017-06-10T18:35:45.289</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\ViewModelDataBase\bin\Debug\ViewModelDataBase.dll">
       <PackagePath>ViewModelDataBase.dll</PackagePath>
-      <Modified>2017-06-05T23:30:12.713</Modified>
+      <Modified>2017-06-10T16:13:17.641</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\Modern-UI-Icons---Social.ttf">
       <PackagePath>Modern-UI-Icons---Social.ttf</PackagePath>
@@ -699,7 +707,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\NewsForum.xr.xml">
       <PackagePath>NewsForum.xr.xml</PackagePath>
-      <Modified>2017-06-06T02:05:27.696</Modified>
+      <Modified>2017-06-10T18:52:37.218</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -716,11 +724,11 @@
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-06-06T08:20:52.511</Modified>
+      <Modified>2017-06-11T07:36:12.682</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\Core\NewsForum.exe">
       <PackagePath>NewsForum.exe</PackagePath>
-      <Modified>2017-06-06T08:20:53.406</Modified>
+      <Modified>2017-06-11T07:36:13.292</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

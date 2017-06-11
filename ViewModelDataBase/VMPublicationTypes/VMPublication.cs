@@ -14,7 +14,7 @@ using Newtonsoft.Json;
 
 namespace ViewModelDataBase.VMPublicationTypes
 {
-    public class VMPublication : VMSmallPublication, IPublication<VMFile, Genre, Rating, Comment>
+    public class VMPublication : VMSmallPublication, IPublication<VMFile, Genre, Rating, VMComment>
     {
         [JsonIgnore]
         public override SmallPublication PublicationComponent
@@ -41,16 +41,19 @@ namespace ViewModelDataBase.VMPublicationTypes
         //    }
         //}
 
+        [JsonIgnore]
+        public List<IName> ListNamesGenres { get => ListGenres.ToList<IName>(); }
+
         public List<Rating> ListMarks { get; set; }
 
-        public List<Comment> ListComments { get; set; }
+        public List<VMComment> ListComments { get; set; }
 
         public VMPublication()
         {
             ListFiles = ListFiles ?? new List<VMFile>();
             ListGenres = ListGenres ?? new List<Genre>();
             ListMarks = ListMarks ?? new List<Rating>();
-            ListComments = ListComments ?? new List<Comment>();
+            ListComments = ListComments ?? new List<VMComment>();
         }
     }
 }

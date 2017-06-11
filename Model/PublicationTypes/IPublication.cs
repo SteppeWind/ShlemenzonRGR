@@ -8,7 +8,7 @@ namespace Model.PublicationTypes
 {
     public interface IPublication<TFile, TGenre, TRating, TComment>
         where TFile : IInfoFile
-        where TGenre : IGenre
+        where TGenre : Genre
         where TRating : IRating
         where TComment : IComment
     {

@@ -11,6 +11,7 @@ namespace Model.UserTypes
     {
         #region Свойства
 
+        [Property("UserId")]
         public virtual int UserId { get; set; }
 
         [Property("Name")]
@@ -69,5 +70,10 @@ namespace Model.UserTypes
         public virtual bool IsCorrectUserForAutorize => EMail != null && Password != null && Name != null && Surname != null;
 
         #endregion
+
+        public override string ToString()
+        {
+            return $"{Name} {Surname}";
+        }
     }
 }

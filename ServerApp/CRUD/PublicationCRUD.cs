@@ -36,6 +36,8 @@ namespace ServerApp.CRUD
 
         public static List<DBPublication> GetDeletedPublications => CurrentNewsForumContext.Publications.Where(p => p.IsDeleted).ToList();
 
+        public static DBPublication GetDBPublicationFromId(int id) => CurrentNewsForumContext.Publications.FirstOrDefault(p => p.PublicationId == id);
+
         public static bool CreatePublication(VMPublication publication)
         {
             bool result = false;
@@ -69,7 +71,7 @@ namespace ServerApp.CRUD
         public static VMPublication GetPublication(int publicationId)
         {
             VMPublication result = null;
-            DBPublication dbPublication = CurrentNewsForumContext.Publications.FirstOrDefault(p => p.PublicationId == publicationId);
+            DBPublication dbPublication = GetDBPublicationFromId(publicationId);
 
             if (dbPublication != null)
             {
@@ -253,7 +255,7 @@ namespace ServerApp.CRUD
         public static bool DeletePublication(int idPublication, int idUser)
         {
             var currUser = UserCRUD.GetDBUserFromId(idUser);
-            var currPublication = CurrentNewsForumContext.Publications.FirstOrDefault(p => p.PublicationId == idPublication);
+            var currPublication = GetDBPublicationFromId(idPublication);
             if (currUser != null && currPublication != null)
             {
                 if (currUser.AccessLevel >= UserAccessLevel.Admin)
@@ -276,7 +278,7 @@ namespace ServerApp.CRUD
         public static bool UndeletePublication(int idPublication, int idUser)
         {
             var currUser = UserCRUD.GetDBUserFromId(idUser);
-            var currPublication = CurrentNewsForumContext.Publications.FirstOrDefault(p => p.PublicationId == idPublication);
+            var currPublication = GetDBPublicationFromId(idPublication);
             if (currUser != null && currPublication != null)
             {
                 if (currUser.AccessLevel >= UserAccessLevel.Admin)
@@ -342,7 +344,8 @@ namespace ServerApp.CRUD
 
             searchList = searchList
                 .Where(p => p.CreateDate >= left && p.CreateDate <= right)
-                .Where(p => p.TypePublication == request.PublicationType)
+                .Where(p => p.TypePublication == request.PublicationType
+                    || (p.TypePublication == PublicationType.News && request.ListGenres.Any()))
                 .ToList();
 
             foreach (var p in searchList)

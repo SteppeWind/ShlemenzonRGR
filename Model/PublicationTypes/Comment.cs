@@ -22,6 +22,6 @@ namespace Model.PublicationTypes
         /// Значение комментария 
         /// </summary>
         [Property("Value")]
-        public string Value { get; set; }
+        public virtual string Value { get; set; }
     }
 }

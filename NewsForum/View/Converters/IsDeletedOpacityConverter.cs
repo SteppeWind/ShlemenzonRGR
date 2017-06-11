@@ -7,16 +7,11 @@ using Windows.UI.Xaml.Data;
 
 namespace NewsForum.View.Converters
 {
-    class IsDeleteMessageConverter : IValueConverter
+    class IsDeletedOpacityConverter : IValueConverter
     {
-
-        private string deleteIcon = "";
-        private string addIcon = "";
-
-
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return (bool)value ? addIcon : deleteIcon;
+            return (bool)value ? 0.5 : 1.0;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

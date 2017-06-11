@@ -17,6 +17,7 @@ namespace ModelDataBase.DBUserTypes
     {
         private int userId = -1;
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Property("UserId")]
         public override int UserId
         {
             get => userId;

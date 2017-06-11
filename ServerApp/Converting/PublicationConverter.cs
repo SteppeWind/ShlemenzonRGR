@@ -9,6 +9,7 @@ using ModelDataBase.DBPublicationTypes;
 using ServerApp.CRUD;
 using ViewModelDataBase.VMTypes;
 using ServerApp.DataModel;
+using Model.UserTypes;
 
 namespace ServerApp.Converting
 {
@@ -29,8 +30,11 @@ namespace ServerApp.Converting
             }).ToList();
             result.ListComments = publication.ListComments.Select(c =>
             {
-                var comm = new Comment();
+                var comm = new VMComment();
+                User us = new User();
+                us.Convert(c.User);
                 comm.Convert(c);
+                comm.User = us;
                 return comm;
             }).ToList();
 

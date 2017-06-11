@@ -73,7 +73,7 @@
         <ListView Name="UsersListView"
                   ItemsSource="{x:Bind ListUsers}"
                   IsItemClickEnabled="True"
-                 ItemClick="UsersListView_ItemClick"
+                  ItemClick="UsersListView_ItemClick"
                   ItemTemplate="{StaticResource InfoUserTemplate}">
 
         </ListView>

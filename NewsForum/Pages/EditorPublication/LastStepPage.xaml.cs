@@ -89,23 +89,16 @@ namespace NewsForum.Pages.EditorPublication
 
         private async void Button_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            Publication.UserId = 1;
+            Publication.UserId = CurrentUser.User.UserId;
             var tag = (sender as Button).Tag;
 
             switch (tag)
             {
-               case "CreatePublication":
+                case "CreatePublication":
                     await SetDescritpion();
-                    MainRequest mr = new MainRequest()
+                    var answer = await CurrentUser.Create(Publication);
+                    if (answer)
                     {
-                        DataType = RequestServer.DataType.Publication,
-                        TypeRequest = RequestServer.Request.TypeRequest.Create,
-                        RecievedRequest = Publication
-                    };
-                    try
-                    {
-                        var answer = await ServerRequest.SendRequest(mr);
-                        bool res = (bool)answer.SelfAnswer;
                         ContentDialog noWifiDialog = new ContentDialog()
                         {
                             Title = "Уведомление",
@@ -113,10 +106,6 @@ namespace NewsForum.Pages.EditorPublication
                             PrimaryButtonText = "Ok"
                         };
                         ContentDialogResult result = await noWifiDialog.ShowAsync();
-                        
-                    }
-                    catch (Exception ex)
-                    {
                     }
                     break;
 

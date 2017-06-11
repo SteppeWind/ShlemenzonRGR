@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace Model.PublicationTypes
 {
-    public class Actor : IActor
+    public class Actor : IName
     {
         public string Name { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

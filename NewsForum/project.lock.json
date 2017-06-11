@@ -2,6 +2,32 @@
   "version": 2,
   "targets": {
     "UAP,Version=v10.0": {
+      "Cimbalino.Toolkit/2.5.2": {
+        "type": "package",
+        "dependencies": {
+          "Cimbalino.Toolkit.Core": "2.5.2",
+          "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        }
+      },
+      "Cimbalino.Toolkit.Core/2.5.2": {
+        "type": "package",
+        "dependencies": {
+          "System.ComponentModel": "4.3.0",
+          "System.Net.Requests": "4.3.0"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Hosting.Abstractions/1.1.1": {
         "type": "package",
         "dependencies": {
@@ -1625,14 +1651,21 @@
           "lib/win8/_._": {}
         }
       },
-      "System.Net.Requests/4.0.11": {
+      "System.Net.Requests/4.3.0": {
         "type": "package",
         "dependencies": {
-          "System.IO": "4.1.0",
-          "System.Net.Primitives": "4.0.11",
-          "System.Net.WebHeaderCollection": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Threading.Tasks": "4.0.11"
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Diagnostics.Tracing": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Net.Http": "4.3.0",
+          "System.Net.Primitives": "4.3.0",
+          "System.Net.WebHeaderCollection": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
         },
         "compile": {
           "ref/netcore50/System.Net.Requests.dll": {}
@@ -1665,13 +1698,13 @@
           "ref/netstandard1.3/System.Net.Sockets.dll": {}
         }
       },
-      "System.Net.WebHeaderCollection/4.0.1": {
+      "System.Net.WebHeaderCollection/4.3.0": {
         "type": "package",
         "dependencies": {
-          "System.Collections": "4.0.11",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0"
+          "System.Collections": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0"
         },
         "compile": {
           "ref/netstandard1.3/System.Net.WebHeaderCollection.dll": {}
@@ -2895,6 +2928,32 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
+      "Cimbalino.Toolkit/2.5.2": {
+        "type": "package",
+        "dependencies": {
+          "Cimbalino.Toolkit.Core": "2.5.2",
+          "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        }
+      },
+      "Cimbalino.Toolkit.Core/2.5.2": {
+        "type": "package",
+        "dependencies": {
+          "System.ComponentModel": "4.3.0",
+          "System.Net.Requests": "4.3.0"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Hosting.Abstractions/1.1.1": {
         "type": "package",
         "dependencies": {
@@ -4635,14 +4694,21 @@
           "lib/win8/_._": {}
         }
       },
-      "System.Net.Requests/4.0.11": {
+      "System.Net.Requests/4.3.0": {
         "type": "package",
         "dependencies": {
-          "System.IO": "4.1.0",
-          "System.Net.Primitives": "4.0.11",
-          "System.Net.WebHeaderCollection": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Threading.Tasks": "4.0.11"
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Diagnostics.Tracing": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Net.Http": "4.3.0",
+          "System.Net.Primitives": "4.3.0",
+          "System.Net.WebHeaderCollection": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
         },
         "compile": {
           "ref/netcore50/System.Net.Requests.dll": {}
@@ -4666,13 +4732,13 @@
           "ref/netstandard1.3/System.Net.Sockets.dll": {}
         }
       },
-      "System.Net.WebHeaderCollection/4.0.1": {
+      "System.Net.WebHeaderCollection/4.3.0": {
         "type": "package",
         "dependencies": {
-          "System.Collections": "4.0.11",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0"
+          "System.Collections": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0"
         },
         "compile": {
           "ref/netstandard1.3/System.Net.WebHeaderCollection.dll": {}
@@ -5791,6 +5857,32 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
+      "Cimbalino.Toolkit/2.5.2": {
+        "type": "package",
+        "dependencies": {
+          "Cimbalino.Toolkit.Core": "2.5.2",
+          "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        }
+      },
+      "Cimbalino.Toolkit.Core/2.5.2": {
+        "type": "package",
+        "dependencies": {
+          "System.ComponentModel": "4.3.0",
+          "System.Net.Requests": "4.3.0"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Hosting.Abstractions/1.1.1": {
         "type": "package",
         "dependencies": {
@@ -7570,14 +7662,21 @@
           "lib/win8/_._": {}
         }
       },
-      "System.Net.Requests/4.0.11": {
+      "System.Net.Requests/4.3.0": {
         "type": "package",
         "dependencies": {
-          "System.IO": "4.1.0",
-          "System.Net.Primitives": "4.0.11",
-          "System.Net.WebHeaderCollection": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Threading.Tasks": "4.0.11"
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Diagnostics.Tracing": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Net.Http": "4.3.0",
+          "System.Net.Primitives": "4.3.0",
+          "System.Net.WebHeaderCollection": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
         },
         "compile": {
           "ref/netcore50/System.Net.Requests.dll": {}
@@ -7601,13 +7700,13 @@
           "ref/netstandard1.3/System.Net.Sockets.dll": {}
         }
       },
-      "System.Net.WebHeaderCollection/4.0.1": {
+      "System.Net.WebHeaderCollection/4.3.0": {
         "type": "package",
         "dependencies": {
-          "System.Collections": "4.0.11",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0"
+          "System.Collections": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0"
         },
         "compile": {
           "ref/netstandard1.3/System.Net.WebHeaderCollection.dll": {}
@@ -8726,6 +8825,32 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
+      "Cimbalino.Toolkit/2.5.2": {
+        "type": "package",
+        "dependencies": {
+          "Cimbalino.Toolkit.Core": "2.5.2",
+          "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        }
+      },
+      "Cimbalino.Toolkit.Core/2.5.2": {
+        "type": "package",
+        "dependencies": {
+          "System.ComponentModel": "4.3.0",
+          "System.Net.Requests": "4.3.0"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Hosting.Abstractions/1.1.1": {
         "type": "package",
         "dependencies": {
@@ -10475,14 +10600,21 @@
           "lib/win8/_._": {}
         }
       },
-      "System.Net.Requests/4.0.11": {
+      "System.Net.Requests/4.3.0": {
         "type": "package",
         "dependencies": {
-          "System.IO": "4.1.0",
-          "System.Net.Primitives": "4.0.11",
-          "System.Net.WebHeaderCollection": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Threading.Tasks": "4.0.11"
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Diagnostics.Tracing": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Net.Http": "4.3.0",
+          "System.Net.Primitives": "4.3.0",
+          "System.Net.WebHeaderCollection": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
         },
         "compile": {
           "ref/netcore50/System.Net.Requests.dll": {}
@@ -10506,13 +10638,13 @@
           "ref/netstandard1.3/System.Net.Sockets.dll": {}
         }
       },
-      "System.Net.WebHeaderCollection/4.0.1": {
+      "System.Net.WebHeaderCollection/4.3.0": {
         "type": "package",
         "dependencies": {
-          "System.Collections": "4.0.11",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0"
+          "System.Collections": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0"
         },
         "compile": {
           "ref/netstandard1.3/System.Net.WebHeaderCollection.dll": {}
@@ -11631,6 +11763,32 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
+      "Cimbalino.Toolkit/2.5.2": {
+        "type": "package",
+        "dependencies": {
+          "Cimbalino.Toolkit.Core": "2.5.2",
+          "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        }
+      },
+      "Cimbalino.Toolkit.Core/2.5.2": {
+        "type": "package",
+        "dependencies": {
+          "System.ComponentModel": "4.3.0",
+          "System.Net.Requests": "4.3.0"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Hosting.Abstractions/1.1.1": {
         "type": "package",
         "dependencies": {
@@ -13419,14 +13577,21 @@
           "lib/win8/_._": {}
         }
       },
-      "System.Net.Requests/4.0.11": {
+      "System.Net.Requests/4.3.0": {
         "type": "package",
         "dependencies": {
-          "System.IO": "4.1.0",
-          "System.Net.Primitives": "4.0.11",
-          "System.Net.WebHeaderCollection": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Threading.Tasks": "4.0.11"
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Diagnostics.Tracing": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Net.Http": "4.3.0",
+          "System.Net.Primitives": "4.3.0",
+          "System.Net.WebHeaderCollection": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
         },
         "compile": {
           "ref/netcore50/System.Net.Requests.dll": {}
@@ -13450,13 +13615,13 @@
           "ref/netstandard1.3/System.Net.Sockets.dll": {}
         }
       },
-      "System.Net.WebHeaderCollection/4.0.1": {
+      "System.Net.WebHeaderCollection/4.3.0": {
         "type": "package",
         "dependencies": {
-          "System.Collections": "4.0.11",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0"
+          "System.Collections": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0"
         },
         "compile": {
           "ref/netstandard1.3/System.Net.WebHeaderCollection.dll": {}
@@ -14575,6 +14740,32 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
+      "Cimbalino.Toolkit/2.5.2": {
+        "type": "package",
+        "dependencies": {
+          "Cimbalino.Toolkit.Core": "2.5.2",
+          "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        }
+      },
+      "Cimbalino.Toolkit.Core/2.5.2": {
+        "type": "package",
+        "dependencies": {
+          "System.ComponentModel": "4.3.0",
+          "System.Net.Requests": "4.3.0"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Hosting.Abstractions/1.1.1": {
         "type": "package",
         "dependencies": {
@@ -16324,14 +16515,21 @@
           "lib/win8/_._": {}
         }
       },
-      "System.Net.Requests/4.0.11": {
+      "System.Net.Requests/4.3.0": {
         "type": "package",
         "dependencies": {
-          "System.IO": "4.1.0",
-          "System.Net.Primitives": "4.0.11",
-          "System.Net.WebHeaderCollection": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Threading.Tasks": "4.0.11"
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Diagnostics.Tracing": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Net.Http": "4.3.0",
+          "System.Net.Primitives": "4.3.0",
+          "System.Net.WebHeaderCollection": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
         },
         "compile": {
           "ref/netcore50/System.Net.Requests.dll": {}
@@ -16355,13 +16553,13 @@
           "ref/netstandard1.3/System.Net.Sockets.dll": {}
         }
       },
-      "System.Net.WebHeaderCollection/4.0.1": {
+      "System.Net.WebHeaderCollection/4.3.0": {
         "type": "package",
         "dependencies": {
-          "System.Collections": "4.0.11",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0"
+          "System.Collections": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0"
         },
         "compile": {
           "ref/netstandard1.3/System.Net.WebHeaderCollection.dll": {}
@@ -17480,6 +17678,32 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
+      "Cimbalino.Toolkit/2.5.2": {
+        "type": "package",
+        "dependencies": {
+          "Cimbalino.Toolkit.Core": "2.5.2",
+          "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        }
+      },
+      "Cimbalino.Toolkit.Core/2.5.2": {
+        "type": "package",
+        "dependencies": {
+          "System.ComponentModel": "4.3.0",
+          "System.Net.Requests": "4.3.0"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Hosting.Abstractions/1.1.1": {
         "type": "package",
         "dependencies": {
@@ -19268,14 +19492,21 @@
           "lib/win8/_._": {}
         }
       },
-      "System.Net.Requests/4.0.11": {
+      "System.Net.Requests/4.3.0": {
         "type": "package",
         "dependencies": {
-          "System.IO": "4.1.0",
-          "System.Net.Primitives": "4.0.11",
-          "System.Net.WebHeaderCollection": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Threading.Tasks": "4.0.11"
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Diagnostics.Tracing": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Net.Http": "4.3.0",
+          "System.Net.Primitives": "4.3.0",
+          "System.Net.WebHeaderCollection": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
         },
         "compile": {
           "ref/netcore50/System.Net.Requests.dll": {}
@@ -19299,13 +19530,13 @@
           "ref/netstandard1.3/System.Net.Sockets.dll": {}
         }
       },
-      "System.Net.WebHeaderCollection/4.0.1": {
+      "System.Net.WebHeaderCollection/4.3.0": {
         "type": "package",
         "dependencies": {
-          "System.Collections": "4.0.11",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0"
+          "System.Collections": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0"
         },
         "compile": {
           "ref/netstandard1.3/System.Net.WebHeaderCollection.dll": {}
@@ -20425,6 +20656,71 @@
     }
   },
   "libraries": {
+    "Cimbalino.Toolkit/2.5.2": {
+      "sha512": "SJ/oEaznIQoCGPfYNecsJGDvm3qmupPjaewsj5v/NKCzoIyvla1t4S3vD+oCOUBdHvy8L/dmYWWLg6Srtcf71g==",
+      "type": "package",
+      "path": "cimbalino.toolkit/2.5.2",
+      "files": [
+        "cimbalino.toolkit.2.5.2.nupkg.sha512",
+        "cimbalino.toolkit.nuspec",
+        "lib/uap10.0/Cimbalino.Toolkit.dll",
+        "lib/uap10.0/Cimbalino.Toolkit.pdb",
+        "lib/uap10.0/Cimbalino.Toolkit.pri",
+        "lib/uap10.0/Cimbalino.Toolkit.xml",
+        "lib/win81/Cimbalino.Toolkit.dll",
+        "lib/win81/Cimbalino.Toolkit.pdb",
+        "lib/win81/Cimbalino.Toolkit.pri",
+        "lib/win81/Cimbalino.Toolkit.xml",
+        "lib/wp8/Cimbalino.Toolkit.dll",
+        "lib/wp8/Cimbalino.Toolkit.pdb",
+        "lib/wp8/Cimbalino.Toolkit.xml",
+        "lib/wp81/Cimbalino.Toolkit.dll",
+        "lib/wp81/Cimbalino.Toolkit.pdb",
+        "lib/wp81/Cimbalino.Toolkit.xml",
+        "lib/wpa81/Cimbalino.Toolkit.dll",
+        "lib/wpa81/Cimbalino.Toolkit.pdb",
+        "lib/wpa81/Cimbalino.Toolkit.pri",
+        "lib/wpa81/Cimbalino.Toolkit.xml",
+        "tools/win8/Install.ps1",
+        "tools/win8/Uninstall.ps1",
+        "tools/wp8/Install.ps1",
+        "tools/wp8/Uninstall.ps1",
+        "tools/wp81/Install.ps1",
+        "tools/wp81/Uninstall.ps1",
+        "tools/wpa81/Install.ps1",
+        "tools/wpa81/Uninstall.ps1"
+      ]
+    },
+    "Cimbalino.Toolkit.Core/2.5.2": {
+      "sha512": "duWgehI/9lRUbhbBjD3VtvOzSlzOPtgD3pwhRLWKi5k3J1M2NtiLEuct5uAeUcDd4rp5/zs7/US68uvrntSZMA==",
+      "type": "package",
+      "path": "cimbalino.toolkit.core/2.5.2",
+      "files": [
+        "cimbalino.toolkit.core.2.5.2.nupkg.sha512",
+        "cimbalino.toolkit.core.nuspec",
+        "lib/netstandard1.0/Cimbalino.Toolkit.Core.dll",
+        "lib/netstandard1.0/Cimbalino.Toolkit.Core.pdb",
+        "lib/netstandard1.0/Cimbalino.Toolkit.Core.xml",
+        "lib/uap10.0/Cimbalino.Toolkit.Core.dll",
+        "lib/uap10.0/Cimbalino.Toolkit.Core.pdb",
+        "lib/uap10.0/Cimbalino.Toolkit.Core.pri",
+        "lib/uap10.0/Cimbalino.Toolkit.Core.xml",
+        "lib/win81/Cimbalino.Toolkit.Core.dll",
+        "lib/win81/Cimbalino.Toolkit.Core.pdb",
+        "lib/win81/Cimbalino.Toolkit.Core.pri",
+        "lib/win81/Cimbalino.Toolkit.Core.xml",
+        "lib/wp8/Cimbalino.Toolkit.Core.dll",
+        "lib/wp8/Cimbalino.Toolkit.Core.pdb",
+        "lib/wp8/Cimbalino.Toolkit.Core.xml",
+        "lib/wp81/Cimbalino.Toolkit.Core.dll",
+        "lib/wp81/Cimbalino.Toolkit.Core.pdb",
+        "lib/wp81/Cimbalino.Toolkit.Core.xml",
+        "lib/wpa81/Cimbalino.Toolkit.Core.dll",
+        "lib/wpa81/Cimbalino.Toolkit.Core.pdb",
+        "lib/wpa81/Cimbalino.Toolkit.Core.pri",
+        "lib/wpa81/Cimbalino.Toolkit.Core.xml"
+      ]
+    },
     "Microsoft.AspNetCore.Hosting.Abstractions/1.1.1": {
       "sha512": "m93r3mNu/igz8YLJ6ra01FeMdKp0s+UKoq5WGqRZ6M9iJJO6TDyLMU+xE9HfsKeSKq6apPJOHDakjRJU2+e+PQ==",
       "type": "package",
@@ -26427,10 +26723,10 @@
         "system.net.primitives.nuspec"
       ]
     },
-    "System.Net.Requests/4.0.11": {
-      "sha512": "vxGt7C0cZixN+VqoSW4Yakc1Y9WknmxauDqzxgpw/FnBdz4kQNN51l4wxdXX5VY1xjqy//+G+4CvJWp1+f+y6Q==",
+    "System.Net.Requests/4.3.0": {
+      "sha512": "OZNUuAs0kDXUzm7U5NZ1ojVta5YFZmgT2yxBqsQ7Eseq5Ahz88LInGRuNLJ/NP2F8W1q7tse1pKDthj3reF5QA==",
       "type": "package",
-      "path": "system.net.requests/4.0.11",
+      "path": "system.net.requests/4.3.0",
       "files": [
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -26504,7 +26800,7 @@
         "runtimes/unix/lib/netstandard1.3/System.Net.Requests.dll",
         "runtimes/win/lib/net46/_._",
         "runtimes/win/lib/netstandard1.3/System.Net.Requests.dll",
-        "system.net.requests.4.0.11.nupkg.sha512",
+        "system.net.requests.4.3.0.nupkg.sha512",
         "system.net.requests.nuspec"
       ]
     },
@@ -26544,10 +26840,10 @@
         "system.net.sockets.nuspec"
       ]
     },
-    "System.Net.WebHeaderCollection/4.0.1": {
-      "sha512": "XX2TIAN+wBSAIV51BU2FvvXMdstUa8b0FBSZmDWjZdwUMmggQSifpTOZ5fNH20z9ZCg2fkV1L5SsZnpO2RQDRQ==",
+    "System.Net.WebHeaderCollection/4.3.0": {
+      "sha512": "XZrXYG3c7QV/GpWeoaRC02rM6LH2JJetfVYskf35wdC/w2fFDFMphec4gmVH2dkll6abtW14u9Rt96pxd9YH2A==",
       "type": "package",
-      "path": "system.net.webheadercollection/4.0.1",
+      "path": "system.net.webheadercollection/4.3.0",
       "files": [
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -26577,7 +26873,7 @@
         "ref/xamarinmac20/_._",
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._",
-        "system.net.webheadercollection.4.0.1.nupkg.sha512",
+        "system.net.webheadercollection.4.3.0.nupkg.sha512",
         "system.net.webheadercollection.nuspec"
       ]
     },
@@ -30029,6 +30325,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
+      "Cimbalino.Toolkit >= 2.5.2",
       "Microsoft.EntityFrameworkCore.Sqlite >= 1.1.1",
       "Microsoft.EntityFrameworkCore.Tools >= 1.1.0",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.3.3",
@@ -30066,6 +30363,7 @@
       }
     },
     "dependencies": {
+      "Cimbalino.Toolkit": "2.5.2",
       "Microsoft.EntityFrameworkCore.Sqlite": "1.1.1",
       "Microsoft.EntityFrameworkCore.Tools": "1.1.0",
       "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.3",

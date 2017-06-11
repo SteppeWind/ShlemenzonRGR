@@ -12,6 +12,7 @@ namespace RequestServer
         Publication,
         User,
         Actor,
+        Comment,
         SmallPublication
     }
 }

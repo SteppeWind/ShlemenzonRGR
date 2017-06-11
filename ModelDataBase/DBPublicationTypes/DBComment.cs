@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using ModelDataBase.DBUserTypes;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Model;
 
 namespace ModelDataBase.DBPublicationTypes
 {
@@ -27,6 +28,7 @@ namespace ModelDataBase.DBPublicationTypes
 
         private int userId = -1;
         [ForeignKey("User")]
+        [Property("UserId")]
         public override int UserId
         {
             get => userId;
@@ -39,6 +41,7 @@ namespace ModelDataBase.DBPublicationTypes
 
         private int publicationId = -1;
         [ForeignKey("Publication")]
+        [Property("PublicationId")]
         public override int PublicationId
         {
             get => publicationId;
@@ -51,6 +54,6 @@ namespace ModelDataBase.DBPublicationTypes
 
         public DBPublication Publication { get ; set; }
         
-        public DBUser User { get; set; }
+        public virtual DBUser User { get; set; }
     }
 }

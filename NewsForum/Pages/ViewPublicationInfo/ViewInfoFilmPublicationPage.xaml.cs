@@ -1,10 +1,14 @@
-﻿using NewsForum.Model;
+﻿using Model.PublicationTypes;
+using Model.UserTypes;
+using NewsForum.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using ViewModelDataBase;
 using ViewModelDataBase.VMPublicationTypes;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -27,7 +31,8 @@ namespace NewsForum.Pages.ViewPublicationInfo
     public sealed partial class ViewInfoFilmPublicationPage : Page
     {
         VMFilmPublication Publication { get; set; }
-
+        
+        
         public ViewInfoFilmPublicationPage()
         {
         }
@@ -44,13 +49,18 @@ namespace NewsForum.Pages.ViewPublicationInfo
             await FilesAction.CreateFilesPublication(Publication);
             var file = await FilesAction.Folder.GetFileAsync("Description.rtf");
             this.InitializeComponent();
+
             if (Publication.LinkVideo.LinkYoutubeVideo != null)
                 TrailerWebView.NavigateToString(Publication.LinkVideo.HTMLCode);
 
-            using (var stream = await file.OpenAsync(FileAccessMode.Read))
-            {
-                DescriptionRichEditBox.Document.LoadFromStream(Windows.UI.Text.TextSetOptions.FormatRtf, stream);
-            }
+            await DescriptionRichEditBox.LoadDocumentsStreamToBox(file);
+        }
+
+        private void CommentsControl_InfoUserEvent(User obj)
+        {
+            VMUser user = new VMUser();
+            user.Convert(obj);
+            Frame.Navigate(typeof(PersonalUserPage), user);
         }
     }
 }

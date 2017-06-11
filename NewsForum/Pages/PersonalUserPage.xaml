@@ -4,10 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:NewsForum.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:converters="using:NewsForum.View.Converters"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
     <Page.Resources>
+        <converters:IsEnabledFromUserBannedConverter x:Key="IsEnabledFromUserBannedConverter"/>
+
         <Style x:Key="ModifyTextBox"
                TargetType="TextBox"
                BasedOn="{StaticResource BaseTextBoxStyle}">
@@ -15,7 +18,7 @@
             <Setter Property="Margin" Value="0 15"/>
         </Style>
     </Page.Resources>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -26,7 +29,7 @@
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        
+
         <ListView SelectionMode="None">
             <TextBox Style="{StaticResource ModifyTextBox}"
                              Header="Имя"
@@ -62,6 +65,7 @@
                 Content="Изменить данные пользователя"
                 Style="{StaticResource BaseMenuButtonStyle}"
                 Grid.Row="1"
+                IsEnabled="{x:Bind Path=CurrUser.AccessLevel, Converter={StaticResource IsEnabledFromUserBannedConverter}}"
                 Tapped="ChangeUserButton_Tapped"/>
     </Grid>
 </Page>

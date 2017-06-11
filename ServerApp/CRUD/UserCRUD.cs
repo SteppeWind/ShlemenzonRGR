@@ -21,7 +21,6 @@ namespace ServerApp.CRUD
             if (user != null && user.Password.Equals(password))
             {
                 User res = new User();
-                res.UserId = user.UserId;
                 res.Convert(user);
                 return res;
             }
@@ -60,10 +59,19 @@ namespace ServerApp.CRUD
         {
             VMUser user = new VMUser();
             user.Convert(u);
-            user.UserId = u.UserId;
             return user;
         }).ToList();
 
+
+        public static bool IsAdmin(int id)
+        {
+            var user = GetDBUserFromId(id);
+
+            if (user != null && user.AccessLevel == UserAccessLevel.God)
+                return true;
+
+            return false;
+        }
         public static DBUser GetDBUserFromId(int id) => CurrentNewsForumContext.Users.FirstOrDefault(u => u.UserId == id);
 
         public static User GetUserFromId(int id)

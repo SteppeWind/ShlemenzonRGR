@@ -12,7 +12,10 @@
         <x:String x:Key="WelcomString">Добро пожаловать</x:String>
     </Page.Resources>
 
-    <Grid HorizontalAlignment="Left">
+    <Grid HorizontalAlignment="Center"
+          VerticalAlignment="Center"
+          ChildrenTransitions="{StaticResource BaseChildrenAnimation}"
+          Margin="0 -250 0 0">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -59,7 +62,7 @@
                          Margin="0,5"/>
 
             <StackPanel x:ConnectionId='4' Name="mystack"
-                        Grid.Row="2"
+                        Grid.Row="2"                        
                         Orientation="Horizontal"
                         HorizontalAlignment="Center">
                 <Button x:ConnectionId='5' Name="AutorizeButton"

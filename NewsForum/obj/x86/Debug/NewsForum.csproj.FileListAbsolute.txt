@@ -1139,3 +1139,14 @@ F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\N
 F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\obj\x86\Debug\View\MyUserControls\CommentsUserControl.xaml
 F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\obj\x86\Debug\View\MyUserControls\CommentsUserControl.xbf
 F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\View\MyUserControls\CommentsUserControl.xbf
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\View\MyUserControls\ModifyListUserControl.xbf
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\obj\x86\Debug\View\MyUserControls\ModifyListUserControl.g.i.cs
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\obj\x86\Debug\View\MyUserControls\ModifyListUserControl.g.cs
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\obj\x86\Debug\View\MyUserControls\ModifyListUserControl.xaml
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\obj\x86\Debug\View\MyUserControls\ModifyListUserControl.xbf
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\Cimbalino.Toolkit.dll
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\Cimbalino.Toolkit.pdb
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\Cimbalino.Toolkit.Core.dll
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\Cimbalino.Toolkit.Core.pdb
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\obj\x86\Debug\Cimbalino.Toolkit.pri.xml
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\obj\x86\Debug\Cimbalino.Toolkit.Core.pri.xml

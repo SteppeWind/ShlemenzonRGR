@@ -13,7 +13,7 @@
     Tag="DescriptionBox">
 
     <RichEditBox Name="MainRichEditBox"  
-                     Grid.Column="1"
-                     Style="{StaticResource BaseRichEditBoxStyle}">
+                 Header="{x:Bind Header, Mode=TwoWay}"
+                 Style="{StaticResource BaseRichEditBoxStyle}">
     </RichEditBox>
 </UserControl>

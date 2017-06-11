@@ -5,7 +5,7 @@
     xmlns:local="using:NewsForum.Pages.ViewPublicationInfo"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-     xmlns:converters="using:NewsForum.View.Converters"
+    xmlns:converters="using:NewsForum.View.Converters"
     xmlns:baseModel="using:Model.PublicationTypes"
     xmlns:model="using:Model"
     xmlns:toolkit="using:WinRTXamlToolkit.Controls"
@@ -78,38 +78,19 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition MinHeight="350"
                                    Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
                 <!---->
-            <GridView Name="GenresGridView"
-                      Grid.Row="0"
-                      SelectionMode="None"
-                      ItemsSource="{x:Bind Publication.ListGenres}">
-                <GridView.ItemTemplate>
-                    <DataTemplate x:DataType="baseModel:Genre">
-                        <HyperlinkButton Content="{x:Bind Name}"/>
-                    </DataTemplate>
-                </GridView.ItemTemplate>
-                <GridView.Header>
-                    <TextBlock Text="Жанры"
-                               Style="{StaticResource SubtitleTextBlockStyle}"/>
-                </GridView.Header>
-            </GridView>
+                <userControls:ModifyListUserControl Grid.Row="0"
+                                                    Header="Жанры"
+                                                    ItemSource="{x:Bind Publication.ListNamesGenres}"/>
                 
-            <GridView Name="ActorsGridView"
-                      Grid.Row="1"
-                      SelectionMode="None"
-                      ItemsSource="{x:Bind Publication.ListActors}">
-                <GridView.ItemTemplate>
-                    <DataTemplate x:DataType="baseModel:Actor">
-                        <HyperlinkButton Content="{x:Bind Name}"/>
-                    </DataTemplate>
-                </GridView.ItemTemplate>
-                <GridView.Header>
-                    <TextBlock Text="Актёры"
-                               Style="{StaticResource SubtitleTextBlockStyle}"/>
-                </GridView.Header>
-            </GridView>
+                
+               <userControls:ModifyListUserControl Grid.Row="1"
+                                                   Margin="0 15 0 0"
+                                                   Header="Актеры"
+                                                   ItemSource="{x:Bind Publication.ListNamesActors}"/>
 
             <Grid Margin="0 15"
                   Grid.Row="2">
@@ -121,20 +102,20 @@
                  </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0"
-                       Margin="0 5"
-                       Style="{StaticResource BaseMenuTextBlockStyle}"
-                       Text="{x:Bind Publication.ReleaseYear,  ConverterParameter=Дата выпуска, Converter={StaticResource InfoPropertyConverter}}"/>
+                           Margin="0 5"
+                           Style="{StaticResource BaseMenuTextBlockStyle}"
+                           Text="{x:Bind Publication.ReleaseYear,  ConverterParameter=Дата выпуска, Converter={StaticResource InfoPropertyConverter}}"/>
 
 
                 <TextBlock Grid.Row="1"
-                       Margin="0 5"
-                       Style="{StaticResource BaseMenuTextBlockStyle}"
-                       Text="{x:Bind Publication.Director,  ConverterParameter=Режиссёр, Converter={StaticResource InfoPropertyConverter}}"/>
+                           Margin="0 5"
+                           Style="{StaticResource BaseMenuTextBlockStyle}"
+                           Text="{x:Bind Publication.Director,  ConverterParameter=Режиссёр, Converter={StaticResource InfoPropertyConverter}}"/>
 
                 <TextBlock Grid.Row="2"
-                       Margin="0 5"
-                       Style="{StaticResource BaseMenuTextBlockStyle}"
-                       Text="{x:Bind Publication.Country,  ConverterParameter=Страна, Converter={StaticResource InfoPropertyConverter}}"/>
+                           Margin="0 5"
+                           Style="{StaticResource BaseMenuTextBlockStyle}"
+                           Text="{x:Bind Publication.Country,  ConverterParameter=Страна, Converter={StaticResource InfoPropertyConverter}}"/>
 
 
                 <TextBlock Grid.Row="3"
@@ -144,15 +125,11 @@
 
             </Grid>
 
-            <RichEditBox Name="DescriptionRichEditBox"
-                         Grid.Row="3"
-                         Margin="0 15"
-                         Style="{StaticResource RichEditBoxStyle}">
-                <RichEditBox.Header>
-                    <TextBlock Style="{StaticResource SubtitleTextBlockStyle}"
-                               Text="Описание"/>
-                </RichEditBox.Header>
-            </RichEditBox>
+                <userControls:EditDescriptionBoxUserControl x:Name="DescriptionRichEditBox"
+                                                            Grid.Row="3"
+                                                            Header="Описание"
+                                                            IsEditBox="False"/>
+                
             
             <userControls:PhotosContainerUserControl Grid.Row="4"
                                                      ItemsSource="{x:Bind Publication.ListImages}"/>
@@ -160,6 +137,13 @@
                 <WebView Name="TrailerWebView"
                          DefaultBackgroundColor="{StaticResource MenuColor}"
                          Grid.Row="5"/>
+                
+                
+                <userControls:CommentsUserControl x:Name="CommentsControl"
+                                                  InfoUserEvent="CommentsControl_InfoUserEvent"
+                                                  ListComments="{x:Bind Publication.ListComments, Mode=TwoWay}"
+                                                  PublicationId="{x:Bind Publication.PublicationId, Mode=OneWay}"
+                                                  Grid.Row="6"/>
             </Grid>
         </Grid>
     </ScrollViewer>

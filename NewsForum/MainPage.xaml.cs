@@ -55,13 +55,14 @@ namespace NewsForum
                     PublicationType = PublicationType.Any,
                 },
                 UserId = CurrentUser.User.UserId
-
             });
 
-
-            var listPublications = JsonConvert.DeserializeObject<List<VMSmallPublication>>(answer.SelfAnswer.ToString());
-            await FilesAction.CreatePostersPublications(listPublications);
-            MyFrame.Navigate(typeof(ContentPage), listPublications);
+            if (answer != null)
+            {
+                var listPublications = JsonConvert.DeserializeObject<List<VMSmallPublication>>(answer.SelfAnswer.ToString());
+                await FilesAction.CreatePostersPublications(listPublications);
+                MyFrame.Navigate(typeof(ContentPage), listPublications);
+            }
         }
 
         async void go()

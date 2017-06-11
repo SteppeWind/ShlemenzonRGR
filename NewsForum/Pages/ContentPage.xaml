@@ -19,55 +19,62 @@
         <converters:TypePublicationToWordConverter x:Key="TypePublicationToWordConverter"/>
         <converters:IsDeletedConverter x:Key="IsDeletedConverter"/>
         <converters:IsPublishedConverter x:Key="IsPublishedConverter"/>
-        <commands:DeleteFromPublicAccessCommand x:Key="DeleteFromPublicAccessCommand"/>
         <converters:IsDeleteMessageConverter x:Key="IsDeleteMessageConverter"/>
+        <converters:IsDeletedOpacityConverter x:Key="IsDeletedOpacityConverter"/>
 
+        <commands:DeleteFromPublicAccessCommand x:Key="DeleteFromPublicAccessCommand"/>
 
         <DataTemplate x:Key="BasePublicationTemplate"
                       x:DataType="viewModelPublication:VMSmallPublication">
             <Grid x:Name="grid"
                   DataContext="{x:Bind Mode=OneWay}"
-                  Margin="10">
+                  Margin="10 0"
+                  Opacity="{Binding Path=IsDeleted, Converter={StaticResource IsDeletedOpacityConverter}, UpdateSourceTrigger=PropertyChanged}"
+                  Width="250"
+                  Height="350">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <StackPanel HorizontalAlignment="Left"
-                            >
+                <StackPanel Grid.Row="0"
+                            Visibility="{Binding Path=CreateDate, Converter={StaticResource AdminAccessVisibleConverter}, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBlock Text="{Binding Path=IsDeleted, Converter={StaticResource IsDeletedConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBlock Text="{Binding Path=IsPublished, Converter={StaticResource IsPublishedConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+                
+                
+                <Border Grid.Row="1"
+                        Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                    <Image Stretch="UniformToFill"
+                           Source="{x:Bind PosterImage.FullPath, Converter={StaticResource ImageConverter}}"/>
+                </Border>
+
+                <StackPanel VerticalAlignment="Bottom"
+                            Grid.Row="1"
+                            Background="{ThemeResource ListViewItemOverlayBackgroundThemeBrush}"
+                            Height="60">
                     <TextBlock Text="{x:Bind Title}"
+                               Margin="5 0 0 0"
                                TextWrapping="NoWrap"
                                TextTrimming="CharacterEllipsis"
+                               Foreground="{ThemeResource ListViewItemOverlayForegroundThemeBrush}"
                                Style="{StaticResource SubtitleTextBlockStyle}"/>
 
-                    <TextBlock FontSize="14"
-                               Visibility="{Binding Path=CreateDate, Converter={StaticResource AdminAccessVisibleConverter}, UpdateSourceTrigger=PropertyChanged}"
-                               Text="{Binding Path=IsDeleted, Converter={StaticResource IsDeletedConverter}, UpdateSourceTrigger=PropertyChanged}"/>
-
-                    <TextBlock FontSize="14"
-                               Visibility="{Binding Path=CreateDate, Converter={StaticResource AdminAccessVisibleConverter}, UpdateSourceTrigger=PropertyChanged}"
-                               Text="{Binding Path=IsPublished, Converter={StaticResource IsPublishedConverter}, UpdateSourceTrigger=PropertyChanged}"/>
-
-                    <HyperlinkButton Content="{x:Bind TypePublication, Converter={StaticResource TypePublicationToWordConverter}}"/>
+                    <HyperlinkButton FontSize="13"
+                                     Margin="5 0 0 0"
+                                     Content="{x:Bind TypePublication, Converter={StaticResource TypePublicationToWordConverter}}"/>
                 </StackPanel>
 
-                <Image Grid.Row="1"
-                       Stretch="UniformToFill"
-                       Width="200"
-                       Height="250"
-                       Source="{x:Bind PosterImage.FullPath, Converter={StaticResource ImageConverter}}"/>
-
-                <Button Grid.Row="2"
-                        Margin="0 5 0 0"
+                <Button HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
                         Visibility="{x:Bind CreateDate, Converter={StaticResource AdminAccessVisibleConverter}}"
                         Command="{StaticResource DeleteFromPublicAccessCommand}"
                         CommandParameter="{Binding ElementName=grid, Path=DataContext}"
-                        Content="{x:Bind IsDeleted, Converter={StaticResource IsDeleteMessageConverter}}"
-                        Style="{StaticResource BaseMenuButtonStyle}"
-                        FontSize="12"/>
-
+                        Content="{Binding Path=IsDeleted, Converter={StaticResource IsDeleteMessageConverter}, UpdateSourceTrigger=PropertyChanged}"
+                        Style="{StaticResource BaseSmallMenuIconTextBlockButtonStyle}"/>
             </Grid>
         </DataTemplate>
 
@@ -79,6 +86,7 @@
                   DataContext="{x:Bind main:CurrentUser.User}"
                   IsItemClickEnabled="True"
                   SelectionMode="Single"
+                  HorizontalAlignment="Left"
                   ItemTemplate="{StaticResource BasePublicationTemplate}"
                   ItemsSource="{x:Bind ListPublications}"
                   ItemClick="PublicationsGridView_ItemClick"/>

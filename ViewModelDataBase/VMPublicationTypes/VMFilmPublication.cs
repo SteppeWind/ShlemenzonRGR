@@ -34,6 +34,9 @@ namespace ViewModelDataBase.VMPublicationTypes
         //    }
         //}
 
+        [JsonIgnore]
+        public List<IName> ListNamesActors { get => ListActors.ToList<IName>(); }
+
         [Property("ReleaseYear")]
         public DateTime? ReleaseYear { get; set; }
 

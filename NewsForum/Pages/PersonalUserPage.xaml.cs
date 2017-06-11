@@ -1,4 +1,5 @@
-﻿using NewsForum.Model;
+﻿using Model.UserTypes;
+using NewsForum.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;

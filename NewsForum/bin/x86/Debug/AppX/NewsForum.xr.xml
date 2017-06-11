@@ -5,10 +5,10 @@
   </Roots.Interfaces>
   <Roots.PropertyPathNames>
     <RootPropertyPathName Name="AccessLevel" />
+    <RootPropertyPathName Name="IsDeleted" />
     <RootPropertyPathName Name="DataContext" />
     <RootPropertyPathName Name="CreateDate" />
     <RootPropertyPathName Name="IsPublished" />
-    <RootPropertyPathName Name="IsDeleted" />
     <RootPropertyPathName Name="ListGenreTypes" />
     <RootPropertyPathName Name="Name" />
     <RootPropertyPathName Name="Visibility" />
@@ -19,6 +19,7 @@
     <RootPropertyPathName Name="Opacity" />
     <RootPropertyPathName Name="AddDeleteCommand" />
     <RootPropertyPathName Name="BaseFileCollection" />
+    <RootPropertyPathName Name="Value" />
     <RootPropertyPathName Name="IsEditMusicCollection" />
     <RootPropertyPathName Name="CurrentSong" />
     <RootPropertyPathName Name="Icon" />
@@ -53,11 +54,11 @@
       <RootProperty Name="FontSize" />
       <RootProperty Name="Style" />
       <RootProperty Name="Text" />
+      <RootProperty Name="Margin" />
       <RootProperty Name="TextWrapping" />
       <RootProperty Name="TextTrimming" />
-      <RootProperty Name="Visibility" />
-      <RootProperty Name="Margin" />
-      <RootProperty Name="FontWeight" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="Inlines" />
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Name" />
@@ -81,11 +82,16 @@
       <RootProperty Name="Children" />
       <RootProperty Name="DataContext" />
       <RootProperty Name="Margin" />
+      <RootProperty Name="Opacity" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
       <RootProperty Name="ChildrenTransitions" />
       <RootProperty Name="ColumnDefinitions" />
       <RootProperty Name="AllowDrop" />
       <RootProperty Name="Name" />
       <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Visibility" />
       <RootProperty Name="Projection" />
       <RootProperty Name="RenderTransform" />
       <RootEvent Name="DragStarting" />
@@ -191,14 +197,16 @@
       <RootProperty Name="Orientation" />
       <RootProperty Name="Tag" />
       <RootProperty Name="Children" />
-      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="Height" />
       <RootProperty Name="Margin" />
       <RootProperty Name="Name" />
       <RootProperty Name="ChildrenTransitions" />
+      <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="MaxHeight" />
       <RootProperty Name="MaxWidth" />
-      <RootProperty Name="VerticalAlignment" />
-      <RootProperty Name="Visibility" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Data.Binding">
       <RootProperty Name="Path" />
@@ -206,6 +214,7 @@
       <RootProperty Name="UpdateSourceTrigger" />
       <RootProperty Name="ElementName" />
       <RootProperty Name="Source" />
+      <RootProperty Name="RelativeSource" />
       <RootProperty Name="Mode" />
       <RootProperty Name="ConverterParameter" />
     </RootType>
@@ -217,18 +226,18 @@
       <RootProperty Name="Style" />
       <RootProperty Name="Content" />
       <RootProperty Name="Background" />
-      <RootProperty Name="Margin" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Visibility" />
       <RootProperty Name="Command" />
       <RootProperty Name="CommandParameter" />
-      <RootProperty Name="FontSize" />
+      <RootProperty Name="Margin" />
       <RootProperty Name="Tag" />
-      <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="IsEnabled" />
       <RootProperty Name="Padding" />
       <RootProperty Name="Flyout" />
-      <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="FontFamily" />
+      <RootProperty Name="FontSize" />
       <RootEvent Name="Click" />
       <RootEvent Name="Tapped" />
     </RootType>
@@ -242,26 +251,37 @@
     <RootType FullName="NewsForum.View.Converters.TypePublicationToWordConverter" />
     <RootType FullName="NewsForum.View.Converters.IsDeletedConverter" />
     <RootType FullName="NewsForum.View.Converters.IsPublishedConverter" />
-    <RootType FullName="NewsForum.ViewModel.Commands.DeleteFromPublicAccessCommand" />
     <RootType FullName="NewsForum.View.Converters.IsDeleteMessageConverter" />
+    <RootType FullName="NewsForum.View.Converters.IsDeletedOpacityConverter" />
+    <RootType FullName="NewsForum.ViewModel.Commands.DeleteFromPublicAccessCommand" />
     <RootType FullName="Windows.UI.Xaml.DataTemplate">
       <RootProperty Name="Template" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Border">
+      <RootProperty Name="Background" />
+      <RootProperty Name="Child" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Opacity" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.ThemeResourceExtension" />
+    <RootType FullName="Windows.UI.Xaml.Controls.HyperlinkButton">
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Content" />
+      <RootProperty Name="Name" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="DataContext" />
+      <RootProperty Name="IsEnabled" />
+      <RootEvent Name="Tapped" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Image">
       <RootProperty Name="Stretch" />
-      <RootProperty Name="Width" />
-      <RootProperty Name="Height" />
       <RootProperty Name="Source" />
       <RootProperty Name="Name" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Opacity" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.HyperlinkButton">
-      <RootProperty Name="Content" />
-      <RootProperty Name="Name" />
-      <RootProperty Name="FontSize" />
-      <RootProperty Name="HorizontalAlignment" />
-      <RootEvent Name="Tapped" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Width" />
     </RootType>
     <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.NullExtension" />
     <RootType FullName="Windows.UI.Xaml.Controls.GridView">
@@ -269,9 +289,9 @@
       <RootProperty Name="DataContext" />
       <RootProperty Name="IsItemClickEnabled" />
       <RootProperty Name="SelectionMode" />
+      <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="ItemTemplate" />
       <RootProperty Name="ItemsSource" />
-      <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Items" />
       <RootProperty Name="Header" />
       <RootProperty Name="ItemsPanel" />
@@ -288,17 +308,22 @@
       <RootProperty Name="Name" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Margin" />
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="TextWrapping" />
+      <RootProperty Name="Height" />
+      <RootEvent Name="TextChanged" />
+      <RootEvent Name="KeyDown" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Pivot">
+      <RootProperty Name="Name" />
+      <RootProperty Name="HeaderFocusVisualPlacement" />
       <RootProperty Name="Items" />
       <RootEvent Name="SelectionChanged" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.PivotItem">
       <RootProperty Name="Header" />
-      <RootProperty Name="Style" />
       <RootProperty Name="Content" />
       <RootProperty Name="Name" />
-      <RootEvent Name="Tapped" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.PasswordBox">
       <RootProperty Name="Style" />
@@ -307,6 +332,10 @@
       <RootProperty Name="Header" />
       <RootProperty Name="Password" />
       <RootProperty Name="PlaceholderText" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Documents.Run">
+      <RootProperty Name="Text" />
+      <RootProperty Name="FontWeight" />
     </RootType>
     <RootType FullName="NewsForum.Pages.CurrentUserInfoPage" />
     <RootType FullName="NewsForum.Pages.EditorPublication.LastStepPage" />
@@ -385,6 +414,8 @@
     </RootType>
     <RootType FullName="NewsForum.View.MyUserControls.EditDescriptionBoxUserControl">
       <RootProperty Name="PlaceholderText" />
+      <RootProperty Name="Header" />
+      <RootProperty Name="IsEditBox" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.MenuFlyoutSeparator">
       <RootProperty Name="RenderTransformOrigin" />
@@ -447,6 +478,7 @@
     </RootType>
     <RootType FullName="WinRTXamlToolkit.Controls.WrapPanel">
       <RootProperty Name="Orientation" />
+      <RootProperty Name="Name" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Primitives.ToggleButton">
       <RootProperty Name="Name" />
@@ -496,13 +528,10 @@
     <RootType FullName="NewsForum.Pages.RegistrationPage" />
     <RootType FullName="NewsForum.View.Converters.InfoPropertyConverter" />
     <RootType FullName="NewsForum.View.Converters.TrueOrFalseConverter" />
-    <RootType FullName="Windows.UI.Xaml.Controls.RichEditBox">
-      <RootProperty Name="Name" />
-      <RootProperty Name="Margin" />
-      <RootProperty Name="Style" />
+    <RootType FullName="NewsForum.View.MyUserControls.ModifyListUserControl">
       <RootProperty Name="Header" />
-      <RootProperty Name="SelectionHighlightColor" />
-      <RootProperty Name="TextWrapping" />
+      <RootProperty Name="ItemSource" />
+      <RootProperty Name="Margin" />
     </RootType>
     <RootType FullName="NewsForum.View.MyUserControls.PhotosContainerUserControl">
       <RootProperty Name="ItemsSource" />
@@ -512,7 +541,20 @@
       <RootProperty Name="DefaultBackgroundColor" />
       <RootProperty Name="Height" />
     </RootType>
+    <RootType FullName="NewsForum.View.MyUserControls.CommentsUserControl">
+      <RootProperty Name="ListComments" />
+      <RootProperty Name="PublicationId" />
+      <RootEvent Name="InfoUserEvent" />
+    </RootType>
     <RootType FullName="NewsForum.Pages.ViewPublicationInfo.ViewInfoFilmPublicationPage" />
+    <RootType FullName="Windows.UI.Xaml.Controls.RichEditBox">
+      <RootProperty Name="Name" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Style" />
+      <RootProperty Name="Header" />
+      <RootProperty Name="SelectionHighlightColor" />
+      <RootProperty Name="TextWrapping" />
+    </RootType>
     <RootType FullName="NewsForum.Pages.ViewPublicationInfo.ViewInfoGamePublicationPage" />
     <RootType FullName="NewsForum.Pages.ViewPublicationInfo.ViewInfoMusicPublicationPage" />
     <RootType FullName="NewsForum.Pages.ViewPublicationInfo.ViewInfoNewsPublicationPage" />
@@ -535,11 +577,6 @@
     <RootType FullName="Windows.UI.Xaml.Media.Animation.DiscreteObjectKeyFrame">
       <RootProperty Name="KeyTime" />
       <RootProperty Name="Value" />
-    </RootType>
-    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.ThemeResourceExtension" />
-    <RootType FullName="Windows.UI.Xaml.Controls.Border">
-      <RootProperty Name="Margin" />
-      <RootProperty Name="Opacity" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ContentPresenter">
       <RootProperty Name="Visibility" />
@@ -573,7 +610,10 @@
     <RootType FullName="Windows.UI.Xaml.Controls.ProgressRing">
       <RootProperty Name="Name" />
     </RootType>
-    <RootType FullName="NewsForum.View.MyUserControls.CommentsUserControl" />
+    <RootType FullName="NewsForum.View.Converters.IsEnableChangeCommentConverter" />
+    <RootType FullName="Windows.UI.Xaml.Data.RelativeSource">
+      <RootProperty Name="Mode" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Media.Animation.DoubleAnimationUsingKeyFrames">
       <RootProperty Name="KeyFrames" />
     </RootType>

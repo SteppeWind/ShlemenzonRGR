@@ -182,8 +182,10 @@
     <Compile Include="View\Converters\InfoPropertyConverter.cs" />
     <Compile Include="View\Converters\IntToTypePublicationConverter.cs" />
     <Compile Include="View\Converters\IsBanedConverter.cs" />
+    <Compile Include="View\Converters\IsDeletedOpacityConverter.cs" />
     <Compile Include="View\Converters\IsDeletedConverter.cs" />
     <Compile Include="View\Converters\IsDeleteMessageConverter.cs" />
+    <Compile Include="View\Converters\IsEnableChangeCommentConverter.cs" />
     <Compile Include="View\Converters\IsEnabledFromUserBannedConverter.cs" />
     <Compile Include="View\Converters\IsPublishedConverter.cs" />
     <Compile Include="View\Converters\MethodNamePlayerConverter.cs" />
@@ -212,6 +214,9 @@
     <Compile Include="View\MyUserControls\IContentUserControl.cs" />
     <Compile Include="View\MyUserControls\LinkVideoViewUserControl.xaml.cs">
       <DependentUpon>LinkVideoViewUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MyUserControls\ModifyListUserControl.xaml.cs">
+      <DependentUpon>ModifyListUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MyUserControls\ModifyWebViewUserControl.xaml.cs">
       <DependentUpon>ModifyWebViewUserControl.xaml</DependentUpon>
@@ -373,6 +378,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MyUserControls\LinkVideoViewUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MyUserControls\ModifyListUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

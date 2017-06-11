@@ -9,6 +9,7 @@ using ViewModelDataBase.VMTypes;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.UI;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
@@ -29,6 +30,7 @@ namespace NewsForum.View.MyUserControls
 
         public ITextDocument Document { get; private set; }
 
+
         public String PlaceholderText
         {
             get => (string)GetValue(TextBox.PlaceholderTextProperty);
@@ -39,6 +41,16 @@ namespace NewsForum.View.MyUserControls
                                                                                   typeof(bool),
                                                                                   typeof(EditDescriptionBoxUserControl),
                                                                                   new PropertyMetadata(false));
+        public object Header
+        {
+            get { return GetValue(HeaderProperty); }
+            set { SetValue(HeaderProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Header.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty HeaderProperty =
+            DependencyProperty.Register("Header", typeof(object), typeof(EditDescriptionBoxUserControl), new PropertyMetadata(null));
+
 
         public bool IsEditBox
         {
@@ -81,10 +93,12 @@ namespace NewsForum.View.MyUserControls
             }
         }
 
+
+
         public EditDescriptionBoxUserControl()
-        { 
+        {
             this.InitializeComponent();
             Document = MainRichEditBox.Document;
-        }  
+        }
     }
 }

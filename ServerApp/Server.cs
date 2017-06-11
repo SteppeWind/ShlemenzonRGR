@@ -19,6 +19,7 @@ using System.Runtime.Serialization.Formatters;
 using RequestServer;
 using ServerApp.DataModel;
 using Model.UserTypes;
+using Model.PublicationTypes;
 
 namespace ServerApp
 {
@@ -42,7 +43,7 @@ namespace ServerApp
         {
             Host = host;
             Port = port;
-            
+
         }
 
         void start()
@@ -56,9 +57,16 @@ namespace ServerApp
         {
             while (true)
             {
-                var tcpClient = await ListenerConnections.AcceptTcpClientAsync();
-                Client client = new Client(tcpClient);
-                client.RecievedRequest += Client_RecievedRequest;
+                try
+                {
+                    var tcpClient = await ListenerConnections.AcceptTcpClientAsync();
+                    Client client = new Client(tcpClient);
+                    client.RecievedRequest += Client_RecievedRequest;
+                }
+                catch (Exception ex)
+                {
+                    ExceptionRecived(ex.Message);
+                }
             }
             //while (true)
             //{
@@ -84,20 +92,23 @@ namespace ServerApp
             Answer answer = null;
             switch (Request.DataType)
             {
-                case DataType.Bool:
-                    break;
                 case DataType.Publication:
                     answer = PublicationRequests(Request);
                     break;
+
                 case DataType.User:
                     answer = UserRequests(Request);
                     break;
+
                 case DataType.Actor:
                     break;
+
                 case DataType.SmallPublication:
                     answer = BasePublicationRequest(Request);
                     break;
-                default:
+
+                case DataType.Comment:
+                    answer = CommentRequests(Request);
                     break;
             }
             client.SendAnswer(answer);
@@ -109,7 +120,7 @@ namespace ServerApp
         /// <param name="mainRequest"></param>
         private Answer BasePublicationRequest(MainRequest mainRequest)
         {
-            Answer answer = new Answer();
+            Answer answer = new Answer() { TypeAnswer = DataType.SmallPublication };
             string json = string.Empty;
             if (mainRequest.RecievedRequest != null)
                 json = mainRequest.RecievedRequest.ToString();
@@ -117,15 +128,51 @@ namespace ServerApp
             switch (mainRequest.TypeRequest)
             {
                 case TypeRequest.Read:
-                    answer.TypeAnswer = DataType.SmallPublication;
                     var readPublicationRequest = JsonConvert.DeserializeObject<ReadPublciationRequest>(json);
                     answer.SelfAnswer = PublicationCRUD.GetSmallPublications(readPublicationRequest, mainRequest.UserId);
                     break;
                 case TypeRequest.ReadSelf:
-                    answer.TypeAnswer = DataType.SmallPublication;
                     answer.SelfAnswer = PublicationCRUD.GetCertainPublications(mainRequest.UserId);
                     break;
             }
+            return answer;
+        }
+
+
+        /// <summary>
+        /// Обработка создания, удаления, обновления, чтения комментариев
+        /// </summary>
+        /// <param name="mainRequest"></param>
+        private Answer CommentRequests(MainRequest mainRequest)
+        {
+            object result = null;
+            Answer answer = new Answer();
+            string json = mainRequest.RecievedRequest.ToString();
+
+            switch (mainRequest.TypeRequest)
+            {
+                case TypeRequest.Update:
+                    result = CommentCRUD.UpdateComment(JsonConvert.DeserializeObject<Comment>(json));
+                    break;
+
+                case TypeRequest.Delete:
+                    string[] comm_user = json.Split('%');
+                    result = CommentCRUD.DeleteComment(int.Parse(comm_user[0]), int.Parse(comm_user[0]));
+                    break;
+
+                case TypeRequest.Create:
+                    result = CommentCRUD.AddComment(JsonConvert.DeserializeObject<Comment>(json));
+                    break;
+
+                case TypeRequest.Read:
+                    result = CommentCRUD.GetComments(int.Parse(json));
+                    break;
+
+                case TypeRequest.ReadSelf:
+                    result = CommentCRUD.GetUserComments(mainRequest.UserId);
+                    break;
+            }
+            answer.SelfAnswer = result;
             return answer;
         }
 
@@ -228,17 +275,17 @@ namespace ServerApp
                     result = PublicationCRUD.UpdatePublication(castPublic, mainRequest.UserId);
                     break;
                 case TypeRequest.Delete:
-                    result = PublicationCRUD.DeletePublication(JsonConvert.DeserializeObject<int>(json), mainRequest.UserId);
+                    result = PublicationCRUD.DeletePublication(int.Parse(mainRequest.RecievedRequest.ToString()), mainRequest.UserId);
                     break;
 
                 case TypeRequest.Undelete:
-                    result = PublicationCRUD.UndeletePublication(JsonConvert.DeserializeObject<int>(json), mainRequest.UserId);
+                    result = PublicationCRUD.UndeletePublication(int.Parse(mainRequest.RecievedRequest.ToString()), mainRequest.UserId);
                     break;
                 case TypeRequest.Create:
                     result = PublicationCRUD.CreatePublication(castPublic);
                     break;
                 case TypeRequest.Read:
-                    result = PublicationCRUD.GetPublication(JsonConvert.DeserializeObject<int>(json));
+                    result = PublicationCRUD.GetPublication(int.Parse(mainRequest.RecievedRequest.ToString()));
                     break;
             }
             answer.SelfAnswer = result;
@@ -294,9 +341,9 @@ namespace ServerApp
             }
             catch (Exception ex)
             {
-            }                          
+            }
         }
-       
+
         public async void ReadStreamDataAsync()
         {
             try
@@ -311,7 +358,7 @@ namespace ServerApp
             catch (Exception)
             {
             }
-            
+
         }
 
         public async void SendAnswer(Answer answer)

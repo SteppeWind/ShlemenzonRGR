@@ -27,9 +27,23 @@ namespace ServerApp
         {
 
             var nfc = NewsForumContext.GetNewsForumContext;
-
+            
             Server s = new Server();
             s.ExceptionRecived += S_ExceptionRecived;
+
+            //nfc.Comments.Add(new DBComment()
+            //{
+            //    PublicationId = 2,
+            //    UserId = 4,
+            //    Value = "Ниче такой, с пивком потянет)"
+            //});
+
+            //nfc.Comments.Add(new DBComment()
+            //{
+            //    PublicationId = 2,
+            //    UserId = 3,
+            //    Value = "Блять, 10 из 10!"
+            //});
 
             //nfc.Users.Add(new DBUser()
             //{
@@ -185,7 +199,7 @@ namespace ServerApp
             //    CreateDate = DateTime.Now
             //});
 
-           // nfc.SaveChanges();
+            //nfc.SaveChanges();
             Console.ReadKey();
         }
 
