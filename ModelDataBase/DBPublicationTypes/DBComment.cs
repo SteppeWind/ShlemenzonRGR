@@ -16,6 +16,7 @@ namespace ModelDataBase.DBPublicationTypes
     {
         private int commentId = -1;
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Property("CommentId")]
         public override int CommentId
         {
             get => commentId;

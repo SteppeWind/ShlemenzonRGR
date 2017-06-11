@@ -1,4 +1,6 @@
 ﻿using NewsForum.Model;
+using NewsForum.Model.Exceptions;
+using RequestServer.AnswerForRequest;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -34,17 +36,31 @@ namespace NewsForum.Pages
 
         private async void AutorizeButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            var res = await CurrentUser.Autorize(login, password);
-            if (res)
+            bool res = false;
+            try
             {
-                Frame.Navigate(typeof(CurrentUserInfoPage));
+                res = await CurrentUser.Autorize(login, password);
+                if (res)
+                {
+                    Frame.Navigate(typeof(CurrentUserInfoPage));
+                }
+                else
+                {
+                    ContentDialog noWifiDialog = new ContentDialog()
+                    {
+                        Title = "Уведомление",
+                        Content = "Проверьте пару логин/пароль",
+                        PrimaryButtonText = "Ok"
+                    };
+                    ContentDialogResult result = await noWifiDialog.ShowAsync();
+                }
             }
-            else
+            catch (IsBannedUserException ex)
             {
                 ContentDialog noWifiDialog = new ContentDialog()
                 {
                     Title = "Уведомление",
-                    Content = "Проверьте пару логин/пароль",
+                    Content = ex.Message,
                     PrimaryButtonText = "Ok"
                 };
                 ContentDialogResult result = await noWifiDialog.ShowAsync();

@@ -14,7 +14,7 @@ namespace NewsForum.View.Converters
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             UserAccessLevel level = UserAccessLevel.Admin;
-            return CurrentUser.User.AccessLevel >= level ? Visibility.Visible : Visibility.Collapsed;
+            return CurrentUser.User.AccessLevel >= level ? true : false;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

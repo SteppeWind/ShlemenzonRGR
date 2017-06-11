@@ -31,13 +31,13 @@
     <AppXManifest Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-06-11T07:36:13.295</Modified>
+      <Modified>2017-06-11T14:09:59.397</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\NewsForum.exe">
       <PackagePath>entrypoint\NewsForum.exe</PackagePath>
-      <Modified>2017-06-11T07:36:11.727</Modified>
+      <Modified>2017-06-11T14:09:57.925</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vladi\.nuget\packages\Cimbalino.Toolkit\2.5.2\lib\uap10.0\Cimbalino.Toolkit.dll">
       <PackagePath>Cimbalino.Toolkit.dll</PackagePath>
@@ -645,15 +645,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\Model\bin\Debug\Model.dll">
       <PackagePath>Model.dll</PackagePath>
-      <Modified>2017-06-10T13:32:37.916</Modified>
+      <Modified>2017-06-11T07:41:50.682</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\RequestServer\bin\Debug\RequestServer.dll">
       <PackagePath>RequestServer.dll</PackagePath>
-      <Modified>2017-06-10T18:35:45.289</Modified>
+      <Modified>2017-06-11T12:04:43.488</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\ViewModelDataBase\bin\Debug\ViewModelDataBase.dll">
       <PackagePath>ViewModelDataBase.dll</PackagePath>
-      <Modified>2017-06-10T16:13:17.641</Modified>
+      <Modified>2017-06-11T12:04:42.994</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\Modern-UI-Icons---Social.ttf">
       <PackagePath>Modern-UI-Icons---Social.ttf</PackagePath>
@@ -707,7 +707,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\NewsForum.xr.xml">
       <PackagePath>NewsForum.xr.xml</PackagePath>
-      <Modified>2017-06-10T18:52:37.218</Modified>
+      <Modified>2017-06-11T13:28:09.675</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -724,11 +724,11 @@
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-06-11T07:36:12.682</Modified>
+      <Modified>2017-06-11T14:09:58.713</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\Core\NewsForum.exe">
       <PackagePath>NewsForum.exe</PackagePath>
-      <Modified>2017-06-11T07:36:13.292</Modified>
+      <Modified>2017-06-11T14:09:59.393</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

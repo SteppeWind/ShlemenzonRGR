@@ -32,6 +32,7 @@ namespace ModelDataBase.DBPublicationTypes
        
         private int publicationId = -1;
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Property("PublicationId")]
         public override int PublicationId
         {
             get => publicationId;

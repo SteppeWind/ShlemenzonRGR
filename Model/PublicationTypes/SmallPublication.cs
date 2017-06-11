@@ -31,6 +31,7 @@ namespace Model.PublicationTypes
         [Property("UserId")]
         public virtual int UserId { get; set; }
         
+        [Property("PublicationId")]
         public virtual int PublicationId { get; set; }
         
         /// <summary>

@@ -68,7 +68,7 @@ namespace ServerApp.CRUD
             var dbUser = UserCRUD.GetDBUserFromId(comment.UserId);
             var dbComment = GetDBCommentFromId(comment.CommentId);
 
-            if (dbUser != null && dbUser.AccessLevel >= UserAccessLevel.Admin)
+            if ((dbUser != null && dbUser.AccessLevel >= UserAccessLevel.Admin) || dbUser.ListComments.Contains(dbComment))
             {
                 dbComment.Value = comment.Value;
                 CurrentNewsForumContext.SaveChanges();
@@ -79,10 +79,12 @@ namespace ServerApp.CRUD
         }
 
 
-        public static bool AddComment(Comment comment)
+        public static VMComment AddComment(Comment comment)
         {
             var dbUser = UserCRUD.GetDBUserFromId(comment.UserId);
             var dbPublication = PublicationCRUD.GetDBPublicationFromId(comment.PublicationId);
+            VMComment result = new VMComment();
+
 
             if (dbUser != null && dbPublication != null)
             {
@@ -94,10 +96,14 @@ namespace ServerApp.CRUD
                 };
                 CurrentNewsForumContext.Comments.Add(dbComment);
                 CurrentNewsForumContext.SaveChanges();
-                return true;
+
+                dbComment = CurrentNewsForumContext.Comments.ToList().Last();
+                result.Convert(dbComment);
+                result.User.Convert(dbComment.User);
+                return result;
             }
 
-            return false;
+            return null;
         }
         
         public static bool DeleteComment(int idComment, int idUser)
@@ -112,7 +118,7 @@ namespace ServerApp.CRUD
 
 
 
-                if (dbUser.AccessLevel >= UserAccessLevel.Admin)
+                if (dbUser.AccessLevel >= UserAccessLevel.Admin || dbUser.ListComments.Contains(dbComment))
                 {
                     CurrentNewsForumContext.Comments.Remove(dbComment);
                     CurrentNewsForumContext.SaveChanges();

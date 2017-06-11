@@ -20,6 +20,7 @@
 
         <converters:IsEnableChangeCommentConverter x:Key="IsEnableChangeCommentConverter"/>
         <converters:UserAccessVisibleConverter x:Key="UserAccessVisibleConverter"/>
+        <converters:AdminAccessVisibleConverter x:Key="AdminAccessVisibleConverter"/>
         <converters:IsEnabledFromUserBannedConverter x:Key="IsEnabledFromUserBannedConverter"/>
 
         <DataTemplate x:Key="ViewCommentTemplate"
@@ -37,7 +38,7 @@
                 <HyperlinkButton x:Name="InfoUserButton"
                                  DataContext="{x:Bind User}"
                                  Content="{x:Bind User}"
-                                 IsEnabled="{x:Bind newsForum:CurrentUser.User.AccessLevel, Converter={StaticResource UserAccessVisibleConverter}}"
+                                 IsEnabled="{x:Bind newsForum:CurrentUser.User.AccessLevel, Converter={StaticResource AdminAccessVisibleConverter}}"
                                  Tapped="InfoUserButton_Tapped"/>
 
                 <TextBlock x:Name="ValueCommentTextBlock"
@@ -93,7 +94,24 @@
                     <HyperlinkButton Name="SaveChangesButton"
                                      Content="Принять"
                                      DataContext="{x:Bind CommentId}"
-                                     Tapped="SaveChangesButton_Tapped"/>
+                                     Tapped="SaveChangesButton_Tapped">
+                        <I:Interaction.Behaviors>
+                            <Core:EventTriggerBehavior EventName="Tapped">
+                                <Core:ChangePropertyAction TargetObject="{Binding ElementName=ChangeCommentSP, RelativeSource={RelativeSource Mode=Self}}"
+                                                           PropertyName="Visibility"
+                                                           Value="Visible"/>
+                                <Core:ChangePropertyAction TargetObject="{Binding ElementName=ValueCommentTextBlock, RelativeSource={RelativeSource Mode=Self}}"
+                                                           PropertyName="Visibility"
+                                                           Value="Visible"/>
+                                <Core:ChangePropertyAction TargetObject="{Binding ElementName=ValueCommentTextBox, RelativeSource={RelativeSource Mode=Self}}"
+                                                           PropertyName="Visibility"
+                                                           Value="Collapsed"/>
+                                <Core:ChangePropertyAction TargetObject="{Binding ElementName=SetNewValueCommentSP, RelativeSource={RelativeSource Mode=Self}}"
+                                                           PropertyName="Visibility"
+                                                           Value="Collapsed"/>
+                            </Core:EventTriggerBehavior>
+                        </I:Interaction.Behaviors>
+                    </HyperlinkButton>
                     <TextBlock Margin="3 0"
                                FontSize="20"
                                Text="/"/>
@@ -138,8 +156,8 @@
             <TextBox Name="CommentTextBox"
                      Grid.Column="0"
                      PlaceholderText="Ваш комментарий..."
-                     Height="50"
-                     KeyDown="CommentTextBox_KeyDown"
+                     Height="40"
+                     KeyUp="CommentTextBox_KeyUp"
                      Margin="0 0 10 0"/>
 
             <Button Name="SendCommentButton"
@@ -151,7 +169,7 @@
         </Grid>
 
         <ListView Name="CommentsListView"
-                  ItemsSource="{x:Bind ListComments, Mode=TwoWay}"
+                  ItemsSource="{x:Bind ObservableListComments, Mode=TwoWay}"
                   SelectionMode="None"
                   ItemTemplate="{StaticResource ViewCommentTemplate}"
                   Grid.Row="1"/>

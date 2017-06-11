@@ -37,5 +37,10 @@ namespace ViewModelDataBase.VMPublicationTypes
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
+        public VMComment()
+        {
+            User = User ?? new User();
+        }
     }
 }

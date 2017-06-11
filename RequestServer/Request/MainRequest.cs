@@ -17,6 +17,11 @@ namespace RequestServer.Request
         public int UserId { get; set; }
 
         public object RecievedRequest { get; set; }
-        
+
+
+        public override string ToString()
+        {
+            return RecievedRequest.ToString();
+        }
     }
 }

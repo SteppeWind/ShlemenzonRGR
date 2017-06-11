@@ -147,7 +147,11 @@ namespace ServerApp
         {
             object result = null;
             Answer answer = new Answer();
-            string json = mainRequest.RecievedRequest.ToString();
+            string json = string.Empty;
+            if (mainRequest.RecievedRequest!= null)
+            {
+                json = mainRequest.ToString();
+            }
 
             switch (mainRequest.TypeRequest)
             {
@@ -156,8 +160,7 @@ namespace ServerApp
                     break;
 
                 case TypeRequest.Delete:
-                    string[] comm_user = json.Split('%');
-                    result = CommentCRUD.DeleteComment(int.Parse(comm_user[0]), int.Parse(comm_user[0]));
+                    result = CommentCRUD.DeleteComment(int.Parse(json), mainRequest.UserId);
                     break;
 
                 case TypeRequest.Create:
@@ -186,7 +189,7 @@ namespace ServerApp
             Answer answer = new Answer();
             string json = string.Empty;
             if (mainRequest.RecievedRequest != null)
-                json = mainRequest.RecievedRequest.ToString();
+                json = mainRequest.ToString();
 
             switch (mainRequest.TypeRequest)
             {
@@ -196,11 +199,11 @@ namespace ServerApp
                     break;
 
                 case TypeRequest.Delete:
-                    answer.SelfAnswer = UserCRUD.BanUser(JsonConvert.DeserializeObject<int>(json), mainRequest.UserId);
+                    answer.SelfAnswer = UserCRUD.BanUser(int.Parse(json), mainRequest.UserId);
                     break;
 
                 case TypeRequest.Undelete:
-                    answer.SelfAnswer = UserCRUD.UnbanUser(JsonConvert.DeserializeObject<int>(json), mainRequest.UserId);
+                    answer.SelfAnswer = UserCRUD.UnbanUser(int.Parse(json), mainRequest.UserId);
                     break;
 
                 case TypeRequest.Create:
@@ -230,7 +233,7 @@ namespace ServerApp
         {
             object result = null;
             Answer answer = new Answer();
-            string json = mainRequest.RecievedRequest.ToString();
+            string json = mainRequest.ToString();
             VMPublication castPublic = new VMPublication();
             if (mainRequest.TypeRequest == TypeRequest.Create || mainRequest.TypeRequest == TypeRequest.Update)
             {
@@ -275,17 +278,17 @@ namespace ServerApp
                     result = PublicationCRUD.UpdatePublication(castPublic, mainRequest.UserId);
                     break;
                 case TypeRequest.Delete:
-                    result = PublicationCRUD.DeletePublication(int.Parse(mainRequest.RecievedRequest.ToString()), mainRequest.UserId);
+                    result = PublicationCRUD.DeletePublication(int.Parse(mainRequest.ToString()), mainRequest.UserId);
                     break;
 
                 case TypeRequest.Undelete:
-                    result = PublicationCRUD.UndeletePublication(int.Parse(mainRequest.RecievedRequest.ToString()), mainRequest.UserId);
+                    result = PublicationCRUD.UndeletePublication(int.Parse(mainRequest.ToString()), mainRequest.UserId);
                     break;
                 case TypeRequest.Create:
                     result = PublicationCRUD.CreatePublication(castPublic);
                     break;
                 case TypeRequest.Read:
-                    result = PublicationCRUD.GetPublication(int.Parse(mainRequest.RecievedRequest.ToString()));
+                    result = PublicationCRUD.GetPublication(int.Parse(mainRequest.ToString()));
                     break;
             }
             answer.SelfAnswer = result;

@@ -2,6 +2,7 @@
 using Model.PublicationTypes;
 using Model.UserTypes;
 using NewsForum.Model;
+using NewsForum.Model.Exceptions;
 using Newtonsoft.Json;
 using RequestServer.AnswerForRequest;
 using RequestServer.Request;
@@ -56,9 +57,15 @@ namespace NewsForum
             if (answer.SelfAnswer != null)
             {
                 var res = JsonConvert.DeserializeObject<User>(answer.SelfAnswer.ToString());
-                currentUser.Convert(res);
-                var ac = currentUser.AccessLevel;
-                return true;
+                if (res.UserId != -1)
+                {
+                    currentUser.Convert(res);
+                    return true;
+                }
+                else
+                {
+                    throw new IsBannedUserException("Данный пользователь заблокирован");
+                }
             }
 
             return false;
@@ -100,7 +107,7 @@ namespace NewsForum
             return result;
         }
 
-        public static async Task<bool> Update(VMUser user)
+        public static async Task<bool> Update(User user)
         {
             var answer = await ServerRequest.SendRequest(new MainRequest()
             {

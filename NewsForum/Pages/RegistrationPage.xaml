@@ -25,7 +25,7 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         
-        <ListView>
+        <ListView SelectionMode="None">
             <TextBox Style="{StaticResource ModifyTextBox}"
                      Header="Имя"
                      Text="{x:Bind CurrUser.Name, Mode=TwoWay}"/>

@@ -20,11 +20,16 @@ namespace ServerApp.CRUD
 
             if (user != null && user.Password.Equals(password))
             {
-                User res = new User();
-                res.Convert(user);
-                return res;
+                if (!user.IsBunned)
+                {
+                    User res = new User();
+                    res.Convert(user);
+                    return res;
+                }
+                else
+                    return new User() { UserId = -1 };
             }
-
+            
             return null;
         }
 

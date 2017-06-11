@@ -7,6 +7,7 @@ using RequestServer.AnswerForRequest;
 using RequestServer.Request;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -53,8 +54,29 @@ namespace NewsForum.View.MyUserControls
         public List<VMComment> ListComments
         {
             get { return (List<VMComment>)GetValue(ListCommentsProperty); }
-            set { SetValue(ListCommentsProperty, value); }
+            set
+            {
+                SetValue(ListCommentsProperty, value);
+                value.ForEach(c =>
+                {
+                    ObservableListComments.Add(c);
+                });
+            }
         }
+
+        private void RemoveComment(VMComment comment)
+        {
+            ListComments.Remove(comment);
+            ObservableListComments.Remove(comment);
+        }
+
+        private void AddComment(VMComment comment)
+        {
+            ListComments.Add(comment);
+            ObservableListComments.Add(comment);
+        }
+
+        private ObservableCollection<VMComment> ObservableListComments { get; set; }
 
         // Using a DependencyProperty as the backing store for ListComments.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ListCommentsProperty =
@@ -64,12 +86,13 @@ namespace NewsForum.View.MyUserControls
 
         public CommentsUserControl()
         {
+            ObservableListComments = new ObservableCollection<VMComment>();
             this.InitializeComponent();
         }
 
-        private void SendCommentButton_Tapped(object sender, TappedRoutedEventArgs e)
+        private async void SendCommentButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            SendMessageEvent(CommentTextBox.Text);
+            await SendComment();
         }
 
         private void InfoUserButton_Tapped(object sender, TappedRoutedEventArgs e)
@@ -78,53 +101,42 @@ namespace NewsForum.View.MyUserControls
             InfoUserEvent(user);
         }
 
-        private async void CommentTextBox_KeyDown(object sender, KeyRoutedEventArgs e)
-        {
-            if (e.Key == Windows.System.VirtualKey.Enter && CommentTextBox.Text.Any())
-            {
-                Answer answer = await ServerRequest.SendRequest(new MainRequest()
-                {
-                    DataType = DataType.Comment,
-                    TypeRequest = TypeRequest.Create,
-                    RecievedRequest = new Comment()
-                    {
-                        UserId = CurrentUser.User.UserId,
-                        PublicationId = this.PublicationId,
-                        Value = CommentTextBox.Text
-                    }
-                });
-                if (answer.SelfAnswer is bool res)
-                {
-                    await updateComments();
-                }
-                SendMessageEvent(CommentTextBox.Text);
-            }
-        }
-
-        private async Task updateComments()
-        {
-           var answer = await ServerRequest.SendRequest(new MainRequest()
-            {
-                DataType = DataType.Comment,
-                TypeRequest = TypeRequest.Read,
-                RecievedRequest = PublicationId
-            });
-            ListComments = JsonConvert.DeserializeObject<List<VMComment>>(answer.ToString());
-
-        }
-
-        private async Task deleteComment(Comment comment)
+        private async Task SendComment()
         {
             Answer answer = await ServerRequest.SendRequest(new MainRequest()
             {
                 DataType = DataType.Comment,
-                TypeRequest = TypeRequest.Update,
-                RecievedRequest = $"{comment.CommentId}%{CurrentUser.User.UserId}"
+                TypeRequest = TypeRequest.Create,
+                RecievedRequest = new Comment()
+                {
+                    UserId = CurrentUser.User.UserId,
+                    PublicationId = this.PublicationId,
+                    Value = CommentTextBox.Text
+                }
             });
-            if (answer.SelfAnswer is bool res)
+            if (answer.SelfAnswer != null)
+            {
+                var vmComment = JsonConvert.DeserializeObject<VMComment>(answer.ToString());
+                await CurrentUser.GetSelfComments();
+                AddComment(vmComment);
+                SendMessageEvent(CommentTextBox.Text);
+            }
+        }
+
+        private async Task deleteComment(VMComment comment)
+        {
+            Answer answer = await ServerRequest.SendRequest(new MainRequest()
+            {
+                DataType = DataType.Comment,
+                TypeRequest = TypeRequest.Delete,
+                UserId = CurrentUser.User.UserId,
+                RecievedRequest = comment.CommentId
+            });
+            if (answer.SelfAnswer is bool res == true)
             {
                 DeleteCommentEvent(comment);
-                await updateComments();
+                RemoveComment(comment);
+                //await updateComments();
             }
         }
 
@@ -157,12 +169,20 @@ namespace NewsForum.View.MyUserControls
                 if (answer.SelfAnswer is bool res)
                 {
                     ChangeCommentEvent(newComment);
-                    await updateComments();
+                    comment.Value = newComment.Value;
                 }
             }
             else
             {
                 await deleteComment(comment);
+            }
+        }
+
+        private async void CommentTextBox_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter && CommentTextBox.Text.Any())
+            {
+                await SendComment();
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using NewsForum.Model;
+﻿using Model.UserTypes;
+using NewsForum.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,8 +26,7 @@ namespace NewsForum.Pages
     /// </summary>
     public sealed partial class CurrentUserInfoPage : Page
     {
-        VMUser CurrUser = CurrentUser.User;
-        VMUser CloneCurrUser = new VMUser();
+        User CloneCurrUser = new User();
         
         public CurrentUserInfoPage()
         {
@@ -34,7 +34,7 @@ namespace NewsForum.Pages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            CloneCurrUser.Convert(CurrUser);
+            CloneCurrUser.Convert(CurrentUser.User);
             this.InitializeComponent();
         }
 
@@ -57,18 +57,22 @@ namespace NewsForum.Pages
         {
             if (MainPivot.SelectedIndex == 1)
             {
-                if (CurrUser.ListPublications == null)
+                if (CurrentUser.User.ListPublications == null)
                 {
                     await CurrentUser.GetSelfPublications();
                 }
-                SelfFrame.Navigate(typeof(ContentPage), CurrUser.ListPublications);
+                SelfFrame.Navigate(typeof(ContentPage), CurrentUser.User.ListPublications);
+            }
+            else
+            {
+                await CurrentUser.GetSelfComments();
             }
         }
 
         private void ExitButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
             CurrentUser.Exit();
-            Frame.Navigate(typeof(ContentPage));
+            Frame.Navigate(typeof(LoginOrRegistrationPage));
         }
     }
 }

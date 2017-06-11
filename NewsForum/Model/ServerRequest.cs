@@ -93,7 +93,6 @@ namespace NewsForum.Model
                 }
                 
                 answer = Answer.GetTObjFromPackets(ListPackets.OrderBy(p => p.NumberPacket).ToList());
-                var js = answer.SelfAnswer.ToString();
                 ListPackets.Clear();
             }
 
