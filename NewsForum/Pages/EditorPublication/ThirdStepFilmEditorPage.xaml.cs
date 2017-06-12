@@ -1,5 +1,8 @@
 ﻿using Model.PublicationTypes;
 using NewsForum.Model;
+using Newtonsoft.Json;
+using RequestServer;
+using RequestServer.Request;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -34,7 +37,9 @@ namespace NewsForum.Pages.EditorPublication
     {
         ObservableCollection<Actor> ListAutors = new ObservableCollection<Actor>();
         VMFilmPublication Publication { get; set; }
+
         public string[] Genres = GenreTypes.FilmGenres;
+        public List<String> Actors { get; set; }
 
         public ThirdStepDistributionEditorPage()
         {
@@ -43,9 +48,20 @@ namespace NewsForum.Pages.EditorPublication
             EditPanelPublication.AddEditDescriptionBox(EditDescriptionBox);
         }
 
+        async void LoadActors()
+        {
+            var answer = await ServerRequest.SendRequest(new MainRequest()
+            {
+                DataType = DataType.Actor,
+                TypeRequest = TypeRequest.ReadSelf
+            });
+            Actors = JsonConvert.DeserializeObject<List<String>>(answer.ToString());
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Publication = e.Parameter as VMFilmPublication;
+            LoadActors();
         }
 
         protected async override void OnNavigatedFrom(NavigationEventArgs e)
@@ -83,6 +99,29 @@ namespace NewsForum.Pages.EditorPublication
         private void DeleteActorsButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
             ListAutors.Remove(ActorsListView.SelectedItem as Actor);
+        }
+
+        private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            if (args.CheckCurrent())
+            {
+                var term = sender.Text.ToLower();
+                var results = Actors.Where(i => i.ToLower().Contains(term)).ToList();
+                sender.ItemsSource = results;
+            }
+        }
+
+        private void AutoSuggestBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            var obj = sender as AutoSuggestBox;
+            obj.ItemsSource = Actors;
+            obj.IsSuggestionListOpen = true;
+        }
+
+        private void AutoSuggestBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var obj = sender as AutoSuggestBox;
+            obj.IsSuggestionListOpen = false;
         }
     }
 }

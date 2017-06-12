@@ -27,8 +27,10 @@ namespace ServerApp
         {
 
             var nfc = NewsForumContext.GetNewsForumContext;
+
             Server s = new Server();
             s.ExceptionRecived += S_ExceptionRecived;
+
 
             //nfc.Comments.Add(new DBComment()
             //{

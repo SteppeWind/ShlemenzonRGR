@@ -10,6 +10,7 @@
     xmlns:model="using:Model"
     xmlns:toolkit="using:WinRTXamlToolkit.Controls"
     xmlns:userControls="using:NewsForum.View.MyUserControls"
+    xmlns:rating="using:NewsForum.View.MyUserControls.RatingControl"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -61,12 +62,17 @@
             <TextBlock Text="{x:Bind Publication.Title}"
                        Style="{StaticResource SubheaderTextBlockStyle}"/>
 
-            <Image Name="PosterImage"
-                   Grid.Column="1"
-                   Grid.Row="0"
-                   VerticalAlignment="Top"
-                   Grid.RowSpan="3"
-                   Source="{x:Bind Publication.PosterImage.FullPath, Converter={StaticResource FileConverter}}"/>
+            <StackPanel Name="PosterImage"
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        VerticalAlignment="Top"
+                        Grid.RowSpan="2"
+                        Padding="10">
+                <Image Source="{x:Bind Publication.PosterImage.FullPath, Converter={StaticResource FileConverter}}"/>
+                <rating:RatingUserControl Margin="0 10"
+                                          HorizontalAlignment="Center"
+                                          Publication="{x:Bind Publication, Mode=OneWay}"/>
+            </StackPanel>
 
             <Grid Name="PublicationInfoGrid"
                   Grid.Row="1">
@@ -81,6 +87,7 @@
                 <!---->
             <userControls:ModifyListUserControl Grid.Row="0"
                                                 Header="Жанры"
+                                                CurrentFrame="{x:Bind Frame}"
                                                 ItemSource="{x:Bind Publication.ListNamesGenres}"/>
 
             <Grid Margin="0 15"
@@ -138,9 +145,9 @@
            
             <userControls:CommentsUserControl x:Name="CommentsControl"
                                               CurrentFrame="{x:Bind Frame}"
-                                                  ListComments="{x:Bind Publication.ListComments, Mode=TwoWay}"
-                                                  PublicationId="{x:Bind Publication.PublicationId, Mode=OneWay}"
-                                                  Grid.Row="4"/>
+                                              ListComments="{x:Bind Publication.ListComments, Mode=TwoWay}"
+                                              PublicationId="{x:Bind Publication.PublicationId, Mode=OneWay}"
+                                              Grid.Row="4"/>
             </Grid>
         </Grid>
     </ScrollViewer>

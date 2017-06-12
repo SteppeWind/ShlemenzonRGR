@@ -193,6 +193,7 @@
     <Compile Include="View\Converters\IsModeratorAccessConverter.cs" />
     <Compile Include="View\Converters\IsPublishedConverter.cs" />
     <Compile Include="View\Converters\IsPublishedMessageConverter.cs" />
+    <Compile Include="View\Converters\IsSelfPublicationConverter.cs" />
     <Compile Include="View\Converters\MethodNamePlayerConverter.cs" />
     <Compile Include="View\Converters\RatingMessageConverter.cs" />
     <Compile Include="View\Converters\ReverseAdminAccessConverter.cs" />

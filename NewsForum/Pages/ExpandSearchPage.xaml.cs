@@ -69,9 +69,12 @@ namespace NewsForum.Pages
                 RecievedRequest = Request,
                 UserId = CurrentUser.User.UserId
             });
-            listPublications = JsonConvert.DeserializeObject<List<VMSmallPublication>>(answer.SelfAnswer.ToString());
-            await FilesAction.CreatePostersPublications(listPublications);
-            MyFrame.Navigate(typeof(ContentPage), listPublications);
+            if (answer != null)
+            {
+                listPublications = JsonConvert.DeserializeObject<List<VMSmallPublication>>(answer.ToString());
+                await FilesAction.CreatePostersPublications(listPublications);
+                MyFrame.Navigate(typeof(ContentPage), listPublications);
+            }
         }
 
         private void ExpandFrameButton_Tapped(object sender, TappedRoutedEventArgs e)

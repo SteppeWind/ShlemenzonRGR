@@ -6,7 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-      xmlns:converters="using:NewsForum.View.Converters"
+    xmlns:converters="using:NewsForum.View.Converters"
+    xmlns:rating="using:NewsForum.View.MyUserControls.RatingControl"
     xmlns:baseModel="using:Model.PublicationTypes"
     xmlns:model="using:Model"
     xmlns:toolkit="using:WinRTXamlToolkit.Controls"
@@ -61,12 +62,17 @@
             <TextBlock Text="{x:Bind Publication.Title}"
                        Style="{StaticResource SubheaderTextBlockStyle}"/>
 
-            <Image Name="PosterImage"
-                   Grid.Column="1"
-                   Grid.Row="0"
-                   VerticalAlignment="Top"
-                   Grid.RowSpan="3"
-                   Source="{x:Bind Publication.PosterImage.FullPath, Converter={StaticResource FileConverter}}"/>
+            <StackPanel Name="PosterImage"
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        VerticalAlignment="Top"
+                        Grid.RowSpan="2"
+                        Padding="10">
+                <Image Source="{x:Bind Publication.PosterImage.FullPath, Converter={StaticResource FileConverter}}"/>
+                <rating:RatingUserControl Margin="0 10"
+                                          HorizontalAlignment="Center"
+                                          Publication="{x:Bind Publication, Mode=OneWay}"/>
+            </StackPanel>
 
 
             <Grid Name="PublicationInfoGrid"
@@ -79,6 +85,7 @@
                 </Grid.RowDefinitions>
 
                 <userControls:ModifyListUserControl Grid.Row="0"
+                                                   CurrentFrame="{x:Bind Frame}"
                                                     Header="Жанры"
                                                     ItemSource="{x:Bind Publication.ListNamesGenres}"/>
 

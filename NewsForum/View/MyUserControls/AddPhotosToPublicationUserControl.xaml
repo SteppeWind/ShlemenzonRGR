@@ -63,8 +63,10 @@
                                             FileType="Image"
                                              LoadFilesEvent="SetFilesControl_LoadFilesEvent"/>
 
-        <ProgressRing Name="LoadPhotosProgress"
-                      Grid.Row="1"/>
+        <ProgressBar Name="LoadPhotosProgress"
+                     IsIndeterminate="True"
+                     Visibility="Collapsed"
+                     Grid.Row="1"/>
 
         <GridView x:Name="PhotoElementsGridView"
                   Grid.Row="1"

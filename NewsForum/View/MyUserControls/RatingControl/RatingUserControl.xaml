@@ -32,7 +32,8 @@
         <TextBlock Name="MarkTB"
                    Style="{StaticResource BaseMenuTextBlockStyle}"
                    Text="{Binding LastTappedRating.Index, Converter={StaticResource RatingMessageConverter}, UpdateSourceTrigger=PropertyChanged}"/>
-        <GridView ItemTemplate="{StaticResource RatingTemplate}"
+        <GridView Name="RatingGridView"
+                  ItemTemplate="{StaticResource RatingTemplate}"
                   ItemsSource="{x:Bind Collection.ListRatings}"
                   SelectionMode="None"
                   PointerExited="GridView_PointerExited"/>

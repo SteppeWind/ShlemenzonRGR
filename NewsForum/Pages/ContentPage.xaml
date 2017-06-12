@@ -22,6 +22,7 @@
         <converters:IsDeleteMessageConverter x:Key="IsDeleteMessageConverter"/>
         <converters:IsPublishedMessageConverter x:Key="IsPublishedMessageConverter"/>
         <converters:IsDeletedOpacityConverter x:Key="IsDeletedOpacityConverter"/>
+        <converters:IsSelfPublicationConverter x:Key="IsSelfPublicationConverter"/>
 
         <commands:DeleteFromPublicAccessCommand x:Key="DeleteFromPublicAccessCommand"/>
         <commands:PublishPublicationCommand x:Key="PublishPublicationCommand"/>
@@ -41,7 +42,7 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Grid.Row="0"
-                            Visibility="{Binding Path=CreateDate, Converter={StaticResource AdminAccessVisibleConverter}, UpdateSourceTrigger=PropertyChanged}">
+                            Visibility="{Binding Path=PublicationId, Converter={StaticResource IsSelfPublicationConverter}, UpdateSourceTrigger=PropertyChanged}">
                     <TextBlock Text="{Binding Path=IsDeleted, Converter={StaticResource IsDeletedConverter}, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <TextBlock Text="{Binding Path=IsPublished, Converter={StaticResource IsPublishedConverter}, UpdateSourceTrigger=PropertyChanged}"/>
@@ -97,7 +98,6 @@
               IsItemClickEnabled="True"
               SelectionMode="Single"
               Transitions="{StaticResource BaseChildrenAnimation}"
-              HorizontalAlignment="Center"
               ItemTemplate="{StaticResource BasePublicationTemplate}"
               ItemsSource="{x:Bind ListPublications}"
               ItemClick="PublicationsGridView_ItemClick"/>

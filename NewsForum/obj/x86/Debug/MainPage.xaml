@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:toolkit="using:WinRTXamlToolkit.Controls"
     xmlns:modelDll="using:Model.UserTypes"
     xmlns:converters="using:NewsForum.View.Converters"
     Transitions="{StaticResource BaseAnimation}">
@@ -63,7 +64,7 @@
         </VisualStateManager.VisualStateGroups>
 
         <RelativePanel>
-            <Button x:ConnectionId='7' Name="HamburgerButton"
+            <Button x:ConnectionId='8' Name="HamburgerButton"
                     Style="{StaticResource BaseMenuIconButtonStyle}"
                     RelativePanel.AlignLeftWithPanel="True"
                     Content=""
@@ -169,7 +170,21 @@
                 </ScrollViewer>
             </SplitView.Pane>
             <SplitView.Content>
-                <Frame x:ConnectionId='6' Name="MyFrame"/>
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <ProgressBar x:ConnectionId='6' Name="MyProgerssBar"
+                                 Grid.Row="0"
+                                 Visibility="Collapsed"
+                                 IsIndeterminate="True"/>
+                    
+                    <Frame x:ConnectionId='7' Name="MyFrame"
+                           Grid.Row="1"/>
+                </Grid>
             </SplitView.Content>
         </SplitView>
     </Grid>

@@ -31,13 +31,13 @@
     <AppXManifest Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-06-12T08:57:49.447</Modified>
+      <Modified>2017-06-12T13:51:30.590</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\NewsForum.exe">
       <PackagePath>entrypoint\NewsForum.exe</PackagePath>
-      <Modified>2017-06-12T08:54:10.907</Modified>
+      <Modified>2017-06-12T13:46:39.702</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vladi\.nuget\packages\Cimbalino.Toolkit\2.5.2\lib\uap10.0\Cimbalino.Toolkit.dll">
       <PackagePath>Cimbalino.Toolkit.dll</PackagePath>
@@ -707,7 +707,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\NewsForum.xr.xml">
       <PackagePath>NewsForum.xr.xml</PackagePath>
-      <Modified>2017-06-12T08:05:30.430</Modified>
+      <Modified>2017-06-12T13:38:13.747</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -724,11 +724,11 @@
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-06-12T08:57:48.668</Modified>
+      <Modified>2017-06-12T13:51:30.023</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\Core\NewsForum.exe">
       <PackagePath>NewsForum.exe</PackagePath>
-      <Modified>2017-06-12T08:57:49.444</Modified>
+      <Modified>2017-06-12T13:51:30.586</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

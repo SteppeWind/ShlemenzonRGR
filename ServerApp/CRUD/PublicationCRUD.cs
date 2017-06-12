@@ -344,6 +344,8 @@ namespace ServerApp.CRUD
                 right = DateTime.Parse(request.RightLimitTime);
             }
 
+            
+
             var searchList = new List<DBPublication>();
 
             if (currUser != null && currUser.AccessLevel >= UserAccessLevel.Admin)
@@ -355,7 +357,7 @@ namespace ServerApp.CRUD
             {
                 searchList = GetPublishedPublications;
             }
-
+            
             if (request.ListGenres.Any())
             {
                 searchList = searchList
@@ -375,8 +377,11 @@ namespace ServerApp.CRUD
                 return result;
             }
 
+
+            DateTime GetShortDate(DateTime date) => DateTime.Parse(date.ToShortDateString());
+            
             searchList = searchList
-                .Where(p => p.CreateDate >= left && p.CreateDate <= right)
+                .Where(p => GetShortDate(p.CreateDate) >= left && GetShortDate(p.CreateDate) <= right)
                 .Where(p => p.TypePublication == request.PublicationType
                     || (p.TypePublication == PublicationType.News && request.ListGenres.Any()))
                 .ToList();

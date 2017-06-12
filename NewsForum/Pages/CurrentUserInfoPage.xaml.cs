@@ -27,7 +27,7 @@ namespace NewsForum.Pages
     public sealed partial class CurrentUserInfoPage : Page
     {
         User CloneCurrUser = new User();
-        
+
         public CurrentUserInfoPage()
         {
         }
@@ -57,10 +57,7 @@ namespace NewsForum.Pages
         {
             if (MainPivot.SelectedIndex == 1)
             {
-                if (CurrentUser.User.ListPublications == null)
-                {
-                    await CurrentUser.GetSelfPublications();
-                }
+                await CurrentUser.GetSelfPublications();
                 SelfFrame.Navigate(typeof(ContentPage), CurrentUser.User.ListPublications);
             }
             else

@@ -60,13 +60,13 @@ namespace NewsForum.View.MyUserControls
 
         private async void SetFilesControl_LoadFilesEvent(IEnumerable<StorageFile> obj)
         {
-            LoadPhotosProgress.IsActive = true;
+            LoadPhotosProgress.Visibility = Visibility.Visible;
             if (obj != null)
             {
                 (Resources["CollectionViewModel"] as BaseCollectionViewModel).AddRange(await getImages(obj));
                 LoadFilesEvent?.Invoke(obj);
             }
-            LoadPhotosProgress.IsActive = false;
+            LoadPhotosProgress.Visibility = Visibility.Collapsed;
         }
 
         private void BaseCollectionViewModel_RemoveItemCollectionEvent(IFileSettings obj)

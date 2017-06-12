@@ -26,7 +26,11 @@
 
         <DataTemplate x:Key="CDActorTemplate"
                       x:DataType="viewModelDB:Actor">
-            <AutoSuggestBox Text="{x:Bind Name, Mode=TwoWay}"/>
+            <AutoSuggestBox Text="{x:Bind Name, Mode=TwoWay}"
+                            MinWidth="150"
+                            GotFocus="AutoSuggestBox_GotFocus"
+                            LostFocus="AutoSuggestBox_LostFocus"
+                            TextChanged="AutoSuggestBox_TextChanged"/>
         </DataTemplate>
 
 
@@ -129,7 +133,7 @@
                              PlaceholderText="Продолжительность"
                              Style="{StaticResource BaseTextBoxStyle}"/>
 
-                    
+
                     <Grid Grid.Row="2"
                           Margin="0 15 0 0">
 
@@ -137,7 +141,7 @@
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        
+
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="*"/>

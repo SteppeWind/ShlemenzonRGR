@@ -1,4 +1,5 @@
 ﻿using Model.PublicationTypes;
+using Model.UserTypes;
 using NewsForum.Model;
 using RequestServer;
 using RequestServer.Request;
@@ -33,6 +34,11 @@ namespace NewsForum.View.MyUserControls.RatingControl
             set
             {
                 SetValue(PublicationProperty, value);
+                if (CurrentUser.User.AccessLevel < UserAccessLevel.User)
+                {
+                    RatingGridView.Visibility = Visibility.Collapsed;
+                    MarkTB.Visibility = Visibility.Collapsed;
+                }
                 Collection = new SymbolRatingCollection(CurrentRating);
                 Collection.ChangeLastTappedRatingEvent += async () =>
                 {

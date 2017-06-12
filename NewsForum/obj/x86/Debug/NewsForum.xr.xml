@@ -8,7 +8,7 @@
     <RootPropertyPathName Name="IsDeleted" />
     <RootPropertyPathName Name="DataContext" />
     <RootPropertyPathName Name="IsPublished" />
-    <RootPropertyPathName Name="CreateDate" />
+    <RootPropertyPathName Name="PublicationId" />
     <RootPropertyPathName Name="ListGenreTypes" />
     <RootPropertyPathName Name="Name" />
     <RootPropertyPathName Name="Visibility" />
@@ -209,6 +209,7 @@
       <RootProperty Name="Margin" />
       <RootProperty Name="Name" />
       <RootProperty Name="ChildrenTransitions" />
+      <RootProperty Name="Padding" />
       <RootProperty Name="MaxHeight" />
       <RootProperty Name="MaxWidth" />
     </RootType>
@@ -221,6 +222,11 @@
       <RootProperty Name="RelativeSource" />
       <RootProperty Name="Mode" />
       <RootProperty Name="ConverterParameter" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ProgressBar">
+      <RootProperty Name="Name" />
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="IsIndeterminate" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Frame">
       <RootProperty Name="Name" />
@@ -258,6 +264,7 @@
     <RootType FullName="NewsForum.View.Converters.IsDeleteMessageConverter" />
     <RootType FullName="NewsForum.View.Converters.IsPublishedMessageConverter" />
     <RootType FullName="NewsForum.View.Converters.IsDeletedOpacityConverter" />
+    <RootType FullName="NewsForum.View.Converters.IsSelfPublicationConverter" />
     <RootType FullName="NewsForum.ViewModel.Commands.DeleteFromPublicAccessCommand" />
     <RootType FullName="NewsForum.ViewModel.Commands.PublishPublicationCommand" />
     <RootType FullName="Windows.UI.Xaml.DataTemplate">
@@ -284,7 +291,6 @@
       <RootProperty Name="Stretch" />
       <RootProperty Name="Source" />
       <RootProperty Name="Name" />
-      <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Opacity" />
       <RootProperty Name="Height" />
       <RootProperty Name="Width" />
@@ -295,9 +301,9 @@
       <RootProperty Name="IsItemClickEnabled" />
       <RootProperty Name="SelectionMode" />
       <RootProperty Name="Transitions" />
-      <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="ItemTemplate" />
       <RootProperty Name="ItemsSource" />
+      <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Items" />
       <RootProperty Name="ItemsPanel" />
       <RootProperty Name="Background" />
@@ -402,6 +408,10 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.AutoSuggestBox">
       <RootProperty Name="Text" />
+      <RootProperty Name="MinWidth" />
+      <RootEvent Name="GotFocus" />
+      <RootEvent Name="LostFocus" />
+      <RootEvent Name="TextChanged" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ItemsWrapGrid" />
     <RootType FullName="Windows.UI.Xaml.Controls.ItemsStackPanel">
@@ -542,6 +552,7 @@
     <RootType FullName="NewsForum.View.Converters.TrueOrFalseConverter" />
     <RootType FullName="NewsForum.View.MyUserControls.ModifyListUserControl">
       <RootProperty Name="Header" />
+      <RootProperty Name="CurrentFrame" />
       <RootProperty Name="ItemSource" />
       <RootProperty Name="Margin" />
     </RootType>
@@ -561,6 +572,7 @@
     </RootType>
     <RootType FullName="NewsForum.View.MyUserControls.RatingControl.RatingUserControl">
       <RootProperty Name="Margin" />
+      <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Publication" />
     </RootType>
     <RootType FullName="NewsForum.Pages.ViewPublicationInfo.ViewInfoFilmPublicationPage" />
@@ -625,9 +637,6 @@
     </RootType>
     <RootType FullName="NewsForum.ViewModel.BaseCollectionViewModel">
       <RootEvent Name="RemoveItemCollectionEvent" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.ProgressRing">
-      <RootProperty Name="Name" />
     </RootType>
     <RootType FullName="NewsForum.View.Converters.IsEnableChangeCommentConverter" />
     <RootType FullName="Windows.UI.Xaml.Data.RelativeSource">

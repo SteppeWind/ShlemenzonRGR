@@ -20,6 +20,8 @@ using RequestServer;
 using ServerApp.DataModel;
 using Model.UserTypes;
 using Model.PublicationTypes;
+using ModelDataBase.DBPublicationTypes;
+using ServerApp.Converting;
 
 namespace ServerApp
 {
@@ -101,6 +103,7 @@ namespace ServerApp
                     break;
 
                 case DataType.Actor:
+                    answer = ActorRequest(Request);
                     break;
 
                 case DataType.SmallPublication:
@@ -120,6 +123,42 @@ namespace ServerApp
 
 
         /// <summary>
+        /// Обрабатывает запрос о списке публикаций
+        /// </summary>
+        /// <param name="mainRequest"></param>
+        private Answer ActorRequest(MainRequest mainRequest)
+        {
+            Answer answer = new Answer() { TypeAnswer = DataType.SmallPublication };
+            string json = string.Empty;
+            if (mainRequest.RecievedRequest != null)
+                json = mainRequest.ToString();
+
+            switch (mainRequest.TypeRequest)
+            {
+                case TypeRequest.ReadSelf:
+                    answer.SelfAnswer = NewsForumContext
+                                        .GetNewsForumContext
+                                        .Actors
+                                        .Select(a => a.Name)
+                                        .ToList();
+                    break;
+                case TypeRequest.Read:
+                    answer.SelfAnswer = NewsForumContext
+                                            .GetNewsForumContext
+                                            .FilmPublications
+                                            .ToList()
+                                            .Where(p => p.ListActors
+                                                    .Select(a => a.Name)
+                                                    .Contains(mainRequest.ToString()))
+                                            .Select(p => ConvertToBasePublication.GetBasePublication(p))
+                                            .ToList();
+                    break;
+            }
+            return answer;
+        }
+
+
+        /// <summary>
         /// Обрабатывает запрос о поиске рейтингов
         /// </summary>
         /// <param name="mainRequest"></param>
@@ -132,7 +171,7 @@ namespace ServerApp
 
             switch (mainRequest.TypeRequest)
             {
-                
+
                 case TypeRequest.Read:
                     answer.SelfAnswer = RatingCRUD.GetPublicationRating(int.Parse(json));
                     break;
@@ -191,7 +230,7 @@ namespace ServerApp
             object result = null;
             Answer answer = new Answer();
             string json = string.Empty;
-            if (mainRequest.RecievedRequest!= null)
+            if (mainRequest.RecievedRequest != null)
             {
                 json = mainRequest.ToString();
             }

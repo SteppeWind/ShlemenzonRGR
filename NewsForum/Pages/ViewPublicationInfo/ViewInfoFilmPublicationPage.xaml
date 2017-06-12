@@ -8,7 +8,6 @@
     xmlns:converters="using:NewsForum.View.Converters"
     xmlns:baseModel="using:Model.PublicationTypes"
     xmlns:model="using:Model"
-    xmlns:toolkit="using:WinRTXamlToolkit.Controls"
     xmlns:userControls="using:NewsForum.View.MyUserControls"
     xmlns:rating="using:NewsForum.View.MyUserControls.RatingControl"
     mc:Ignorable="d">
@@ -62,13 +61,15 @@
             <TextBlock Text="{x:Bind Publication.Title}"
                        Style="{StaticResource SubheaderTextBlockStyle}"/>
 
-            <StackPanel Grid.Column="1"
+            <StackPanel Name="PosterImage"
+                        Grid.Column="1"
                         Grid.Row="0"
                         VerticalAlignment="Top"
-                        Grid.RowSpan="2">
-                <Image Name="PosterImage"
-                       Source="{x:Bind Publication.PosterImage.FullPath, Converter={StaticResource FileConverter}}"/>
+                        Grid.RowSpan="2"
+                        Padding="10">
+                <Image Source="{x:Bind Publication.PosterImage.FullPath, Converter={StaticResource FileConverter}}"/>
                 <rating:RatingUserControl Margin="0 10"
+                                          HorizontalAlignment="Center"
                                           Publication="{x:Bind Publication, Mode=OneWay}"/>
             </StackPanel>
             
@@ -89,12 +90,14 @@
                 <!---->
                 <userControls:ModifyListUserControl Grid.Row="0"
                                                     Header="Жанры"
+                                                    CurrentFrame="{x:Bind Frame}"
                                                     ItemSource="{x:Bind Publication.ListNamesGenres}"/>
                 
                 
                <userControls:ModifyListUserControl Grid.Row="1"
                                                    Margin="0 15 0 0"
                                                    Header="Актеры"
+                                                   CurrentFrame="{x:Bind Frame}"
                                                    ItemSource="{x:Bind Publication.ListNamesActors}"/>
 
             <Grid Margin="0 15"

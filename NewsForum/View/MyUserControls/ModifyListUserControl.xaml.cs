@@ -1,9 +1,15 @@
 ﻿using Model.PublicationTypes;
+using NewsForum.Model;
+using NewsForum.Pages;
+using Newtonsoft.Json;
+using RequestServer.PublicationsRequest;
+using RequestServer.Request;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using ViewModelDataBase.VMPublicationTypes;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -37,7 +43,15 @@ namespace NewsForum.View.MyUserControls
             DependencyProperty.Register("Header", typeof(string), typeof(ModifyListUserControl), new PropertyMetadata(0));
 
 
+        public Frame CurrentFrame
+        {
+            get { return (Frame)GetValue(CurrentFrameProperty); }
+            set { SetValue(CurrentFrameProperty, value); }
+        }
 
+        // Using a DependencyProperty as the backing store for CurrentFrame.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CurrentFrameProperty =
+            DependencyProperty.Register("CurrentFrame", typeof(Frame), typeof(ModifyListUserControl), new PropertyMetadata(0));
 
 
         public List<IName> ItemSource
@@ -71,10 +85,34 @@ namespace NewsForum.View.MyUserControls
             }
         }
 
-        private void Btn_Tapped(object sender, TappedRoutedEventArgs e)
+        private async void Btn_Tapped(object sender, TappedRoutedEventArgs e)
         {
             var item = (sender as HyperlinkButton).Content as IName;
             ItemTappedEvent?.Invoke(item);
+            MainRequest request = new MainRequest()
+            {
+                DataType = RequestServer.DataType.SmallPublication,
+                TypeRequest = TypeRequest.Read,
+            };
+            if (item is Genre)
+            {
+                request.RecievedRequest = new ReadPublciationRequest()
+                {
+                    ListGenres = new List<string>() { item.Name },
+                    PublicationType = PublicationType.Any
+                };
+            }
+
+            if (item is Actor)
+            {
+                request.DataType = RequestServer.DataType.Actor;
+                request.RecievedRequest = item.Name;
+            }
+            var answer = await ServerRequest.SendRequest(request);
+
+            List<VMSmallPublication> result = JsonConvert.DeserializeObject<List<VMSmallPublication>>(answer.ToString());
+            await FilesAction.CreatePostersPublications(result);
+            CurrentFrame.Navigate(typeof(ContentPage), result);
         }
     }
 }

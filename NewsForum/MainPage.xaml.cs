@@ -40,6 +40,7 @@ namespace NewsForum
         public MainPage()
         {
             this.InitializeComponent();
+            //(Window.Current.Content as Frame).Navigate(typeof(ExpandSearchPage));
             Start();
             //go();
         }
@@ -47,6 +48,7 @@ namespace NewsForum
 
         async void Start()
         {
+            MyProgerssBar.Visibility = Visibility.Visible;
             var answer = await ServerRequest.SendRequest(new MainRequest()
             {
                 DataType = RequestServer.DataType.SmallPublication,
@@ -64,6 +66,7 @@ namespace NewsForum
                 await FilesAction.CreatePostersPublications(listPublications);
                 MyFrame.Navigate(typeof(ContentPage), listPublications);
             }
+            MyProgerssBar.Visibility = Visibility.Collapsed;
         }
 
         async void go()
