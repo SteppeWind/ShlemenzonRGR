@@ -42,10 +42,6 @@ namespace NewsForum
             return currentUser.ListPublications;
         }
 
-        public List<Rating> ListRatings { get; set; }
-
-        public List<Comment> ListComments { get; set; }
-
         public static async Task<bool> Autorize(string login, string password)
         {
             var answer = await ServerRequest.SendRequest(new MainRequest()
@@ -83,6 +79,22 @@ namespace NewsForum
 
             result = JsonConvert.DeserializeObject<List<Comment>>(answer.SelfAnswer.ToString());
             currentUser.ListComments = result;
+
+            return result;
+        }
+
+        public static async Task<List<Rating>> GetSelfRatings()
+        {
+            var result = new List<Rating>();
+            var answer = await ServerRequest.SendRequest(new MainRequest()
+            {
+                DataType = RequestServer.DataType.Rating,
+                TypeRequest = TypeRequest.ReadSelf,
+                UserId = currentUser.UserId,
+            });
+
+            result = JsonConvert.DeserializeObject<List<Rating>>(answer.ToString());
+            currentUser.ListRatings = result;
 
             return result;
         }
@@ -128,7 +140,6 @@ namespace NewsForum
                 TypeRequest = TypeRequest.Create,
                 RecievedRequest = user
             });
-
             return (bool)answer.SelfAnswer;
         }
 

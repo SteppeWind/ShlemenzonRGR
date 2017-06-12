@@ -83,20 +83,9 @@
                 </Grid.RowDefinitions>
 
                 <!---->
-            <GridView Name="GenresGridView"
-                      Grid.Row="0"
-                      SelectionMode="None"
-                      ItemsSource="{x:Bind Publication.ListGenres}">
-                <GridView.ItemTemplate>
-                    <DataTemplate x:DataType="baseModel:Genre">
-                        <HyperlinkButton Content="{x:Bind Name}"/>
-                    </DataTemplate>
-                </GridView.ItemTemplate>
-                <GridView.Header>
-                    <TextBlock Text="Жанры"
-                               Style="{StaticResource SubtitleTextBlockStyle}"/>
-                </GridView.Header>
-            </GridView>
+            <userControls:ModifyListUserControl Grid.Row="0"
+                                                Header="Жанры"
+                                                ItemSource="{x:Bind Publication.ListNamesGenres}"/>
 
                 <Grid Grid.Row="1"
                       Margin="0 15">
@@ -163,6 +152,12 @@
             
               <userControls:PhotosContainerUserControl Grid.Row="3"
                                                       ItemsSource="{x:Bind Publication.ListImages}"/>
+                
+              <userControls:CommentsUserControl x:Name="CommentsControl"
+                                               CurrentFrame="{x:Bind Frame}"
+                                                ListComments="{x:Bind Publication.ListComments, Mode=TwoWay}"
+                                                PublicationId="{x:Bind Publication.PublicationId, Mode=OneWay}"
+                                                Grid.Row="4"/>
                        
             </Grid>
         </Grid>

@@ -66,6 +66,7 @@ namespace NewsForum.Pages
             else
             {
                 await CurrentUser.GetSelfComments();
+                await CurrentUser.GetSelfRatings();
             }
         }
 

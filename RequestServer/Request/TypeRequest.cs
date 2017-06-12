@@ -14,6 +14,7 @@ namespace RequestServer.Request
         Create,
         Read,
         ReadSelf,
-        Published
+        Publish,
+        Unpublish,
     }
 }

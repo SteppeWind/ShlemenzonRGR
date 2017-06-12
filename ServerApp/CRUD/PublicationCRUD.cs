@@ -298,6 +298,39 @@ namespace ServerApp.CRUD
             return false;
         }
 
+
+        public static bool PublishPublication(int idPublication, int idUser)
+        {
+            var currUser = UserCRUD.GetDBUserFromId(idUser);
+            var currPublication = GetDBPublicationFromId(idPublication);
+            if (currUser != null && currPublication != null)
+            {
+                if (currUser.AccessLevel >= UserAccessLevel.Admin)
+                {
+                    currPublication.IsPublished = true;
+                    CurrentNewsForumContext.SaveChanges();
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static bool UnpublishPublication(int idPublication, int idUser)
+        {
+            var currUser = UserCRUD.GetDBUserFromId(idUser);
+            var currPublication = GetDBPublicationFromId(idPublication);
+            if (currUser != null && currPublication != null)
+            {
+                if (currUser.AccessLevel >= UserAccessLevel.Admin)
+                {
+                    currPublication.IsPublished = false;
+                    CurrentNewsForumContext.SaveChanges();
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static List<VMSmallPublication> GetSmallPublications(ReadPublciationRequest request, int userId)
         {
             var currUser = UserCRUD.GetDBUserFromId(userId);

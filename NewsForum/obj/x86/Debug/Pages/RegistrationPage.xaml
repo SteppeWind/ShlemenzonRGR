@@ -25,18 +25,18 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         
-        <ListView>
+        <ListView SelectionMode="None">
             <TextBox x:ConnectionId='4' Style="{StaticResource ModifyTextBox}"
                      Header="Имя"
                                                                />
          
             <TextBox x:ConnectionId='5' Style="{StaticResource ModifyTextBox}"
-                     Header="Фамилия"
+                     Header="Фамилия"                    
                                                                   />
           
             <TextBox x:ConnectionId='6' Style="{StaticResource ModifyTextBox}"
                      Header="email"
-                                                   />
+                                                                />
           
             <PasswordBox x:ConnectionId='7' Style="{StaticResource BasePasswordBoxStyle}"
                          Width="350"
@@ -57,7 +57,7 @@
         </ListView>
 
         <StackPanel Grid.Row="1"
-                    HorizontalAlignment="Center"                    
+                   HorizontalAlignment="Center"                    
                     Orientation="Horizontal">
             <Button x:ConnectionId='2' Name="CreateUserButton"
                     Style="{StaticResource BaseMenuButtonStyle}"

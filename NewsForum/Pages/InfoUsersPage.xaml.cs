@@ -26,7 +26,6 @@ namespace NewsForum.Pages
     {
         List<VMUser> ListUsers { get; set; }
         
-
         public InfoUsersPage()
         {
             this.InitializeComponent();

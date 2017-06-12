@@ -5,6 +5,7 @@ using NewsForum.Pages;
 using NewsForum.Pages.EditorPublication;
 using NewsForum.Pages.ViewPublicationInfo;
 using NewsForum.View.Converters;
+using NewsForum.View.MyUserControls.RatingControl;
 using Newtonsoft.Json;
 using RequestServer.PublicationsRequest;
 using RequestServer.Request;
@@ -59,7 +60,7 @@ namespace NewsForum
 
             if (answer != null)
             {
-                var listPublications = JsonConvert.DeserializeObject<List<VMSmallPublication>>(answer.SelfAnswer.ToString());
+                var listPublications = JsonConvert.DeserializeObject<List<VMSmallPublication>>(answer.ToString());
                 await FilesAction.CreatePostersPublications(listPublications);
                 MyFrame.Navigate(typeof(ContentPage), listPublications);
             }

@@ -11,7 +11,7 @@ using ViewModelDataBase.VMPublicationTypes;
 
 namespace NewsForum.ViewModel.Commands
 {
-    class DeleteFromPublicAccessCommand : ICommand
+    class PublishPublicationCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
 
@@ -23,10 +23,10 @@ namespace NewsForum.ViewModel.Commands
         public async void Execute(object parameter)
         {
             VMSmallPublication publ = parameter as VMSmallPublication;
-            TypeRequest typeRequest = TypeRequest.Delete;
-            if (publ.IsDeleted)
+            TypeRequest typeRequest = TypeRequest.Publish;
+            if (publ.IsPublished)
             {
-                typeRequest = TypeRequest.Undelete;
+                typeRequest = TypeRequest.Unpublish;
             }
             var answer = await ServerRequest.SendRequest(new RequestServer.Request.MainRequest()
             {
@@ -40,8 +40,7 @@ namespace NewsForum.ViewModel.Commands
             {
                 if ((bool)answer.SelfAnswer)
                 {
-                    publ.IsDeleted = !publ.IsDeleted;
-                    publ.IsPublished = !publ.IsDeleted;
+                    publ.IsPublished = !publ.IsPublished;
                 }
             }
         }

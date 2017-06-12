@@ -5,24 +5,26 @@
     xmlns:local="using:NewsForum.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
     xmlns:viewModelPublication="using:ViewModelDataBase.VMPublicationTypes"
     xmlns:converters="using:NewsForum.View.Converters"
-    xmlns:toolkit="using:WinRTXamlToolkit.Controls"
     xmlns:commands="using:NewsForum.ViewModel.Commands"
     xmlns:main="using:NewsForum"
-    Transitions="{StaticResource BaseAnimation}"
-    mc:Ignorable="d">
+    Transitions="{StaticResource BaseAnimation}">
 
     <Page.Resources>
         <converters:FileConverter x:Key="ImageConverter"/>
+        <converters:ReverseBoolConverter x:Key="ReverseBoolConverter"/>
         <converters:AdminAccessVisibleConverter x:Key="AdminAccessVisibleConverter"/>
         <converters:TypePublicationToWordConverter x:Key="TypePublicationToWordConverter"/>
         <converters:IsDeletedConverter x:Key="IsDeletedConverter"/>
         <converters:IsPublishedConverter x:Key="IsPublishedConverter"/>
         <converters:IsDeleteMessageConverter x:Key="IsDeleteMessageConverter"/>
+        <converters:IsPublishedMessageConverter x:Key="IsPublishedMessageConverter"/>
         <converters:IsDeletedOpacityConverter x:Key="IsDeletedOpacityConverter"/>
 
         <commands:DeleteFromPublicAccessCommand x:Key="DeleteFromPublicAccessCommand"/>
+        <commands:PublishPublicationCommand x:Key="PublishPublicationCommand"/>
 
         <DataTemplate x:Key="BasePublicationTemplate"
                       x:DataType="viewModelPublication:VMSmallPublication">
@@ -44,8 +46,8 @@
 
                     <TextBlock Text="{Binding Path=IsPublished, Converter={StaticResource IsPublishedConverter}, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
-                
-                
+
+
                 <Border Grid.Row="1"
                         Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}">
                     <Image Stretch="UniformToFill"
@@ -68,27 +70,35 @@
                                      Content="{x:Bind TypePublication, Converter={StaticResource TypePublicationToWordConverter}}"/>
                 </StackPanel>
 
-                <Button HorizontalAlignment="Right"
-                        VerticalAlignment="Top"
-                        Visibility="{x:Bind CreateDate, Converter={StaticResource AdminAccessVisibleConverter}}"
-                        Command="{StaticResource DeleteFromPublicAccessCommand}"
-                        CommandParameter="{Binding ElementName=grid, Path=DataContext}"
-                        Content="{Binding Path=IsDeleted, Converter={StaticResource IsDeleteMessageConverter}, UpdateSourceTrigger=PropertyChanged}"
-                        Style="{StaticResource BaseSmallMenuIconTextBlockButtonStyle}"/>
+
+                <StackPanel HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Orientation="Horizontal"
+                            Visibility="{x:Bind CreateDate, Converter={StaticResource AdminAccessVisibleConverter}}">
+                    <Button IsEnabled="{Binding Path=IsDeleted, Converter={StaticResource ReverseBoolConverter}, UpdateSourceTrigger=PropertyChanged}"
+                            Command="{StaticResource PublishPublicationCommand}"
+                            CommandParameter="{Binding ElementName=grid, Path=DataContext}"
+                            Content="{Binding Path=IsPublished, Converter={StaticResource IsPublishedMessageConverter}, UpdateSourceTrigger=PropertyChanged}"
+                            Style="{StaticResource BaseSmallMenuIconTextBlockButtonStyle}"/>
+
+                    <Button Command="{StaticResource DeleteFromPublicAccessCommand}"
+                            CommandParameter="{Binding ElementName=grid, Path=DataContext}"
+                            Content="{Binding Path=IsDeleted, Converter={StaticResource IsDeleteMessageConverter}, UpdateSourceTrigger=PropertyChanged}"
+                            Style="{StaticResource BaseSmallMenuIconTextBlockButtonStyle}"/>
+                </StackPanel>
+
             </Grid>
         </DataTemplate>
 
     </Page.Resources>
 
-    <Grid Background="{x:Null}"
-          ChildrenTransitions="{StaticResource BaseChildrenAnimation}">
-        <GridView Name="PublicationsGridView"
-                  DataContext="{x:Bind main:CurrentUser.User}"
-                  IsItemClickEnabled="True"
-                  SelectionMode="Single"
-                  HorizontalAlignment="Left"
-                  ItemTemplate="{StaticResource BasePublicationTemplate}"
-                  ItemsSource="{x:Bind ListPublications}"
-                  ItemClick="PublicationsGridView_ItemClick"/>
-    </Grid>
+    <GridView Name="PublicationsGridView"
+              DataContext="{x:Bind main:CurrentUser.User}"
+              IsItemClickEnabled="True"
+              SelectionMode="Single"
+              Transitions="{StaticResource BaseChildrenAnimation}"
+              HorizontalAlignment="Center"
+              ItemTemplate="{StaticResource BasePublicationTemplate}"
+              ItemsSource="{x:Bind ListPublications}"
+              ItemClick="PublicationsGridView_ItemClick"/>
 </Page>

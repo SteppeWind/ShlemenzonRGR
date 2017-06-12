@@ -110,9 +110,52 @@ namespace ServerApp
                 case DataType.Comment:
                     answer = CommentRequests(Request);
                     break;
+
+                case DataType.Rating:
+                    answer = RatingRequest(Request);
+                    break;
             }
             client.SendAnswer(answer);
         }
+
+
+        /// <summary>
+        /// Обрабатывает запрос о поиске рейтингов
+        /// </summary>
+        /// <param name="mainRequest"></param>
+        private Answer RatingRequest(MainRequest mainRequest)
+        {
+            Answer answer = new Answer() { TypeAnswer = DataType.Rating };
+            string json = string.Empty;
+            if (mainRequest.RecievedRequest != null)
+                json = mainRequest.ToString();
+
+            switch (mainRequest.TypeRequest)
+            {
+                
+                case TypeRequest.Read:
+                    answer.SelfAnswer = RatingCRUD.GetPublicationRating(int.Parse(json));
+                    break;
+
+                case TypeRequest.ReadSelf:
+                    answer.SelfAnswer = RatingCRUD.GetSelfRatings(mainRequest.UserId);
+                    break;
+
+                case TypeRequest.Create:
+                    answer.SelfAnswer = RatingCRUD.CreateRating(JsonConvert.DeserializeObject<Rating>(json));
+                    break;
+
+                case TypeRequest.Update:
+                    answer.SelfAnswer = RatingCRUD.UpdateRating(JsonConvert.DeserializeObject<Rating>(json));
+                    break;
+
+                case TypeRequest.Publish:
+                    answer.SelfAnswer = RatingCRUD.GetTotalRating(int.Parse(json));
+                    break;
+            }
+            return answer;
+        }
+
 
         /// <summary>
         /// Обрабатывает запрос о списке публикаций
@@ -210,9 +253,19 @@ namespace ServerApp
                     user = JsonConvert.DeserializeObject<User>(json);
                     answer.SelfAnswer = UserCRUD.CreateUser(user);
                     break;
+
+                case TypeRequest.Publish:
+                    answer.SelfAnswer = UserCRUD.SetAdminAccess(int.Parse(json), mainRequest.UserId);
+                    break;
+
+                case TypeRequest.Unpublish:
+                    answer.SelfAnswer = UserCRUD.RemoveAdminAccess(int.Parse(json), mainRequest.UserId);
+                    break;
+
                 case TypeRequest.Read:
                     answer.SelfAnswer = UserCRUD.GetUsers;
                     break;
+
                 case TypeRequest.ReadSelf:
                     string[] login_password = json.Split('%');
                     answer.SelfAnswer = UserCRUD.Authorization(login_password[0], login_password[1]);
@@ -277,6 +330,7 @@ namespace ServerApp
                 case TypeRequest.Update:
                     result = PublicationCRUD.UpdatePublication(castPublic, mainRequest.UserId);
                     break;
+
                 case TypeRequest.Delete:
                     result = PublicationCRUD.DeletePublication(int.Parse(mainRequest.ToString()), mainRequest.UserId);
                     break;
@@ -284,9 +338,19 @@ namespace ServerApp
                 case TypeRequest.Undelete:
                     result = PublicationCRUD.UndeletePublication(int.Parse(mainRequest.ToString()), mainRequest.UserId);
                     break;
+
+                case TypeRequest.Publish:
+                    result = PublicationCRUD.PublishPublication(int.Parse(mainRequest.ToString()), mainRequest.UserId);
+                    break;
+
+                case TypeRequest.Unpublish:
+                    result = PublicationCRUD.UnpublishPublication(int.Parse(mainRequest.ToString()), mainRequest.UserId);
+                    break;
+
                 case TypeRequest.Create:
                     result = PublicationCRUD.CreatePublication(castPublic);
                     break;
+
                 case TypeRequest.Read:
                     result = PublicationCRUD.GetPublication(int.Parse(mainRequest.ToString()));
                     break;

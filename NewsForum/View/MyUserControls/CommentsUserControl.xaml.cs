@@ -1,6 +1,7 @@
 ﻿using Model.PublicationTypes;
 using Model.UserTypes;
 using NewsForum.Model;
+using NewsForum.Pages;
 using Newtonsoft.Json;
 using RequestServer;
 using RequestServer.AnswerForRequest;
@@ -12,6 +13,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using ViewModelDataBase;
 using ViewModelDataBase.VMPublicationTypes;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -36,6 +38,20 @@ namespace NewsForum.View.MyUserControls
         public event Action<Comment> ChangeCommentEvent = (c) => { };
 
         private string NewValueConveter { get; set; }
+
+
+
+
+        public Frame CurrentFrame
+        {
+            get { return (Frame)GetValue(CurrentFrameProperty); }
+            set { SetValue(CurrentFrameProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for CurrentFrame.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CurrentFrameProperty =
+            DependencyProperty.Register("CurrentFrame", typeof(Frame), typeof(CommentsUserControl), new PropertyMetadata(0));
+
 
 
 
@@ -74,6 +90,7 @@ namespace NewsForum.View.MyUserControls
         {
             ListComments.Add(comment);
             ObservableListComments.Add(comment);
+            CommentsListView.ScrollIntoView(comment);
         }
 
         private ObservableCollection<VMComment> ObservableListComments { get; set; }
@@ -98,6 +115,9 @@ namespace NewsForum.View.MyUserControls
         private void InfoUserButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
             var user = (sender as HyperlinkButton).DataContext as User;
+            VMUser vmUser = new VMUser();
+            vmUser.Convert(user);
+            CurrentFrame.Navigate(typeof(PersonalUserPage), vmUser);
             InfoUserEvent(user);
         }
 

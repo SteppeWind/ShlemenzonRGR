@@ -1,0 +1,40 @@
+﻿<UserControl
+    x:Class="NewsForum.View.MyUserControls.RatingControl.RatingUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NewsForum.View.MyUserControls.RatingControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    xmlns:converters="using:NewsForum.View.Converters"
+    DataContext="{x:Bind Collection}">
+    
+    <UserControl.Resources>
+
+        <converters:RatingMessageConverter x:Key="RatingMessageConverter"/>
+
+        <DataTemplate x:Key="RatingTemplate"
+                      x:DataType="local:SymbolRating">
+            <SymbolIcon Symbol="{Binding Path=Icon, UpdateSourceTrigger=PropertyChanged}"
+                        PointerMoved="{x:Bind Symbol_PointerMoved}"
+                        Tapped="{x:Bind Symbol_Tapped}"/>
+        </DataTemplate>
+
+    </UserControl.Resources>
+
+    <StackPanel Name="MainPanel">
+
+        <TextBlock x:Name="TotalRatinTB"
+                   Style="{StaticResource BaseMenuTextBlockStyle}"/>
+
+        <TextBlock Name="MarkTB"
+                   Style="{StaticResource BaseMenuTextBlockStyle}"
+                   Text="{Binding LastTappedRating.Index, Converter={StaticResource RatingMessageConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+        <GridView ItemTemplate="{StaticResource RatingTemplate}"
+                  ItemsSource="{x:Bind Collection.ListRatings}"
+                  SelectionMode="None"
+                  PointerExited="GridView_PointerExited"/>
+    </StackPanel>
+</UserControl>

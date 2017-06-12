@@ -17,7 +17,6 @@
     xmlns:newsForum="using:NewsForum">
 
     <UserControl.Resources>
-
         <converters:IsEnableChangeCommentConverter x:Key="IsEnableChangeCommentConverter"/>
         <converters:UserAccessVisibleConverter x:Key="UserAccessVisibleConverter"/>
         <converters:AdminAccessVisibleConverter x:Key="AdminAccessVisibleConverter"/>

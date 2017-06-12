@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Navigation;
 using NewsForum.Model;
 using System.Threading.Tasks;
 using Model.UserTypes;
+using ViewModelDataBase;
 
 // Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -28,11 +29,11 @@ namespace NewsForum.Pages
     /// </summary>
     public sealed partial class RegistrationPage : Page
     {
-        User CurrUser { get; set; }
+        VMUser CurrUser { get; set; }
 
         public RegistrationPage()
         {
-            CurrUser = new User();
+            CurrUser = new VMUser();
             this.InitializeComponent();
         }
 
@@ -43,7 +44,12 @@ namespace NewsForum.Pages
                 var res = await CurrentUser.Registration(CurrUser);
                 if (res)
                 {
+                    CurrentUser.User.Convert(CurrUser);
+                    Frame.Navigate(typeof(CurrentUserInfoPage));
                 }
+            }
+            else
+            {
             }
         }
 

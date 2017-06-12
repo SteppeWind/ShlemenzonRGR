@@ -1150,3 +1150,8 @@ F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\N
 F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\Cimbalino.Toolkit.Core.pdb
 F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\obj\x86\Debug\Cimbalino.Toolkit.pri.xml
 F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\obj\x86\Debug\Cimbalino.Toolkit.Core.pri.xml
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\obj\x86\Debug\View\MyUserControls\RatingControl\RatingUserControl.g.i.cs
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\obj\x86\Debug\View\MyUserControls\RatingControl\RatingUserControl.g.cs
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\obj\x86\Debug\View\MyUserControls\RatingControl\RatingUserControl.xaml
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\obj\x86\Debug\View\MyUserControls\RatingControl\RatingUserControl.xbf
+F:\учеба\3 курс\2ой семестр\Шлемензон_всё\ргр\NewsForum\ShlemenzonRGR\NewsForum\bin\x86\Debug\View\MyUserControls\RatingControl\RatingUserControl.xbf

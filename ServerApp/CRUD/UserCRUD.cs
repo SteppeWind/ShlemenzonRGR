@@ -67,6 +67,42 @@ namespace ServerApp.CRUD
             return user;
         }).ToList();
 
+        public static UserAccessLevel SetAdminAccess(int userId, int godId)
+        {
+            var godUser = GetDBUserFromId(godId);
+            var dbUser = GetDBUserFromId(userId);
+
+            if (godUser != null && dbUser != null)
+            {
+                if (godUser.AccessLevel >= UserAccessLevel.God)
+                {
+                    dbUser.AccessLevel = UserAccessLevel.Admin;
+                    CurrentNewsForumContext.SaveChanges();
+                    return dbUser.AccessLevel;
+                }
+            }
+
+            return UserAccessLevel.Goest;
+        }
+
+        public static UserAccessLevel RemoveAdminAccess(int userId, int godId)
+        {
+            var godUser = GetDBUserFromId(godId);
+            var dbUser = GetDBUserFromId(userId);
+
+            if (godUser != null && dbUser != null)
+            {
+                if (godUser.AccessLevel >= UserAccessLevel.God)
+                {
+                    dbUser.AccessLevel = UserAccessLevel.User;
+                    CurrentNewsForumContext.SaveChanges();
+                    return dbUser.AccessLevel;
+                }
+            }
+
+            return UserAccessLevel.Goest;
+        }
+
 
         public static bool IsAdmin(int id)
         {
@@ -77,6 +113,7 @@ namespace ServerApp.CRUD
 
             return false;
         }
+
         public static DBUser GetDBUserFromId(int id) => CurrentNewsForumContext.Users.FirstOrDefault(u => u.UserId == id);
 
         public static User GetUserFromId(int id)

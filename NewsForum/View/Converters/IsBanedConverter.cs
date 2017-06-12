@@ -9,9 +9,12 @@ namespace NewsForum.View.Converters
 {
     class IsBanedConverter : IValueConverter
     {
+        string ban = "";
+        string unban = "";
+
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return (bool)value ? "Разбанить" : "Забанить";
+            return (bool)value ? ban : unban;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

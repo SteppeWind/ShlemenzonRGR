@@ -31,12 +31,12 @@
                      Text="{x:Bind CurrUser.Name, Mode=TwoWay}"/>
          
             <TextBox Style="{StaticResource ModifyTextBox}"
-                     Header="Фамилия"
+                     Header="Фамилия"                    
                      Text="{x:Bind CurrUser.Surname, Mode=TwoWay}"/>
           
             <TextBox Style="{StaticResource ModifyTextBox}"
                      Header="email"
-                     Text="{x:Bind CurrUser.EMail}"/>
+                     Text="{x:Bind CurrUser.EMail, Mode=TwoWay}"/>
           
             <PasswordBox Style="{StaticResource BasePasswordBoxStyle}"
                          Width="350"
@@ -57,7 +57,7 @@
         </ListView>
 
         <StackPanel Grid.Row="1"
-                    HorizontalAlignment="Center"                    
+                   HorizontalAlignment="Center"                    
                     Orientation="Horizontal">
             <Button Name="CreateUserButton"
                     Style="{StaticResource BaseMenuButtonStyle}"

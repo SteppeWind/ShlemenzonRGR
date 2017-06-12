@@ -12,6 +12,7 @@ using ViewModelDataBase.VMInterfaces;
 using ViewModelDataBase.VMPublicationTypes;
 using System.Runtime.CompilerServices;
 using Model;
+using System.Collections;
 
 namespace ViewModelDataBase
 {
@@ -49,7 +50,7 @@ namespace ViewModelDataBase
         public List<Rating> ListRatings { get; set; }
 
         public List<Comment> ListComments { get; set; }
-
+        
         public VMUser()
         {
             ListRatings = ListRatings ?? new List<Rating>();

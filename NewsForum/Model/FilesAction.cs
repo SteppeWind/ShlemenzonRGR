@@ -120,5 +120,13 @@ namespace NewsForum.Model
                 await CreateLocalStorageFile(name, item.PosterImage.Bytes);
             }
         }
+
+        public static async void Clear()
+        {
+            foreach (var item in await Folder.GetItemsAsync())
+            {
+                await item.DeleteAsync();
+            }
+        }
     }
 }

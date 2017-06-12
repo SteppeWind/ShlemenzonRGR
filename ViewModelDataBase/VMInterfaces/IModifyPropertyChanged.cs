@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ViewModelDataBase.VMInterfaces
 {
-    interface IModifyPropertyChanged : INotifyPropertyChanged
+    public interface IModifyPropertyChanged : INotifyPropertyChanged
     {
         void ChangeProp([CallerMemberName] string name = "");
     }

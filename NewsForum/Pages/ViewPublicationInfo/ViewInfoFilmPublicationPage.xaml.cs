@@ -58,9 +58,9 @@ namespace NewsForum.Pages.ViewPublicationInfo
 
         private void CommentsControl_InfoUserEvent(User obj)
         {
-            VMUser user = new VMUser();
-            user.Convert(obj);
-            Frame.Navigate(typeof(PersonalUserPage), user);
+            //VMUser user = new VMUser();
+            //user.Convert(obj);
+            //Frame.Navigate(typeof(PersonalUserPage), user);
         }
     }
 }

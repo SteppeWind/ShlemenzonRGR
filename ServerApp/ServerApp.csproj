@@ -71,6 +71,7 @@
     <Compile Include="CRUD\CommentCRUD.cs" />
     <Compile Include="CRUD\FilesManipulation.cs" />
     <Compile Include="CRUD\PublicationCRUD.cs" />
+    <Compile Include="CRUD\RatingCRUD.cs" />
     <Compile Include="CRUD\UserCRUD.cs" />
     <Compile Include="DataModel\NewsForumContext.cs" />
     <Compile Include="Program.cs" />

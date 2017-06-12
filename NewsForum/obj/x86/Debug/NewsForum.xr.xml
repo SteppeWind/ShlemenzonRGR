@@ -7,8 +7,8 @@
     <RootPropertyPathName Name="AccessLevel" />
     <RootPropertyPathName Name="IsDeleted" />
     <RootPropertyPathName Name="DataContext" />
-    <RootPropertyPathName Name="CreateDate" />
     <RootPropertyPathName Name="IsPublished" />
+    <RootPropertyPathName Name="CreateDate" />
     <RootPropertyPathName Name="ListGenreTypes" />
     <RootPropertyPathName Name="Name" />
     <RootPropertyPathName Name="Visibility" />
@@ -29,6 +29,8 @@
     <RootPropertyPathName Name="Count" />
     <RootPropertyPathName Name="IsChecked" />
     <RootPropertyPathName Name="ItemsSource" />
+    <RootPropertyPathName Name="LastTappedRating" />
+    <RootPropertyPathName Name="Index" />
     <RootPropertyPathName Name="Background" />
   </Roots.PropertyPathNames>
   <Roots.RootTypes>
@@ -184,6 +186,8 @@
       <RootProperty Name="ItemsSource" />
       <RootProperty Name="GroupStyle" />
       <RootProperty Name="ItemContainerTransitions" />
+      <RootProperty Name="DataContext" />
+      <RootProperty Name="ItemTemplateSelector" />
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="SelectedItem" />
       <RootEvent Name="ItemClick" />
@@ -201,10 +205,10 @@
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Background" />
       <RootProperty Name="Height" />
+      <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Margin" />
       <RootProperty Name="Name" />
       <RootProperty Name="ChildrenTransitions" />
-      <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="MaxHeight" />
       <RootProperty Name="MaxWidth" />
     </RootType>
@@ -226,16 +230,15 @@
       <RootProperty Name="Style" />
       <RootProperty Name="Content" />
       <RootProperty Name="Background" />
-      <RootProperty Name="HorizontalAlignment" />
-      <RootProperty Name="VerticalAlignment" />
-      <RootProperty Name="Visibility" />
+      <RootProperty Name="IsEnabled" />
       <RootProperty Name="Command" />
       <RootProperty Name="CommandParameter" />
       <RootProperty Name="Margin" />
       <RootProperty Name="Tag" />
-      <RootProperty Name="IsEnabled" />
+      <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Padding" />
       <RootProperty Name="Flyout" />
+      <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="FontFamily" />
       <RootProperty Name="FontSize" />
       <RootEvent Name="Click" />
@@ -247,13 +250,16 @@
     </RootType>
     <RootType FullName="NewsForum.MainPage" />
     <RootType FullName="NewsForum.View.Converters.FileConverter" />
+    <RootType FullName="NewsForum.View.Converters.ReverseBoolConverter" />
     <RootType FullName="NewsForum.View.Converters.AdminAccessVisibleConverter" />
     <RootType FullName="NewsForum.View.Converters.TypePublicationToWordConverter" />
     <RootType FullName="NewsForum.View.Converters.IsDeletedConverter" />
     <RootType FullName="NewsForum.View.Converters.IsPublishedConverter" />
     <RootType FullName="NewsForum.View.Converters.IsDeleteMessageConverter" />
+    <RootType FullName="NewsForum.View.Converters.IsPublishedMessageConverter" />
     <RootType FullName="NewsForum.View.Converters.IsDeletedOpacityConverter" />
     <RootType FullName="NewsForum.ViewModel.Commands.DeleteFromPublicAccessCommand" />
+    <RootType FullName="NewsForum.ViewModel.Commands.PublishPublicationCommand" />
     <RootType FullName="Windows.UI.Xaml.DataTemplate">
       <RootProperty Name="Template" />
     </RootType>
@@ -283,20 +289,20 @@
       <RootProperty Name="Height" />
       <RootProperty Name="Width" />
     </RootType>
-    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.NullExtension" />
     <RootType FullName="Windows.UI.Xaml.Controls.GridView">
       <RootProperty Name="Name" />
       <RootProperty Name="DataContext" />
       <RootProperty Name="IsItemClickEnabled" />
       <RootProperty Name="SelectionMode" />
+      <RootProperty Name="Transitions" />
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="ItemTemplate" />
       <RootProperty Name="ItemsSource" />
       <RootProperty Name="Items" />
-      <RootProperty Name="Header" />
       <RootProperty Name="ItemsPanel" />
       <RootProperty Name="Background" />
       <RootEvent Name="ItemClick" />
+      <RootEvent Name="PointerExited" />
     </RootType>
     <RootType FullName="NewsForum.Pages.ContentPage" />
     <RootType FullName="NewsForum.View.Converters.AccessLevelToWordCovnerter" />
@@ -521,7 +527,13 @@
     <RootType FullName="NewsForum.Pages.ExpandSearchPage" />
     <RootType FullName="NewsForum.View.Converters.IsBanedConverter" />
     <RootType FullName="NewsForum.View.Converters.IsEnabledFromUserBannedConverter" />
+    <RootType FullName="NewsForum.View.Converters.IsModeratorAccessConverter" />
     <RootType FullName="NewsForum.ViewModel.Commands.BanCommand" />
+    <RootType FullName="NewsForum.ViewModel.Commands.ChangeAccessLevelCommand" />
+    <RootType FullName="NewsForum.View.Selectors.AccessUserSelector">
+      <RootProperty Name="GodTemplate" />
+      <RootProperty Name="AdminTemplate" />
+    </RootType>
     <RootType FullName="NewsForum.Pages.InfoUsersPage" />
     <RootType FullName="NewsForum.Pages.LoginOrRegistrationPage" />
     <RootType FullName="NewsForum.Pages.PersonalUserPage" />
@@ -542,9 +554,14 @@
       <RootProperty Name="Height" />
     </RootType>
     <RootType FullName="NewsForum.View.MyUserControls.CommentsUserControl">
+      <RootProperty Name="CurrentFrame" />
       <RootProperty Name="ListComments" />
       <RootProperty Name="PublicationId" />
       <RootEvent Name="InfoUserEvent" />
+    </RootType>
+    <RootType FullName="NewsForum.View.MyUserControls.RatingControl.RatingUserControl">
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Publication" />
     </RootType>
     <RootType FullName="NewsForum.Pages.ViewPublicationInfo.ViewInfoFilmPublicationPage" />
     <RootType FullName="Windows.UI.Xaml.Controls.RichEditBox">
@@ -598,11 +615,13 @@
       <RootProperty Name="IsHitTestVisible" />
     </RootType>
     <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.TemplateBindingExtension" />
+    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.NullExtension" />
     <RootType FullName="Windows.UI.Xaml.Media.Animation.ReorderThemeTransition" />
     <RootType FullName="Windows.UI.Xaml.Controls.UserControl">
       <RootProperty Name="Tag" />
       <RootProperty Name="Resources" />
       <RootProperty Name="Content" />
+      <RootProperty Name="DataContext" />
     </RootType>
     <RootType FullName="NewsForum.ViewModel.BaseCollectionViewModel">
       <RootEvent Name="RemoveItemCollectionEvent" />
@@ -633,6 +652,8 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.SymbolIcon">
       <RootProperty Name="Symbol" />
+      <RootEvent Name="PointerMoved" />
+      <RootEvent Name="Tapped" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.AppBarButton">
       <RootProperty Name="Icon" />
@@ -681,6 +702,7 @@
       <RootProperty Name="ControlStoryboardOption" />
       <RootProperty Name="Storyboard" />
     </RootType>
+    <RootType FullName="NewsForum.View.Converters.RatingMessageConverter" />
     <RootType FullName="NewsForum.View.MyUserControls.SeparatorUserControl" />
     <RootType FullName="NewsForum.View.MyUserControls.WaitingLoadingUserControl" />
   </Roots.RootTypes>

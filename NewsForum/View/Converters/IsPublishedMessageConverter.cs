@@ -1,26 +1,25 @@
-﻿using Model.UserTypes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
 namespace NewsForum.View.Converters
 {
-    class UserAccessVisibleConverter : IValueConverter
+    class IsPublishedMessageConverter : IValueConverter
     {
+        string isModerated = "";
+        string isPublished = "";
+
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            UserAccessLevel level = UserAccessLevel.User;
-            
-            return CurrentUser.User.AccessLevel >= level ? true : false;
+            return (bool)value ? isPublished : isModerated;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            return CurrentUser.User.AccessLevel;
+            throw new NotImplementedException();
         }
     }
 }

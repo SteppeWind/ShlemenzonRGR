@@ -32,6 +32,7 @@ View\MyUserControls\ModifyWebViewUserControl.xbf
 View\MyUserControls\PanelEditDecriptionPublicationUserControl.xbf
 View\MyUserControls\PhotosContainerUserControl.xbf
 View\MyUserControls\PopupListUserControl.xbf
+View\MyUserControls\RatingControl\RatingUserControl.xbf
 View\MyUserControls\SeparatorUserControl.xbf
 View\MyUserControls\SetOrDropFilesUserControl.xbf
 View\MyUserControls\TitleDatePickerUserControl.xbf

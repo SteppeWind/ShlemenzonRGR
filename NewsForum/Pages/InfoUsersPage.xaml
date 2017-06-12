@@ -10,14 +10,23 @@
     xmlns:commands="using:NewsForum.ViewModel.Commands"
     xmlns:converters="using:NewsForum.View.Converters"
     xmlns:viewmodelUserDll="using:ViewModel.UserTypes"
+    xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:I="using:Microsoft.Xaml.Interactivity"
+    xmlns:selectors="using:NewsForum.View.Selectors"
     xmlns:viewModelDB="using:ViewModelDataBase">
 
     <Page.Resources>
         <converters:AccessLevelToWordCovnerter x:Key="AccessLevelToWordCovnerter"/>
         <converters:IsBanedConverter x:Key="IsBanedConverter"/>
         <converters:IsEnabledFromUserBannedConverter x:Key="IsEnabledFromUserBannedConverter"/>
-        <commands:BanCommand x:Key="BanCommand"/>
+        <converters:IsModeratorAccessConverter x:Key="IsModeratorAccessConverter"/>
 
+        <commands:BanCommand x:Key="BanCommand"/>
+        <commands:ChangeAccessLevelCommand x:Key="ChangeAccessLevelCommand"/>
+
+        <selectors:AccessUserSelector x:Key="AccessUserSelector"
+                                      GodTemplate="{StaticResource GodViewInfoUser}"
+                                      AdminTemplate="{StaticResource InfoUserTemplate}"/>
 
         <DataTemplate x:Key="InfoUserTemplate"
                       x:DataType="viewModelDB:VMUser">
@@ -45,37 +54,89 @@
                 <StackPanel Orientation="Horizontal"
                                 Grid.Row="1">
                     <TextBlock Text="Статус: "
-                                   FontSize="15"
+                               FontSize="15"
                                Margin="0 0 5 0"
-                                   Style="{StaticResource SubtitleTextBlockStyle}"/>
+                               Style="{StaticResource SubtitleTextBlockStyle}"/>
 
                     <TextBlock Text="{x:Bind AccessLevel, Converter={StaticResource AccessLevelToWordCovnerter}}"                               
-                                   FontSize="15"
-                                   Style="{StaticResource SubtitleTextBlockStyle}"/>
+                               FontSize="15"
+                               Style="{StaticResource SubtitleTextBlockStyle}"/>
+                </StackPanel>
+
+                <Button Command="{StaticResource BanCommand}"
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        CommandParameter="{Binding ElementName=grid, Path=DataContext}"
+                        Content="{Binding Path=IsBunned, Converter={StaticResource IsBanedConverter}, UpdateSourceTrigger=PropertyChanged}"
+                        Style="{StaticResource BaseSmallMenuIconTextBlockButtonStyle}"
+                        IsEnabled="{x:Bind Path=AccessLevel, Converter={StaticResource IsEnabledFromUserBannedConverter}}"/>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="GodViewInfoUser"
+                      x:DataType="viewModelDB:VMUser">
+            <Grid x:Name="grid"
+                  Margin="0 15 0 0"
+                  DataContext="{x:Bind Mode=OneWay}">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="{x:Bind EMail}"
+                           Grid.Row="0"
+                           TextWrapping="NoWrap"
+                           TextTrimming="CharacterEllipsis"
+                           Style="{StaticResource BaseMenuTextBlockStyle}"/>
+
+                <StackPanel Orientation="Horizontal"
+                                Grid.Row="1">
+                    <TextBlock Text="Статус: "
+                               FontSize="15"
+                               Margin="0 0 5 0"
+                               Style="{StaticResource SubtitleTextBlockStyle}"/>
+
+                    <TextBlock Text="{x:Bind AccessLevel, Converter={StaticResource AccessLevelToWordCovnerter}}"                               
+                               FontSize="15"
+                               Style="{StaticResource SubtitleTextBlockStyle}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal">
+                    <Button Command="{StaticResource BanCommand}"
+                            CommandParameter="{Binding ElementName=grid, Path=DataContext}"
+                            Content="{Binding Path=IsBunned, Converter={StaticResource IsBanedConverter}, UpdateSourceTrigger=PropertyChanged}"
+                            Style="{StaticResource BaseSmallMenuIconTextBlockButtonStyle}"/>
+
+                    <Button Command="{StaticResource ChangeAccessLevelCommand}"
+                            Margin="10 0"
+                            CommandParameter="{Binding ElementName=grid, Path=DataContext}"
+                            Content="{Binding Path=AccessLevel, Converter={StaticResource IsModeratorAccessConverter}, UpdateSourceTrigger=PropertyChanged}"
+                            Style="{StaticResource BaseSmallMenuIconTextBlockButtonStyle}"/>
+
                 </StackPanel>
 
 
-                <Button Grid.Row="0"
-                        Grid.RowSpan="2"
-                        Grid.Column="1"
-                        Command="{StaticResource BanCommand}"
-                        CommandParameter="{Binding ElementName=grid, Path=DataContext}"
-                        HorizontalAlignment="Center"
-                        Content="{Binding Path=IsBunned, Converter={StaticResource IsBanedConverter}, UpdateSourceTrigger=PropertyChanged}"
-                        IsEnabled="{x:Bind Path=AccessLevel, Converter={StaticResource IsEnabledFromUserBannedConverter}}"/>
-
             </Grid>
         </DataTemplate>
+        
     </Page.Resources>
 
-    <Grid Background="{StaticResource MenuColorStyle}"
-         DataContext="{x:Bind main:CurrentUser.User}">
-        <ListView Name="UsersListView"
-                  ItemsSource="{x:Bind ListUsers}"
-                  IsItemClickEnabled="True"
-                  ItemClick="UsersListView_ItemClick"
-                  ItemTemplate="{StaticResource InfoUserTemplate}">
-
-        </ListView>
-    </Grid>
+    <ListView Name="UsersListView"
+              DataContext="{x:Bind main:CurrentUser.User}"
+              ItemsSource="{x:Bind ListUsers}"
+              IsItemClickEnabled="True"
+              ItemClick="UsersListView_ItemClick"
+              ItemTemplateSelector="{StaticResource AccessUserSelector}"/>
 </Page>

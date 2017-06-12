@@ -58,7 +58,10 @@ namespace NewsForum.Pages.EditorPublication
                 Publication.ReleaseYear = RealeseDatePicker.GetCurrentDate.DateTime;
                 Publication.ListFiles.Clear();
                 Publication.ListActors = ListAutors.ToList();
-                AddPhotosControl.ListPhotos.AsParallel().ForAll(async (p) => { await AddFileToFilesPublic(p); });
+                foreach (var item in AddPhotosControl.ListPhotos)
+                {
+                    Publication.ListFiles.Add(await FilesAction.ConvertToIFileVM(item, true));
+                }
             }
         }
 

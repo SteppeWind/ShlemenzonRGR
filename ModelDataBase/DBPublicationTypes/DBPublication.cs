@@ -58,6 +58,7 @@ namespace ModelDataBase.DBPublicationTypes
         }
 
         private bool isDeleted = false;
+        [Property("IsDeleted")]
         public override bool IsDeleted
         {
             get => isDeleted;
@@ -67,8 +68,9 @@ namespace ModelDataBase.DBPublicationTypes
                 IsPublished = !isDeleted;
             }
         }
+        
 
-        public DBUser User { get; set; }
+        public virtual DBUser User { get; set; }
 
         public string RefPoster { get; set; }
 

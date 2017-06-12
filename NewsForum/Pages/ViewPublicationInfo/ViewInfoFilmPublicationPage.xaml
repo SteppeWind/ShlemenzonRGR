@@ -10,6 +10,7 @@
     xmlns:model="using:Model"
     xmlns:toolkit="using:WinRTXamlToolkit.Controls"
     xmlns:userControls="using:NewsForum.View.MyUserControls"
+    xmlns:rating="using:NewsForum.View.MyUserControls.RatingControl"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -61,13 +62,17 @@
             <TextBlock Text="{x:Bind Publication.Title}"
                        Style="{StaticResource SubheaderTextBlockStyle}"/>
 
-            <Image Name="PosterImage"
-                   Grid.Column="1"
-                   Grid.Row="0"
-                   VerticalAlignment="Top"
-                   Grid.RowSpan="3"
-                   Source="{x:Bind Publication.PosterImage.FullPath, Converter={StaticResource FileConverter}}"/>
-
+            <StackPanel Grid.Column="1"
+                        Grid.Row="0"
+                        VerticalAlignment="Top"
+                        Grid.RowSpan="2">
+                <Image Name="PosterImage"
+                       Source="{x:Bind Publication.PosterImage.FullPath, Converter={StaticResource FileConverter}}"/>
+                <rating:RatingUserControl Margin="0 10"
+                                          Publication="{x:Bind Publication, Mode=OneWay}"/>
+            </StackPanel>
+            
+           
             <Grid Name="PublicationInfoGrid"
                   Grid.Row="1">
                 <Grid.RowDefinitions>
@@ -141,6 +146,7 @@
                 
                 <userControls:CommentsUserControl x:Name="CommentsControl"
                                                   InfoUserEvent="CommentsControl_InfoUserEvent"
+                                                  CurrentFrame="{x:Bind Frame}"
                                                   ListComments="{x:Bind Publication.ListComments, Mode=TwoWay}"
                                                   PublicationId="{x:Bind Publication.PublicationId, Mode=OneWay}"
                                                   Grid.Row="6"/>

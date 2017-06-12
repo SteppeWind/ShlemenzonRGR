@@ -169,8 +169,10 @@
     <Compile Include="ViewModel\Commands\AddDeleteCommand.cs" />
     <Compile Include="ViewModel\Commands\BanCommand.cs" />
     <Compile Include="ViewModel\Commands\BaseCommand.cs" />
+    <Compile Include="ViewModel\Commands\ChangeAccessLevelCommand.cs" />
     <Compile Include="ViewModel\Commands\DeleteFromPublicAccessCommand.cs" />
     <Compile Include="ViewModel\Commands\PlaySoundCommand.cs" />
+    <Compile Include="ViewModel\Commands\PublishPublicationCommand.cs" />
     <Compile Include="ViewModel\MediaPlayerViewModel.cs" />
     <Compile Include="View\Converters\AccessLevelToWordCovnerter.cs" />
     <Compile Include="View\Converters\AdminAccessVisibleConverter.cs" />
@@ -188,9 +190,13 @@
     <Compile Include="View\Converters\IsDeleteMessageConverter.cs" />
     <Compile Include="View\Converters\IsEnableChangeCommentConverter.cs" />
     <Compile Include="View\Converters\IsEnabledFromUserBannedConverter.cs" />
+    <Compile Include="View\Converters\IsModeratorAccessConverter.cs" />
     <Compile Include="View\Converters\IsPublishedConverter.cs" />
+    <Compile Include="View\Converters\IsPublishedMessageConverter.cs" />
     <Compile Include="View\Converters\MethodNamePlayerConverter.cs" />
+    <Compile Include="View\Converters\RatingMessageConverter.cs" />
     <Compile Include="View\Converters\ReverseAdminAccessConverter.cs" />
+    <Compile Include="View\Converters\ReverseBoolConverter.cs" />
     <Compile Include="View\Converters\TrueOrFalseConverter.cs" />
     <Compile Include="View\Converters\TypePublicationToWordConverter.cs" />
     <Compile Include="View\Converters\UserAccessVisibleConverter.cs" />
@@ -231,6 +237,11 @@
     <Compile Include="View\MyUserControls\PopupListUserControl.xaml.cs">
       <DependentUpon>PopupListUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MyUserControls\RatingControl\RatingUserControl.xaml.cs">
+      <DependentUpon>RatingUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MyUserControls\RatingControl\SymbolRating.cs" />
+    <Compile Include="View\MyUserControls\RatingControl\SymbolRatingCollection.cs" />
     <Compile Include="View\MyUserControls\SeparatorUserControl.xaml.cs">
       <DependentUpon>SeparatorUserControl.xaml</DependentUpon>
     </Compile>
@@ -243,6 +254,7 @@
     <Compile Include="View\MyUserControls\WaitingLoadingUserControl.xaml.cs">
       <DependentUpon>WaitingLoadingUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Selectors\AccessUserSelector.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -399,6 +411,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MyUserControls\PopupListUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MyUserControls\RatingControl\RatingUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
